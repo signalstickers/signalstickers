@@ -10,7 +10,7 @@ body {
 
 .card {
     display: inline-block;
-    width: 180px;
+    width: 160px;
     height: 200px;
     cursor: pointer;
     transition: border-color 0.2s ease-in;

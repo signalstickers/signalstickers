@@ -96,6 +96,9 @@ async function decryptManifest(encodedKey, encryptedManifest) {
     }
 }
 async function deriveKeys(encodedKey) {
+    console.log("encoded key")
+    console.log( hexToArrayBuffer(encodedKey))
+    console.log("^")
     var masterKey = await window.crypto.subtle.importKey("raw", hexToArrayBuffer(encodedKey), 'HKDF', false, ['deriveKey']);
     var derivedKeys = await window.crypto.subtle.deriveKey({
         name: "HKDF",
