@@ -47,6 +47,10 @@ This is not the goal of this projet :-)
 
 Head to the [Signal forum](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650).
 
+### Is this a commercial projet ?
+
+**No**. This project is open-source, and is served directly from Github with Github pages.
+
 
 ## Dev stuff
 
