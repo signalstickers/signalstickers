@@ -25,6 +25,8 @@ https://signal.art/addstickers/#pack_id=[PACK ID]&pack_key=[PACK KEY]
 
 `tags` and `source` are not currently implemented, but if you remember where you got the sticker pack, and want to add keywords, feel free!
 
+> Note: if your sticker pack is NSFW, add the key:value `"nsfw": true` to your JSON PR.
+
 ## Q&A
 
 ### How can I crate a sticker pack?

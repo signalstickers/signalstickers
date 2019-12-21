@@ -107,7 +107,8 @@
 "5e797e64a41ef2f5bd62636da2bc9125": {
     "key": "e1bda885a1ef33a7346b40f67b2a59a6e2bd3b4e9ca601b3b937c21a24eb3eb0",
     "source": "",
-    "tags": ""
+    "tags": "",
+    "nsfw": true
 },
 "625ca5991871b0e108b0b6491cad86ca": {
     "key": "4798d9a693ffc24d48416c558278be6d142f34e9c1c7ea27287efa075d8fe6da",
@@ -167,7 +168,8 @@
 "7c7d3c102be96e72c463b455e30a13e3": {
     "key": "186a3a149c1844fb49613842f15233519b2836fa48e34bf7feb61538b6824226",
     "source": "",
-    "tags": ""
+    "tags": "",
+    "nsfw": true
 },
 "80294ba82fe61348a06fca5a91252ba4": {
     "key": "7b02f41426dc49cba2478b5bd8ce4bbe82d116e277106a9168639771fb5d83e2",
@@ -352,7 +354,8 @@
 "e7685b9eb64b8552b42661cb579b0070": {
     "key": "45f99b544bab6bd561ae1c9fb994abcc7d7790bf5460aa1dcad37e487e204bc1",
     "source": "",
-    "tags": ""
+    "tags": "",
+    "nsfw": true
 },
 "e7b301b0b91a45db4e4fb1b19a3c8d88": {
     "key": "f4910a1f9cce06082520603def58ef136754010243885cdfb0265297105ca282",

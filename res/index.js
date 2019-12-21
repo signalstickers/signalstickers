@@ -8,7 +8,6 @@ function processManifest() {
             decryptManifest(params['pack_key'], new Uint8Array(xhr.response)).then(manifest => {
 
                 parseManifest(manifest).then(data => {
-                    console.log(data)
                 });
             }).catch(error => {
                 console.log(error.stack);
@@ -56,7 +55,6 @@ function getSticker(sticker_id, emoji, pack_id, pack_key) {
 }
 
 function parseManifest(manifest) {
-    console.log("manifest")
     return protobuf.load("Stickers.proto").then(function (root) {
         var manifestData = new Uint8Array(manifest, 0, manifest.byteLength);
         var PackMessage = root.lookupType("Pack");
@@ -96,9 +94,6 @@ async function decryptManifest(encodedKey, encryptedManifest) {
     }
 }
 async function deriveKeys(encodedKey) {
-    console.log("encoded key")
-    console.log( hexToArrayBuffer(encodedKey))
-    console.log("^")
     var masterKey = await window.crypto.subtle.importKey("raw", hexToArrayBuffer(encodedKey), 'HKDF', false, ['deriveKey']);
     var derivedKeys = await window.crypto.subtle.deriveKey({
         name: "HKDF",
@@ -149,9 +144,6 @@ function getStickerPack() {
         if (this.status == 200) {
             decryptManifest(params["pack_key"], new Uint8Array(xhr.response)).then(manifest => {
                 parseManifest(manifest).then(pack => {
-                    console.log("pack")
-                    console.log(pack)
-
                     pack_title = document.createTextNode(pack.title);
                     pack_author = document.createTextNode(pack.author);
                     document.getElementById("pack_title").appendChild(pack_title);
@@ -187,15 +179,14 @@ function getStickerPackList() {
 
     $.getJSON("stickers.json", function (data) {
         $.each(data, function (pack_id, val) {
-            console.log(pack_id, val)
-            createThumbnail(pack_id, val.key)
+            createThumbnail(pack_id, val.key, val.nsfw==true)
         })
     });
 
 
 }
 
-function createThumbnail(pack_id, pack_key, parent_div) {
+function createThumbnail(pack_id, pack_key, nsfw) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', "https://cdn-ca.signal.org/stickers/" + pack_id + "/manifest.proto", true);
     xhr.responseType = 'arraybuffer';
@@ -203,10 +194,7 @@ function createThumbnail(pack_id, pack_key, parent_div) {
         if (this.status == 200) {
             decryptManifest(pack_key, new Uint8Array(xhr.response)).then(manifest => {
                 parseManifest(manifest).then(pack => {
-                    console.log("pack")
-                    console.log(pack)
                     cover_id = pack.cover.id
-                    console.log(cover_id)
                     var xhr = new XMLHttpRequest();
                     xhr.open('GET', "https://cdn-ca.signal.org/stickers/" + pack_id + "/full/" + cover_id, true);
                     xhr.responseType = 'arraybuffer';
@@ -217,7 +205,7 @@ function createThumbnail(pack_id, pack_key, parent_div) {
                                 var arrayBufferView = new Uint8Array(manifest, 0, manifest.byteLength);
                                 var base64Data = btoa(String.fromCharCode.apply(null, arrayBufferView));
                                 var card = document.createElement("div");
-                                card.className = "card text-center sticker-pack-link";
+                                card.className = "card text-center sticker-pack-link" + (nsfw ? " nsfw":"");
                                 card.setAttribute("data-pack-id", pack_id);
                                 card.setAttribute("data-pack-key", pack_key);
 

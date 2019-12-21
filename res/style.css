@@ -1,5 +1,5 @@
 body {
-    padding-top: 65px;
+    padding-top: 85px;
 }
 
 .card-img-top {
@@ -59,4 +59,21 @@ footer {
     content: attr(data-emoji);
     position: absolute;
     bottom: 0;
+}
+
+.sticker-pack-link.nsfw img{
+    filter: blur(5px);
+}
+
+.sticker-pack-link.nsfw::after{
+    content: "NSFW";
+    position: absolute;
+    top: 50px;
+    left: 52px;
+    background-color:red;
+    border-radius: 5px;
+    padding: 2px;
+    font-weight: bold;
+    box-shadow:white 0px 0px 9px;
+    color: white;
 }
