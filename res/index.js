@@ -1,22 +1,47 @@
-function processManifest() {
-    var params = parseParameters(window.location.hash.substr(1));
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', "https://cdn-ca.signal.org/stickers/" + params['pack_id'] + "/manifest.proto", true);
-    xhr.responseType = 'arraybuffer';
-    xhr.onload = function (oEvent) {
-        if (this.status == 200) {
-            decryptManifest(params['pack_key'], new Uint8Array(xhr.response)).then(manifest => {
-
-                parseManifest(manifest).then(data => {
-                });
-            }).catch(error => {
-                console.log(error.stack);
-                alert("Error: " + error);
-            });
+// The Pack proto for protobuf
+var proto = {
+    "nested": {
+      "Pack": {
+        "fields": {
+          "title": {
+            "type": "string",
+            "id": 1
+          },
+          "author": {
+            "type": "string",
+            "id": 2
+          },
+          "cover": {
+            "type": "Sticker",
+            "id": 3
+          },
+          "stickers": {
+            "rule": "repeated",
+            "type": "Sticker",
+            "id": 4,
+            "options": {}
+          }
+        },
+        "nested": {
+          "Sticker": {
+            "fields": {
+              "id": {
+                "type": "uint32",
+                "id": 1
+              },
+              "emoji": {
+                "type": "string",
+                "id": 2
+              }
+            }
+          }
         }
-    };
-    xhr.send();
-}
+      }
+    }
+  }
+var root = protobuf.Root.fromJSON(proto);
+const PackMessage = root.lookupType("Pack");
+
 
 function getSticker(sticker_id, emoji, pack_id, pack_key) {
     var xhr = new XMLHttpRequest();
@@ -56,13 +81,11 @@ function getSticker(sticker_id, emoji, pack_id, pack_key) {
 }
 
 function parseManifest(manifest) {
-    return protobuf.load("Stickers.proto").then(function (root) {
-        var manifestData = new Uint8Array(manifest, 0, manifest.byteLength);
-        var PackMessage = root.lookupType("Pack");
-        var pack = PackMessage.decode(manifestData);
-        return pack;
-    });
+    var manifestData = new Uint8Array(manifest, 0, manifest.byteLength);
+    var pack = PackMessage.decode(manifestData);
+    return pack;
 }
+
 async function decryptManifest(encodedKey, encryptedManifest) {
     var keys = await deriveKeys(encodedKey);
     var theirIv = encryptedManifest.slice(0, 16);
@@ -144,16 +167,16 @@ function getStickerPack() {
     xhr.onload = function (oEvent) {
         if (this.status == 200) {
             decryptManifest(params["pack_key"], new Uint8Array(xhr.response)).then(manifest => {
-                parseManifest(manifest).then(pack => {
-                    pack_title = document.createTextNode(pack.title);
-                    pack_author = document.createTextNode(pack.author);
-                    document.getElementById("pack_title").appendChild(pack_title);
-                    document.getElementById("pack_author").appendChild(pack_author);
-                    
-                    for (var i = 0; i < pack.stickers.length; i++) {
-                        getSticker(i, pack.stickers[i].emoji, params['pack_id'], params['pack_key'])
-                    }
-                });
+                var pack = parseManifest(manifest)
+                var pack_title = document.createTextNode(pack.title);
+                var pack_author = document.createTextNode(pack.author);
+                document.getElementById("pack_title").appendChild(pack_title);
+                document.getElementById("pack_author").appendChild(pack_author);
+                
+                for (var i = 0; i < pack.stickers.length; i++) {
+                    getSticker(i, pack.stickers[i].emoji, params['pack_id'], params['pack_key'])
+                }
+                
             }).catch(error => {
                 console.log(error.stack);
                 alert("Error: " + error);
@@ -166,8 +189,6 @@ function getStickerPack() {
         window.location.href = "sgnl://addstickers/?pack_id=" + params["pack_id"] + "&pack_key=" + params["pack_key"]
         return false;
     };
-
-
 }
 /**
  * Called when arriving on the / page
@@ -191,52 +212,49 @@ function createThumbnail(pack_id, pack_key, nsfw) {
     xhr.onload = function (oEvent) {
         if (this.status == 200) {
             decryptManifest(pack_key, new Uint8Array(xhr.response)).then(manifest => {
-                parseManifest(manifest).then(pack => {
-                    cover_id = pack.cover.id
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('GET', "https://cdn-ca.signal.org/stickers/" + pack_id + "/full/" + cover_id, true);
-                    xhr.responseType = 'arraybuffer';
-                    xhr.onload = function (oEvent) {
-                        if (this.status == 200) {
-                            decryptManifest(pack_key, new Uint8Array(xhr.response)).then(manifest => {
+                var pack = parseManifest(manifest)
+                var cover_id = pack.cover.id
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', "https://cdn-ca.signal.org/stickers/" + pack_id + "/full/" + cover_id, true);
+                xhr.responseType = 'arraybuffer';
+                xhr.onload = function (oEvent) {
+                    if (this.status == 200) {
+                        decryptManifest(pack_key, new Uint8Array(xhr.response)).then(manifest => {
 
-                                var arrayBufferView = new Uint8Array(manifest, 0, manifest.byteLength);
-                                const STRING_CHAR = arrayBufferView.reduce((data, byte)=> {return data + String.fromCharCode(byte);}, '');
-                                var base64Data = btoa(STRING_CHAR);
+                            var arrayBufferView = new Uint8Array(manifest, 0, manifest.byteLength);
+                            const STRING_CHAR = arrayBufferView.reduce((data, byte)=> {return data + String.fromCharCode(byte);}, '');
+                            var base64Data = btoa(STRING_CHAR);
 
-                                var img = new Image;
-                                img.src = "data:image/webp;base64," + base64Data;
-                                img.crossOrigin = 'Anonymous';
-                                img.className = "card-img-top";
+                            var img = new Image;
+                            img.src = "data:image/webp;base64," + base64Data;
+                            img.crossOrigin = 'Anonymous';
+                            img.className = "card-img-top";
 
-                                var card = document.createElement("a");
-                                card.href= "/pack.html#pack_id=" + pack_id + "&pack_key=" + pack_key
-                                card.className = "card text-center sticker-pack-link" + (nsfw ? " nsfw":"");
-                                card.setAttribute("data-pack-id", pack_id);
-                                card.setAttribute("data-pack-key", pack_key);
+                            var card = document.createElement("a");
+                            card.href= "/pack.html#pack_id=" + pack_id + "&pack_key=" + pack_key
+                            card.className = "card text-center sticker-pack-link" + (nsfw ? " nsfw":"");
+                            card.setAttribute("data-pack-id", pack_id);
+                            card.setAttribute("data-pack-key", pack_key);
 
-                                var image = document.createElement("img");
-                                image.className = "card-img-top";
-                                
+                            var image = document.createElement("img");
+                            image.className = "card-img-top";
+                            
 
-                                var card_body = document.createElement("div");
-                                card_body.className = "card-body";
-                                var label = document.createTextNode("" + pack.title);
-                                card.appendChild(img);
-                                card_body.appendChild(label);
-                                card.appendChild(card_body);
-
-
-                                document.getElementById("stickers_list").appendChild(card);
-
-                            }).catch(error => {
-                                console.log(error.stack);
-                                alert("Error: " + error);
-                            });
-                        }
-                    };
-                    xhr.send();
-                });
+                            var card_body = document.createElement("div");
+                            card_body.className = "card-body";
+                            var label = document.createTextNode("" + pack.title);
+                            card.appendChild(img);
+                            card_body.appendChild(label);
+                            card.appendChild(card_body);
+                            document.getElementById("stickers_list").appendChild(card);
+                        }).catch(error => {
+                            console.log(error.stack);
+                            alert("Error: " + error);
+                        });
+                    }
+                };
+                xhr.send();
+             
             }).catch(error => {
                 console.log(error.stack);
                 alert("Error: " + error);
