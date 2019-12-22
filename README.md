@@ -38,7 +38,7 @@ And then follow the tutorial on the [Signal support site](https://support.signal
 
 ### Do I have to add my sticker pack to this site to share it with my friends?
 
-**No**. You can just share your sticker pack using the `signal.art` link that you got when you created your sticker pack.
+**No**. You can just send any sticker to your friends and they will be able to install the pack, or you can share your sticker pack using the `signal.art` link that you got when you created your sticker pack, or by using the share button from inside the signal app's sticker managment screen.
 
 ### Can you create a sticker pack for me?
 
