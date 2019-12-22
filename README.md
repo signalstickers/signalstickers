@@ -2,7 +2,7 @@
 
 ## About
 
-This site is served on [signalstickers.com](https://www.signalstickers.com), directly from this Github repository.
+This site is served on [signalstickers.com](https://signalstickers.com), directly from this Github repository.
 
 ## Adding a sticker pack to this site
 
