@@ -27,7 +27,8 @@ function getSticker(sticker_id, emoji, pack_id, pack_key) {
             decryptManifest(pack_key, new Uint8Array(xhr.response)).then(manifest => {
 
                 var arrayBufferView = new Uint8Array(manifest, 0, manifest.byteLength);
-                var base64Data = btoa(String.fromCharCode.apply(null, arrayBufferView));
+                const STRING_CHAR = arrayBufferView.reduce((data, byte)=> {return data + String.fromCharCode(byte);}, '');
+                var base64Data = btoa(STRING_CHAR);
 
                 var sticker = document.createElement("div")
                 sticker.className = "sticker"
@@ -148,13 +149,10 @@ function getStickerPack() {
                     pack_author = document.createTextNode(pack.author);
                     document.getElementById("pack_title").appendChild(pack_title);
                     document.getElementById("pack_author").appendChild(pack_author);
-
-
+                    
                     for (var i = 0; i < pack.stickers.length; i++) {
                         getSticker(i, pack.stickers[i].emoji, params['pack_id'], params['pack_key'])
                     }
-
-
                 });
             }).catch(error => {
                 console.log(error.stack);
@@ -203,31 +201,33 @@ function createThumbnail(pack_id, pack_key, nsfw) {
                             decryptManifest(pack_key, new Uint8Array(xhr.response)).then(manifest => {
 
                                 var arrayBufferView = new Uint8Array(manifest, 0, manifest.byteLength);
-                                var base64Data = btoa(String.fromCharCode.apply(null, arrayBufferView));
-                                var card = document.createElement("div");
+                                const STRING_CHAR = arrayBufferView.reduce((data, byte)=> {return data + String.fromCharCode(byte);}, '');
+                                var base64Data = btoa(STRING_CHAR);
+
+                                var img = new Image;
+                                img.src = "data:image/webp;base64," + base64Data;
+                                img.crossOrigin = 'Anonymous';
+                                img.className = "card-img-top";
+
+                                var card = document.createElement("a");
+                                card.href= "/pack.html#pack_id=" + pack_id + "&pack_key=" + pack_key
                                 card.className = "card text-center sticker-pack-link" + (nsfw ? " nsfw":"");
                                 card.setAttribute("data-pack-id", pack_id);
                                 card.setAttribute("data-pack-key", pack_key);
 
                                 var image = document.createElement("img");
                                 image.className = "card-img-top";
-                                image.src = 'data:image/png;base64,' + base64Data;
+                                
 
                                 var card_body = document.createElement("div");
                                 card_body.className = "card-body";
                                 var label = document.createTextNode("" + pack.title);
-                                card.appendChild(image);
+                                card.appendChild(img);
                                 card_body.appendChild(label);
                                 card.appendChild(card_body);
 
-                                card.addEventListener("click", function () {
-                                    window.location.href = "/pack.html#pack_id=" + pack_id + "&pack_key=" + pack_key
-                                }, false);
-
 
                                 document.getElementById("stickers_list").appendChild(card);
-
-
 
                             }).catch(error => {
                                 console.log(error.stack);

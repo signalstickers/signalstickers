@@ -77,3 +77,8 @@ footer {
     box-shadow:white 0px 0px 9px;
     color: white;
 }
+
+a, a:hover {
+    text-decoration: none;
+    color: black;
+}
