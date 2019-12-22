@@ -10,6 +10,8 @@ Open a pull request to add a sticker pack to [`stickers.json`](https://github.co
 
 ### Format
 
+Use [this page](https://signalstickers.com/convert.html) to convert your `signal.art` URL to the following format: 
+
 ```json
 "[PACK ID]": {
     "key": "[PACK KEY]",
@@ -18,14 +20,12 @@ Open a pull request to add a sticker pack to [`stickers.json`](https://github.co
 }
 ```
 
-You can get `[PACK ID]` and `[PACK KEY]` from a sticker pack URL:
-```
-https://signal.art/addstickers/#pack_id=[PACK ID]&pack_key=[PACK KEY]
-```
-
-`tags` and `source` are not currently implemented, but if you remember where you got the sticker pack, and want to add keywords, feel free!
+You can also get `[PACK ID]` and `[PACK KEY]` directly from a sticker pack URL.
 
 > **Note:** if your sticker pack is NSFW, add the key:value `"nsfw": true` to your JSON object.
+
+> **Note:** `tags` and `source` are not currently implemented, but if you remember where you got the sticker pack, and want to add keywords, feel free!
+
 
 ## Q&A
 

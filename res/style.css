@@ -82,3 +82,17 @@ a, a:hover {
     text-decoration: none;
     color: black;
 }
+
+#json-result{
+    background-color: #f7f7f7;
+    max-width: 720px;
+    padding: 30px;
+    margin-top: 20px;
+}
+
+#signalart-url{
+    max-height: 54px;
+    max-width: 710px;
+    height: 100%;
+    width: 100%;
+}

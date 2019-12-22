@@ -48,10 +48,31 @@
                 </div>
             </nav>
     <div class="container">
-        <div id="stickers_list">
+        <h1>Convert your signal.art URL</h1>
+        <p>This tool helps you to participate to this site, and add your sticker pack.</p>
+        <br/>
+        <label for="nsfw">Paste here the <code>signal.art</code> URL of your sticker pack: </label><br/>
+        <textarea id="signalart-url" name="signalart-url" class="signaart-form" maxlength="146" placeholder="Example: https://signal.art/addstickers/#pack_id=e38a0fcdbd4c06e7e38aa&pack_key=09287edff13d97320b94675836b9aaf51f4ee..."></textarea>
+        <br/>
+        <label for="nsfw">Is your sticker pack NSFW?</label>
+        <input type="checkbox" name="nsfw" id="nsfw" class="signaart-form">
 
-
-        </div>
+        <br/>
+        <br/>
+        <p>This is the JSON object (<i>content</i>) you'll have to paste in your Pull Request:</p>
+        <pre id="json-result">
+            Please enter a valid URL!
+        </pre>
+        <br/>
+        <p>
+            You can now <a href="https://github.com/romainricard/signalstickers" target="_blank" rel="noreferrer" style="text-decoration: underline;">open a pull request!</a>
+        </p>
+        <script>
+            (function () {
+                convert()
+        })();
+        </script>
+       
     </div>
 
     <footer>
@@ -96,11 +117,7 @@
             </div>
         </div>
     </footer>
-    <script>
-        (function () {
-            getStickerPackList()
-        })();
-    </script>
+
 </body>
 
 </html>

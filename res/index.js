@@ -39,7 +39,7 @@ function getSticker(sticker_id, emoji, pack_id, pack_key) {
                 var imageParent = document.getElementById("stickers_list");
                 image.id = "id";
                 image.className = "class";
-                image.src = 'data:image/png;base64,' + base64Data;;
+                image.src = 'data:image/webp;base64,' + base64Data;;
 
                 sticker.appendChild(image)
                 imageParent.appendChild(sticker);
@@ -246,3 +246,18 @@ function createThumbnail(pack_id, pack_key, nsfw) {
     xhr.send();
 }
 
+function convert(){
+    var signalart_valid_url = new RegExp('^https:\/\/signal\.art\/addstickers\/#pack_id=[a-f0-9]{32}&pack_key=[a-f0-9]{64}$');
+    $('.signaart-form').on('input', function() {
+        var input = $('#signalart-url').val();
+        if (signalart_valid_url.test(input)) {
+            var hash = input.substring(input.lastIndexOf("#") + 1);
+            var params = parseParameters(hash);
+            var json_obj = {"key":  params['pack_key'], "source": "", "tags": "", "nsfw": $('#nsfw').is(':checked')}
+            var result = '"' +params['pack_id'] + '": ' + JSON.stringify(json_obj, null, 4);
+            $('#json-result').text(result)
+        }else{
+            $('#json-result').text("Please enter a valid URL!");
+        }
+    });
+}
