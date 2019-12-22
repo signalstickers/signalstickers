@@ -1,55 +1,57 @@
-# Signal stickers galery
+# Signal stickers gallery
 
 ## About
 
-This site is served on [www.signalstickers.com](https://www.signalstickers.com), directly from this Github repository.
+This site is served on [signalstickers.com](https://www.signalstickers.com), directly from this Github repository.
 
-## Adding a sticker pack to the site
+## Adding a sticker pack to this site
 
-Open a merge request to add a sticker pack to `stickers.json`!
+Open a pull request to add a sticker pack to [`stickers.json`](https://github.com/romainricard/signalstickers/blob/master/stickers.json)!
 
 ### Format
 
 ```json
 "[PACK ID]": {
     "key": "[PACK KEY]",
-    "source": "[Where you get the sticker pack]",
+    "source": "[Where you got the sticker pack]",
     "tags": "keyword1, keyword2"
 }
 ```
 
-You can get from a URL sticker link:
+You can get `[PACK ID]` and `[PACK KEY]` from a sticker pack URL:
 ```
 https://signal.art/addstickers/#pack_id=[PACK ID]&pack_key=[PACK KEY]
 ```
 
 `tags` and `source` are not currently implemented, but if you remember where you got the sticker pack, and want to add keywords, feel free!
 
-> Note: if your sticker pack is NSFW, add the key:value `"nsfw": true` to your JSON PR.
+> **Note:** if your sticker pack is NSFW, add the key:value `"nsfw": true` to your JSON object.
 
 ## Q&A
 
-### How can I crate a sticker pack?
+### How can I create a sticker pack?
 
-+ Follow the tutorial on the [Signal support site](https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca)
-+ OR [use this Gist](https://gist.github.com/ondondil/4b8564b404696b3255253b467b413de9) to convert Telegram stickers to Signal
-+ OR use Gimp and your talent!
++ [Use this Gist](https://gist.github.com/ondondil/4b8564b404696b3255253b467b413de9) to convert Telegram stickers to Signal
++ **OR** use Gimp and your talent!
 
-### Have I to add my sticker pack to this site to share it with my friends?
+And then follow the tutorial on the [Signal support site](https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca) to upload your stickers.
 
-**No**. You can just share your sticker pack using the `signal.art` link that you get when you create your Sticker pack.
+### Do I have to add my sticker pack to this site to share it with my friends?
+
+**No**. You can just share your sticker pack using the `signal.art` link that you got when you created your sticker pack.
 
 ### Can you create a sticker pack for me?
 
-This is not the goal of this projet :-)
+This is not the goal of this project :-)
 
-### Where can I found more stickers?
+### Where can I find more stickers?
 
-Head to the [Signal forum](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650).
+- Head to the [Sticker pack collection thread](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650) on the [Signal Community forum](https://community.signalusers.org).
+- Search Twitter for the [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick) hashtag.
 
-### Is this a commercial projet ?
+### Is this a commercial project?
 
-**No**. This project is open-source, and is served directly from Github with Github pages.
+**No**. This project is open-source, and is served directly from Github via [Github Pages](https://pages.github.com/).
 
 
 ## Dev stuff
