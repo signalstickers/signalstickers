@@ -4,6 +4,12 @@
     "source": "",
     "tags": ""
 },
+"ae1d343accdec586fe19954a6be7aee9": {
+    "key": "ffea9831b6af7617e4ab1b3868ce6f26f5c7c8ab3f05fb8d68b436f9253232ab",
+    "source": "",
+    "tags": "cat",
+    "nsfw": false
+},
 "07636a1a3d61570a292413778d64d08b": {
     "key": "32415281b22b1d2e1c09fa5a0551af371e2a401aa0831c2c2f474e6b579996e6",
     "source": "",
@@ -692,6 +698,18 @@
     "key": "ea731445ba3abd3df506be81b008f39061d5e2d0f4fb3d0ce09eda58b263a984",
     "source": "https://telegramhub.net/david-hasselhoff-sticker-pack/",
     "tags": "David Hasselhoff,Knight Rider, Baywatch",
+      "nsfw": false
+},
+  "ce9d395268e045b6ee96a53bdc8c62f1": {
+    "key": "717536ee30af7c554d1df1de06fad6d6d1573581abd5f680f28ba04bd672a5cf",
+    "source": "",
+    "tags": "anime, menhera",
+    "nsfw": false
+},
+"7538490344a5e67bfa50d702164f086b": {
+    "key": "7f1902f60df4c1118b0908e7e1a2b24ba7ab58c49235b92a8b8237c5d208a400",
+    "source": "",
+    "tags": "anime, christmas, padoru",
     "nsfw": false
 }
 }

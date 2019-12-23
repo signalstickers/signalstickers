@@ -27,6 +27,13 @@ You can also get `[PACK ID]` and `[PACK KEY]` directly from a sticker pack URL.
 
 > **Note:** `tags` and `source` are not currently implemented, but if you remember where you got the sticker pack, and want to add keywords, feel free!
 
+### Contribution guidelines
+
+I will accept all stickers, **except**:
++ Stickers packs that call for hatred or violence against people or communities based on age, body size, disability, ethnicity, gender identity and expression, nationality, personal appearance, race, religion, or sexual identity and orientation;
++ Sticker packs that directly promote a brand or a company.
+
+The idea is to keep a family atmosphere: I'd like my grandmother to be able to navigate stickers packs quietly.  
 
 ## Q&A
 
@@ -53,7 +60,6 @@ This is not the goal of this project :-)
 ### Is this a commercial project?
 
 **No**. This project is open-source, and is served directly from Github via [Github Pages](https://pages.github.com/).
-
 
 ## Dev stuff
 
