@@ -1,0 +1,145 @@
+{
+  "extends": "tslint-xo/space",
+  "rules": {
+    // Do not enforce alignment of parameters in function calls.
+    "align": {
+      "severity": "off"
+    },
+
+    // Requires using "Array<T>" style for arrays.
+    "array-type": {
+			"severity": "error",
+			"options": ["generic"]
+    },
+
+    "await-promise": {
+      "severity": "error",
+      "options": ["PromiseLike"]
+    },
+
+    // This effectively allows the use of `Function` as a type, which would
+    // normally be banned.
+    "ban-types": {
+      "severity": "error",
+      "options": [
+        ["String", "Use `string` instead."],
+			  ["Number", "Use `number` instead."],
+			  ["Boolean", "Use `boolean` instead."],
+			  ["Symbol", "Use `symbol` instead."],
+			  ["Object", "Use `object` instead."]
+      ]
+    },
+
+    // Require a space after "//" on single-line comments.
+    "comment-format": {
+			"severity": "error",
+			"options": ["check-space"]
+		},
+
+    // Do not enforce the "early exit" pattern.
+    "early-exit": {
+      "severity": "off"
+    },
+
+    "file-name-casing": {
+      "severity": "off"
+    },
+
+    // Enforce ordering of member and field definitions in classes.
+		"member-ordering": {
+			"severity": "error",
+			"options": {
+				"order": [
+					// Field order.
+					"private-static-field",
+					"public-static-field",
+					"private-instance-field",
+					"public-instance-field",
+
+					// Method order.
+					"constructor",
+					"private-instance-method",
+					"public-instance-method",
+					"static-method"
+				]
+			}
+		},
+
+		// Allow up to 2 consecutive blank lines.
+		"no-consecutive-blank-lines": {
+			"severity": "error",
+			"options": 2
+		},
+
+    // Allow importing modules that are not listed as a dependency in the
+    // project’s package.json. This is disabled because it doesn"t work with
+    // custom module resolution rules.
+    "no-implicit-dependencies": {
+      "severity": "off"
+    },
+
+    // Disallow imports with side effects with the exception of .html and .css
+    // files.
+    "no-import-side-effect": {
+      "severity": "error",
+      "options": {
+        "ignore-module": "(\\.html|\\.css)$"
+      }
+    },
+
+    // Allow statements like "{} as Foo".
+    "no-object-literal-type-assertion": {
+      "severity": "off"
+    },
+
+    // Allows "unsafe" use of the "any" type. (This rule tends to be a bit
+    // over-zealous.)
+    "no-unsafe-any": {
+      "severity": "off"
+    },
+
+    // Disallows unused imports, variables, functions, classes, type parameters,
+    // and more.
+    "no-unused": {
+			"severity": "off"
+    },
+
+    // Suppress deprecation warnings about this rule until tslint-xo removes it.
+    "no-use-before-declare": {
+      "severity": "off"
+    },
+
+    // Require consistent object key quoting. If any key in an object literal
+    // requires quotes, all keys should be quoted.
+    "object-literal-key-quotes": {
+      "severity": "error",
+      "options": "consistent-as-needed"
+    },
+
+    // Enforce single quotes in JS/TS and double quotes in JSX.
+    "quotemark": {
+      "severity": "error",
+      "options": ["single", "jsx-double"]
+    },
+
+    // Don"t require explicit type definitions on everything. In many cases,
+    // TypeScript can "trivially infer" types and a type definition would be
+    // redundant.
+    "typedef": {
+      "severity": "off"
+    },
+
+    // Allow variable names in lowerCamelCase, PascalCase, UPPER_CASE, and
+    // _leadingUnderscore. Additionally, ban the use of reserved TypeScript
+    // keywords.
+		"variable-name": {
+			"severity": "error",
+			"options": [
+				"ban-keywords",
+				"check-format",
+				"allow-pascal-case",
+				"allow-leading-underscore"
+			]
+		}
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "name": "@darkobits/signalstickers",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A gallery of stickers for Signal, the secure messenger!",
+  "contributors": [
+    {
+      "name": "Romain Ricard",
+      "url": "https://romainricard.fr/"
+    }
+  ],
+  "license": "WTFPL",
+  "homepage": "https://signalstickers.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com//romainricard/signalstickers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/romainricard/signalstickers/issues"
+  },
+  "keywords": [],
+  "scripts": {
+    "lint": "tslint --config tslint.json --project tsconfig.json --format codeFrame",
+    "prebuild": "del dist",
+    "build": "webpack --mode=production --config=config/webpack.config.ts",
+    "start": "webpack-dev-server --mode=development --config=config/webpack.config.ts"
+  },
+  "dependencies": {
+    "@darkobits/sleep": "^1.0.2",
+    "axios": "^0.19.0",
+    "del-cli": "^3.0.0",
+    "linaria": "^1.3.1",
+    "p-queue": "^6.2.1",
+    "p-wait-for": "^3.1.0",
+    "polished": "^3.4.2",
+    "protobufjs": "^6.8.8",
+    "ramda": "^0.26.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-linkify": "^1.0.0-alpha",
+    "react-octicon": "^3.0.1",
+    "react-router-dom": "^5.1.2",
+    "webp-hero": "0.0.0-dev.24"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.7",
+    "@types/copy-webpack-plugin": "^5.0.0",
+    "@types/express": "^4.17.2",
+    "@types/friendly-errors-webpack-plugin": "^0.1.1",
+    "@types/fuzzy-search": "^2.1.0",
+    "@types/html-webpack-plugin": "^3.2.0",
+    "@types/mini-css-extract-plugin": "^0.9.0",
+    "@types/node": "^12.12.14",
+    "@types/p-wait-for": "^3.0.1",
+    "@types/ramda": "^0.26.38",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-linkify": "^1.0.0",
+    "@types/react-router-dom": "^5.1.3",
+    "@types/webpack": "^4.41.0",
+    "@types/webpack-dev-server": "^3.9.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "copy-webpack-plugin": "^5.0.5",
+    "css-loader": "^3.4.0",
+    "express": "^4.17.1",
+    "favicons-webpack-plugin": "^1.0.2",
+    "file-loader": "^5.0.2",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "fuzzy-search": "^3.0.2",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "raw-loader": "^4.0.0",
+    "style-loader": "^1.1.1",
+    "tslint": "^5.20.1",
+    "tslint-loader": "^3.6.0",
+    "tslint-xo": "^0.16.0",
+    "typescript": "^3.7.4",
+    "typescript-styled-plugin": "^0.15.0",
+    "url-loader": "^3.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}
