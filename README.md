@@ -54,7 +54,8 @@ This is not the goal of this project :-)
 
 ### Where can I find more stickers?
 
-- Head to the [Sticker pack collection thread](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650) on the [Signal Community forum](https://community.signalusers.org).
+- Head to the [Sticker pack collection thread](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650) on the [Signal Community forum](https://community.signalusers.org);
+- Visit [signal-stickers.github.io](https://signal-stickers.github.io/), that ported stickers packs from Telegram;
 - Search Twitter for the [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick) hashtag.
 
 ### Is this a commercial project?
