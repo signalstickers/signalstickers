@@ -783,5 +783,29 @@
     "source": "https://twitter.com/CFWeb/status/1209443173564649479",
     "tags": "",
     "nsfw": false
+},
+"57ea8ca7ad3986d7e95a3398a6b776c8": {
+    "key": "30b9a93c81dbdbff51fcbfefdc17dea4f3d84e96535e54f78d7b038017394d62",
+    "source": "https://signal-stickers.github.io/",
+    "tags": "adventure time",
+    "nsfw": false
+},
+"d8af9737c1c71f32a87281e1bdb281e8": {
+    "key": "db1e657ae019f0e487b60916353f26ad48d95a7af4d75b93d678b78eae7ef051",
+    "source": "https://signal-stickers.github.io/",
+    "tags": "panda",
+    "nsfw": false
+},
+"4710692d80eef97f9883cd9dc7d22aab": {
+    "key": "4f4670296156311d38cd92ce67909e39205ca20534be2d3175660892adeb72ef",
+    "source": "https://signal-stickers.github.io/",
+    "tags": "panda",
+    "nsfw": false
+},
+"b1fb19f90fc509bdb4d8d82e5dbb8375": {
+    "key": "f57e6d57ced01ec176f8e5ce244c67cf6baf0f32a648788da8b470d286da370a",
+    "source": "https://signal-stickers.github.io/",
+    "tags": "panda",
+    "nsfw": false
 }
 }
