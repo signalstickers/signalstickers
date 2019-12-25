@@ -169,12 +169,12 @@ export default (env: string, argv: any): webpack.Configuration => {
       minimize: true
     }));
 
-    config.plugins.push(new FaviconsWebpackPlugin({
-      logo: path.resolve(PKG_ROOT, 'src', 'assets', 'favicon.png'),
-      // persistentCache: false,
-      // inject: true,
-      // title: 'Signal Stickers'
-    }));
+    // config.plugins.push(new FaviconsWebpackPlugin({
+    //   logo: path.resolve(PKG_ROOT, 'src', 'assets', 'favicon.png'),
+    //   persistentCache: true,
+    //   inject: true,
+    //   title: 'Signal Stickers'
+    // }));
   }
 
 
