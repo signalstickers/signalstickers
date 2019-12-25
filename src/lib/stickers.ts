@@ -37,6 +37,11 @@ import {decryptManifest} from 'lib/crypto';
 const protobufClient = protobuf.parse(StickersProto).root;
 
 /**
+ * Module-local in-memory copy of stickers.json, ensures we only load it once.
+ */
+let stickerPackListCache: Array<TransformedStickerPackJsonEntry> = [];
+
+/**
  * Module-local in-memory cache used for sticker pack data.
  */
 const stickerPackCache = new Map<string, StickerPack>();
@@ -63,19 +68,18 @@ const webpConverter = new WebpMachine();
 /**
  * Loads and transforms stickers.json, which is the source of truth regarding
  * all sticker packs included in the application.
- *
- * TODO: Consider loading this from a backend/public path.
  */
 export async function getStickerPackList(): Promise<Array<TransformedStickerPackJsonEntry>> {
-  const res = await axios({
-    method: 'GET',
-    url: '/static/stickers.json'
-  });
+  if (stickerPackListCache.length === 0) {
+    const res = await axios({
+      method: 'GET',
+      url: '/static/stickers.json'
+    });
 
-  return Object.entries(res.data as StickerPackJson).map(([id, value]) => ({
-    id,
-    ...value as any
-  }));
+    stickerPackListCache = Object.entries(res.data as StickerPackJson).map(([id, value]) => ({id, ...value}));
+  }
+
+  return stickerPackListCache;
 }
 
 
