@@ -807,5 +807,23 @@
     "source": "https://signal-stickers.github.io/",
     "tags": "panda",
     "nsfw": false
+},
+"8969c957cbd6ae9d033a4f8d3935a16e": {
+    "key": "9c3d2ca44339bca302cdf929e9741b2f7b12556a4dcc8ffabea215d732bbd0c1",
+    "source": "https://github.com/romainricard/signalstickers/pull/21",
+    "tags": "",
+    "nsfw": false
+},
+"fdcbd299f78438f2879656bb477f1219": {
+    "key": "2933c6153bb8102d75e745506df6d5f56dfbe68253c2aa811c2d84a577467ca9",
+    "source": "",
+    "tags": "cat",
+    "nsfw": false
+},
+"0718671d6d93a4bb3da03579bbb31d5b": {
+    "key": "f91546851667e75eadf70de2a1117a52a21e6045b265cadd87a5b39b5c2bf8e8",
+    "source": "",
+    "tags": "",
+    "nsfw": false
 }
 }
