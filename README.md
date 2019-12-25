@@ -25,7 +25,7 @@ You can also get `[PACK ID]` and `[PACK KEY]` directly from a sticker pack URL.
 
 > **Note:** if your sticker pack is NSFW, add the key:value `"nsfw": true` to your JSON object.
 
-> **Note:** `tags` and `source` are not currently implemented, but if you remember where you got the sticker pack, and want to add keywords, feel free!
+> **Note:** `source` is not currently implemented, but if you remember where you got the sticker pack, feel free to fill this field!
 
 ### Contribution guidelines
 

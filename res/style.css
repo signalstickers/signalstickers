@@ -9,7 +9,7 @@ body {
 #stickers_list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .card-img-top {
