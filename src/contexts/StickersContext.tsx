@@ -15,6 +15,11 @@ import {
  */
 export interface StickersProviderContext {
   /**
+   * List of all sticker packs known to the application.
+   */
+  allStickerPacks: Array<StickerPack>;
+
+  /**
    * Current sticker pack, typically displayed by the sticker pack detail view
    * page.
    */
@@ -46,6 +51,7 @@ export const Provider = (props: PropsWithChildren<{}>) => {
   const [currentStickerPack, setCurrentStickerPack] = useState<StickerPack | undefined>();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Array<StickerPack>>([]);
+  const [allStickerPacks, setAllStickerPacks] = useState<Array<StickerPack>>();
 
   // Hooks from React Router DOM.
   const stickerPackPathMath = useRouteMatch<{packId?: string}>(`/pack/:packId`);
@@ -59,7 +65,10 @@ export const Provider = (props: PropsWithChildren<{}>) => {
       const stickerPacksToLoad = await getStickerPackList();
 
       // Then, prime the cache by loading each sticker pack from the Signal API.
-      await Promise.all(stickerPacksToLoad.map(({id}) => getStickerPack(id)));
+      const stickerPacks = await Promise.all(stickerPacksToLoad.map(({id}) => getStickerPack(id)));
+
+      // Set the canonical list of all sticker packs.
+      setAllStickerPacks(stickerPacks);
 
       // Finally, set our search results by performing an initial fuzzy search.
       setSearchResults(R.sortBy(R.prop('title'), fuzzySearchStickerPacks(searchQuery)));
@@ -96,6 +105,7 @@ export const Provider = (props: PropsWithChildren<{}>) => {
 
   return (
     <Context.Provider value={{
+      allStickerPacks,
       currentStickerPack,
       searchQuery,
       setSearchQuery,

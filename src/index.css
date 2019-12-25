@@ -34,6 +34,10 @@ a:focus {
   color: #2090EA;
 }
 
+a:hover {
+  color: #2090EA;
+}
+
 p {
   line-height: 1.4em;
 }

@@ -41,7 +41,7 @@ const SearchInput = styled.div`
 // ----- Component -------------------------------------------------------------
 
 const SearchInputComponent: React.FunctionComponent = () => {
-  const {searchQuery, setSearchQuery} = useContext(StickersContext);
+  const {allStickerPacks, searchQuery, setSearchQuery} = useContext(StickersContext);
 
 
   /**
@@ -63,10 +63,12 @@ const SearchInputComponent: React.FunctionComponent = () => {
 
   // ----- Render --------------------------------------------------------------
 
+  const placeholder = allStickerPacks ? `Search ${allStickerPacks.length} sticker packs...` : '';
+
   return (
     <SearchInput>
       <Octicon name="search" />&nbsp;&nbsp;
-      <input name="search" value={searchQuery} onChange={onSearchQueryChange} placeholder="Search" title="Search" />
+      <input name="search" value={searchQuery} onChange={onSearchQueryChange} placeholder={placeholder} title="Search" />
       <Button variant="secondary" onClick={clearSearchResults} title="Clear Search Results">
         &nbsp;<Octicon name="x" />
       </Button>

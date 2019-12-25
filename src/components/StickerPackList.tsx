@@ -13,6 +13,18 @@ const StickerPackList = styled.div`
   padding-top: 24px;
   margin-bottom: 24px;
 
+  & .search-results {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  & a {
+    max-width: calc(50% - 12px);
+    width: calc(50% - 12px);
+  }
+
   & a:not(:last-child) {
     display: block;
     margin-bottom: 24px;
@@ -29,11 +41,13 @@ const StickerPackListComponent = () => {
     <StickerPackList>
       <SearchInput />
 
-      {searchResults.map(stickerPack => (
-        <Link key={stickerPack.id} to={`/pack/${stickerPack.id}`}>
-          <StickerPackPreviewCard stickerPack={stickerPack} />
-        </Link>
-      ))}
+      <div className="search-results">
+        {searchResults.map(stickerPack => (
+          <Link key={stickerPack.id} to={`/pack/${stickerPack.id}`}>
+            <StickerPackPreviewCard stickerPack={stickerPack} />
+          </Link>
+        ))}
+      </div>
     </StickerPackList>
   );
 };
