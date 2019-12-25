@@ -1,3 +1,6 @@
+// Sticker packs list
+let packs =[];
+
 // The Pack proto for protobuf
 var proto = {
     "nested": {
@@ -72,7 +75,7 @@ function getSticker(sticker_id, emoji, pack_id, pack_key) {
 
             }).catch(error => {
                 console.log(error.stack);
-                alert("Error: " + error);
+                alert("getSticker: " + error);
             });
         }
     };
@@ -179,7 +182,7 @@ function getStickerPack() {
                 
             }).catch(error => {
                 console.log(error.stack);
-                alert("Error: " + error);
+                alert("getStickerPack: " + error);
             });
         }
     };
@@ -195,73 +198,87 @@ function getStickerPack() {
  */
 
 function getStickerPackList() {
-
     $.getJSON("stickers.json", function (data) {
         $.each(data, function (pack_id, val) {
-            createThumbnail(pack_id, val.key, val.nsfw==true)
+            getStickerPackDetails({
+                id: pack_id,
+                key: val.key,
+                nsfw: val.nsfw,
+                tags: val.tags
+            });
         })
     });
-
-
 }
 
-function createThumbnail(pack_id, pack_key, nsfw) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', "https://cdn-ca.signal.org/stickers/" + pack_id + "/manifest.proto", true);
+function getStickerPackDetails(pack) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', "https://cdn-ca.signal.org/stickers/" + pack.id + "/manifest.proto", true);
     xhr.responseType = 'arraybuffer';
     xhr.onload = function (oEvent) {
         if (this.status == 200) {
-            decryptManifest(pack_key, new Uint8Array(xhr.response)).then(manifest => {
-                var pack = parseManifest(manifest)
-                var cover_id = pack.cover.id
+            decryptManifest(pack.key, new Uint8Array(xhr.response)).then(manifest => {
+                var manifestData = parseManifest(manifest)
+                var cover_id = manifestData.cover.id
                 var xhr = new XMLHttpRequest();
-                xhr.open('GET', "https://cdn-ca.signal.org/stickers/" + pack_id + "/full/" + cover_id, true);
+                xhr.open('GET', "https://cdn-ca.signal.org/stickers/" + pack.id + "/full/" + cover_id, true);
                 xhr.responseType = 'arraybuffer';
                 xhr.onload = function (oEvent) {
                     if (this.status == 200) {
-                        decryptManifest(pack_key, new Uint8Array(xhr.response)).then(manifest => {
-
-                            var arrayBufferView = new Uint8Array(manifest, 0, manifest.byteLength);
-                            const STRING_CHAR = arrayBufferView.reduce((data, byte)=> {return data + String.fromCharCode(byte);}, '');
-                            var base64Data = btoa(STRING_CHAR);
-
-                            var img = new Image;
-                            img.src = "data:image/webp;base64," + base64Data;
-                            img.crossOrigin = 'Anonymous';
-                            img.className = "card-img-top";
-
-                            var card = document.createElement("a");
-                            card.href= "/pack.html#pack_id=" + pack_id + "&pack_key=" + pack_key
-                            card.className = "card text-center sticker-pack-link" + (nsfw ? " nsfw":"");
-                            card.setAttribute("data-pack-id", pack_id);
-                            card.setAttribute("data-pack-key", pack_key);
-
-                            var image = document.createElement("img");
-                            image.className = "card-img-top";
-                            
-
-                            var card_body = document.createElement("div");
-                            card_body.className = "card-body";
-                            var label = document.createTextNode("" + pack.title);
-                            card.appendChild(img);
-                            card_body.appendChild(label);
-                            card.appendChild(card_body);
-                            document.getElementById("stickers_list").appendChild(card);
+                        decryptManifest(pack.key, new Uint8Array(xhr.response)).then(manifest => {
+                            new_pack =  {
+                                id: pack.id,
+                                key: pack.key,
+                                title: manifestData.title,
+                                nsfw: pack.nsfw || false,
+                                author: manifestData.author,
+                                stickers: manifestData.stickers,
+                                tags: pack.tags.split(',').map(s => s.trim() && s.toLowerCase()).filter(a => a),
+                                cover: manifestData.cover,
+                                manifest: manifest,
+                            }
+                            // Add to global packs list
+                            packs = [...packs, new_pack];
+                            // Display pack
+                            displayPackThumbnail(new_pack);
                         }).catch(error => {
-                            console.log(error.stack);
-                            alert("Error: " + error);
+                            console.error(error.stack);
+                            alert("getStickerPackDetails: " + error);
                         });
                     }
                 };
                 xhr.send();
-             
             }).catch(error => {
-                console.log(error.stack);
-                alert("Error: " + error);
+                console.error(error.stack);
+                alert("getStickerPackDetails: " + error);
             });
         }
     };
     xhr.send();
+}
+
+function displayPackThumbnail(pack) {
+    let img = new Image;
+    img.src = "data:image/webp;base64," + btoa(new Uint8Array(pack.manifest, 0, pack.manifest.byteLength).reduce((data, byte)=> {return data + String.fromCharCode(byte);}, ''));
+    img.crossOrigin = 'Anonymous';
+    img.className = "card-img-top";
+
+    let card = document.createElement("a");
+    card.href= "/pack.html#pack_id=" + pack.id + "&pack_key=" + pack.key
+    card.className = "card text-center sticker-pack-link" + (pack.nsfw ? " nsfw":"");
+    card.setAttribute("data-pack-id", pack.id);
+    card.setAttribute("data-pack-key", pack.key);
+
+    let image = document.createElement("img");
+    image.className = "card-img-top";
+
+
+    let card_body = document.createElement("div");
+    card_body.className = "card-body";
+    const label = document.createTextNode("" + pack.title);
+    card.appendChild(img);
+    card_body.appendChild(label);
+    card.appendChild(card_body);
+    document.getElementById("stickers_list").appendChild(card);
 }
 
 function convert(){
@@ -278,4 +295,17 @@ function convert(){
             $('#json-result').text("Please enter a valid URL!");
         }
     });
+}
+
+/**
+ * Called on search bar input change
+ */
+function search(e) {
+    const searched = e.target.value.toLowerCase()
+    const filtered_packs = packs.filter(
+        p => p.title.toLowerCase().includes(searched) || // by title
+        (p.tags.map(t => t.includes(searched)).includes(true)) // by tags
+    )
+    document.getElementById("stickers_list").innerHTML = "";
+    filtered_packs.forEach(filetered_pack => displayPackThumbnail(filetered_pack))
 }

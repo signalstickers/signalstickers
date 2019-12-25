@@ -2,10 +2,21 @@ body {
     padding-top: 85px;
 }
 
+.searchbar {
+    margin: 20px 0;
+}
+
+#stickers_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .card-img-top {
     width: auto;
     height: 120px;
     width: 120px;
+    margin-top: 10px;
 }
 
 .card {
@@ -14,6 +25,7 @@ body {
     height: 200px;
     cursor: pointer;
     transition: border-color 0.2s ease-in;
+    margin: 10px 0;
 }
 
 .card:hover {
