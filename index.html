@@ -44,9 +44,12 @@
 
                 </div>
             </nav>
-    <div class="container">
-        <div id="stickers_list">
 
+    <div class="container">
+        <div class="searchbar">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        </div>
+        <div id="stickers_list">
 
         </div>
     </div>
@@ -94,6 +97,7 @@
     </footer>
     <script>
         (function () {
+            document.querySelector('.searchbar input').addEventListener('input', search);
             getStickerPackList()
         })();
     </script>

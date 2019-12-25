@@ -232,7 +232,7 @@ function getStickerPackDetails(pack) {
                                 nsfw: pack.nsfw || false,
                                 author: manifestData.author,
                                 stickers: manifestData.stickers,
-                                tags: pack.tags.split(',').map(s => s.trim()).filter(a => a),
+                                tags: pack.tags.split(',').map(s => s.trim() && s.toLowerCase()).filter(a => a),
                                 cover: manifestData.cover,
                                 manifest: manifest,
                             }
@@ -295,4 +295,17 @@ function convert(){
             $('#json-result').text("Please enter a valid URL!");
         }
     });
+}
+
+/**
+ * Called on search bar input change
+ */
+function search(e) {
+    const searched = e.target.value.toLowerCase()
+    const filtered_packs = packs.filter(
+        p => p.title.toLowerCase().includes(searched) || // by title
+        (p.tags.map(t => t.includes(searched)).includes(true)) // by tags
+    )
+    document.getElementById("stickers_list").innerHTML = "";
+    filtered_packs.forEach(filetered_pack => displayPackThumbnail(filetered_pack))
 }
