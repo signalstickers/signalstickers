@@ -1,28 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {styled} from 'linaria/react';
 import pWaitFor from 'p-wait-for';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
-
-import Container from 'components/Container';
-import {YELLOW} from 'etc/colors';
-
-
-// ----- Styles ----------------------------------------------------------------
-
-const NavbarWarningWrapper = styled.div`
-  background-color: ${YELLOW};
-`;
-
-const NavbarWarning = styled.div`
-  color: white;
-  font-size: 14px;
-  padding: 8px;
-
-  & strong {
-    font-weight: 600;
-  }
-`;
 
 
 // ----- Component -------------------------------------------------------------
@@ -46,13 +25,18 @@ const NavbarWarningComponent: React.FunctionComponent = () => {
   }
 
   return (
-    <NavbarWarningWrapper>
-      <Container>
-        <NavbarWarning>
-          <Octicon name="alert" /> <strong>Warning:</strong> You are using a browser that does not support the WebP image format. This will result in serious performance degradation and stability issues.
-        </NavbarWarning>
-      </Container>
-    </NavbarWarningWrapper>
+    <div className="alert alert-warning alert-dismissible fade show" role="alert">
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <Octicon name="alert" /> <strong>Warning!</strong> You are using a browser that does not support the WebP image format. This will result in serious performance degradation and stability issues.
+          </div>
+        </div>
+      </div>
+      <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
   );
 };
 

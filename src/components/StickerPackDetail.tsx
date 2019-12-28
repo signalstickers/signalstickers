@@ -1,14 +1,16 @@
 import React, {useContext, useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import Linkify from 'react-linkify';
 import {styled} from 'linaria/react';
 import {darken} from 'polished';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
 
-import {GRAY} from 'etc/colors';
-import Button from 'components/Button';
+import {GRAY, SIGNAL_BLUE} from 'etc/colors';
 import StickersContext from 'contexts/StickersContext';
+import Sticker from 'components/Sticker';
 import {getStickerInPack} from 'lib/stickers';
+import {capitalizeFirst} from 'lib/utils';
 
 
 // ----- Styles ----------------------------------------------------------------
@@ -16,28 +18,32 @@ import {getStickerInPack} from 'lib/stickers';
 const StickerPackDetail = styled.div`
   border-radius: 4px;
   border: 1px solid ${darken(0.15, GRAY)};
-  margin-bottom: 24px;
-  margin-top: 24px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
 
-  & .properties {
-    display: inline-flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: flex-start;
-    margin-bottom: 24px;
-  }
-
-  & .upper {
+  & .list-group-item {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    margin-bottom: 12px;
+
+    & .octicon {
+      font-size: 20px;
+      margin-right: 20px;
+    }
   }
 
-  & .titleWrapper {
-    flex-grow: 1;
+  & .octicon-globe {
+    color: ${SIGNAL_BLUE};
+  }
+
+  & .octicon-file-directory {
+    color: ${SIGNAL_BLUE};
+  }
+
+  & .octicon-alert {
+    color: ${SIGNAL_BLUE};
+  }
+
+  & .octicon-tag {
+    color: ${SIGNAL_BLUE};
   }
 
   & .title {
@@ -51,30 +57,14 @@ const StickerPackDetail = styled.div`
     opacity: 0.6;
   }
 
-  & .controls {
-    min-width: 128px;
-    text-align: right;
-  }
-
-  & ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  & li {
-    line-height: 2em;
-    font-size: 14px;
-  }
-
   & strong {
     font-weight: 600;
   }
 
   & .tag {
-    background-color: ${darken(0.2, GRAY)};
+    background-color: ${darken(0, SIGNAL_BLUE)};
     border-radius: 4px;
-    border: 1px solid ${darken(0.35, GRAY)};
+    border: 1px solid ${darken(0.1, 'white')};
     color: white;
     display: inline-block;
     font-size: 12px;
@@ -86,21 +76,6 @@ const StickerPackDetail = styled.div`
     margin-left: 3px;
     position: relative;
     top: -1px;
-  }
-
-  & .stickers {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex-basis: 12;
-    justify-content: center;
-  }
-
-  & .sticker {
-    width: 128px;
-    height: 128px;
-    margin: 12px;
   }
 `;
 
@@ -121,13 +96,13 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       .split(',')
       .map(tag => tag.trim())
       .filter(tag => tag.length)
-      .map(tag => tag.substr(0, 1).toUpperCase() + tag.substr(1));
+      .map(tag => tag.split(' ').map(capitalizeFirst).join(' '));
 
     if (tagsArray.length) {
       return tagsArray;
     }
 
-    return 'N/A';
+    return 'None';
   }
 
 
@@ -184,28 +159,54 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   const stickerPackTags = parseStickerPackTags(currentStickerPack.tags);
 
   return (
-    <StickerPackDetail>
-      <div className="properties">
-        <div className="upper">
-          <div className="titleWrapper">
-            <div className="title">{currentStickerPack.title}</div>
-            <div className="author">{author}</div>
-          </div>
-          <div className="controls">
-            <Button onClick={handleAddToSignal}>
-              <Octicon name="plus" />&nbsp;Add to Signal
-            </Button>
-          </div>
+    <StickerPackDetail className="p-4 my-5">
+      <div className="row mb-4 flex-column-reverse flex-lg-row">
+        <div className="col-12 col-lg-8 mt-4 mt-lg-0">
+          <div className="title">{currentStickerPack.title}</div>
+          <div className="author">{author}</div>
         </div>
-        <ul>
-          <li><Octicon name="globe" /> <strong>Source:</strong> <Linkify>{source}</Linkify></li>
-          <li><Octicon name="file-directory" /> <strong>Stickers:</strong> {numStickers}</li>
-          <li><Octicon name="tag" /> <strong>Tags:</strong> {Array.isArray(stickerPackTags) ? stickerPackTags.map(tag => (<span key={tag} className="tag">{tag}</span>)) : stickerPackTags}</li>
-          <li><Octicon name="alert" /> <strong>NSFW:</strong> {currentStickerPack.nsfw ? 'Yes' : 'No'}</li>
-        </ul>
+        <div className="col-12 col-lg-4 d-flex d-lg-block justify-content-between text-md-right">
+          <Link to="/">
+            <button type="button" className="btn btn-link mr-2">
+              Back
+            </button>
+          </Link>
+          <button className="btn btn-primary" onClick={handleAddToSignal}>
+            <Octicon name="plus" />&nbsp;Add to Signal
+          </button>
+        </div>
       </div>
-      <div className="stickers">
-        {stickers.map((sticker, index) => (<img src={sticker} className="sticker" alt="Sticker" key={index} />))}
+
+      <div className="row mb-4">
+        <div className="col-12 col-lg-8">
+          <ul className="list-group">
+            <li className="list-group-item">
+              <Octicon name="globe" title="Source" />
+              <div>
+                <Linkify>{source}</Linkify>
+              </div>
+            </li>
+            <li className="list-group-item">
+              <Octicon name="file-directory" title="Sticker Count" />
+              {numStickers}
+            </li>
+            <li className="list-group-item">
+              <Octicon name="alert" title="NSFW" /> <strong>NSFW:</strong>&nbsp;{currentStickerPack.nsfw ? 'Yes' : 'No'}
+            </li>
+            <li className="list-group-item">
+              <Octicon name="tag" title="Tags" />
+              <div>
+                {Array.isArray(stickerPackTags) ? stickerPackTags.map(tag => (<span key={tag} className="tag">{tag}</span>)) : stickerPackTags}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-12 p-2 p-sm-3 d-flex flex-wrap justify-content-around justify-content-lg-between">
+          {currentStickerPack.stickers.map((sticker, index) => (<Sticker packId={currentStickerPack.id} stickerId={sticker.id} key={sticker.id} />))}
+        </div>
       </div>
     </StickerPackDetail>
   );

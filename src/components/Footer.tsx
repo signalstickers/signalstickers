@@ -4,30 +4,19 @@ import {styled} from 'linaria/react';
 import Octicon from 'react-octicon';
 
 import {GRAY} from 'etc/colors';
-import Container from 'components/Container';
 import FlexSpacer from 'components/FlexSpacer';
 
 
 // ----- Styles ----------------------------------------------------------------
 
 const FooterWrapper = styled.footer`
-  width: 100%;
   background-color: ${GRAY};
+  padding-bottom: 12px;
+  padding-top: 42px;
+  width: 100%;
 `;
 
 const Footer = styled.div`
-  display: flex;
-
-  & .about {
-    flex-basis: 50%;
-    margin-right: 24px;
-  }
-
-  & .links {
-    flex-basis: 50%;
-    margin-left: 24px;
-  }
-
   & ul {
     list-style: none;
     margin: 0;
@@ -52,9 +41,9 @@ const FooterComponent: React.FunctionComponent = props => {
     <>
       <FlexSpacer />
       <FooterWrapper>
-        <Container>
-          <Footer>
-            <div className="about">
+        <div className="container">
+          <Footer className="row">
+            <div className="col-6 about">
               <h1>About</h1>
               <p>
                 Browse and download more than 100 sticker packs for Signal, the secure messenger. These
@@ -67,7 +56,7 @@ const FooterComponent: React.FunctionComponent = props => {
                 </a>
               </p>
             </div>
-            <div className="links">
+            <div className="col-6 links">
               <h1>Links</h1>
               <ul>
                 <li>
@@ -88,7 +77,7 @@ const FooterComponent: React.FunctionComponent = props => {
               </ul>
             </div>
           </Footer>
-        </Container>
+        </div>
       </FooterWrapper>
     </>
   );

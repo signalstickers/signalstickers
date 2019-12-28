@@ -18,11 +18,13 @@ import protobuf from 'protobufjs';
 import * as R from 'ramda';
 import {WebpMachine} from 'webp-hero';
 
+import {STICKERS_MANIFEST_URL} from 'etc/constants';
 import {
   StickerPackJson,
   TransformedStickerPackJsonEntry,
   StickerPackManifest,
-  StickerPack
+  StickerPack,
+  Sticker
 } from 'etc/types';
 import StickersProto from 'etc/Stickers.proto';
 import {decryptManifest} from 'lib/crypto';
@@ -73,7 +75,7 @@ export async function getStickerPackList(): Promise<Array<TransformedStickerPack
   if (stickerPackListCache.length === 0) {
     const res = await axios({
       method: 'GET',
-      url: '/static/stickers.json'
+      url: STICKERS_MANIFEST_URL
     });
 
     stickerPackListCache = Object.entries(res.data as StickerPackJson).map(([id, value]) => ({id, ...value}));
@@ -190,6 +192,27 @@ export async function getStickerInPack(id: string, stickerId: number | 'cover'):
     return stickerImageCache.get(cacheKey) as string;
   } catch (err) {
     throw new Error(`[getStickerInPack] Error getting sticker: ${err.stack}`);
+  }
+}
+
+
+/**
+ * Provided a sticker pack ID and a sticker ID, returns the emoji associated
+ * with that sticker.
+ */
+export async function getEmojiForSticker(packId: string, stickerId: number | 'cover') {
+  try {
+    const stickerPack = await getStickerPack(packId);
+    const finalStickerId = stickerId === 'cover' ? stickerPack.cover.id : stickerId;
+    const sticker = R.find<Sticker>(R.propEq('id', finalStickerId), stickerPack.stickers);
+
+    if (!sticker) {
+      throw new Error(`Sticker pack ${packId} has no sticker with ID ${stickerId}.`);
+    }
+
+    return sticker.emoji;
+  } catch (err) {
+    throw new Error(`[getEmojiForSticker] ${err.stack}`);
   }
 }
 

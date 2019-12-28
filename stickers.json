@@ -638,7 +638,7 @@
     "key": "af6f874893ef3b941b919b0f7727fa8a333368f6c03bbdbb9e5cbdcfa3091900",
     "source": "",
     "tags": "Christmas, Christmas Vacation, Movie",
-    "nsfw": false
+  "nsfw": false
   },
   "1185d9efcb551b811b2ee9c42b496bf0": {
     "key": "e9da842c0775907ee8b2866c1f1e5ad7d5f067f01a5a601a8434fec0f737ae79",
@@ -662,13 +662,13 @@
     "key": "b2f379697dc4efaa70f6c3ab2f1584880d9128b5af862b5e7784ca36685d5752",
     "source": "",
     "tags": "Cat, Cats, Cute, Black Cat",
-    "nsfw": false
+  "nsfw": false
   },
   "9a2aaa01da388add7ffc36eee8420362": {
     "key": "01b737102caaf981784622f71d777075ef1daeccbab5bc925ebcdd6af1f35538",
     "source": "",
     "tags": "blob, bunny, cute, weird, kawaii, blonny",
-    "nsfw": false
+  "nsfw": false
   },
   "fd3ef8900f27f1bcced02acc5f9dc3dc": {
     "key": "7f06d3b5fcb25b7af66fb06c2908d1f4c264fe6b8ac34926e4fd3c89b12dae92",
@@ -704,7 +704,7 @@
     "key": "ea731445ba3abd3df506be81b008f39061d5e2d0f4fb3d0ce09eda58b263a984",
     "source": "https://telegramhub.net/david-hasselhoff-sticker-pack/",
     "tags": "David Hasselhoff,Knight Rider, Baywatch",
-    "nsfw": false
+      "nsfw": false
   },
   "ce9d395268e045b6ee96a53bdc8c62f1": {
     "key": "717536ee30af7c554d1df1de06fad6d6d1573581abd5f680f28ba04bd672a5cf",
@@ -822,6 +822,36 @@
   },
   "0718671d6d93a4bb3da03579bbb31d5b": {
     "key": "f91546851667e75eadf70de2a1117a52a21e6045b265cadd87a5b39b5c2bf8e8",
+    "source": "",
+    "tags": "",
+    "nsfw": false
+  },
+  "1021458715915de6335ff09e8dcaaecf": {
+    "key": "c1bf962b777d70596dbf54b3039ba00e55616576a502570ec7eabadf9dc18fd3",
+    "source": "",
+    "tags": "",
+    "nsfw": false
+  },
+  "329c738a56295faa32d7eb5c5262566a": {
+    "key": "2bb532b8edaf563f99877c0220cfc0bd11ed824539724309ffe96cf933b72e8d",
+    "source": "",
+    "tags": "",
+    "nsfw": false
+  },
+  "5cbbc4eaca366b8d21419c426402675c": {
+    "key": "25662a6836cae33091d27ca1cac2ad432d7a8b86cf20989381fdb196bb74ced0",
+    "source": "",
+    "tags": "",
+    "nsfw": false
+  },
+  "b9b48c7cf2d813d8088d009cd54cf1fa": {
+    "key": "f40327ab534ff030a70b14ed6fe5281f4b6d3e5ed319c0593d70e2dbdedb13ee",
+    "source": "",
+    "tags": "creepy, simple, drawing, weird, bad art",
+    "nsfw": false
+  },
+  "7cffb4bb47eb9e3444e6d81c24b90a4e": {
+    "key": "5db678fd5bad89552f412b82d623ed034cdd25c85358f12e1872c00bf0c8a479",
     "source": "",
     "tags": "",
     "nsfw": false

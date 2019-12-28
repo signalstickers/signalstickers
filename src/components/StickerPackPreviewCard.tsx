@@ -2,86 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {styled} from 'linaria/react';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
-import {darken} from 'polished';
 
 import {TransformedStickerPackJsonEntry, StickerPack} from 'etc/types';
-import {GRAY} from 'etc/colors';
 import {getStickerPack, getStickerInPack} from 'lib/stickers';
-
-
-// ----- Styles ----------------------------------------------------------------
-
-const StickerPackPreviewCard = styled.div`
-  align-items: flex-start;
-  border-radius: 4px;
-  border: 1px solid ${darken(0.15, GRAY)};
-  color: black;
-  display: flex;
-  max-width: 100%;
-  overflow: hidden;
-  padding: 14px;
-  position: relative;
-  transition: background-color 0.15s ease-in-out, box-shadow 0.2s ease-in-out;
-
-  &:hover {
-    background-color: #FAFAFA;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-
-    & .title::after {
-      background: linear-gradient(90deg, rgba(250, 250, 250, 0) 0%, rgba(250, 250, 250, 1) 50%);
-    }
-  }
-
-  & .thumbnail {
-    height: 96px;
-    margin-right: 28px;
-    width: 96px;
-  }
-
-  & .properties {
-    display: inline-flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: flex-start;
-  }
-
-  & .title {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    white-space: nowrap;
-    overflow: hidden;
-    position: relative;
-
-    &::after {
-      background-color: red;
-      bottom: 0;
-      content: ' ';
-      display: block;
-      pointer-events: none;
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 10%;
-      background-color: red;
-      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%);
-    }
-  }
-
-  & ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  & li {
-    margin: 0;
-  }
-
-  & strong {
-    font-weight: 400;
-  }
-`;
 
 
 // ----- Props -----------------------------------------------------------------
@@ -89,6 +12,60 @@ const StickerPackPreviewCard = styled.div`
 export interface Props {
   stickerPack: TransformedStickerPackJsonEntry;
 }
+
+
+// ----- Styles ----------------------------------------------------------------
+
+const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: boolean}>`
+  text-align: center;
+  transition: box-shadow 0.15s ease-in-out;
+
+  & .card-img-top {
+    height: 72px;
+    width: 72px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.15s ease-in-out;
+    filter: ${props => props.nsfw ? 'blur(4px)' : 'none'};
+  }
+
+  & .card-header {
+    border-bottom: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      background: linear-gradient(90deg, rgba(247, 247, 247, 0) 0%, rgba(247, 247, 247, 1) 50%);
+      border-bottom-right-radius: 4px;
+      bottom: 0;
+      content: ' ';
+      display: block;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 25%;
+    }
+  }
+
+  &:hover {
+    * {
+      color: black;
+    }
+
+    & .card-img-top {
+      transform: scale(1.1)
+    }
+
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  }
+`;
 
 
 // ----- Component -------------------------------------------------------------
@@ -135,20 +112,12 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
     return null; // tslint:disable-line no-null-keyword
   }
 
-  // N.B. Signal allows strings containing only whitespace as authors. In these
-  // cases, use 'Anonymous' instead.
-  const stickerPackAuthor = stickerPack.author.trim() ? stickerPack.author : 'Anonymous';
+  const title = [stickerPack.title, stickerPack.nsfw && ' (NSFW)'].filter(Boolean).join('');
 
   return (
-    <StickerPackPreviewCard data-pack-id={stickerPack.id} title={stickerPack.title}>
-      <img className="thumbnail" src={cover} />
-      <div className="properties">
-        <div className="title">{stickerPack.title}</div>
-        <ul>
-          <li><Octicon name="person" /> {stickerPackAuthor}</li>
-          <li><Octicon name="file-directory" /> {stickerPack.stickers.length}</li>
-        </ul>
-      </div>
+    <StickerPackPreviewCard nsfw={stickerPack.nsfw} className="card" data-pack-id={stickerPack.id} title={title}>
+      <img className="card-img-top" src={cover} />
+      <div className="card-header">{title}</div>
     </StickerPackPreviewCard>
   );
 };

@@ -6,7 +6,6 @@ import {
   Route
 } from 'react-router-dom';
 
-import Container from 'components/Container';
 import Footer from 'components/Footer';
 import Navbar from 'components/Navbar';
 import StickerList from 'components/StickerPackList';
@@ -19,7 +18,7 @@ const App: React.FunctionComponent = () => {
     <Router>
       <StickersContextProvider>
         <Navbar />
-        <Container>
+        <div className="container">
           <Switch>
             <Route exact path="/">
               <StickerList />
@@ -28,7 +27,7 @@ const App: React.FunctionComponent = () => {
               <StickerPackDetail />
             </Route>
           </Switch>
-        </Container>
+        </div>
         <Footer />
       </StickersContextProvider>
     </Router>

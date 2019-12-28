@@ -5,46 +5,32 @@ import {styled} from 'linaria/react';
 import Octicon from 'react-octicon';
 
 import SignalLogoUrl from 'assets/signal-logo.png';
-import Button from 'components/Button';
-import Container from 'components/Container';
-import FlexSpacer from 'components/FlexSpacer';
-import NavbarWarning from 'components/NavbarWarning';
 import {SIGNAL_BLUE} from 'etc/colors';
+import NavbarWarning from 'components/NavbarWarning';
 
 
 // ----- Styles ----------------------------------------------------------------
 
-const NavbarWrapper = styled.nav`
-  align-items: center;
+const StyledNavBar = styled.nav`
   background-color: ${SIGNAL_BLUE};
   color: white;
-  display: flex;
-  flex-direction: row;
-  min-height: 70px;
+  padding: 8px 0;
 
   & .brand {
-    color: white;
-    margin-left: 4px;
-    font-weight: 400;
-  }
+    font-size: 28px;
 
-  & .nav-items {
-    align-items: center;
-    display: flex;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
 
-    & a:not(:last-child) {
-      margin-right: 12px;
+    & img {
+      bottom: 2px;
+      height: 32px;
+      position: relative;
+      width: 32px;
     }
   }
-`;
-
-const NavbarInner = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  font-size: 24px;
-  line-height: 24px;
-  height: 100%;
 `;
 
 
@@ -53,25 +39,23 @@ const NavbarInner = styled.div`
 const NavbarComponent: React.FunctionComponent = () => {
   return (
     <>
-      <NavbarWrapper>
-        <Container>
-          <NavbarInner>
-            <img src={SignalLogoUrl} alt="Signal Logo" />
-            <Link to="/" className="brand">
-              Signal Stickers
-            </Link>
-            <FlexSpacer />
-            <div className="nav-items">
+      <StyledNavBar>
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-md-6 text-center text-md-left mb-2 mb-sm-0">
+              <Link className="brand" to="/"><img src={SignalLogoUrl} alt="Signal Logo" /> Signal Stickers</Link>
+            </div>
+            <div className="col-12 col-md-6 mt-1 text-center text-md-right mb-3 mb-sm-0">
               <a href="https://github.com/romainricard/signalstickers" title="Contribute">
-                <Button variant="secondary"><Octicon name="mark-github" />&nbsp;&nbsp;Contribute</Button>
+                <button className="btn btn-light btn-sm mr-3"><Octicon name="mark-github" />&nbsp;&nbsp;Contribute</button>
               </a>
               <a href="https://signal.org" title="Get Signal">
-                <Button>Get Signal</Button>
+                <button className="btn btn-primary btn-sm">Get Signal</button>
               </a>
             </div>
-          </NavbarInner>
-        </Container>
-      </NavbarWrapper>
+          </div>
+        </div>
+      </StyledNavBar>
       <NavbarWarning />
     </>
   );

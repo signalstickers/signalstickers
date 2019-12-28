@@ -1,6 +1,5 @@
 import path from 'path';
 
-import express from 'express';
 import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 // @ts-ignore (No type definitions exist for this package.)
@@ -149,12 +148,6 @@ export default (env: string, argv: any): webpack.Configuration => {
 
   if (argv.mode === 'production') {
     config.plugins.push(new CopyWebpackPlugin([{
-      // When performing a production build, this will instruct Webpack to copy
-      // the 'static' folder and its contents into the 'dist' folder so that
-      // files therein may be served correctly.
-      from: path.resolve(PKG_ROOT, 'src', 'static'),
-      to: path.resolve(PKG_ROOT, 'dist', 'static')
-    }, {
       // When performing a production build, instruct Webpack to copy our
       // robots.txt file into the 'dist' folder.
       from: path.resolve(PKG_ROOT, 'src', 'robots.txt'),
@@ -190,10 +183,7 @@ export default (env: string, argv: any): webpack.Configuration => {
       // hot: true,
       inline: true,
       overlay: true,
-      quiet: true,
-      // When in development mode, this instructs the Dev Server to serve files
-      // from the 'static' folder.
-      setup: app => app.use('/static', express.static(path.resolve(PKG_ROOT, 'src', 'static')))
+      quiet: true
     };
   }
 

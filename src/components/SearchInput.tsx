@@ -1,39 +1,25 @@
 import React, {useContext} from 'react';
 import {styled} from 'linaria/react';
-import {darken} from 'polished';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
 
-import {GRAY} from 'etc/colors';
-import Button from 'components/Button';
+import {SIGNAL_BLUE} from 'etc/colors';
+
 import StickersContext from 'contexts/StickersContext';
 
 
 // ----- Styles ----------------------------------------------------------------
 
-const SearchInput = styled.div`
-  align-items: center;
-  display: flex;
-  margin-bottom: 24px;
-  width: 100%;
-
-  & input {
-    border: 1px solid ${darken(0.15, GRAY)};
-    border-radius: 4px;
-    flex-grow: 1;
-    font-size: 18px;
-    margin-right: 12px;
-    padding: 4px 8px;
-    transition: border-color 0.25s ease-in-out;
-  }
-
-  & input:focus {
-    outline: none;
-    border-color: ${darken(0.4, GRAY)};
+const SearchInput = styled.form`
+  & .octicon-search {
+    color: ${SIGNAL_BLUE};
+    font-size: 24px;
+    position: relative;
+    left: -1px;
   }
 
   & .octicon-x {
-    color: red;
+    font-size: 24px;
   }
 `;
 
@@ -56,7 +42,8 @@ const SearchInputComponent: React.FunctionComponent = () => {
   /**
    * [Event Handler] Clears our context's search query state.
    */
-  function clearSearchResults() {
+  function clearSearchResults(event: React.SyntheticEvent) {
+    event.preventDefault();
     setSearchQuery('');
   }
 
@@ -66,12 +53,24 @@ const SearchInputComponent: React.FunctionComponent = () => {
   const placeholder = allStickerPacks ? `Search ${allStickerPacks.length} sticker packs...` : '';
 
   return (
-    <SearchInput>
-      <Octicon name="search" />&nbsp;&nbsp;
-      <input name="search" value={searchQuery} onChange={onSearchQueryChange} placeholder={placeholder} title="Search" />
-      <Button variant="secondary" onClick={clearSearchResults} title="Clear Search Results">
-        &nbsp;<Octicon name="x" />
-      </Button>
+    <SearchInput className="row mb-5 mt-5">
+      <div className="col-12">
+        <div className="form-group m-0">
+          <div className="input-group input-group-lg">
+            <div className="input-group-prepend">
+              <span className="input-group-text">
+                <Octicon name="search" />
+              </span>
+            </div>
+            <input type="text" className="form-control" value={searchQuery} onChange={onSearchQueryChange} placeholder={placeholder} title="Search" />
+            <div className="input-group-append">
+              <button className="input-group-text btn btn-light btn-sm" onClick={clearSearchResults} title="Clear Search Results">
+                &nbsp;<Octicon name="x" className="text-danger" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </SearchInput>
   );
 };

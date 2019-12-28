@@ -10,24 +10,10 @@ import StickerContext from 'contexts/StickersContext';
 // ----- Styles ----------------------------------------------------------------
 
 const StickerPackList = styled.div`
-  padding-top: 24px;
-  margin-bottom: 24px;
-
-  & .search-results {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
   & a {
-    max-width: calc(50% - 12px);
-    width: calc(50% - 12px);
-  }
-
-  & a:not(:last-child) {
-    display: block;
-    margin-bottom: 24px;
+    &:hover {
+      text-decoration: none;
+    }
   }
 `;
 
@@ -38,17 +24,16 @@ const StickerPackListComponent = () => {
   const {searchResults} = useContext(StickerContext);
 
   return (
-    <StickerPackList>
+    <>
       <SearchInput />
-
-      <div className="search-results">
+      <StickerPackList className="row">
         {searchResults.map(stickerPack => (
-          <Link key={stickerPack.id} to={`/pack/${stickerPack.id}`}>
+          <Link className="col-6 col-sm-6 col-md-4 col-lg-3 mb-4" key={stickerPack.id} to={`/pack/${stickerPack.id}`}>
             <StickerPackPreviewCard stickerPack={stickerPack} />
           </Link>
         ))}
-      </div>
-    </StickerPackList>
+      </StickerPackList>
+    </>
   );
 };
 
