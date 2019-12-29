@@ -999,5 +999,17 @@
     "source": "",
     "tags": "",
     "nsfw": false
-}
+},
+"d421140dda9225cad56eb166ae96bcc7":{
+    "key": "dffe78ab151b14ae9a7908f7b7ba7fcd0c17a225a5c72cd9dfcacb57bc6337ab",
+    "source": "",
+    "tags": "bender",
+    "nsfw": false
+},
+"6c160a6938404e27085d04176e828acd":{
+    "key": "33229429b66caff14b1d0c180a088797a97b0be11b4398be7ad220aa16b0b71e",
+    "source": "telegram",
+    "tags": "foss",
+    "nsfw": false
+},
 }
