@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import Linkify from 'react-linkify';
 import {styled} from 'linaria/react';
@@ -9,7 +9,6 @@ import Octicon from 'react-octicon';
 import {GRAY, SIGNAL_BLUE} from 'etc/colors';
 import StickersContext from 'contexts/StickersContext';
 import Sticker from 'components/Sticker';
-import {getStickerInPack} from 'lib/stickers';
 import {capitalizeFirst} from 'lib/utils';
 
 
@@ -84,7 +83,6 @@ const StickerPackDetail = styled.div`
 
 const StickerPackDetailComponent: React.FunctionComponent = () => {
   const {currentStickerPack} = useContext(StickersContext);
-  const [stickers, setStickers] = useState<Array<string>>([]);
 
 
   /**
@@ -117,32 +115,6 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
 
     window.open(`sgnl://addstickers/?pack_id=${currentStickerPack.id}&pack_key=${currentStickerPack.key}`, '_blank');
   }
-
-
-  /**
-   * [Effect] This effect will fetch image data for all stickers in our sticker
-   * pack and store them in its internal state.
-   */
-  useEffect(() => {
-    async function getAllStickersInPackEffect() {
-      if (!currentStickerPack) {
-        return;
-      }
-
-      const stickerData = await Promise.all(currentStickerPack.stickers.map(async sticker => {
-        try {
-          return await getStickerInPack(currentStickerPack.id, sticker.id);
-        } catch (err) {
-          console.error(`[StickerPackDetail] Failed to get sticker ${sticker.id}: ${err.message}`);
-          return '';
-        }
-      }));
-
-      setStickers(stickerData);
-    }
-
-    getAllStickersInPackEffect(); // tslint:disable-line no-floating-promises
-  }, [currentStickerPack]);
 
 
   // ----- Render --------------------------------------------------------------
@@ -204,8 +176,10 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       </div>
 
       <div className="row">
-        <div className="col-12 p-2 p-sm-3 d-flex flex-wrap justify-content-around justify-content-lg-between">
-          {currentStickerPack.stickers.map((sticker, index) => (<Sticker packId={currentStickerPack.id} stickerId={sticker.id} key={sticker.id} />))}
+        <div className="col-12 p-2 p-sm-3">
+          <div className="d-flex flex-wrap">
+            {currentStickerPack.stickers.map((sticker, index) => (<Sticker packId={currentStickerPack.id} stickerId={sticker.id} key={sticker.id} />))}
+          </div>
         </div>
       </div>
     </StickerPackDetail>

@@ -1,4 +1,5 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
+import debounceFn from 'debounce-fn';
 import {styled} from 'linaria/react';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
@@ -28,6 +29,16 @@ const SearchInput = styled.form`
 
 const SearchInputComponent: React.FunctionComponent = () => {
   const {allStickerPacks, searchQuery, setSearchQuery} = useContext(StickersContext);
+  const [searchQueryInputValue, setSearchQueryInputValue] = useState('');
+
+
+  /**
+   * Allows us to de-bounce calls to setSearchQuery to avoid making excessive
+   * re-renders when the input value is updated.
+   */
+  const debouncedSetSearchQuery = debounceFn((value: string) => {
+    setSearchQuery(value);
+  }, {wait: 250});
 
 
   /**
@@ -36,7 +47,7 @@ const SearchInputComponent: React.FunctionComponent = () => {
   function onSearchQueryChange(event: React.ChangeEvent<HTMLInputElement>) {
     const {value} = event.target;
     event.preventDefault();
-    setSearchQuery(value);
+    setSearchQueryInputValue(value);
   }
 
   /**
@@ -44,8 +55,34 @@ const SearchInputComponent: React.FunctionComponent = () => {
    */
   function clearSearchResults(event: React.SyntheticEvent) {
     event.preventDefault();
+    setSearchQueryInputValue('');
     setSearchQuery('');
   }
+
+
+  /**
+   * [Effect] When the component mounts, set the search input's value to the
+   * current search query from our context.
+   */
+  useEffect(() => {
+    if (searchQuery) {
+      setSearchQueryInputValue(searchQuery);
+    }
+  }, []);
+
+
+  /**
+   * [Effect] When the search query is updated, call our debounced update
+   * function.
+   */
+  useEffect(() => {
+    debouncedSetSearchQuery.cancel();
+    debouncedSetSearchQuery(searchQueryInputValue);
+
+    return () => {
+      debouncedSetSearchQuery.cancel();
+    };
+  }, [searchQueryInputValue]);
 
 
   // ----- Render --------------------------------------------------------------
@@ -62,7 +99,14 @@ const SearchInputComponent: React.FunctionComponent = () => {
                 <Octicon name="search" />
               </span>
             </div>
-            <input type="text" className="form-control" value={searchQuery} onChange={onSearchQueryChange} placeholder={placeholder} title="Search" />
+            <input
+              type="text"
+              className="form-control"
+              value={searchQueryInputValue}
+              onChange={onSearchQueryChange}
+              placeholder={placeholder}
+              title="Search"
+            />
             <div className="input-group-append">
               <button className="input-group-text btn btn-light btn-sm" onClick={clearSearchResults} title="Clear Search Results">
                 &nbsp;<Octicon name="x" className="text-danger" />

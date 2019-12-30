@@ -77,11 +77,11 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
 
 
   /**
-   * [Effect] Loads sticker pack info when the component mounts.
+   * [Effect] Loads sticker pack data when the component mounts.
    */
   useEffect(() => {
     async function getStickerPackInfoEffect() {
-      if (props.stickerPack) {
+      if (id !== undefined) { // tslint:disable-line strict-type-predicates
         setStickerPack(await getStickerPack(id));
       }
     }
@@ -95,21 +95,19 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
    */
   useEffect(() => {
     async function getStickerPackCoverEffect() {
-      if (!stickerPack) {
-        return;
+      if (id !== undefined) { // tslint:disable-line strict-type-predicates
+        setCover(await getStickerInPack(id, 'cover'));
       }
-
-      setCover(await getStickerInPack(id, 'cover'));
     }
 
     getStickerPackCoverEffect(); // tslint:disable-line no-floating-promises
-  }, [stickerPack]);
+  }, []);
 
 
   // ----- Render --------------------------------------------------------------
 
   if (!stickerPack || !cover) {
-    return null; // tslint:disable-line no-null-keyword
+    return <div></div>;
   }
 
   const title = [stickerPack.title, stickerPack.nsfw && ' (NSFW)'].filter(Boolean).join('');

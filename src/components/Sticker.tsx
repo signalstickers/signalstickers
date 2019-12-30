@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {styled} from 'linaria/react';
-import {darken} from 'polished';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
 
-import {GRAY} from 'etc/colors';
 import {getStickerInPack, getEmojiForSticker} from 'lib/stickers';
 
 
@@ -18,7 +16,7 @@ export interface Props {
 
 // ----- Styles ----------------------------------------------------------------
 
-const Sticker = styled.footer`
+const Sticker = styled.div`
   border: 1px solid rgba(0, 0, 0, .125);
   border-radius: 8px;
   position: relative;
@@ -26,7 +24,7 @@ const Sticker = styled.footer`
   & .emoji {
     position: absolute;
     top: 2px;
-    left: 5px;
+    left: 6px;
     opacity: 0.75;
   }
 
@@ -57,8 +55,14 @@ const StickerComponent: React.FunctionComponent<Props> = ({packId, stickerId}) =
   }, []);
 
 
+  // ----- Render --------------------------------------------------------------
+
+  if (!emoji || !stickerSrc) {
+    return null; // tslint:disable-line no-null-keyword
+  }
+
   return (
-    <Sticker className="shadow-sm my-3 p-3">
+    <Sticker className="shadow-sm m-3 p-4">
       <div className="emoji">{emoji}</div>
       <img src={stickerSrc} alt="Sticker" />
     </Sticker>
