@@ -868,8 +868,8 @@
     "tags": "alexa bliss, wwe",
     "nsfw": false
 },
-"61080147615a3ac74fe36f6651647dee": {
-    "key": "e42326f354377a3bf039d0ea60faa6cc651890e0f7cae460d6a938f08866724c",
+"9338b3db8ad40e5a59feb25deea4b7b9": {
+    "key": "e9df28439cf6fd3e161cc26c139e522bf6fcf8778c3988ee92a76907558d454f",
     "source": "https://github.com/hehnope/signal-classic-meme-sticker-pack",
     "tags": "memes, trollface, brainlet, derp, mcmahon",
     "nsfw": false
@@ -998,6 +998,24 @@
     "key": "9e56d5b70758770c291617eadd1640abc82f155dfd1344e785a99b2f5e49c5d7",
     "source": "",
     "tags": "",
+    "nsfw": false
+},
+"a27b2ee11656275c0f900026e1327541": {
+    "key": "fc54be80a8d773e5a3ed75993c6c64899f4f67458a8464c8fd00c1e31c5db1b0",
+    "source": "Original art by Britta Gustafson, inspired by Trash Doves by Syd Weiler",
+    "tags": "plants, succulents, cute, love, watercolor",
+    "nsfw": false
+},
+"d421140dda9225cad56eb166ae96bcc7":{
+    "key": "dffe78ab151b14ae9a7908f7b7ba7fcd0c17a225a5c72cd9dfcacb57bc6337ab",
+    "source": "",
+    "tags": "bender",
+    "nsfw": false
+},
+"6c160a6938404e27085d04176e828acd":{
+    "key": "33229429b66caff14b1d0c180a088797a97b0be11b4398be7ad220aa16b0b71e",
+    "source": "telegram",
+    "tags": "foss",
     "nsfw": false
 }
 }
