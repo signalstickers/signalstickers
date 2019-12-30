@@ -21,13 +21,14 @@ import {WebpMachine} from 'webp-hero';
 import {STICKERS_MANIFEST_URL} from 'etc/constants';
 import {
   StickerPackJson,
-  TransformedStickerPackJsonEntry,
+  StickerPackMetadata,
   StickerPackManifest,
   StickerPack,
   Sticker
 } from 'etc/types';
 import StickersProto from 'etc/Stickers.proto';
 import {decryptManifest} from 'lib/crypto';
+import ErrorWithCode from 'lib/error';
 
 
 // ----- Locals ----------------------------------------------------------------
@@ -41,12 +42,12 @@ const protobufClient = protobuf.parse(StickersProto).root;
 /**
  * Module-local in-memory copy of stickers.json, ensures we only load it once.
  */
-let stickerPackListCache: Array<TransformedStickerPackJsonEntry> = [];
+let stickerPackListCache: Array<StickerPackMetadata> = [];
 
 /**
- * Module-local in-memory cache used for sticker pack data.
+ * Module-local in-memory cache used for sticker pack data from the Signal API.
  */
-const stickerPackCache = new Map<string, StickerPack>();
+const stickerPackCache = new Map<string, StickerPackManifest>();
 
 /**
  * Module-local in-memory cache used for sticker image data.
@@ -60,7 +61,7 @@ const stickerImageCache = new Map<string, string>();
 const imageConversionQueue = new pQueue({concurrency: 2});
 
 /**
- * Module-local WEBP-to-PNG converter.
+ * Module-local WepP to PNG converter.
  */
 const webpConverter = new WebpMachine();
 
@@ -71,14 +72,19 @@ const webpConverter = new WebpMachine();
  * Loads and transforms stickers.json, which is the source of truth regarding
  * all sticker packs included in the application.
  */
-export async function getStickerPackList(): Promise<Array<TransformedStickerPackJsonEntry>> {
+export async function getStickerPackList(): Promise<Array<StickerPackMetadata>> {
   if (stickerPackListCache.length === 0) {
     const res = await axios({
       method: 'GET',
       url: STICKERS_MANIFEST_URL
     });
 
-    stickerPackListCache = Object.entries(res.data as StickerPackJson).map(([id, value]) => ({id, ...value}));
+    stickerPackListCache = R.reduce((result, [id, value]) => {
+      return [
+        ...result,
+        {id, ...value}
+      ];
+    }, [], Object.entries(res.data as StickerPackJson));
   }
 
   return stickerPackListCache;
@@ -86,8 +92,8 @@ export async function getStickerPackList(): Promise<Array<TransformedStickerPack
 
 
 /**
- * Provided an encrypted manifest from the Signal API, resolves with a decrypted
- * and parsed manifest object.
+ * Provided a key and an encrypted manifest from the Signal API, resolves with a
+ * decrypted and parsed manifest.
  */
 export async function parseManifest(key: string, rawManifest: any): Promise<StickerPackManifest> {
   try {
@@ -96,51 +102,33 @@ export async function parseManifest(key: string, rawManifest: any): Promise<Stic
     const manifestData = new Uint8Array(manifest, 0, manifest.byteLength);
     return PackMessage.decode(manifestData) as unknown as StickerPackManifest;
   } catch (err) {
-    throw new Error(`[parseManifest] Error parsing manifest: ${err.stack}`);
+    throw new ErrorWithCode(err.code || 'MANIFEST_PARSE', `[parseManifest] ${err.message}`);
   }
 }
 
 
 /**
- * Provided a sticker pack ID, queries the Signal API and resolves with a
- * "complete" sticker pack object.
+ * Provided a sticker pack ID and key, queries the Signal API and resolves with
+ * a parsed manifest.
  */
-export async function getStickerPack(id: string): Promise<StickerPack> {
+export async function getStickerPack(id: string, key: string): Promise<StickerPackManifest> {
   try {
     const cacheKey = id;
 
     if (!stickerPackCache.has(cacheKey)) {
-      // Before we can make the request, we need to get the pack's key and other
-      // metadata from our JSON manifest. We will need the key to decrypt its
-      // manifest.
-      const packMetadata = R.find<TransformedStickerPackJsonEntry>(R.propEq('id', id), await getStickerPackList());
-
-      if (!packMetadata) {
-        throw new Error(`[getStickerPack] Unable to load key for pack ${id}.`);
-      }
-
       const res = await axios({
         method: 'GET',
         responseType: 'arraybuffer',
         url: `https://cdn-ca.signal.org/stickers/${id}/manifest.proto`
       });
 
-      const manifest = await parseManifest(packMetadata.key, res.data);
-
-      stickerPackCache.set(cacheKey, {
-        id,
-        key: packMetadata.key,
-        tags: packMetadata.tags,
-        source: packMetadata.source,
-        nsfw: packMetadata.nsfw,
-        // N.B. The parsed manifest contains all additional keys we need.
-        ...manifest
-      });
+      const manifest = await parseManifest(key, res.data);
+      stickerPackCache.set(cacheKey, manifest);
     }
 
-    return stickerPackCache.get(cacheKey) as StickerPack;
+    return stickerPackCache.get(cacheKey) as StickerPackManifest;
   } catch (err) {
-    throw new Error(`[getStickerPack] Error getting sticker pack ${id}: ${err.stack}`);
+    throw new ErrorWithCode(err.code, `[getStickerPack] ${err.message}`);
   }
 }
 
@@ -150,14 +138,14 @@ export async function getStickerPack(id: string): Promise<StickerPack> {
  * sticker) queries the Signal API and resolves with a base-64 encoded string
  * representing the image data for the indicated sticker.
  */
-export async function getStickerInPack(id: string, stickerId: number | 'cover'): Promise<string> {
+export async function getStickerInPack(id: string, key: string, stickerId: number | 'cover'): Promise<string> {
   try {
     const cacheKey = `${id}-${stickerId}`;
 
     if (!stickerImageCache.has(cacheKey)) {
       // Before we can make the request, we need to get the pack's information
       // using getStickerPack.
-      const stickerPack = await getStickerPack(id);
+      const stickerPack = await getStickerPack(id, key);
 
       if (!stickerPack) {
         throw new Error(`[getStickerInPack] Unable to get sticker ${stickerId} in pack ${id}.`);
@@ -171,7 +159,7 @@ export async function getStickerInPack(id: string, stickerId: number | 'cover'):
         url: `https://cdn-ca.signal.org/stickers/${id}/full/${finalStickerId}`
       });
 
-      const manifest = await decryptManifest(stickerPack.key, res.data);
+      const manifest = await decryptManifest(key, res.data);
       const arrayBufferView = new Uint8Array(manifest, 0, manifest.byteLength);
 
       if (Modernizr.webp) {
@@ -197,17 +185,17 @@ export async function getStickerInPack(id: string, stickerId: number | 'cover'):
 
 
 /**
- * Provided a sticker pack ID and a sticker ID, returns the emoji associated
- * with that sticker.
+ * Provided a sticker pack ID, key, and sticker ID, returns the emoji associated
+ * with the sticker.
  */
-export async function getEmojiForSticker(packId: string, stickerId: number | 'cover') {
+export async function getEmojiForSticker(id: string, key: string, stickerId: number | 'cover') {
   try {
-    const stickerPack = await getStickerPack(packId);
+    const stickerPack = await getStickerPack(id, key);
     const finalStickerId = stickerId === 'cover' ? stickerPack.cover.id : stickerId;
     const sticker = R.find<Sticker>(R.propEq('id', finalStickerId), stickerPack.stickers);
 
     if (!sticker) {
-      throw new Error(`Sticker pack ${packId} has no sticker with ID ${stickerId}.`);
+      throw new Error(`Sticker pack ${id} has no sticker with ID ${stickerId}.`);
     }
 
     return sticker.emoji;
@@ -221,13 +209,8 @@ export async function getEmojiForSticker(packId: string, stickerId: number | 'co
  * Performs a fuzzy search on cached StickerPack data and returns the result
  * set.
  */
-export function fuzzySearchStickerPacks(needle: string): Array<StickerPack> {
-  const stickerPacks = Array.from(stickerPackCache.values());
-  const searchKeys = ['title', 'author', 'tags'];
-
-  const searcher = new FuzzySearch(stickerPacks, searchKeys, {
-    caseSensitive: false
-  });
-
+export function fuzzySearchStickerPacks(needle: string, haystack: Array<StickerPack>): Array<StickerPack> {
+  const searchKeys = ['manifest.title', 'manifest.author', 'meta.tags'];
+  const searcher = new FuzzySearch(haystack, searchKeys, {caseSensitive: false});
   return searcher.search(needle);
 }

@@ -87,6 +87,10 @@
       }
     },
 
+    "no-null-keyword": {
+      "severity": "off"
+    },
+
     // Allow statements like "{} as Foo".
     "no-object-literal-type-assertion": {
       "severity": "off"

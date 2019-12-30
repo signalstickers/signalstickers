@@ -7,6 +7,8 @@
  *
  * See: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto
  */
+import ErrorWithCode from 'lib/error';
+
 
 /**
  * [private]
@@ -79,6 +81,6 @@ export async function decryptManifest(encodedKey: string, rawManifest: any) {
     const cipherKey = await window.crypto.subtle.importKey('raw', keys[0], 'AES-CBC', false, ['decrypt']);
     return window.crypto.subtle.decrypt({name: 'AES-CBC', iv: theirIv}, cipherKey, cipherTextBody);
   } catch (err) {
-    throw new Error(`[decryptManifest] Failed to decrypt manifest: ${err.stack}`);
+    throw ErrorWithCode.from('MANIFEST_DECRYPT', err);
   }
 }

@@ -88,19 +88,20 @@ const StickerPackListComponent = () => {
   }, [searchResults]);
 
 
+  // ----- Render --------------------------------------------------------------
+
   return (
     <>
       <SearchInput />
       <StickerPackList className="row">
-        {renderedSearchResults.map(stickerPack => (
-          <Link className="col-6 col-sm-6 col-md-4 col-lg-3 mb-4" key={stickerPack.id} to={`/pack/${stickerPack.id}`}>
-            <StickerPackPreviewCard stickerPack={stickerPack} />
-          </Link>
-        ))}
-        <Waypoint
-          key={cursor}
-          onEnter={onEnter}
-        />
+        {renderedSearchResults.map(({meta, manifest}) => {
+          return (
+            <Link className="col-6 col-md-4 col-lg-3 mb-4" key={meta.id} to={`/pack/${meta.id}`}>
+              <StickerPackPreviewCard stickerPack={{meta, manifest}} />
+            </Link>
+          );
+        })}
+        <Waypoint key={cursor} onEnter={onEnter} />
       </StickerPackList>
     </>
   );

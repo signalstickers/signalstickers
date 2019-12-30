@@ -10,6 +10,7 @@ import {getStickerInPack, getEmojiForSticker} from 'lib/stickers';
 
 export interface Props {
   packId: string;
+  packKey: string;
   stickerId: number | 'cover';
 }
 
@@ -37,9 +38,10 @@ const Sticker = styled.div`
 
 // ----- Component -------------------------------------------------------------
 
-const StickerComponent: React.FunctionComponent<Props> = ({packId, stickerId}) => {
+const StickerComponent: React.FunctionComponent<Props> = ({packId, packKey, stickerId}) => {
   const [emoji, setEmoji] = useState('');
   const [stickerSrc, setStickerSrc] = useState('');
+
 
   /**
    * [Effect] Load sticker data and emoji for the sticker indicated in our
@@ -47,8 +49,8 @@ const StickerComponent: React.FunctionComponent<Props> = ({packId, stickerId}) =
    */
   useEffect(() => {
     async function fetchStickerDataEffect() {
-      getEmojiForSticker(packId, stickerId).then(setEmoji); // tslint:disable-line no-floating-promises
-      getStickerInPack(packId, stickerId).then(setStickerSrc); // tslint:disable-line no-floating-promises
+      getEmojiForSticker(packId, packKey, stickerId).then(setEmoji); // tslint:disable-line no-floating-promises
+      getStickerInPack(packId, packKey, stickerId).then(setStickerSrc); // tslint:disable-line no-floating-promises
     }
 
     fetchStickerDataEffect(); // tslint:disable-line no-floating-promises

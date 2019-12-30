@@ -3,14 +3,14 @@ import {styled} from 'linaria/react';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
 
-import {TransformedStickerPackJsonEntry, StickerPack} from 'etc/types';
+import {StickerPack} from 'etc/types';
 import {getStickerPack, getStickerInPack} from 'lib/stickers';
 
 
 // ----- Props -----------------------------------------------------------------
 
 export interface Props {
-  stickerPack: TransformedStickerPackJsonEntry;
+  stickerPack: StickerPack;
 }
 
 
@@ -72,22 +72,8 @@ const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: 
 
 const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props => {
   const [cover, setCover] = useState<string | undefined>();
-  const [stickerPack, setStickerPack] = useState<StickerPack | undefined>();
-  const {id} = props.stickerPack;
-
-
-  /**
-   * [Effect] Loads sticker pack data when the component mounts.
-   */
-  useEffect(() => {
-    async function getStickerPackInfoEffect() {
-      if (id !== undefined) { // tslint:disable-line strict-type-predicates
-        setStickerPack(await getStickerPack(id));
-      }
-    }
-
-    getStickerPackInfoEffect(); // tslint:disable-line no-floating-promises
-  }, []);
+  // const [stickerPack, setStickerPack] = useState<StickerPack | undefined>();
+  const {meta, manifest} = props.stickerPack;
 
 
   /**
@@ -95,8 +81,8 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
    */
   useEffect(() => {
     async function getStickerPackCoverEffect() {
-      if (id !== undefined) { // tslint:disable-line strict-type-predicates
-        setCover(await getStickerInPack(id, 'cover'));
+      if (meta.id !== undefined) { // tslint:disable-line strict-type-predicates
+        setCover(await getStickerInPack(meta.id, meta.key, 'cover'));
       }
     }
 
@@ -106,14 +92,14 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
 
   // ----- Render --------------------------------------------------------------
 
-  if (!stickerPack || !cover) {
+  if (!cover) {
     return <div></div>;
   }
 
-  const title = [stickerPack.title, stickerPack.nsfw && ' (NSFW)'].filter(Boolean).join('');
+  const title = [manifest.title, meta.nsfw && ' (NSFW)'].filter(Boolean).join('');
 
   return (
-    <StickerPackPreviewCard nsfw={stickerPack.nsfw} className="card" data-pack-id={stickerPack.id} title={title}>
+    <StickerPackPreviewCard className="card" nsfw={meta.nsfw} data-pack-id={meta.id} title={title}>
       <img className="card-img-top" src={cover} />
       <div className="card-header">{title}</div>
     </StickerPackPreviewCard>

@@ -17,7 +17,7 @@ export interface StickerPackJson {
  * Shape of transformed objects when loaded from stickers.json such that the
  * sticker pack ID is added to each object.
  */
-export interface TransformedStickerPackJsonEntry {
+export interface StickerPackMetadata {
   id: string;
   key: string;
   source: string;
@@ -26,7 +26,7 @@ export interface TransformedStickerPackJsonEntry {
 }
 
 
-// ----- Signal CDN Responses --------------------------------------------------
+// ----- Signal API Responses --------------------------------------------------
 
 /**
  * Shape of an individual sticker in a sticker pack response.
@@ -41,44 +41,6 @@ export interface Sticker {
  * Response from the Signal CDN when requesting a sticker pack.
  */
 export interface StickerPackManifest {
-  title: string;
-  author: string;
-  cover: Sticker;
-  stickers: Array<Sticker>;
-}
-
-
-// ----- Custom Objects --------------------------------------------------------
-
-export interface StickerPack {
-  /**
-   * ID of the sticker pack.
-   *
-   * Loaded from stickers.json.
-   */
-  id: string;
-
-  /**
-   * "Pack key" for the sticker pack.
-   *
-   * Loaded from stickers.json.
-   */
-  key: string;
-
-  /**
-   * Original source for the sticker pack.
-   *
-   * Loaded from stickers.json.
-   */
-  source: string;
-
-  /**
-   * Comma-delimited list of tags for the sticker pack.
-   *
-   * Loaded from stickers.json.
-   */
-  tags: string;
-
   /**
    * Title of the sticker pack.
    */
@@ -95,12 +57,22 @@ export interface StickerPack {
   cover: Sticker;
 
   /**
-   * Whether the sticker pack is NSFW.
-   */
-  nsfw?: boolean;
-
-  /**
    * List of all stickers in the sticker pack.
    */
   stickers: Array<Sticker>;
+}
+
+
+// ----- Custom Objects --------------------------------------------------------
+
+export interface StickerPack {
+  /**
+   * All information about the sticker pack from stickers.json.
+   */
+  meta: StickerPackMetadata;
+
+  /**
+   * All information about the sticker pack loaded from the Signal API.
+   */
+  manifest: StickerPackManifest;
 }
