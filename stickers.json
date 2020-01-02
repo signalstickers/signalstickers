@@ -1017,5 +1017,11 @@
     "source": "telegram",
     "tags": "foss",
     "nsfw": false
+},
+"1937fa14f4d5008556d7f52053cfb76b": {
+    "key": "c7c4f86537f29fbeb1e583ef0cb7d53bb360005530a885edb170bdbe78ff50f9",
+    "source": "https://manualdousuario.net",
+    "tags": "whatsapp, facebook, meta",
+    "nsfw": false
 }
 }
