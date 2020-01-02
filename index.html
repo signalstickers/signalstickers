@@ -9,6 +9,13 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/res/style.css" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script>
+        // Credits: https://webpjs.appspot.com/without-webpjs-support.html
+        (function(){var WebP=new Image();WebP.onload=WebP.onerror=function(){
+        if(WebP.height!=2){var sc=document.createElement('script');sc.type='text/javascript';sc.async=true;
+        var s=document.getElementsByTagName('script')[0];sc.src='/res/webp.js';s.parentNode.insertBefore(sc,s);}};
+        WebP.src='data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';})();
+    </script>
 </head>
 
 <body id="body">
@@ -98,7 +105,7 @@
     <script>
         (function () {
             document.querySelector('.searchbar input').addEventListener('input', search);
-            getStickerPackList()
+            testWebP(getStickerPackList);
         })();
     </script>
 </body>
