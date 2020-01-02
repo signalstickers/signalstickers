@@ -1017,5 +1017,11 @@
     "source": "telegram",
     "tags": "foss",
     "nsfw": false
+},
+"497d84f3044a0c4458121e40c7ed5846": {
+    "key": "69e1aa249db53a1053bae57dce21bde937d5ec70d22269fc33525196fc6eaa75",
+    "source": "https://twitter.com/systemli/status/1207638879739756544",
+    "tags": "activism, collective, tech, hosting, provider",
+    "nsfw": false
 }
 }
