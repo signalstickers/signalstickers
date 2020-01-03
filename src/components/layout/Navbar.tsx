@@ -17,6 +17,7 @@ const StyledNavBar = styled.nav`
 
   & .brand {
     font-size: 28px;
+    font-weight: 400;
 
     &:hover {
       color: white;

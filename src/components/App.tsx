@@ -6,10 +6,10 @@ import {
   Route
 } from 'react-router-dom';
 
-import Footer from 'components/layout/Footer';
 import Navbar from 'components/layout/Navbar';
 import Home from 'components/home/Home';
 import StickerPackDetail from 'components/pack/StickerPackDetail';
+import Footer from 'components/layout/Footer';
 import {Provider as StickersContextProvider} from 'contexts/StickersContext';
 
 

@@ -21,8 +21,14 @@ const SearchInput = styled.div`
     left: -1px;
   }
 
-  & .input-group-lg .octicon {
-    font-size: 24px;
+  & .input-group-lg {
+    & .octicon {
+      font-size: 24px;
+    }
+
+    & input {
+      font-weight: 400;
+    }
   }
 `;
 
@@ -93,7 +99,7 @@ const SearchInputComponent: React.FunctionComponent = () => {
   const placeholder = allStickerPacks ? `Search ${allStickerPacks.length} sticker packs...` : '';
 
   return (
-    <SearchInput className="row mb-4 mb-md-5 mt-4 mt-md-5">
+    <SearchInput className="row mb-4 mb-md-5">
       <div className="col-12">
         <div className="form-group m-0">
           <div className={cx('input-group', ['md', 'lg', 'xl'].includes(breakpoint) && 'input-group-lg')}>
@@ -107,11 +113,13 @@ const SearchInputComponent: React.FunctionComponent = () => {
               key="search"
               className="form-control"
               onChange={onSearchQueryInputChange}
-              // onKeyDown={onSearchQueryInputChangeSafari}
               value={searchQueryInputValue}
               placeholder={placeholder}
               title="Search"
               aria-label="search"
+              autoComplete="false"
+              spellCheck="false"
+              autoFocus
             />
             <div className="input-group-append">
               <button className="input-group-text btn btn-light btn-sm" onClick={clearSearchResults} title="Clear Search Results">

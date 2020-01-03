@@ -25,11 +25,30 @@ const Footer = styled.div`
 
   & h1 {
     font-size: 32px;
-    font-weight: 600;
+    font-weight: 400;
+  }
+
+  & a {
+    font-size: 14px;
+  }
+
+  & p {
+    font-size: 14px;
+    font-weight: 300;
   }
 
   & strong {
-    font-weight: 600;
+    font-weight: 400;
+  }
+
+  @media screen and (min-width: 768px) {
+    & a {
+      font-size: 16px;
+    }
+
+    & p {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -44,7 +63,7 @@ const FooterComponent: React.FunctionComponent = props => {
         <div className="container">
           <Footer className="row">
             <div className="col-6 about">
-              <h1>About</h1>
+              <h1 className="mb-4">About</h1>
               <p>
                 Browse and download more than 100 sticker packs for Signal, the secure messenger. These
                 stickers are created by the community; the maintainers of this website do not claim any
@@ -57,11 +76,11 @@ const FooterComponent: React.FunctionComponent = props => {
               </p>
             </div>
             <div className="col-6 links">
-              <h1>Links</h1>
+              <h1 className="mb-4">Links</h1>
               <ul>
                 <li>
                   <a href="https://signal.org" rel="noreferrer" target="_blank">
-                    <Octicon name="link-external" /> Learn More About Signal
+                    <Octicon name="link-external" /> Learn more about Signal
                   </a>
                 </li>
                 <li>

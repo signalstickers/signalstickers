@@ -3,6 +3,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {Waypoint} from 'react-waypoint';
 import * as R from 'ramda';
+import useAsyncEffect from 'use-async-effect';
 
 import StickerContext from 'contexts/StickersContext';
 import {StickerPack} from 'etc/types';
@@ -30,10 +31,8 @@ const PAGE_SIZE = 32;
 
 const StickerPackListComponent = () => {
   const {searchResults} = useContext(StickerContext);
-
   // Used by Waypoint to persist the component across re-renders.
   const [cursor, setCursor] = useState(0);
-
   // Subset of total search results that have been rendered.
   const [renderedSearchResults, setRenderedSearchResults] = useState<Array<StickerPack>>([]);
 
@@ -58,7 +57,7 @@ const StickerPackListComponent = () => {
   /**
    * Called when our Waypoint is rendered and is on-screen.
    */
-  async function onEnter() {
+  function onEnter() {
     loadMore(); // tslint:disable-line no-floating-promises
   }
 
@@ -67,14 +66,10 @@ const StickerPackListComponent = () => {
    * [Effect] When the list of search results is updated, re-set our rendered
    * search results and cursor.
    */
-  useEffect(() => {
-    const updateSearchResultsEffect = async () => {
-      setCursor(0);
-      setRenderedSearchResults([]);
-      return loadMore();
-    };
-
-    updateSearchResultsEffect(); // tslint:disable-line no-floating-promises
+  useAsyncEffect(async () => {
+    setCursor(0);
+    setRenderedSearchResults([]);
+    await loadMore();
   }, [searchResults]);
 
 

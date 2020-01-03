@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
 import Linkify from 'react-linkify';
 import {styled} from 'linaria/react';
@@ -6,15 +6,19 @@ import {darken} from 'polished';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
 import * as R from 'ramda';
+import useAsyncEffect from 'use-async-effect';
 
 import StickersContext from 'contexts/StickersContext';
 import {GRAY, SIGNAL_BLUE} from 'etc/colors';
 import {StickerPackManifest, StickerPackMetadata} from 'etc/types';
-import Sticker from 'components/pack/Sticker';
 import useQuery from 'hooks/use-query';
 import ErrorWithCode from 'lib/error';
 import {getStickerPack, getStickerPackList} from 'lib/stickers';
 import {capitalizeFirst} from 'lib/utils';
+
+import Sticker from './Sticker';
+import StickerPackError from './StickerPackError';
+import Tag from './Tag';
 
 
 // ----- Styles ----------------------------------------------------------------
@@ -27,6 +31,7 @@ const StickerPackDetail = styled.div`
     align-items: center;
     display: flex;
     flex-direction: row;
+    font-size: 14px;
 
     & .octicon {
       font-size: 20px;
@@ -51,8 +56,25 @@ const StickerPackDetail = styled.div`
   }
 
   & .title {
-    font-size: 42px;
+    font-size: 32px;
     font-weight: 600;
+  }
+
+  @media screen and (min-width: 768px) {
+    & .list-group-item {
+      font-size: inherit;
+
+      & .octicon {
+        font-size: 20px;
+        margin-right: 20px;
+      }
+    }
+
+
+    & .title {
+      font-size: 42px;
+      font-weight: 600;
+    }
   }
 
   & .author {
@@ -64,44 +86,10 @@ const StickerPackDetail = styled.div`
   & strong {
     font-weight: 600;
   }
-
-  & .tag {
-    background-color: ${darken(0, SIGNAL_BLUE)};
-    border-radius: 4px;
-    border: 1px solid ${darken(0.1, 'white')};
-    color: white;
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1em;
-    padding: 5px 7px;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
-    margin-right: 3px;
-    margin-left: 3px;
-    position: relative;
-    top: -1px;
-  }
 `;
 
 
 // ----- Component -------------------------------------------------------------
-
-/**
- * Sub-component used to render error messages.
- */
-const StickerPackError: React.FunctionComponent = props => {
-  return (
-    <div className="p-4 my-4">
-      <div className="row mb-4">
-        <div className="col-10 offset-1 alert alert-danger">
-          <h3 className="alert-heading mt-1 mb-3">Error</h3>
-          {props.children}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 
 const StickerPackDetailComponent: React.FunctionComponent = () => {
   const query = useQuery();
@@ -157,7 +145,11 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       return;
     }
 
-    window.open(`sgnl://addstickers/?pack_id=${currentStickerPackId}&pack_key=${stickerPackKey}`, '_blank');
+    // window.open(`sgnl://addstickers/?pack_id=${currentStickerPackId}&pack_key=${stickerPackKey}`, '_blank');
+
+    // This has been suggested as an alternative, but I have not been able to
+    // get it working as of yet.
+    window.open(`https://signal.art/addstickers/#pack_id=${currentStickerPackId}&pack_key=${stickerPackKey}`, '_blank');
   }
 
 
@@ -165,48 +157,45 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
    * [Effect] Update `stickerPack` and 'stickerPackMeta` when
    * `currentStickerPackId` changes.
    */
-  useEffect(() => {
-    async function setStickerPackEffect() {
-      try {
-        // Because this value comes from a context, we may get rendered before
-        // it becomes available.
-        if (!currentStickerPackId) {
-          return;
-        }
+  useAsyncEffect(async () => {
+    try {
+      // Because this value comes from a context, we may get rendered before
+      // it becomes available.
+      if (!currentStickerPackId) {
+        return;
+      }
 
-        // Try to get metadata (including the pack's key) from stickers.json.
-        const packMetadata = R.find<StickerPackMetadata>(R.propEq('id', currentStickerPackId), await getStickerPackList());
-        const keyFromQuery = query.get('key');
+      // Try to get metadata (including the pack's key) from stickers.json.
+      const packMetadata = R.find<StickerPackMetadata>(R.propEq('id', currentStickerPackId), await getStickerPackList());
 
-        // If the sticker pack is listed in stickers.json, set metadata and
-        // then fetch the pack's manifest from Signal using the key from
-        // metadata.
-        if (packMetadata) {
-          setStickerPackMeta(packMetadata);
-          setStickerPackKey(packMetadata.key);
-          setStickerPack(await getStickerPack(currentStickerPackId, packMetadata.key));
-          return;
-        }
+      // If the sticker pack is listed in stickers.json, set metadata and
+      // then fetch the pack's manifest from Signal using the key from
+      // metadata.
+      if (packMetadata) {
+        setStickerPackMeta(packMetadata);
+        setStickerPackKey(packMetadata.key);
+        setStickerPack(await getStickerPack(currentStickerPackId, packMetadata.key));
+        return;
+      }
 
-        // Otherwise, try to load and decrypt the manifest from Signal using
-        // the key provided in our query params.
-        if (keyFromQuery) {
-          setStickerPackKey(keyFromQuery);
-          setStickerPack(await getStickerPack(currentStickerPackId, keyFromQuery));
-          return;
-        }
+      // Otherwise, try to get the pack's key from the query string.
+      const keyFromQuery = query.get('key');
 
-        // If we couldn't find the pack in our directory and the user did not
-        // provide a `key` query param, throw.
-        throw new ErrorWithCode('NO_KEY_PROVIDED', 'No key provided.');
-      } catch (err) {
-        if (err.code) {
-          setStickerPackError(err.code);
-        }
+      // Then try to load and decrypt the manifest from Signal.
+      if (keyFromQuery) {
+        setStickerPackKey(keyFromQuery);
+        setStickerPack(await getStickerPack(currentStickerPackId, keyFromQuery));
+        return;
+      }
+
+      // If we couldn't find the pack in our directory and the user did not
+      // provide a `key` query param, throw.
+      throw new ErrorWithCode('NO_KEY_PROVIDED', 'No key provided.');
+    } catch (err) {
+      if (err.code) {
+        setStickerPackError(err.code);
       }
     }
-
-    setStickerPackEffect(); // tslint:disable-line no-floating-promises
   }, [currentStickerPackId]);
 
 
@@ -288,7 +277,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
             <li className="list-group-item">
               <Octicon name="tag" title="Tags" />
               <div className="text-wrap text-break">
-                {Array.isArray(stickerPackTags) ? stickerPackTags.map(tag => (<span key={tag} className="tag">{tag}</span>)) : 'None'}
+                {Array.isArray(stickerPackTags) ? stickerPackTags.map(tag => (<Tag key={tag}>{tag}</Tag>)) : 'None'}
               </div>
             </li>
           </ul>

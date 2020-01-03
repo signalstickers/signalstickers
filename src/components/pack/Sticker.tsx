@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {styled} from 'linaria/react';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
+import useAsyncEffect from 'use-async-effect';
 
 import {getStickerInPack, getEmojiForSticker} from 'lib/stickers';
 
@@ -54,13 +55,17 @@ const StickerComponent: React.FunctionComponent<Props> = ({packId, packKey, stic
    * [Effect] Load sticker data and emoji for the sticker indicated in our
    * props.
    */
-  useEffect(() => {
-    async function fetchStickerDataEffect() {
-      getEmojiForSticker(packId, packKey, stickerId).then(setEmoji); // tslint:disable-line no-floating-promises
-      getStickerInPack(packId, packKey, stickerId).then(setStickerSrc); // tslint:disable-line no-floating-promises
-    }
+  useAsyncEffect(async () => {
+    const [
+      emojiResult,
+      stickerResult
+    ] = await Promise.all([
+      getEmojiForSticker(packId, packKey, stickerId),
+      getStickerInPack(packId, packKey, stickerId)
+    ]);
 
-    fetchStickerDataEffect(); // tslint:disable-line no-floating-promises
+    setEmoji(emojiResult);
+    setStickerSrc(stickerResult);
   }, []);
 
 

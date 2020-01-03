@@ -74,9 +74,9 @@ export async function convertImage(imageData: Uint8Array) {
     return `data:image/webp;base64,${base64Data}`;
   }
 
-  // Otherwise, convert the WEBP image to PNG before caching it. This will
-  // take a noticeable amount of time/memory on the user's machine, but is
-  // the only way we can display these images at this time.
+  // Otherwise, convert the WEBP image to PNG. This will take a noticeable
+  // amount of time/memory on the user's machine, but is the only way we can
+  // display these images at this time.
   return imageConversionQueue.add(async () => {
     try {
       // @ts-ignore (`busy` is not an exposed member of WebpMachine.)

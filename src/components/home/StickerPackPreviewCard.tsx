@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {styled} from 'linaria/react';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
+import useAsyncEffect from 'use-async-effect';
 
 import {StickerPack} from 'etc/types';
 import {getStickerInPack} from 'lib/stickers';
@@ -35,7 +36,7 @@ const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: 
     border-bottom: none;
     border-top: 1px solid rgba(0, 0, 0, 0.125);
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 400;
     white-space: nowrap;
     overflow: hidden;
     position: relative;
@@ -50,7 +51,7 @@ const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: 
       position: absolute;
       right: 0;
       top: 0;
-      width: 25%;
+      width: 15%;
     }
   }
 
@@ -78,19 +79,15 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
   /**
    * [Effect] Loads a sticker pack's cover image when the component mounts.
    */
-  useEffect(() => {
-    const getCoverEffect = async () => {
-      try {
-        if (meta.id !== undefined) { // tslint:disable-line strict-type-predicates
-          const coverImage = await getStickerInPack(meta.id, meta.key, 'cover');
-          setCover(coverImage);
-        }
-      } catch (err) {
-        console.error(`[StickerPackPreviewCard::Effect::GetCover] ${err.message}`);
+  useAsyncEffect(async () => {
+    try {
+      if (meta.id !== undefined) { // tslint:disable-line strict-type-predicates
+        const coverImage = await getStickerInPack(meta.id, meta.key, 'cover');
+        setCover(coverImage);
       }
-    };
-
-    getCoverEffect(); // tslint:disable-line no-floating-promises
+    } catch (err) {
+      console.error(`[StickerPackPreviewCard::Effect::GetCover] ${err.message}`);
+    }
   }, []);
 
 

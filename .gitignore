@@ -92,3 +92,5 @@ typings/
 
 # Linaria's cache directory.
 /.linaria-cache
+
+/NOTES.md
