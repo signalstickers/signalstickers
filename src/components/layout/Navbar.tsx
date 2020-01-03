@@ -6,7 +6,6 @@ import Octicon from 'react-octicon';
 
 import SignalLogoUrl from 'assets/signal-logo.png';
 import {SIGNAL_BLUE} from 'etc/colors';
-import NavbarWarning from 'components/NavbarWarning';
 
 
 // ----- Styles ----------------------------------------------------------------
@@ -42,10 +41,10 @@ const NavbarComponent: React.FunctionComponent = () => {
       <StyledNavBar>
         <div className="container">
           <div className="row">
-            <div className="col-12 col-md-6 text-center text-md-left mb-2 mb-sm-0">
+            <div className="col-12 col-md-6 text-center text-md-left mb-2 mb-sm-1">
               <Link className="brand" to="/"><img src={SignalLogoUrl} alt="Signal Logo" /> Signal Stickers</Link>
             </div>
-            <div className="col-12 col-md-6 mt-1 text-center text-md-right mb-3 mb-sm-0">
+            <div className="col-12 col-md-6 text-center text-md-right mt-2 mb-2 mb-md-0">
               <a href="https://github.com/romainricard/signalstickers" title="Contribute">
                 <button className="btn btn-light btn-sm mr-3"><Octicon name="mark-github" />&nbsp;&nbsp;Contribute</button>
               </a>
@@ -56,7 +55,6 @@ const NavbarComponent: React.FunctionComponent = () => {
           </div>
         </div>
       </StyledNavBar>
-      <NavbarWarning />
     </>
   );
 };

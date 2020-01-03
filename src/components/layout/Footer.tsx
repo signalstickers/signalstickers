@@ -4,7 +4,7 @@ import {styled} from 'linaria/react';
 import Octicon from 'react-octicon';
 
 import {GRAY} from 'etc/colors';
-import FlexSpacer from 'components/FlexSpacer';
+import FlexSpacer from 'components/layout/FlexSpacer';
 
 
 // ----- Styles ----------------------------------------------------------------

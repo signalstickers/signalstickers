@@ -30,8 +30,15 @@ const Sticker = styled.div`
   }
 
   & img {
-    width: 128px;
-    height: 128px;
+    width: 72px;
+    height: 72px;
+  }
+
+  @media screen and (min-width: 576px) {
+    & img {
+      width: 128px;
+      height: 128px;
+    }
   }
 `;
 

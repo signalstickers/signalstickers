@@ -6,10 +6,10 @@ import {
   Route
 } from 'react-router-dom';
 
-import Footer from 'components/Footer';
-import Navbar from 'components/Navbar';
-import StickerList from 'components/StickerPackList';
-import StickerPackDetail from 'components/StickerPackDetail';
+import Footer from 'components/layout/Footer';
+import Navbar from 'components/layout/Navbar';
+import Home from 'components/home/Home';
+import StickerPackDetail from 'components/pack/StickerPackDetail';
 import {Provider as StickersContextProvider} from 'contexts/StickersContext';
 
 
@@ -21,7 +21,7 @@ const App: React.FunctionComponent = () => {
         <div className="container">
           <Switch>
             <Route exact path="/">
-              <StickerList />
+              <Home />
             </Route>
             <Route path="/pack/:packId">
               <StickerPackDetail />

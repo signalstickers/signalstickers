@@ -1,14 +1,12 @@
-import sleep from '@darkobits/sleep';
+import {styled} from 'linaria/react';
 import React, {useState, useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {Waypoint} from 'react-waypoint';
-import {styled} from 'linaria/react';
 import * as R from 'ramda';
 
-import StickerPackPreviewCard from 'components/StickerPackPreviewCard';
-import SearchInput from 'components/SearchInput';
 import StickerContext from 'contexts/StickersContext';
 import {StickerPack} from 'etc/types';
+import StickerPackPreviewCard from './StickerPackPreviewCard';
 
 
 // ----- Styles ----------------------------------------------------------------
@@ -50,17 +48,9 @@ const StickerPackListComponent = () => {
       return;
     }
 
-    // We need to put a slight delay here to allow React time to re-render with
-    // updated search results. Without a delay, our Waypoint will continue to
-    // report that it is visible even though we have rendered enough search
-    // results to ensure it is off-screen. This delay and PAGE_SIZE can be
-    // adjusted to tune the amount of over-shoot when rendering results.
-    if (cursor > 0) {
-      await sleep(10);
-    }
-
     const newCursor = cursor + PAGE_SIZE;
     setCursor(newCursor);
+
     setRenderedSearchResults(R.take(newCursor, searchResults));
   }
 
@@ -68,7 +58,7 @@ const StickerPackListComponent = () => {
   /**
    * Called when our Waypoint is rendered and is on-screen.
    */
-  function onEnter() {
+  async function onEnter() {
     loadMore(); // tslint:disable-line no-floating-promises
   }
 
@@ -78,32 +68,29 @@ const StickerPackListComponent = () => {
    * search results and cursor.
    */
   useEffect(() => {
-    async function resetRenderedResultsEffect() {
+    const updateSearchResultsEffect = async () => {
       setCursor(0);
       setRenderedSearchResults([]);
-      await loadMore();
-    }
+      return loadMore();
+    };
 
-    resetRenderedResultsEffect(); // tslint:disable-line no-floating-promises
+    updateSearchResultsEffect(); // tslint:disable-line no-floating-promises
   }, [searchResults]);
 
 
   // ----- Render --------------------------------------------------------------
 
   return (
-    <>
-      <SearchInput />
-      <StickerPackList className="row">
-        {renderedSearchResults.map(({meta, manifest}) => {
-          return (
-            <Link className="col-6 col-md-4 col-lg-3 mb-4" key={meta.id} to={`/pack/${meta.id}`}>
-              <StickerPackPreviewCard stickerPack={{meta, manifest}} />
-            </Link>
-          );
-        })}
-        <Waypoint key={cursor} onEnter={onEnter} />
-      </StickerPackList>
-    </>
+    <StickerPackList className="row">
+      {renderedSearchResults.map(({meta, manifest}, index) => {
+        return (
+          <Link className="col-6 col-md-4 col-lg-3 mb-4" key={meta.id} to={`/pack/${meta.id}`}>
+            <StickerPackPreviewCard stickerPack={{meta, manifest}} />
+          </Link>
+        );
+      })}
+      <Waypoint key={cursor} onEnter={onEnter} />
+    </StickerPackList>
   );
 };
 

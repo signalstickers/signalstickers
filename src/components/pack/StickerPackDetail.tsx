@@ -10,7 +10,7 @@ import * as R from 'ramda';
 import StickersContext from 'contexts/StickersContext';
 import {GRAY, SIGNAL_BLUE} from 'etc/colors';
 import {StickerPackManifest, StickerPackMetadata} from 'etc/types';
-import Sticker from 'components/Sticker';
+import Sticker from 'components/pack/Sticker';
 import useQuery from 'hooks/use-query';
 import ErrorWithCode from 'lib/error';
 import {getStickerPack, getStickerPackList} from 'lib/stickers';
@@ -272,22 +272,22 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       {stickerPackMeta ? <div className="row mb-4">
         <div className="col-12 col-lg-6">
           <ul className="list-group">
-            <li className="list-group-item">
+            <li className="list-group-item text-wrap text-break">
               <Octicon name="globe" title="Source" />
               <div>
                 <Linkify>{source}</Linkify>
               </div>
             </li>
-            <li className="list-group-item">
+            <li className="list-group-item text-wrap text-break">
               <Octicon name="file-directory" title="Sticker Count" />
               {numStickers}
             </li>
-            {stickerPackMeta.nsfw ? <li className="list-group-item">
-              <Octicon name="alert" title="NSFW" /> <strong>NSFW</strong>}
+            {stickerPackMeta.nsfw ? <li className="list-group-item text-wrap text-break">
+              <Octicon name="alert" title="NSFW" /> <strong>NSFW</strong>
             </li> : null}
             <li className="list-group-item">
               <Octicon name="tag" title="Tags" />
-              <div>
+              <div className="text-wrap text-break">
                 {Array.isArray(stickerPackTags) ? stickerPackTags.map(tag => (<span key={tag} className="tag">{tag}</span>)) : 'None'}
               </div>
             </li>

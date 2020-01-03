@@ -9,14 +9,11 @@
  * settings, Safari seems to be able to handle this load without issue (albeit
  * far more slowly than Chrome).
  */
-
-import sleep from '@darkobits/sleep';
 import axios from 'axios';
 import FuzzySearch from 'fuzzy-search';
-import pQueue from 'p-queue';
+import LocalForage from 'localforage';
 import protobuf from 'protobufjs';
 import * as R from 'ramda';
-import {WebpMachine} from 'webp-hero';
 
 import {STICKERS_MANIFEST_URL} from 'etc/constants';
 import {
@@ -27,6 +24,7 @@ import {
   Sticker
 } from 'etc/types';
 import StickersProto from 'etc/Stickers.proto';
+import {convertImage} from 'lib/convert';
 import {decryptManifest} from 'lib/crypto';
 import ErrorWithCode from 'lib/error';
 
@@ -50,20 +48,12 @@ let stickerPackListCache: Array<StickerPackMetadata> = [];
 const stickerPackCache = new Map<string, StickerPackManifest>();
 
 /**
- * Module-local in-memory cache used for sticker image data.
+ * Module-local browser-storage-backed cache used for sticker image data.
  */
-const stickerImageCache = new Map<string, string>();
-
-/**
- * Module-local asynchronous queue facility that will allow us to limit the
- * number of concurrent image conversion operations.
- */
-const imageConversionQueue = new pQueue({concurrency: 2});
-
-/**
- * Module-local WepP to PNG converter.
- */
-const webpConverter = new WebpMachine();
+const stickerImageCache = LocalForage.createInstance({
+  name: 'Signal Stickers',
+  storeName: 'Image Cache'
+});
 
 
 // ----- Functions -------------------------------------------------------------
@@ -142,7 +132,9 @@ export async function getStickerInPack(id: string, key: string, stickerId: numbe
   try {
     const cacheKey = `${id}-${stickerId}`;
 
-    if (!stickerImageCache.has(cacheKey)) {
+    const item = await stickerImageCache.getItem<string | undefined>(cacheKey);
+
+    if (!item) {
       // Before we can make the request, we need to get the pack's information
       // using getStickerPack.
       const stickerPack = await getStickerPack(id, key);
@@ -161,25 +153,13 @@ export async function getStickerInPack(id: string, key: string, stickerId: numbe
 
       const manifest = await decryptManifest(key, res.data);
       const arrayBufferView = new Uint8Array(manifest, 0, manifest.byteLength);
-
-      if (Modernizr.webp) {
-        // If the browser supports WEBP, we don't need to convert it to PNG.
-        const base64Data = btoa(String.fromCharCode.apply(undefined, arrayBufferView));
-        stickerImageCache.set(cacheKey, `data:image/png;base64,${base64Data}`);
-      } else {
-        // Otherwise, convert the WEBP image to PNG before caching it. This will
-        // take a noticeable amount of time/memory on the user's machine, but is
-        // the only way we can display these images at this time.
-        await imageConversionQueue.add(async () => {
-          await sleep(50);
-          stickerImageCache.set(cacheKey, await webpConverter.decode(arrayBufferView));
-        });
-      }
+      const convertedImage = await convertImage(arrayBufferView);
+      await stickerImageCache.setItem(cacheKey, convertedImage);
     }
 
-    return stickerImageCache.get(cacheKey) as string;
+    return item || await stickerImageCache.getItem<string>(cacheKey);
   } catch (err) {
-    throw new Error(`[getStickerInPack] Error getting sticker: ${err.stack}`);
+    throw new Error(`[getStickerInPack] Error getting sticker: ${err.message}`);
   }
 }
 
