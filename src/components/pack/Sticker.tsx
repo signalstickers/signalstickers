@@ -20,7 +20,7 @@ export interface Props {
 
 const Sticker = styled.div`
   border: 1px solid rgba(0, 0, 0, .125);
-  border-radius: 8px;
+  border-radius: 4px;
   position: relative;
 
   & .emoji {
