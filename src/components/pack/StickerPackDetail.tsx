@@ -24,6 +24,7 @@ import Tag from './Tag';
 // ----- Styles ----------------------------------------------------------------
 
 const StickerPackDetail = styled.div`
+  background-color: white;
   border-radius: 4px;
   border: 1px solid ${darken(0.15, GRAY)};
 
@@ -114,7 +115,6 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   // to show the user.
   const [stickerPackError, setStickerPackError] = useState('');
 
-
   /**
    * Accepts a "tags" property from a sticker pack's metadata and returns an
    * array of capitalized tags. If the string is empty, returns 'N/A'.
@@ -134,24 +134,6 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       return tagsArray;
     }
   }
-
-
-  /**
-   * [Event Handler] Click handler for the Add to Signal button. Opens a new tab
-   * allowing the user to add the sticker pack to the Signal app.
-   */
-  function handleAddToSignal() {
-    if (!currentStickerPackId || !stickerPackKey) {
-      return;
-    }
-
-    // window.open(`sgnl://addstickers/?pack_id=${currentStickerPackId}&pack_key=${stickerPackKey}`, '_blank');
-
-    // This has been suggested as an alternative, but I have not been able to
-    // get it working as of yet.
-    window.open(`https://signal.art/addstickers/#pack_id=${currentStickerPackId}&pack_key=${stickerPackKey}`, '_blank');
-  }
-
 
   /**
    * [Effect] Update `stickerPack` and 'stickerPackMeta` when
@@ -238,6 +220,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   // cases, use 'Anonymous' instead.
   const author = stickerPack.author.trim() ? stickerPack.author : 'Anonymous';
   const stickerPackTags = parseStickerPackTags(stickerPackMeta?.tags);
+  const addToSignalHref = `https://signal.art/addstickers/#pack_id=${currentStickerPackId}&pack_key=${stickerPackKey}`;
 
   return (
     <StickerPackDetail className="p-4 my-5">
@@ -252,9 +235,11 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
               Home
             </button>
           </Link> : null}
-          <button className="btn btn-primary" onClick={handleAddToSignal}>
-            <Octicon name="plus" />&nbsp;Add to Signal
-          </button>
+          <a href={addToSignalHref} target="_blank" rel="noreferrer" title="Add to Signal">
+            <button className="btn btn-primary">
+              <Octicon name="plus" />&nbsp;Add to Signal
+            </button>
+          </a>
         </div>
       </div>
 
