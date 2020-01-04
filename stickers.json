@@ -140,7 +140,7 @@
 "695fc91097831034b34ccbdd6cb30f14": {
     "key": "14e25501fb89724512216738bf399bd4df354307716da4affa9af700d492cf4a",
     "source": "",
-    "tags": ""
+    "tags": "obama, barack, president"
 },
 "6c0566105ac97e3cf934b27ec782daa5": {
     "key": "2820fb97bcc3f91bc7a0afd11db218126964a04391b2971cd1fd8b7d4a101554",
@@ -352,7 +352,7 @@
 "e38a0fcdbd4c06e7e38aa038536877d2": {
     "key": "09287edff13d97320b94675836b9aaf51f4eec059e2d1fc1579d84985bb8a8d3",
     "source": "",
-    "tags": ""
+    "tags": "baby yoda, star wars"
 },
 "e38c1f1ca298c854d19dc4f43d0d8f4b": {
     "key": "42cdcb71f7147491a43daa03df78696d6140365d565d730793f63653d9934230",
@@ -433,7 +433,7 @@
 "34567aa76a6e6b3a00b85b00f895c1fc": {
     "key": "ddc2dce2759a6ac574dca901833f509b53c7fbfec88423c0844bdc85661f171d",
     "source": "https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/149",
-    "tags": ""
+    "tags": "star wars, bb8, c3p0, yoda, han solo, skywalker"
 },
 "24ca24fc28c310683e060271851bc929": {
     "key": "7cd85a46cb48ef2741a945454a36c888715dd2e437a7765f2df01093acce8f9a",
@@ -697,7 +697,7 @@
 "9a36594f48f4b8f4c97fdbeca043be67": {
     "key": "5f0f5d39db65b486f335078de670b14cb38a412a0b50971169c6a354c04c6222",
     "source": "",
-    "tags": "",
+    "tags": "star trek, TOS, kirk, spock, enterprise",
     "nsfw": false
 },
 "345ec462fca16e742ff334e78f98dbce": {
@@ -763,7 +763,7 @@
 "69655bc88e5c61fd589be230581fd0ec": {
     "key": "434bf9bcb145481fb5c1737f5ee3cbebc84b19ef084498f38cbac86a715d0ed8",
     "source": "",
-    "tags": "",
+    "tags": "star wars, darth vader, imperial, dark side",
     "nsfw": false
 },
 "b0e027559dcecd2f568ae678c51a2354": {
@@ -1016,6 +1016,96 @@
     "key": "33229429b66caff14b1d0c180a088797a97b0be11b4398be7ad220aa16b0b71e",
     "source": "telegram",
     "tags": "foss",
+    "nsfw": false
+},
+"d09aead02dd62ae034a4e2c754f91357": {
+    "key": "4222ed1e63a1092568e7863b1fd7deabfcc7004a81b1f532fd7deed8d1e184c9",
+    "source": "",
+    "tags": "shrek, DreamWorks, sherk",
+    "nsfw": false
+},
+"a15812368b624d8536f68f3d938bb30d": {
+    "key": "0175f5db1718af02aac16a4a1211304a443d88f4bdb0959961801306720bc544",
+    "source": "",
+    "tags": "disney, pixar, toy story, woody, buzz",
+    "nsfw": false
+},
+"4c914b6eb85ee7f494b448a452bdec80": {
+    "key": "197b2adc0e10f03df9b5e21df7de648f4d1e9cbc3301f347462c74f13d871309",
+    "source": "",
+    "tags": "pete, buttigieg, 2020, pete for america, mayor pete, boot edge edge",
+    "nsfw": false
+},
+"29c32b5a8cdaadd6d23634f5d2ab2936": {
+    "key": "083fe246590b707571983838005c14863cdd93d1c71fe7536dfd6b601bcab9f8",
+    "source": "",
+    "tags": "yoda, star wars, starwars, jedi",
+    "nsfw": false
+},
+"97475dc9647fb2261b2f072df46d8e33": {
+    "key": "2c64e26579c968fb58ba9936a2b9381b12161573dfaaf54c854ad47271a74cd6",
+    "source": "",
+    "tags": "football, soccer, fan, sports, fifa",
+    "nsfw": false
+},
+"db0bd9d4394104dccff11c4315623099": {
+    "key": "603bb3986db46ab0a0c07b9891ea47c184f343643aa50eab35658071cf1969c9",
+    "source": "",
+    "tags": "pokemon, pokemongo",
+    "nsfw": false
+},
+"d1ad04e0a0fd4505f65f349b156f7c24": {
+    "key": "87f364726b0db882afb28ac1ece01586e500a169d2ea1b0d5e303260a94fc1c9",
+    "source": "",
+    "tags": "olaf, frozen, disney",
+    "nsfw": false
+},
+"e141694556df5974fcebab09a0130324": {
+    "key": "851a4308d86018fc58a74daf51d3dd4855b503b98be2206e0ab10080f560be93",
+    "source": "",
+    "tags": "mr. gull, seagull, gull",
+    "nsfw": false
+},
+"7b57ef463d508db23bc6ae58cc030984": {
+    "key": "1a44bc872f08f21a6e8d142e9016fb1a6219e5f3daf663bcac54d7a877077b78",
+    "source": "",
+    "tags": "koala, koala chuck",
+    "nsfw": false
+},
+"f931af77554043bcda9eeba610f4b903": {
+    "key": "bcca2142b0d4552b792424b0ef97f1750a5e72348b0f5c82c98dc365fbf0084a",
+    "source": "",
+    "tags": "dino, dinosaur, downer, dinos",
+    "nsfw": false
+},
+"d6a9a92b9bef333c28b47ad507cf020b": {
+    "key": "f3531bb417414d5f477a5777f782cc993fa14be2bb93ba75eca9da1a7cdfd92c",
+    "source": "",
+    "tags": "pusheen, cat",
+    "nsfw": false
+},
+"0336d8f0b1d38a25476463896f7143c2": {
+    "key": "0e0840bba4de7ca14fa2e6b902422a2734b4285ca3c87663059c7b2bbb0e79af",
+    "source": "",
+    "tags": "bun, bunny, baby",
+    "nsfw": false
+},
+"327324fcebee242f3bd61f1aba44c12f": {
+    "key": "f2efed60642e0d75b77bb6f5daf30629b0133f2a4419d5e3d91ac448dd261d0b",
+    "source": "",
+    "tags": "baach, llama, alpaca",
+    "nsfw": false
+},
+"6fdf518ac08b2def4b6f127a52210361": {
+    "key": "bb3d6999b832e327a42614f80e135339b1dff34251fc8803b2eee720f84d379a",
+    "source": "",
+    "tags": "sloth, lazy, lethargic bliss",
+    "nsfw": false
+},
+"81810744114022bac53fc51c9c50e982": {
+    "key": "defaf5578bf7d322e2206a48a09ea2c4e2da0005815d68c52944dbbe22c4fbb0",
+    "source": "",
+    "tags": "ron, swanson, parks and rec",
     "nsfw": false
 }
 }
