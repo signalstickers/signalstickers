@@ -89,6 +89,11 @@ const FooterComponent: React.FunctionComponent = props => {
                   </a>
                 </li>
                 <li>
+                  <a href="https://github.com/romainricard/signalstickers/issues/new" rel="noreferrer" target="_blank">
+                    <Octicon name="link-external" /> Report an issue
+                  </a>
+                </li>
+                <li>
                   <a href="https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca" rel="noreferrer" target="_blank">
                     <Octicon name="link-external" /> Learn how to create your own stickers
                   </a>
