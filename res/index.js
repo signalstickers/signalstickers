@@ -1,3 +1,5 @@
+// jshint esversion: 6
+
 // Sticker packs list
 let packs =[];
 
@@ -54,28 +56,47 @@ function getSticker(sticker_id, emoji, pack_id, pack_key) {
         if (this.status == 200) {
             decryptManifest(pack_key, new Uint8Array(xhr.response)).then(manifest => {
 
-                var arrayBufferView = new Uint8Array(manifest, 0, manifest.byteLength);
-                const STRING_CHAR = arrayBufferView.reduce((data, byte)=> {return data + String.fromCharCode(byte);}, '');
-                var base64Data = btoa(STRING_CHAR);
-
                 var sticker = document.createElement("div")
                 sticker.className = "sticker"
                 sticker.setAttribute('data-packid', pack_id)
                 sticker.setAttribute('data-stickerid', sticker_id)
                 sticker.setAttribute('data-emoji', emoji)
-                var image = document.createElement("img");
+                var image;
                 var imageParent = document.getElementById("stickers_list");
-                image.id = "id";
-                image.className = "class";
-                image.src = 'data:image/webp;base64,' + base64Data;;
+
+                if (WebPToCanvas) {
+                    let canvas = document.createElement("canvas");
+                    if (canvas == null) return;
+                    // clear previous picture (if any)
+                    Module.canvas = canvas;
+                    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+                    var webp_data = new Uint8Array(manifest);
+                    WebPToCanvas(webp_data, webp_data.length);
+                    image = canvas;
+                    image.removeAttribute("style");
+                    image.style.height = "80px";
+                    image.style.width = "80px";
+                    image.style.touchAction = "manipulation";
+                } else {
+                    var arrayBufferView = new Uint8Array(manifest, 0, manifest.byteLength);
+                    const STRING_CHAR = arrayBufferView.reduce((data, byte)=> {return data + String.fromCharCode(byte);}, '');
+                    var base64Data = btoa(STRING_CHAR);
+
+                    image = document.createElement("img");
+                    image.id = "id";
+                    image.className = "class";
+                    image.src = 'data:image/webp;base64,' + base64Data;;
+                }
 
                 sticker.appendChild(image)
                 imageParent.appendChild(sticker);
 
 
             }).catch(error => {
+                if (!(error instanceof TypeError)) {
+                    alert("getSticker: " + error);
+                }
                 console.log(error.stack);
-                alert("getSticker: " + error);
             });
         }
     };
@@ -257,9 +278,25 @@ function getStickerPackDetails(pack) {
 }
 
 function displayPackThumbnail(pack) {
-    let img = new Image;
-    img.src = "data:image/webp;base64," + btoa(new Uint8Array(pack.manifest, 0, pack.manifest.byteLength).reduce((data, byte)=> {return data + String.fromCharCode(byte);}, ''));
-    img.crossOrigin = 'Anonymous';
+    let img;
+
+    if (WebPToCanvas) {
+        let canvas = document.createElement("canvas");
+        if (canvas == null) return;
+        // clear previous picture (if any)
+        Module.canvas = canvas;
+        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+        var webp_data = new Uint8Array(pack.manifest);
+        WebPToCanvas(webp_data, webp_data.length);
+        img = canvas;
+        img.removeAttribute("style");
+        img.style.touchAction = "manipulation";
+    } else {
+        img = new Image;
+        img.src = "data:image/webp;base64," + btoa(new Uint8Array(pack.manifest, 0, pack.manifest.byteLength).reduce((data, byte)=> {return data + String.fromCharCode(byte);}, ''));
+        img.crossOrigin = 'Anonymous';
+    }
+
     img.className = "card-img-top";
 
     let card = document.createElement("a");
@@ -267,10 +304,6 @@ function displayPackThumbnail(pack) {
     card.className = "card text-center sticker-pack-link" + (pack.nsfw ? " nsfw":"");
     card.setAttribute("data-pack-id", pack.id);
     card.setAttribute("data-pack-key", pack.key);
-
-    let image = document.createElement("img");
-    image.className = "card-img-top";
-
 
     let card_body = document.createElement("div");
     card_body.className = "card-body";
@@ -308,4 +341,36 @@ function search(e) {
     )
     document.getElementById("stickers_list").innerHTML = "";
     filtered_packs.forEach(filetered_pack => displayPackThumbnail(filetered_pack))
+}
+
+/**
+ * Fallback for browsers without WebP support
+ */
+
+var Module = {
+    noInitialRun: true
+};
+
+var WebPToCanvas;
+
+// Credits: https://webpjs.appspot.com/without-webpjs-support.html
+function testWebP(callback) {
+    var WebP = new Image();
+    WebP.onload = WebP.onerror = function() {
+        if (WebP.height != 2) {
+            var sc = document.createElement('script');
+            sc.type = 'text/javascript';
+            sc.async = true;
+            sc.src = '/res/webp.js';
+            sc.onload = function() {
+                WebPToCanvas = Module.cwrap('WebpToSDL', 'number', ['array', 'number']);
+                callback();
+            };
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(sc, s);
+        } else {
+            callback();
+        }
+    };
+    WebP.src='data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 }
