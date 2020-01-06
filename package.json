@@ -21,7 +21,7 @@
   "keywords": [],
   "scripts": {
     "lint": "tslint --config tslint.json --project tsconfig.json --format codeFrame",
-    "prebuild": "del dist",
+    "prebuild": "del dist && npm run lint",
     "build": "webpack --mode=production --config=config/webpack.config.ts",
     "start": "webpack-dev-server --mode=development --config=config/webpack.config.ts"
   },
