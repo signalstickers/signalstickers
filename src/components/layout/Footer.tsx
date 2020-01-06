@@ -1,5 +1,6 @@
 import React from 'react';
 import {styled} from 'linaria/react';
+import {darken} from 'polished';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
 
@@ -11,8 +12,7 @@ import FlexSpacer from 'components/layout/FlexSpacer';
 
 const FooterWrapper = styled.footer`
   background-color: ${GRAY};
-  padding-bottom: 12px;
-  padding-top: 42px;
+  border-top: 1px solid ${darken(0.05, GRAY)};
   width: 100%;
 `;
 
@@ -61,8 +61,8 @@ const FooterComponent: React.FunctionComponent = props => {
       <FlexSpacer />
       <FooterWrapper>
         <div className="container">
-          <Footer className="row">
-            <div className="col-6 about">
+          <Footer className="row pt-5 pb-3">
+            <div className="col-12 col-md-6 about">
               <h1 className="mb-4">About</h1>
               <p>
                 Browse and download more than 100 sticker packs for Signal, the secure messenger. These
@@ -75,27 +75,27 @@ const FooterComponent: React.FunctionComponent = props => {
                 </a>
               </p>
             </div>
-            <div className="col-6 links">
+            <div className="col-12 col-md-6 links">
               <h1 className="mb-4">Links</h1>
               <ul>
                 <li>
                   <a href="https://signal.org" rel="noreferrer" target="_blank">
-                    <Octicon name="link-external" /> Learn more about Signal
+                    <Octicon name="link-external" /> Learn More About Signal
                   </a>
                 </li>
                 <li>
                   <a href="https://github.com/romainricard/signalstickers" rel="noreferrer" target="_blank">
-                    <Octicon name="link-external" /> Add your stickers to this website
+                    <Octicon name="link-external" /> GitHub Repository
                   </a>
                 </li>
                 <li>
                   <a href="https://github.com/romainricard/signalstickers/issues/new" rel="noreferrer" target="_blank">
-                    <Octicon name="link-external" /> Report an issue
+                    <Octicon name="link-external" /> Report an Issue
                   </a>
                 </li>
                 <li>
                   <a href="https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca" rel="noreferrer" target="_blank">
-                    <Octicon name="link-external" /> Learn how to create your own stickers
+                    <Octicon name="link-external" /> Sticker Pack Creation Guide
                   </a>
                 </li>
               </ul>

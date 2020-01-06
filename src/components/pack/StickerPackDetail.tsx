@@ -25,8 +25,11 @@ import Tag from './Tag';
 
 const StickerPackDetail = styled.div`
   background-color: white;
-  border-radius: 4px;
-  border: 1px solid ${darken(0.15, GRAY)};
+
+  @media screen and (min-width: 576px) {
+    border-radius: 4px;
+    border: 1px solid ${darken(0.15, GRAY)};
+  }
 
   & .list-group-item {
     align-items: center;
@@ -70,7 +73,6 @@ const StickerPackDetail = styled.div`
         margin-right: 20px;
       }
     }
-
 
     & .title {
       font-size: 42px;
@@ -223,7 +225,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   const addToSignalHref = `https://signal.art/addstickers/#pack_id=${currentStickerPackId}&pack_key=${stickerPackKey}`;
 
   return (
-    <StickerPackDetail className="p-4 my-5">
+    <StickerPackDetail className="px-1 px-md-4 py-4 mt-0 mt-md-5 mb-5">
       <div className="row mb-4 flex-column-reverse flex-lg-row">
         <div className="col-12 col-lg-8 mt-4 mt-lg-0">
           <div className="title">{stickerPack.title}</div>

@@ -35,6 +35,7 @@ const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: 
   & .card-header {
     border-bottom: none;
     border-top: 1px solid rgba(0, 0, 0, 0.125);
+    color: black;
     font-size: 14px;
     font-weight: 400;
     white-space: nowrap;
@@ -96,7 +97,7 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
   const title = [manifest.title, meta.nsfw && ' (NSFW)'].filter(Boolean).join('');
 
   return (
-    <StickerPackPreviewCard className="card" nsfw={meta.nsfw} data-pack-id={meta.id} title={title}>
+    <StickerPackPreviewCard className="card" nsfw={meta.nsfw} aria-label={title}>
       {cover ? <img className="card-img-top" src={cover} /> : <div className="card-img-top"></div>}
       <div className="card-header">{title}</div>
     </StickerPackPreviewCard>

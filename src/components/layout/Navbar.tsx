@@ -18,6 +18,7 @@ const StyledNavBar = styled.nav`
   & .brand {
     font-size: 28px;
     font-weight: 400;
+    color: white;
 
     &:hover {
       color: white;
@@ -46,9 +47,9 @@ const NavbarComponent: React.FunctionComponent = () => {
               <Link className="brand" to="/"><img src={SignalLogoUrl} alt="Signal Logo" /> Signal Stickers</Link>
             </div>
             <div className="col-12 col-md-6 text-center text-md-right mt-2 mb-2 mb-md-0">
-              <a href="https://github.com/romainricard/signalstickers" title="Contribute">
-                <button className="btn btn-light btn-sm mr-3"><Octicon name="mark-github" />&nbsp;&nbsp;Contribute</button>
-              </a>
+              <Link to="/contribute" title="Contribute">
+                <button className="btn btn-light btn-sm mr-3"><Octicon name="plus" />&nbsp;Contribute</button>
+              </Link>
               <a href="https://signal.org" title="Get Signal">
                 <button className="btn btn-primary btn-sm">Get Signal</button>
               </a>

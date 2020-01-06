@@ -119,7 +119,6 @@ const SearchInputComponent: React.FunctionComponent = () => {
               aria-label="search"
               autoComplete="false"
               spellCheck="false"
-              autoFocus
             />
             <div className="input-group-append">
               <button className="input-group-text btn btn-light btn-sm" onClick={clearSearchResults} title="Clear Search Results">

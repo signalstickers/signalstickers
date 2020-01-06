@@ -26,11 +26,7 @@ body {
 
 a {
   text-decoration: none;
-  color: inherit;
-}
-
-p {
-  line-height: 1.4em;
+  color: #2090EA;
 }
 
 #root {
