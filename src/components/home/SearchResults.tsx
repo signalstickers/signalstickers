@@ -49,16 +49,7 @@ const StickerPackListComponent = () => {
 
     const newCursor = cursor + PAGE_SIZE;
     setCursor(newCursor);
-
     setRenderedSearchResults(R.take(newCursor, searchResults));
-  }
-
-
-  /**
-   * Called when our Waypoint is rendered and is on-screen.
-   */
-  function onEnter() {
-    loadMore(); // tslint:disable-line no-floating-promises
   }
 
 
@@ -77,14 +68,12 @@ const StickerPackListComponent = () => {
 
   return (
     <StickerPackList className="row">
-      {renderedSearchResults.map(({meta, manifest}, index) => {
-        return (
-          <Link className="col-6 col-md-4 col-lg-3 mb-4" key={meta.id} to={`/pack/${meta.id}`}>
-            <StickerPackPreviewCard stickerPack={{meta, manifest}} />
-          </Link>
-        );
-      })}
-      <Waypoint key={cursor} onEnter={onEnter} />
+      {renderedSearchResults.map(({meta, manifest}) => (
+        <Link className="col-6 col-md-4 col-lg-3 mb-4" key={meta.id} to={`/pack/${meta.id}`}>
+          <StickerPackPreviewCard stickerPack={{meta, manifest}} />
+        </Link>
+      ))}
+      <Waypoint key={cursor} onEnter={loadMore} />
     </StickerPackList>
   );
 };

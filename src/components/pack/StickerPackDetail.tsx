@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link, useParams} from 'react-router-dom';
 import Linkify from 'react-linkify';
 import {styled} from 'linaria/react';
 import {darken} from 'polished';
@@ -8,7 +8,6 @@ import Octicon from 'react-octicon';
 import * as R from 'ramda';
 import useAsyncEffect from 'use-async-effect';
 
-import StickersContext from 'contexts/StickersContext';
 import {GRAY, SIGNAL_BLUE} from 'etc/colors';
 import {StickerPackManifest, StickerPackMetadata} from 'etc/types';
 import useQuery from 'hooks/use-query';
@@ -19,6 +18,16 @@ import {capitalizeFirst} from 'lib/utils';
 import Sticker from './Sticker';
 import StickerPackError from './StickerPackError';
 import Tag from './Tag';
+
+
+// ----- Types -----------------------------------------------------------------
+
+/**
+ * URL parameters that we expect to have set when this component is rendered.
+ */
+export interface UrlParams {
+  packId: string;
+}
 
 
 // ----- Styles ----------------------------------------------------------------
@@ -95,27 +104,34 @@ const StickerPackDetail = styled.div`
 // ----- Component -------------------------------------------------------------
 
 const StickerPackDetailComponent: React.FunctionComponent = () => {
-  const query = useQuery();
+  // Extract :packId from the URL.
+  const {packId} = useParams<UrlParams>();
 
-  // Sticker pack ID extracted from URL params.
-  const {currentStickerPackId} = useContext(StickersContext);
+
+  // Extract the optional "key" query param from the URL.
+  const key = useQuery().get('key');
+
 
   // This will be either the key extracted from a StickerPackMetadata object or,
   // if the user is trying to load an unlisted sticker pack, the 'key' query
   // param.
   const [stickerPackKey, setStickerPackKey] = useState<string | undefined>();
 
+
   // Sticker pack manifest from Signal.
   const [stickerPack, setStickerPack] = useState<StickerPackManifest>();
+
 
   // Sticker pack metadata from stickers.json. This will not be available if
   // viewing an unlisted pack.
   const [stickerPackMeta, setStickerPackMeta] = useState<StickerPackMetadata>();
 
+
   // One of many possible error codes we may catch when trying to load or
   // decrypt a sticker pack. This will be used to determine what error message
   // to show the user.
   const [stickerPackError, setStickerPackError] = useState('');
+
 
   /**
    * Accepts a "tags" property from a sticker pack's metadata and returns an
@@ -137,20 +153,21 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
     }
   }
 
+
   /**
-   * [Effect] Update `stickerPack` and 'stickerPackMeta` when
-   * `currentStickerPackId` changes.
+   * [Effect] Set `stickerPack`, `stickerPackKey` and 'stickerPackMeta` when the
+   * component mounts.
    */
   useAsyncEffect(async () => {
     try {
       // Because this value comes from a context, we may get rendered before
       // it becomes available.
-      if (!currentStickerPackId) {
+      if (!packId) {
         return;
       }
 
       // Try to get metadata (including the pack's key) from stickers.json.
-      const packMetadata = R.find<StickerPackMetadata>(R.propEq('id', currentStickerPackId), await getStickerPackList());
+      const packMetadata = R.find<StickerPackMetadata>(R.propEq('id', packId), await getStickerPackList());
 
       // If the sticker pack is listed in stickers.json, set metadata and
       // then fetch the pack's manifest from Signal using the key from
@@ -158,17 +175,15 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       if (packMetadata) {
         setStickerPackMeta(packMetadata);
         setStickerPackKey(packMetadata.key);
-        setStickerPack(await getStickerPack(currentStickerPackId, packMetadata.key));
+        setStickerPack(await getStickerPack(packId, packMetadata.key));
         return;
       }
 
-      // Otherwise, try to get the pack's key from the query string.
-      const keyFromQuery = query.get('key');
-
-      // Then try to load and decrypt the manifest from Signal.
-      if (keyFromQuery) {
-        setStickerPackKey(keyFromQuery);
-        setStickerPack(await getStickerPack(currentStickerPackId, keyFromQuery));
+      // Then try to load and decrypt the manifest from Signal using the key
+      // from query params.
+      if (key) {
+        setStickerPackKey(key);
+        setStickerPack(await getStickerPack(packId, key));
         return;
       }
 
@@ -180,12 +195,12 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
         setStickerPackError(err.code);
       }
     }
-  }, [currentStickerPackId]);
+  }, []);
 
 
   // ----- Render --------------------------------------------------------------
 
-  if (!currentStickerPackId || !stickerPackKey || !stickerPack) {
+  if (!packId || !stickerPackKey || !stickerPack) {
     // If an error code has been set, display an error alert to the user.
     if (stickerPackError) {
       switch (stickerPackError) {
@@ -193,7 +208,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
           return (
             <StickerPackError>
               <p>This sticker pack is not listed in the Signal Stickers directory. However, if you have the pack's <strong>key</strong>, you can still preview the sticker pack by supplying a <code>key</code> parameter in the URL.</p>
-              <p>For example: <code>{`/pack/${currentStickerPackId}?key=sticker-pack-key`}</code></p>
+              <p>For example: <code>{`/pack/${packId}?key=sticker-pack-key`}</code></p>
             </StickerPackError>
           );
         case 'MANIFEST_DECRYPT':
@@ -222,7 +237,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   // cases, use 'Anonymous' instead.
   const author = stickerPack.author.trim() ? stickerPack.author : 'Anonymous';
   const stickerPackTags = parseStickerPackTags(stickerPackMeta?.tags);
-  const addToSignalHref = `https://signal.art/addstickers/#pack_id=${currentStickerPackId}&pack_key=${stickerPackKey}`;
+  const addToSignalHref = `https://signal.art/addstickers/#pack_id=${packId}&pack_key=${stickerPackKey}`;
 
   return (
     <StickerPackDetail className="px-1 px-md-4 py-4 mt-0 mt-md-5 mb-5">
@@ -274,7 +289,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       <div className="row">
         <div className="col-12 p-2 p-sm-3">
           <div className="d-flex flex-wrap">
-            {stickerPack.stickers.map(sticker => (<Sticker packId={currentStickerPackId} packKey={stickerPackKey} stickerId={sticker.id} key={sticker.id} />))}
+            {stickerPack.stickers.map(sticker => (<Sticker packId={packId} packKey={stickerPackKey} stickerId={sticker.id} key={sticker.id} />))}
           </div>
         </div>
       </div>

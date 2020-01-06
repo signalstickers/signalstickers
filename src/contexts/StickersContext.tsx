@@ -1,12 +1,8 @@
 import React, {createContext, PropsWithChildren, useEffect, useState} from 'react';
-import {useRouteMatch} from 'react-router-dom';
 import * as R from 'ramda';
+import useAsyncEffect from 'use-async-effect';
 
-import {
-  StickerPack,
-  StickerPackManifest
-} from 'etc/types';
-
+import {StickerPack} from 'etc/types';
 import {
   getStickerPackList,
   getStickerPack,
@@ -22,15 +18,6 @@ export interface StickersProviderContext {
    * List of all sticker packs known to the application.
    */
   allStickerPacks: Array<StickerPack> | undefined;
-
-  /**
-   * ID of the current sticker pack, as extracted from our route parameters.
-   * This is tracked separately from `currentStickerPack` because we may get a
-   * pack ID that does not correlate to a known or valid sticker pack, in which
-   * case we will want to use the ID we got to display contextual error
-   * messages.
-   */
-  currentStickerPackId: string | undefined;
 
   /**
    * Current search query. This is persisted here so that should the user return
@@ -55,13 +42,9 @@ const Context = createContext<StickersProviderContext>({} as any);
 
 
 export const Provider = (props: PropsWithChildren<{}>) => {
-  const [currentStickerPackId, setCurrentStickerPackId] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Array<StickerPack>>([]);
   const [allStickerPacks, setAllStickerPacks] = useState<Array<StickerPack>>();
-
-  // Hooks from React Router DOM.
-  const stickerPackPathMatch = useRouteMatch<{packId?: string}>(`/pack/:packId`);
 
 
   /**
@@ -70,29 +53,22 @@ export const Provider = (props: PropsWithChildren<{}>) => {
    * StickerPackManifest from Signal. Then, cache each result as a StickerPack
    * object, which we will then use when searching.
    */
-  useEffect(() => {
-    const getStickerPacksEffect = async () => {
-      // Load the set of sticker packs we need from stickers.json.
-      const stickerPacksToLoad = await getStickerPackList();
+  useAsyncEffect(async () => {
+    // Load the set of sticker packs we need from stickers.json.
+    const stickerPacksToLoad = await getStickerPackList();
 
-      // Then, prime the cache by loading each sticker pack from the Signal API.
-      const stickerPacks = await Promise.all(stickerPacksToLoad.map(async meta => {
-        const manifest = await getStickerPack(meta.id, meta.key);
+    // Then, prime the cache by loading each sticker pack from the Signal API.
+    const stickerPacks = await Promise.all(stickerPacksToLoad.map(async meta => {
+      const manifest = await getStickerPack(meta.id, meta.key);
+      return {meta, manifest} as StickerPack;
+    }));
 
-        return {
-          meta,
-          manifest
-        } as StickerPack;
-      }));
+    // Set the canonical list of all sticker packs.
+    setAllStickerPacks(stickerPacks);
 
-      // Set the canonical list of all sticker packs.
-      setAllStickerPacks(stickerPacks);
-
-      // Finally, set our search results to the set of all sticker packs.
-      setSearchResults(R.sortBy(R.path<any>(['manifest', 'title']), stickerPacks));
-    };
-
-    getStickerPacksEffect(); // tslint:disable-line no-floating-promises
+    // Finally, set our search results to the set of all sticker packs, sorted
+    // by title.
+    setSearchResults(R.sortBy(R.path<any>(['manifest', 'title']), stickerPacks));
   }, []);
 
 
@@ -105,21 +81,16 @@ export const Provider = (props: PropsWithChildren<{}>) => {
     }
 
     const rawSearchResults = fuzzySearchStickerPacks(searchQuery, allStickerPacks);
+
+    // Sort search results by title.
     const sortedSearchResults = R.sortBy(R.path<any>(['manifest', 'title']), rawSearchResults);
-    setSearchResults(sortedSearchResults);
-  }, [searchQuery]);
 
-
-  /**
-   * [Effect] Update `currentStickerPackId` based on our URL route params.
-   */
-  useEffect(() => {
-    if (stickerPackPathMatch?.params?.packId) {
-      setCurrentStickerPackId(stickerPackPathMatch.params.packId);
-    } else {
-      setCurrentStickerPackId('');
+    // Only call `setSearchResults` if our new results have actually changed.
+    // This will save us superfluous re-renders.
+    if (!R.equals(sortedSearchResults, searchResults)) {
+      setSearchResults(sortedSearchResults);
     }
-  }, [stickerPackPathMatch]);
+  }, [searchQuery]);
 
 
   // ----- Render --------------------------------------------------------------
@@ -127,7 +98,6 @@ export const Provider = (props: PropsWithChildren<{}>) => {
   return (
     <Context.Provider value={{
       allStickerPacks,
-      currentStickerPackId,
       searchQuery,
       setSearchQuery,
       searchResults
