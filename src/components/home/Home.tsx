@@ -11,10 +11,6 @@ const HomeComponent: React.FunctionComponent = () => {
         Welcome to Signal Stickers, the unofficial directory for Signal sticker
         packs. You can filter packs by title, author, or tags.
       </p>
-      <p className="mb-4 mb-md-5">
-        To get your sticker pack listed in the directory, click the Contribute
-        button above.
-      </p>
       <SearchInput />
       <StickerPackList />
     </div>
