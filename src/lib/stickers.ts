@@ -190,7 +190,7 @@ export async function getEmojiForSticker(id: string, key: string, stickerId: num
  * set.
  */
 export function fuzzySearchStickerPacks(needle: string, haystack: Array<StickerPack>): Array<StickerPack> {
-  const searchKeys = ['manifest.title', 'manifest.author', 'meta.tags'];
+  const searchKeys = ['manifest.title', 'manifest.author', 'meta.tags', 'meta.source'];
   const searcher = new FuzzySearch(haystack, searchKeys, {caseSensitive: false});
   return searcher.search(needle);
 }
