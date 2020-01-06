@@ -10,6 +10,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 
 const PKG_ROOT = path.resolve(__dirname, '..');
+const BASENAME = '/signalstickers/';
 
 
 export default (env: string, argv: any): webpack.Configuration => {
@@ -132,7 +133,12 @@ export default (env: string, argv: any): webpack.Configuration => {
 
   config.plugins.push(new webpack.NamedModulesPlugin());
 
+  config.plugins.push(new webpack.DefinePlugin({
+    'process.env.BASENAME': `"${BASENAME}"`
+  }));
+
   config.plugins.push(new HtmlWebpackPlugin({
+    baseUrl: BASENAME,
     filename: 'index.html',
     template: path.resolve(PKG_ROOT, 'src', 'index.html'),
     inject: true
@@ -212,6 +218,7 @@ export default (env: string, argv: any): webpack.Configuration => {
 
   if (argv.mode === 'development') {
     config.devServer = {
+      publicPath: BASENAME,
       port: 8080,
       compress: true,
       historyApiFallback: true,
