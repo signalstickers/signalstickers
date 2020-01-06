@@ -9,7 +9,11 @@ jobs:
       with:
         node-version: 12.x
     - name: Install Dependencies
-      run: npm install
+      run: npm ci
+    - name: Lint Project
+      run: npm run lint
+    - name: Run Tests
+      run: npm test
     - name: Build
       run: npm run build
     - name: Publish
