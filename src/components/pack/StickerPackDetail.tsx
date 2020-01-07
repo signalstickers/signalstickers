@@ -240,7 +240,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   const addToSignalHref = `https://signal.art/addstickers/#pack_id=${packId}&pack_key=${stickerPackKey}`;
 
   return (
-    <StickerPackDetail className="px-1 px-md-4 py-4 mt-0 mt-md-5 mb-5">
+    <StickerPackDetail className="px-1 px-sm-4 py-4 mt-0 mt-sm-5 mb-5">
       <div className="row mb-4 flex-column-reverse flex-lg-row">
         <div className="col-12 col-lg-8 mt-4 mt-lg-0">
           <div className="title">{stickerPack.title}</div>
@@ -287,8 +287,8 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       </div> : null}
 
       <div className="row">
-        <div className="col-12 p-2 p-sm-3">
-          <div className="d-flex flex-wrap">
+        <div className="col-12">
+          <div className="d-flex flex-wrap justify-content-around">
             {stickerPack.stickers.map(sticker => (<Sticker packId={packId} packKey={stickerPackKey} stickerId={sticker.id} key={sticker.id} />))}
           </div>
         </div>

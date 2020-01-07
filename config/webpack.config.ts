@@ -9,7 +9,15 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 
+/**
+ * Resolve the path to our package root once. Used throughout configuration.
+ */
 const PKG_ROOT = path.resolve(__dirname, '..');
+
+/**
+ * This is used/injected in various places throughout the app to support hosting
+ * on GitHub Pages under a sub-directory.
+ */
 const BASENAME = '/signalstickers/';
 
 
