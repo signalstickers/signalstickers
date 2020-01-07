@@ -158,6 +158,10 @@ export default (env: string, argv: any): webpack.Configuration => {
       // robots.txt file into the 'dist' folder.
       from: path.resolve(PKG_ROOT, 'src', 'robots.txt'),
       to: path.resolve(PKG_ROOT, 'dist', 'robots.txt')
+    }, {
+      // Copy our custom 404 page to support SPAs on GitHub Pages.
+      from: path.resolve(PKG_ROOT, 'src', '404.html'),
+      to: path.resolve(PKG_ROOT, 'dist', '404.html')
     }]));
 
     config.plugins.push(new MiniCssExtractPlugin({
@@ -218,10 +222,12 @@ export default (env: string, argv: any): webpack.Configuration => {
 
   if (argv.mode === 'development') {
     config.devServer = {
-      publicPath: BASENAME,
+      publicPath: '/signalstickers/',
       port: 8080,
       compress: true,
-      historyApiFallback: true,
+      historyApiFallback: {
+        index: '/signalstickers/'
+      },
       disableHostCheck: true,
       host: '0.0.0.0',
       // hot: true,

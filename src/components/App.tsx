@@ -15,7 +15,7 @@ import Contribute from 'components/contribute/Contribute';
 
 const App: React.FunctionComponent = () => {
   return (
-    <Router basename={process.env.BASENAME}>
+    <Router basename="/signalstickers/">
       <StickersContextProvider>
         <Navbar />
         <div className="container">
