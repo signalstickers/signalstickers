@@ -853,7 +853,7 @@
 "7cffb4bb47eb9e3444e6d81c24b90a4e": {
     "key": "5db678fd5bad89552f412b82d623ed034cdd25c85358f12e1872c00bf0c8a479",
     "source": "",
-    "tags": "",
+    "tags": "monkey island",
     "nsfw": false
 },
 "2f977990cc97776e3507f1f8c8ffa1b9": {
@@ -1154,6 +1154,12 @@
     "key": "4c8bea93a8fdb650063638c16139e6f8e882b40f77541a99f48721378238680b",
     "source": "",
     "tags": "south park, cartman",
+    "nsfw": false
+}
+    "eb503c662934a80e245f518e4890f09b": {
+    "key": "fa14bdcecaf21183334d164e9a7848b65cf925a409a4de5995c43d95808914a9",
+    "source": "",
+    "tags": "monkey island",
     "nsfw": false
 }
 }
