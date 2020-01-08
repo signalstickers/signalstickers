@@ -151,14 +151,10 @@ export default (env: string, argv: any): webpack.Configuration => {
 
   if (argv.mode === 'production') {
     config.plugins.push(new CopyWebpackPlugin([{
-      // When performing a production build, instruct Webpack to copy our
-      // robots.txt file into the 'dist' folder.
-      from: path.resolve(PKG_ROOT, 'src', 'robots.txt'),
-      to: path.resolve(PKG_ROOT, 'dist', 'robots.txt')
-    }, {
-      // Copy our custom 404 page to support SPAs on GitHub Pages.
-      from: path.resolve(PKG_ROOT, 'src', '404.html'),
-      to: path.resolve(PKG_ROOT, 'dist', '404.html')
+      // When performing a production build, instruct Webpack to copy all files
+      // in the 'static' directory into the build directory.
+      from: path.resolve(PKG_ROOT, 'static'),
+      to: path.resolve(PKG_ROOT, 'dist')
     }]));
 
     config.plugins.push(new MiniCssExtractPlugin({
