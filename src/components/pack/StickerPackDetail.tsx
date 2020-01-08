@@ -103,6 +103,16 @@ const StickerPackDetail = styled.div`
 
 // ----- Component -------------------------------------------------------------
 
+/**
+ * Custom component for Linkify links that adds "target" and "rel" attributes.
+ */
+function LinkifyHrefDecorator(decoratedHref: string, decoratedText: string, key: number) {
+  return (
+    <a href={decoratedHref} key={key} target="_blank" rel="noreferrer">{decoratedText}</a>
+  );
+}
+
+
 const StickerPackDetailComponent: React.FunctionComponent = () => {
   // Extract :packId from the URL.
   const {packId} = useParams<UrlParams>();
@@ -266,7 +276,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
             <li className="list-group-item text-wrap text-break">
               <Octicon name="globe" title="Source" />
               <div>
-                <Linkify>{source}</Linkify>
+                <Linkify componentDecorator={LinkifyHrefDecorator}>{source}</Linkify>
               </div>
             </li>
             <li className="list-group-item text-wrap text-break">
