@@ -18,7 +18,7 @@ jobs:
       run: npm run build
     - name: Publish
       uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: startsWith(github.ref, 'refs/heads/refactor')
+      if: startsWith(github.ref, 'refs/heads/master')
       with:
         ACCESS_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         CLEAN: true
