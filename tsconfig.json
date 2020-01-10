@@ -1,0 +1,67 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+
+    "paths": {
+      "*": ["*", "src/*"]
+    },
+
+    // Specify a list of built-in API groups to include in the project.
+    "lib": [
+      "DOM",
+      "esnext",
+      "es2015"
+    ],
+
+    // Output code will be optimized for this language spec. ES1028 is fully
+    // supported in Node 10.
+    "target": "es2018",
+
+    // Generate output code that uses CommonJS (ie: require).
+    "module": "commonjs",
+
+    // Allow default imports from modules with no default export. This does not
+    // affect code emit, just typechecking.
+    "allowSyntheticDefaultImports": true,
+
+    // Parse in strict mode.
+    "alwaysStrict": true,
+
+    // Emit declaration files.
+    "declaration": true,
+
+    // Emit design-type metadata for decorated declarations in source.
+    "emitDecoratorMetadata": true,
+
+    // Only emit declaration files.
+    "emitDeclarationOnly": true,
+
+    // Emit '__importStar' and '__importDefault' helpers for runtime Babel
+    // ecosystem compatibility and enable '--allowSyntheticDefaultImports' for
+    // type system compatibility. Requires TypeScript version 2.7 or later.
+    "esModuleInterop": true,
+
+    // Enables experimental support for ES7 decorators.
+    "experimentalDecorators": true,
+
+    "jsx": "react",
+
+    // Warn on expressions and declarations with an implied 'any' type.
+    "noImplicitAny": true,
+
+    // Report errors on unused locals.
+    "noUnusedLocals": true,
+
+    // Stylize errors and messages using color and context.
+    "pretty": true,
+
+    // Allow TypeScript to resolve JSON files.
+    "resolveJsonModule": true,
+
+    // Do not emit source maps.
+    "sourceMap": false,
+
+    // Enable strict null checks.
+    "strictNullChecks": true
+  }
+}
