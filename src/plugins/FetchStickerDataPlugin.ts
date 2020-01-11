@@ -1,10 +1,10 @@
-import stickers from '../../stickers.json';
 import axios from 'axios';
 import protobuf from 'protobufjs';
 import * as R from 'ramda';
 import fs from 'fs';
 import crypto from 'crypto';
 import hkdf from 'js-crypto-hkdf';
+import yaml from 'js-yaml';
 
 import {
   StickerPackJson,
@@ -13,6 +13,8 @@ import {
 import ErrorWithCode from 'lib/error';
 
 // ----- Locals ----------------------------------------------------------------
+
+const stickers = yaml.safeLoad(fs.readFileSync('./stickers.yml'));
 
 /**
  * Module-local gRPC client used to parse sticker pack manifests from the Signal
@@ -36,7 +38,7 @@ async function deriveKeys(encodedKey: string) {
 
 /**
  * Decrypts a manifest returned from the Signal API using a sticker pack's
- * pack key, provided from stickers.json.
+ * pack key.
  */
 async function decryptManifest(encodedKey: string, rawManifest: any) {
   const [aesKey, hmacKey] = await deriveKeys(encodedKey);
@@ -116,13 +118,8 @@ async function getAllStickerPacks(): Promise<StickerPackManifestsJson> {
       // too many packs too rapidly so we stagger our timing.
       await randomDelay(0, 1000);
       const manifest = await getStickerPack(id, value.key);
-      const tags = value.tags
-        .split(',')
-        .map(tag => tag.trim())
-        .filter(tag => tag.length);
-
       return {
-        meta: {id, ...value, tags},
+        meta: {id, ...value},
         manifest: {
           title: manifest.title,
           author: manifest.author,
