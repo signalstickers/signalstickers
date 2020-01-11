@@ -98,7 +98,11 @@ async function getAllStickerPacks(): Promise<StickerPackManifestsJson> {
   return Promise.all(R.map(async ([id, value]) => {
     try {
       const manifest = await getStickerPack(id, value.key);
-      return {metadata: {id, ...value}, manifest};
+      const tags = value.tags
+        .split(',')
+        .map(tag => tag.trim())
+        .filter(tag => tag.length);
+      return {meta: {id, ...value, tags}, manifest};
     } catch (err) {
       throw new ErrorWithCode(err.code, `[getAllStickerPacks] ${err.message}`);
     }
@@ -116,7 +120,7 @@ export default class FetchStickerDataPlugin {
       const packsById = R.reduce((result, value) => {
         return {
           ...result,
-          [value.metadata.id]: value
+          [value.meta.id]: value
         };
       }, {} as StickerPackDataJson, allPacks);
       const json = JSON.stringify(packsById);

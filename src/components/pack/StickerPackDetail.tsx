@@ -144,27 +144,6 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
 
 
   /**
-   * Accepts a "tags" property from a sticker pack's metadata and returns an
-   * array of capitalized tags. If the string is empty, returns 'N/A'.
-   */
-  function parseStickerPackTags(tags: string | undefined) {
-    if (!tags) {
-      return;
-    }
-
-    const tagsArray = tags
-      .split(',')
-      .map(tag => tag.trim())
-      .filter(tag => tag.length)
-      .map(tag => tag.split(' ').map(capitalizeFirst).join(' '));
-
-    if (tagsArray.length) {
-      return tagsArray;
-    }
-  }
-
-
-  /**
    * [Effect] Set `stickerPack`, `stickerPackKey` and 'stickerPackMeta` when the
    * component mounts.
    */
@@ -246,7 +225,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   // N.B. Signal allows strings containing only whitespace as authors. In these
   // cases, use 'Anonymous' instead.
   const author = stickerPack.author.trim() ? stickerPack.author : 'Anonymous';
-  const stickerPackTags = parseStickerPackTags(stickerPackMeta?.tags);
+  const stickerPackTags = stickerPackMeta?.tags;
   const addToSignalHref = `https://signal.art/addstickers/#pack_id=${packId}&pack_key=${stickerPackKey}`;
 
   return (
@@ -289,7 +268,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
             <li className="list-group-item">
               <Octicon name="tag" title="Tags" />
               <div className="text-wrap text-break">
-                {Array.isArray(stickerPackTags) ? stickerPackTags.map(tag => (<Tag key={tag}>{tag}</Tag>)) : 'None'}
+                {stickerPackTags.length === 0 ? 'None' : stickerPackTags.map(tag => (<Tag key={tag}>{tag}</Tag>))}
               </div>
             </li>
           </ul>

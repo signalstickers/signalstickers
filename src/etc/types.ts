@@ -16,10 +16,7 @@ export interface StickerPackJson {
  * Shape of the stickerData.json file.
  */
 export interface StickerPackDataJson {
-  [index: string]: {
-    metadata: StickerPackMetadata;
-    manifest: StickerPackManifest;
-  };
+  [index: string]: StickerPack;
 }
 
 /**
@@ -30,7 +27,7 @@ export interface StickerPackMetadata {
   id: string;
   key: string;
   source: string;
-  tags: string;
+  tags: Array<string>;
   nsfw?: boolean;
 }
 

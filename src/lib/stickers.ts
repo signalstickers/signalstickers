@@ -79,7 +79,7 @@ async function warmCachesIfNecessary() {
   stickerPackListCache = R.reduce((result, [id, value]) => {
     return [
       ...result,
-      value.metadata
+      value.meta
     ];
   }, [], Object.entries(stickerPackData));
 
@@ -213,7 +213,7 @@ export async function getEmojiForSticker(id: string, key: string, stickerId: num
  * set.
  */
 export function fuzzySearchStickerPacks(needle: string, haystack: Array<StickerPack>): Array<StickerPack> {
-  const searchKeys = ['manifest.title', 'manifest.author', 'meta.tags', 'meta.source'];
+  const searchKeys = ['manifest.title', 'manifest.author', 'meta.tags'];
   const searcher = new FuzzySearch(haystack, searchKeys, {caseSensitive: false});
   return searcher.search(needle);
 }
