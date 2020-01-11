@@ -33,6 +33,7 @@ const Sticker = styled.div`
   & img {
     width: 72px;
     height: 72px;
+    object-fit: contain;
   }
 
   @media screen and (min-width: 576px) {
