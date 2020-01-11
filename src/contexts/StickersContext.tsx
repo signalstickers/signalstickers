@@ -48,20 +48,12 @@ export const Provider = (props: PropsWithChildren<{}>) => {
 
 
   /**
-   * [Effect] When the component/context mounts, iterate through each
-   * StickerPackMetadata object from stickers.json and load a corresponding
-   * StickerPackManifest from Signal. Then, cache each result as a StickerPack
-   * object, which we will then use when searching.
+   * [Effect] When the component/context mounts, set the list of sticker
+   * packs from stickerData.json and setup the initial search results.
    */
   useAsyncEffect(async () => {
-    // Load the set of sticker packs we need from stickers.json.
-    const stickerPacksToLoad = await getStickerPackList();
-
-    // Then, prime the cache by loading each sticker pack from the Signal API.
-    const stickerPacks = await Promise.all(stickerPacksToLoad.map(async meta => {
-      const manifest = await getStickerPack(meta.id, meta.key);
-      return {meta, manifest} as StickerPack;
-    }));
+    // Load the set of sticker packs we need from stickerData.json.
+    const stickerPacks = await getStickerPackList();
 
     // Set the canonical list of all sticker packs.
     setAllStickerPacks(stickerPacks);

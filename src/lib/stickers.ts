@@ -17,7 +17,6 @@ import * as R from 'ramda';
 
 import {
   StickerPackJson,
-  StickerPackDataJson,
   StickerPackMetadata,
   StickerPackManifest,
   StickerPack,
@@ -38,14 +37,9 @@ import ErrorWithCode from 'lib/error';
 const protobufClient = protobuf.parse(StickersProto).root;
 
 /**
- * Indicates whether we have parsed stickerData.json to warm our in-memory caches.
+ * Module-local in-memory copy of stickerData.json, ensures we only load it once.
  */
-let hasWarmedCaches = false;
-
-/**
- * Module-local in-memory copy of manifest.json, ensures we only load it once.
- */
-let stickerPackListCache: Array<StickerPackMetadata> = [];
+let stickerPackListCache: Array<StickerPack> = [];
 
  /**
   * Module-local in-memory cache used for sticker pack data from the Signal API.
@@ -64,7 +58,7 @@ const stickerImageCache = LocalForage.createInstance({
 // ----- Functions -------------------------------------------------------------
 
 async function warmCachesIfNecessary() {
-  if (hasWarmedCaches) {
+  if (stickerPackListCache.length !== 0) {
     return;
   }
 
@@ -73,23 +67,13 @@ async function warmCachesIfNecessary() {
     url: 'stickerData.json'
   });
 
-  const stickerPackData: StickerPackDataJson = res.data;
-
-  // Warm sticker pack list.
-  stickerPackListCache = R.reduce((result, [id, value]) => {
-    return [
-      ...result,
-      value.meta
-    ];
-  }, [], Object.entries(stickerPackData));
+  stickerPackListCache = res.data as Array<StickerPack>;
 
   // Warm sticker manifest map.
-  stickerPackCache = R.reduce((result, [id, value]) => {
-    result.set(id, value.manifest);
+  stickerPackCache = R.reduce((result, value) => {
+    result.set(value.meta.id, value.manifest);
     return result;
-  }, new Map<string, StickerPackManifest>(), Object.entries(stickerPackData));
-
-  hasWarmedCaches = true;
+  }, new Map<string, StickerPackManifest>(), stickerPackListCache);
 }
 
 /**
@@ -122,13 +106,16 @@ export async function parseManifest(key: string, rawManifest: any): Promise<Stic
  * Provided a sticker pack ID and key, queries the Signal API and resolves with
  * a parsed manifest.
  */
-export async function getStickerPack(id: string, key: string): Promise<StickerPackManifest> {
+export async function getStickerPack(id: string, key: string, fetchStickersIfNecessary: boolean | false): Promise<StickerPackManifest> {
   try {
     await warmCachesIfNecessary();
 
     const cacheKey = id;
 
-    if (!stickerPackCache.has(cacheKey)) {
+    const hasCachedPack = stickerPackCache.has(cacheKey);
+    const hasStickers = hasCachedPack && stickerPackCache.get(cacheKey).stickers;
+
+    if (!hasCachedPack || (fetchStickersIfNecessary && !hasStickers)) {
       const res = await axios({
         method: 'GET',
         responseType: 'arraybuffer',

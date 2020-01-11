@@ -8,7 +8,6 @@ import hkdf from 'js-crypto-hkdf';
 
 import {
   StickerPackJson,
-  StickerPackDataJson,
   StickerPackManifest
 } from 'etc/types';
 import ErrorWithCode from 'lib/error';
@@ -102,7 +101,15 @@ async function getAllStickerPacks(): Promise<StickerPackManifestsJson> {
         .split(',')
         .map(tag => tag.trim())
         .filter(tag => tag.length);
-      return {meta: {id, ...value, tags}, manifest};
+
+      return {
+        meta: {id, ...value, tags},
+        manifest: {
+          title: manifest.title,
+          author: manifest.author,
+          cover: manifest.cover
+        }
+      };
     } catch (err) {
       throw new ErrorWithCode(err.code, `[getAllStickerPacks] ${err.message}`);
     }
@@ -116,14 +123,7 @@ export default class FetchStickerDataPlugin {
 
   apply(compiler) {
     compiler.plugin('emit', async (compilation, done) => {
-      const allPacks = await getAllStickerPacks();
-      const packsById = R.reduce((result, value) => {
-        return {
-          ...result,
-          [value.meta.id]: value
-        };
-      }, {} as StickerPackDataJson, allPacks);
-      const json = JSON.stringify(packsById);
+      const json = JSON.stringify(await getAllStickerPacks());
       compilation.assets[this.filename] = {
         source: () => json,
         size: () => json.length

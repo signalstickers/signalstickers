@@ -83,9 +83,8 @@ const validators = {
     }
 
     const [, packId, packKey] = matches;
-    const allPacks = await getStickerPackList();
 
-    if (R.find(R.propEq('id', packId), allPacks)) {
+    if (R.find(R.compose(R.propEq('id', packId), R.prop('meta')), await getStickerPackList())) {
       return 'A sticker pack with that ID already exists in the directory.';
     }
 

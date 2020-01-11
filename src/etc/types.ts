@@ -13,13 +13,6 @@ export interface StickerPackJson {
 }
 
 /**
- * Shape of the stickerData.json file.
- */
-export interface StickerPackDataJson {
-  [index: string]: StickerPack;
-}
-
-/**
  * Shape of transformed objects when loaded from stickers.json such that the
  * sticker pack ID is added to each object.
  */

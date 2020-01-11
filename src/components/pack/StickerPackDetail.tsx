@@ -132,7 +132,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   const [stickerPack, setStickerPack] = useState<StickerPackManifest>();
 
 
-  // Sticker pack metadata from stickers.json. This will not be available if
+  // Sticker pack metadata from stickerData.json. This will not be available if
   // viewing an unlisted pack.
   const [stickerPackMeta, setStickerPackMeta] = useState<StickerPackMetadata>();
 
@@ -155,16 +155,17 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
         return;
       }
 
-      // Try to get metadata (including the pack's key) from stickers.json.
-      const packMetadata = R.find<StickerPackMetadata>(R.propEq('id', packId), await getStickerPackList());
+      // Try to get stickerPack (including the pack's key) from stickerData.json.
+      const allPackMeta = R.map(R.prop('meta'), await getStickerPackList());
+      const packMetadata = R.find<StickerPackMetadata>(R.propEq('id', packId), allPackMeta);
 
-      // If the sticker pack is listed in stickers.json, set metadata and
+      // If the sticker pack is listed in stickerData.json, set metadata and
       // then fetch the pack's manifest from Signal using the key from
       // metadata.
       if (packMetadata) {
         setStickerPackMeta(packMetadata);
         setStickerPackKey(packMetadata.key);
-        setStickerPack(await getStickerPack(packId, packMetadata.key));
+        setStickerPack(await getStickerPack(packId, packMetadata.key, true));
         return;
       }
 
