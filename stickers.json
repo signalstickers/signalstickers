@@ -1,9 +1,4 @@
 {
-  "054cef7aca7ac949b4b9095e559448d0": {
-    "key": "7c03ce58006661be058a14ae1456252f895adc02eedf6553ab66ff8beb02d2e7",
-    "source": "",
-    "tags": ""
-  },
   "ae1d343accdec586fe19954a6be7aee9": {
     "key": "ffea9831b6af7617e4ab1b3868ce6f26f5c7c8ab3f05fb8d68b436f9253232ab",
     "source": "",
@@ -15,16 +10,6 @@
     "source": "https://twitter.com/bitsoffreedom/status/1209384967593222145",
     "tags": "",
     "nsfw": false
-  },
-  "07636a1a3d61570a292413778d64d08b": {
-    "key": "32415281b22b1d2e1c09fa5a0551af371e2a401aa0831c2c2f474e6b579996e6",
-    "source": "",
-    "tags": ""
-  },
-  "080e43483f342b4a6de893a425f468b9": {
-    "key": "e319f3136afc238d5b9454f1deb33188f0e6b36f9ad0b4b4811ef436a8b69abd",
-    "source": "",
-    "tags": ""
   },
   "123f678abcef7a39c0e710c051c68ae8": {
     "key": "84e89503556fa3568485a89d113b70ff73a8822a6c9c5c524ba2c7428007551d",
@@ -51,18 +36,8 @@
     "source": "",
     "tags": ""
   },
-  "29e53031ffed4587d08bb995ba1886b7": {
-    "key": "41316b15fa171c682135acf7537b67bfc1f4cf4c453587e3ba52e97b503ee385",
-    "source": "",
-    "tags": ""
-  },
   "29f4f97db620c6b6885d1e56e26a934e": {
     "key": "7a3bf9d6a68f3e9444dc07f4cc83704838d754a0425aecc9c56469ebeb092b44",
-    "source": "",
-    "tags": ""
-  },
-  "2a423b9385409059c2c1c8637d5faeb6": {
-    "key": "85283857f5738d8b0e1fb2f5ddf45d4acd9e47ea35c67eeae07bed17c2c015a1",
     "source": "",
     "tags": ""
   },
@@ -73,16 +48,6 @@
   },
   "2e575897d248191bd03aaa5e0351f673": {
     "key": "e0843a2da010cb403535aca515dc68294febaaaa09fc50cb2644535fe715f6ce",
-    "source": "",
-    "tags": ""
-  },
-  "2f1c0b5e832abb20273e8d3562d70ecb": {
-    "key": "59bf7d1fbca7b1f6b13fd6ec7b67b360cedade1d7f0cee34ed009d7f8dafd3f2",
-    "source": "",
-    "tags": ""
-  },
-  "3a6a86d9364348f67335f1d06299098b": {
-    "key": "b364581f40d6a71d552da6a7f87cc57a058c449584b9cec9659e7f1535f4d11f",
     "source": "",
     "tags": ""
   },
@@ -98,11 +63,6 @@
   },
   "402f15a3ca64fa862adba99b951a852b": {
     "key": "1fd07b77dc8ab8cadfbe52faab4cdb10949dc2c24c413f733945b18c2dc87dfe",
-    "source": "",
-    "tags": ""
-  },
-  "45376cbcdf2e0f06f56851d59fcd64f8": {
-    "key": "9bf13fc2d37340c2df20905986028e9c868a633898da6608458334bf80e67eec",
     "source": "",
     "tags": ""
   },
@@ -124,16 +84,6 @@
   },
   "625ca5991871b0e108b0b6491cad86ca": {
     "key": "4798d9a693ffc24d48416c558278be6d142f34e9c1c7ea27287efa075d8fe6da",
-    "source": "",
-    "tags": ""
-  },
-  "6553e1b1cc29b9618fdfb7d18adad2e3": {
-    "key": "6cf87a5fdba18dfb4ccffd49b9dede77bac7afab49cc873bb819549f049f48ab",
-    "source": "",
-    "tags": ""
-  },
-  "6601915ba9fcdc12b025ff4d8f95cc0a": {
-    "key": "b1ab39815c3d2f3d23461e8117b0682ef9b0d37612011e9e4fb90bc87f42bd4a",
     "source": "",
     "tags": ""
   },
@@ -189,11 +139,6 @@
     "source": "",
     "tags": ""
   },
-  "804d3d8998eca217891fdd3a6cb97251": {
-    "key": "ffa8819eb7d4b467815150a8a7ce455e1ffbadc2c562af141fba3b5d15391927",
-    "source": "",
-    "tags": ""
-  },
   "817fa130c63a10570db9000cf2f1d1cf": {
     "key": "834e4f8fe7f04b905947174fd0732d7450f0c5695870885c576233fd4a829c68",
     "source": "",
@@ -214,11 +159,6 @@
     "source": "",
     "tags": ""
   },
-  "84d8ab475eb123b19835cfe086241f91": {
-    "key": "6fca70dd655f4fde5ee9cf25d6a04b7c3e244e802ae872fb792c19ca98f36386",
-    "source": "",
-    "tags": ""
-  },
   "851318c99253c65d88ef5bf08d3986fe": {
     "key": "9bfc077e9f6061249f4f723e5541a8342c8e988e02e1bf18c96681f751301cd9",
     "source": "",
@@ -226,16 +166,6 @@
   },
   "87f90a4686571091ba05cdc689d492a6": {
     "key": "26487ed63eb40c22295b5f0d806538712244263c4b4ef142a3d7d4b566300241",
-    "source": "",
-    "tags": ""
-  },
-  "8b030a8fbb44dbc3c35cbda3670bacf5": {
-    "key": "62a5a2a4aa2c796ff2b30ed56079a950e59a6f2fd12614ffc2def54ca194822b",
-    "source": "",
-    "tags": ""
-  },
-  "90c1fe8084938c332de6a793566e1a19": {
-    "key": "2905db6ec42813ad8fc1d5cd944635125bf9f071b6ff456fa3f3c0b57adebb14",
     "source": "",
     "tags": ""
   },
@@ -251,11 +181,6 @@
   },
   "93404032b79148810121d434b58cedc2": {
     "key": "ddd0177393ed696f846c54efa1d12cf8c139cef52236dabed194f422ce72882a",
-    "source": "",
-    "tags": ""
-  },
-  "93d4bc202925148ca9e1f76fb748ddca": {
-    "key": "f3fe49889484e6fb6593b59bcc42dbbe8c4bbb84e03464368d14aa4d81ee43d6",
     "source": "",
     "tags": ""
   },
@@ -309,11 +234,6 @@
     "source": "",
     "tags": ""
   },
-  "d1dc46a698a6b77d1be1779e9273e335": {
-    "key": "5f835f2f599ccfae104db5d0383e288179a866dfc0f78e7b256adf32f0f6e6d5",
-    "source": "",
-    "tags": ""
-  },
   "d5ee1e14b0ad81a8e63d036b4db7e378": {
     "key": "ef1ec526c05a480d7e2cc93e681255feb48a826b48d8fafcb32f53b6ca27fda7",
     "source": "",
@@ -336,11 +256,6 @@
   },
   "dd2076d5fe7558526ca9ff99274fb802": {
     "key": "a87550d8dba47bce27b1f61b9611d8370f362857603695ffab192d2ee7a2a163",
-    "source": "",
-    "tags": ""
-  },
-  "e112706960c8284f71e966463ab0eaca": {
-    "key": "884e91d76a9f5e8c997302c4188545c97746fba82288c7d30633730da2a8bfda",
     "source": "",
     "tags": ""
   },
@@ -410,11 +325,6 @@
     "source": "Original artwork by Zeptolab UK Limited. https://www.zeptolab.com/",
     "tags": ""
   },
-  "0537a360a4bd600c5e4b4725005d847b": {
-    "key": "1b9484ef798372e2993000c0dea097c556bb81c4bd1eb3f995b50cc3b882ddc3",
-    "source": "Original artwork by David Lanham. https://www.dlanham.com/",
-    "tags": ""
-  },
   "a800f09d5d051af40075152e8e7fb7fb": {
     "key": "f9e1c14c769d42a9a724b7fb65e4becd44c4299de406140520bc836bc5f12295",
     "source": "https://telegramchannels.me/stickers/s-vocaloidjoynet",
@@ -442,16 +352,6 @@
   },
   "95747c91305fdd26252ed9aad03def14": {
     "key": "e6332f177d8064c26a87e2802d1e4fcf2423e14a9788ff92bb9220a36f7e49ac",
-    "source": "https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/149",
-    "tags": ""
-  },
-  "779ee8133515e9eb132c44d6181ecce1": {
-    "key": "eb998b0bbbe78def25cb3819b8fc970e699976fa260edd1025c4cdfcc179edef",
-    "source": "https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/149",
-    "tags": ""
-  },
-  "c0e5360aab759f3a0d3a9ac4d3730c46": {
-    "key": "b1e8ea8b41024039537d636c84c5715b2ce7b38b06fd0203f50a96038716f3fb",
     "source": "https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/149",
     "tags": ""
   },
@@ -492,12 +392,6 @@
   },
   "4325c1fe971265f1a31a7e0e9ae8e634": {
     "key": "48b1a0a876ad435d6f610314aeeaf1597a6b81892ff64e3f922c64524dcbf22d",
-    "source": "",
-    "tags": "",
-    "nsfw": false
-  },
-  "15edfc53553d11a0d3f2625e10382685": {
-    "key": "2480c6e5a8cce0fa164f39becc8217e0d027123704b028615eeac9e118ab2c75",
     "source": "",
     "tags": "",
     "nsfw": false
@@ -562,26 +456,8 @@
     "tags": "",
     "nsfw": false
   },
-  "4445b93173f98690e101614566e16bb6": {
-    "key": "45dc76807ea31262484642605d6f52aec77e651f07863a8d50ce16cb4147bc38",
-    "source": "",
-    "tags": "",
-    "nsfw": false
-  },
-  "a1a9ff78b33a6d46568e15545c3150b1": {
-    "key": "b2448a11f4381257f0f2920e8e4d5c9f4f87fe423b55f9c6a514e97e5a4985d2",
-    "source": "",
-    "tags": "",
-    "nsfw": false
-  },
   "0907d1eded16115d6ba9b8d47de5b564": {
     "key": "3e2a60dfb1d35b1a9ea36eaf939f5d1a01dc02e4259c5ab4451decb4c0b45335",
-    "source": "",
-    "tags": "",
-    "nsfw": false
-  },
-  "d14bc5becae51635bd21cd5549c0aa1d": {
-    "key": "05fa9b0277df061b61253b8492a552720cf2de002b8d6267c415b1ea2d568aba",
     "source": "",
     "tags": "",
     "nsfw": false
@@ -624,12 +500,6 @@
   },
   "604b4b57f538cbfae1e4798d28b63b26": {
     "key": "ae16d21218d3161a9bda98eabc11db6f4f98ea3dc5e00c88393d70fe278289d4",
-    "source": "",
-    "tags": "",
-    "nsfw": false
-  },
-  "8999d100b2b0159b6869a5a88e83167d": {
-    "key": "dabd1622d56207ed3cddec6c6992d8f31c4e77204a460d67eccd105d05c1e1d6",
     "source": "",
     "tags": "",
     "nsfw": false
@@ -892,12 +762,6 @@
     "tags": "",
     "nsfw": false
   },
-  "859789c0e6257d5432164042c200e596": {
-    "key": "1bf6c82972bccbf44d139f786c1c2967618799475302c860ed16e2ea04db1012",
-    "source": "",
-    "tags": "christmas, grinch",
-    "nsfw": false
-  },
   "9acc9e8aba563d26a4994e69263e3b25": {
     "key": "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12",
     "source": "",
@@ -916,20 +780,8 @@
     "tags": "clothes",
     "nsfw": false
   },
-  "51726dcd240dad163b3f8d81c1c72b2e": {
-    "key": "4a9185db45da6616007c0db1d44c255b596864086374fe568f7cc881f81d140f",
-    "source": "",
-    "tags": "spider-man",
-    "nsfw": false
-  },
   "94cc23eae388044790e780f672db1e28": {
     "key": "09553aadf9fe4101e8e1c4b1a5b6765cc7a8f6918435447a0c17921d036c64b8",
-    "source": "",
-    "tags": "spider-man",
-    "nsfw": false
-  },
-  "04912e10bbae226ba321f368c96a7f34": {
-    "key": "4d08951a04d99a00a96dc46713c27f1dcf2ee4b29d9f0ee3acb8798fa0f2cbeb",
     "source": "",
     "tags": "spider-man",
     "nsfw": false
@@ -970,22 +822,10 @@
     "tags": "unicorn, emoji",
     "nsfw": false
   },
-  "09e34a729025bfef3a86d01c9d1e285e": {
-    "key": "9e56d5b70758770c291617eadd1640abc82f155dfd1344e785a99b2f5e49c5d7",
-    "source": "",
-    "tags": "",
-    "nsfw": false
-  },
   "a27b2ee11656275c0f900026e1327541": {
     "key": "fc54be80a8d773e5a3ed75993c6c64899f4f67458a8464c8fd00c1e31c5db1b0",
     "source": "Original art by Britta Gustafson, inspired by Trash Doves by Syd Weiler",
     "tags": "plants, succulents, cute, love, watercolor",
-    "nsfw": false
-  },
-  "d421140dda9225cad56eb166ae96bcc7": {
-    "key": "dffe78ab151b14ae9a7908f7b7ba7fcd0c17a225a5c72cd9dfcacb57bc6337ab",
-    "source": "",
-    "tags": "bender",
     "nsfw": false
   },
   "6c160a6938404e27085d04176e828acd": {
