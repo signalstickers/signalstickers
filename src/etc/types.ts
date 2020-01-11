@@ -12,6 +12,15 @@ export interface StickerPackJson {
   };
 }
 
+/**
+ * Shape of the stickerData.json file.
+ */
+export interface StickerPackDataJson {
+  [index: string]: {
+    metadata: StickerPackMetadata;
+    manifest: StickerPackManifest;
+  };
+}
 
 /**
  * Shape of transformed objects when loaded from stickers.json such that the

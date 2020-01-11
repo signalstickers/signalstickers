@@ -15,9 +15,9 @@ import LocalForage from 'localforage';
 import protobuf from 'protobufjs';
 import * as R from 'ramda';
 
-import {STICKERS_MANIFEST_URL} from 'etc/constants';
 import {
   StickerPackJson,
+  StickerPackDataJson,
   StickerPackMetadata,
   StickerPackManifest,
   StickerPack,
@@ -38,14 +38,19 @@ import ErrorWithCode from 'lib/error';
 const protobufClient = protobuf.parse(StickersProto).root;
 
 /**
- * Module-local in-memory copy of stickers.json, ensures we only load it once.
+ * Indicates whether we have parsed stickerData.json to warm our in-memory caches.
+ */
+let hasWarmedCaches = false;
+
+/**
+ * Module-local in-memory copy of manifest.json, ensures we only load it once.
  */
 let stickerPackListCache: Array<StickerPackMetadata> = [];
 
-/**
- * Module-local in-memory cache used for sticker pack data from the Signal API.
- */
-const stickerPackCache = new Map<string, StickerPackManifest>();
+ /**
+  * Module-local in-memory cache used for sticker pack data from the Signal API.
+  */
+let stickerPackCache = new Map<string, StickerPackManifest>();
 
 /**
  * Module-local browser-storage-backed cache used for sticker image data.
@@ -58,25 +63,41 @@ const stickerImageCache = LocalForage.createInstance({
 
 // ----- Functions -------------------------------------------------------------
 
+async function warmCachesIfNecessary() {
+  if (hasWarmedCaches) {
+    return;
+  }
+
+  const res = await axios({
+    method: 'GET',
+    url: 'stickerData.json'
+  });
+
+  const stickerPackData: StickerPackDataJson = res.data;
+
+  // Warm sticker pack list.
+  stickerPackListCache = R.reduce((result, [id, value]) => {
+    return [
+      ...result,
+      value.metadata
+    ];
+  }, [], Object.entries(stickerPackData));
+
+  // Warm sticker manifest map.
+  stickerPackCache = R.reduce((result, [id, value]) => {
+    result.set(id, value.manifest);
+    return result;
+  }, new Map<string, StickerPackManifest>(), Object.entries(stickerPackData));
+
+  hasWarmedCaches = true;
+}
+
 /**
  * Loads and transforms stickers.json, which is the source of truth regarding
  * all sticker packs included in the application.
  */
 export async function getStickerPackList(): Promise<Array<StickerPackMetadata>> {
-  if (stickerPackListCache.length === 0) {
-    const res = await axios({
-      method: 'GET',
-      url: STICKERS_MANIFEST_URL
-    });
-
-    stickerPackListCache = R.reduce((result, [id, value]) => {
-      return [
-        ...result,
-        {id, ...value}
-      ];
-    }, [], Object.entries(res.data as StickerPackJson));
-  }
-
+  await warmCachesIfNecessary();
   return stickerPackListCache;
 }
 
@@ -103,6 +124,8 @@ export async function parseManifest(key: string, rawManifest: any): Promise<Stic
  */
 export async function getStickerPack(id: string, key: string): Promise<StickerPackManifest> {
   try {
+    await warmCachesIfNecessary();
+
     const cacheKey = id;
 
     if (!stickerPackCache.has(cacheKey)) {
