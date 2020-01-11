@@ -73,19 +73,35 @@ async function parseManifest(key: string, rawManifest: any): Promise<StickerPack
 }
 
 /**
+ * Waits for a random number of ms between min and max before resolving the promise.
+ */
+async function randomDelay(minMs: number, maxMs: number) {
+  const delayMs = Math.round(Math.random() * (maxMs - minMs)) + minMs;
+  return new Promise(resolve => setTimeout(resolve, delayMs)); // tslint:disable-line no-string-based-set-timeout
+}
+
+/**
  * Provided a sticker pack ID and key, queries the Signal API and resolves with
  * a parsed manifest.
  */
-async function getStickerPack(id: string, key: string): Promise<StickerPackManifest> {
+async function getStickerPack(id: string, key: string, retriesRemaining = 5): Promise<StickerPackManifest> {
   try {
-      const res = await axios({
-        method: 'GET',
-        responseType: 'arraybuffer',
-        url: `https://cdn-ca.signal.org/stickers/${id}/manifest.proto`
-      });
+    const res = await axios({
+      method: 'GET',
+      responseType: 'arraybuffer',
+      url: `https://cdn-ca.signal.org/stickers/${id}/manifest.proto`
+    });
 
-      return await parseManifest(key, res.data);
+    return await parseManifest(key, res.data);
   } catch (err) {
+    // If the error was due to tiemout and we have retries remaining, retry
+    if (err.code === 'ECONNABORTED' && retriesRemaining > 0) {
+      // pause before retrying.
+      await randomDelay(250, 500);
+      console.log(`Retrying fetch for ${id}, attempts remaining: ${retriesRemaining - 1}`);
+      return getStickerPack(id, key, retriesRemaining - 1);
+    }
+
     throw new ErrorWithCode(err.code, `[getStickerPack] ${err.message}`);
   }
 }
@@ -96,6 +112,9 @@ async function getStickerPack(id: string, key: string): Promise<StickerPackManif
 async function getAllStickerPacks(): Promise<StickerPackManifestsJson> {
   return Promise.all(R.map(async ([id, value]) => {
     try {
+      // Signal's service will ignore our request if we fetch
+      // too many packs too rapidly so we stagger our timing.
+      await randomDelay(0, 1000);
       const manifest = await getStickerPack(id, value.key);
       const tags = value.tags
         .split(',')
