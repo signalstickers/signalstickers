@@ -1185,5 +1185,11 @@
     "source": "http://vkclub.su/en/stickers/elvis/",
     "tags": "donkey",
     "nsfw": false
+},
+"ed506623891964a08850aef3a7c6237a": {
+    "key": "5be1ad5dd3a11318ccc26b41af5a2553eeb7a1b8d784896e02e9169e69340064",
+    "source": "Port of the Telegram ArcherFX pack",
+    "tags": "Archer",
+    "nsfw": false
 }
 }
