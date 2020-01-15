@@ -4,7 +4,7 @@ import useAsyncEffect from 'use-async-effect';
 
 import {StickerPack} from 'etc/types';
 import {
-  getStickerPackList,
+  getStickerPackDirectory,
   getStickerPack,
   fuzzySearchStickerPacks
 } from 'lib/stickers';
@@ -53,7 +53,7 @@ export const Provider = (props: PropsWithChildren<{}>) => {
    */
   useAsyncEffect(async () => {
     // Load the set of sticker packs we need from stickerData.json.
-    const stickerPacks = await getStickerPackList();
+    const stickerPacks = await getStickerPackDirectory();
 
     // Set the canonical list of all sticker packs.
     setAllStickerPacks(stickerPacks);

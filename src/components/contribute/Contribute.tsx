@@ -7,7 +7,7 @@ import * as R from 'ramda';
 import yaml from 'js-yaml';
 
 import {GRAY} from 'etc/colors';
-import {getStickerPackList, getStickerPack} from 'lib/stickers';
+import {getStickerPackDirectory, getStickerPack} from 'lib/stickers';
 
 /**
  * Test URL:
@@ -85,7 +85,7 @@ const validators = {
 
     const [, packId, packKey] = matches;
 
-    if (R.find(R.compose(R.propEq('id', packId), R.prop('meta')), await getStickerPackList())) {
+    if (R.find(R.pathEq(['meta', 'id'], packId) , await getStickerPackDirectory())) {
       return 'A sticker pack with that ID already exists in the directory.';
     }
 

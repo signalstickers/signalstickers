@@ -67,10 +67,10 @@ export async function hasWebpSupport() {
  * webp-hero and returned as a base-64 encoded string. Both variants are
  * suitable for using in the "src" attribute of an img tag.
  */
-export async function convertImage(imageData: Uint8Array) {
+export async function convertImage(rawImageData: Uint8Array) {
   if (await hasWebpSupportPromise) {
     // If the browser supports WebP, we don't need to convert it to PNG.
-    const base64Data = btoa(String.fromCharCode.apply(undefined, imageData));
+    const base64Data = btoa(String.fromCharCode.apply(undefined, rawImageData));
     return `data:image/webp;base64,${base64Data}`;
   }
 
@@ -81,7 +81,8 @@ export async function convertImage(imageData: Uint8Array) {
     try {
       // @ts-ignore (`busy` is not an exposed member of WebpMachine.)
       await pWaitFor(() => webpConverter.busy === false);
-      return await webpConverter.decode(imageData);
+
+      return await webpConverter.decode(rawImageData);
     } catch (err) {
       console.error(`[convertImage] Image conversion failed: ${err.message}`);
       throw err;

@@ -5,15 +5,12 @@ import {styled} from 'linaria/react';
 import {darken} from 'polished';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
-import * as R from 'ramda';
 import useAsyncEffect from 'use-async-effect';
 
 import {GRAY, SIGNAL_BLUE} from 'etc/colors';
-import {StickerPackManifest, StickerPackMetadata} from 'etc/types';
+import {StickerPack} from 'etc/types';
 import useQuery from 'hooks/use-query';
-import ErrorWithCode from 'lib/error';
-import {getStickerPack, getStickerPackList} from 'lib/stickers';
-import {capitalizeFirst} from 'lib/utils';
+import {getStickerPack} from 'lib/stickers';
 
 import Sticker from './Sticker';
 import StickerPackError from './StickerPackError';
@@ -117,25 +114,11 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   // Extract :packId from the URL.
   const {packId} = useParams<UrlParams>();
 
-
   // Extract the optional "key" query param from the URL.
-  const key = useQuery().get('key');
+  const key = useQuery().get('key') || undefined;
 
-
-  // This will be either the key extracted from a StickerPackMetadata object or,
-  // if the user is trying to load an unlisted sticker pack, the 'key' query
-  // param.
-  const [stickerPackKey, setStickerPackKey] = useState<string | undefined>();
-
-
-  // Sticker pack manifest from Signal.
-  const [stickerPack, setStickerPack] = useState<StickerPackManifest>();
-
-
-  // Sticker pack metadata from stickerData.json. This will not be available if
-  // viewing an unlisted pack.
-  const [stickerPackMeta, setStickerPackMeta] = useState<StickerPackMetadata>();
-
+  // StickerPack object for the requested pack.
+  const [stickerPack, setStickerPack] = useState<StickerPack>();
 
   // One of many possible error codes we may catch when trying to load or
   // decrypt a sticker pack. This will be used to determine what error message
@@ -144,42 +127,15 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
 
 
   /**
-   * [Effect] Set `stickerPack`, `stickerPackKey` and 'stickerPackMeta` when the
-   * component mounts.
+   * [Effect] Set `stickerPack` when the component mounts.
    */
   useAsyncEffect(async () => {
     try {
-      // Because this value comes from a context, we may get rendered before
-      // it becomes available.
       if (!packId) {
         return;
       }
 
-      // Try to get stickerPack (including the pack's key) from stickerData.json.
-      const allPackMeta = R.map(R.prop('meta'), await getStickerPackList());
-      const packMetadata = R.find<StickerPackMetadata>(R.propEq('id', packId), allPackMeta);
-
-      // If the sticker pack is listed in stickerData.json, set metadata and
-      // then fetch the pack's manifest from Signal using the key from
-      // metadata.
-      if (packMetadata) {
-        setStickerPackMeta(packMetadata);
-        setStickerPackKey(packMetadata.key);
-        setStickerPack(await getStickerPack(packId, packMetadata.key, true));
-        return;
-      }
-
-      // Then try to load and decrypt the manifest from Signal using the key
-      // from query params.
-      if (key) {
-        setStickerPackKey(key);
-        setStickerPack(await getStickerPack(packId, key));
-        return;
-      }
-
-      // If we couldn't find the pack in our directory and the user did not
-      // provide a `key` query param, throw.
-      throw new ErrorWithCode('NO_KEY_PROVIDED', 'No key provided.');
+      setStickerPack(await getStickerPack(packId, key));
     } catch (err) {
       if (err.code) {
         setStickerPackError(err.code);
@@ -190,7 +146,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
 
   // ----- Render --------------------------------------------------------------
 
-  if (!packId || !stickerPackKey || !stickerPack) {
+  if (!packId || !stickerPack) {
     // If an error code has been set, display an error alert to the user.
     if (stickerPackError) {
       switch (stickerPackError) {
@@ -221,23 +177,26 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
     return null; // tslint:disable-line no-null-keyword
   }
 
-  const source = stickerPackMeta?.source || 'N/A';
-  const numStickers = stickerPack.stickers.length;
+  const source = stickerPack.meta.source || 'N/A';
+  const numStickers = stickerPack.manifest.stickers.length;
   // N.B. Signal allows strings containing only whitespace as authors. In these
   // cases, use 'Anonymous' instead.
-  const author = stickerPack.author.trim() ? stickerPack.author : 'Anonymous';
-  const stickerPackTags = stickerPackMeta?.tags;
-  const addToSignalHref = `https://signal.art/addstickers/#pack_id=${packId}&pack_key=${stickerPackKey}`;
+  const author = stickerPack.manifest.author.trim() ? stickerPack.manifest.author : 'Anonymous';
+  const stickerPackTags = stickerPack.meta.tags || [];
+  const addToSignalHref = `https://signal.art/addstickers/#pack_id=${packId}&pack_key=${stickerPack.meta.key}`;
 
+
+  // TODO: Fix logic around displaying home button to better detect when we're
+  // viewing an unlisted sticker pack.
   return (
     <StickerPackDetail className="px-1 px-sm-4 py-4 mt-0 mt-sm-5 mb-5">
       <div className="row mb-4 flex-column-reverse flex-lg-row">
         <div className="col-12 col-lg-8 mt-4 mt-lg-0">
-          <div className="title">{stickerPack.title}</div>
+          <div className="title">{stickerPack.manifest.title}</div>
           <div className="author">{author}</div>
         </div>
         <div className="col-12 col-lg-4 d-flex d-lg-block justify-content-between text-md-right">
-          {stickerPackMeta ? <Link to="/">
+          {stickerPack.meta ? <Link to="/">
             <button type="button" className="btn btn-link mr-2">
               Home
             </button>
@@ -250,7 +209,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
         </div>
       </div>
 
-      {stickerPackMeta ? <div className="row mb-4">
+      {stickerPack.meta ? <div className="row mb-4">
         <div className="col-12 col-lg-6">
           <ul className="list-group">
             <li className="list-group-item text-wrap text-break">
@@ -263,7 +222,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
               <Octicon name="file-directory" title="Sticker Count" />
               {numStickers}
             </li>
-            {stickerPackMeta.nsfw ? <li className="list-group-item text-wrap text-break">
+            {stickerPack.meta.nsfw ? <li className="list-group-item text-wrap text-break">
               <Octicon name="alert" title="NSFW" /> <strong>NSFW</strong>
             </li> : null}
             <li className="list-group-item">
@@ -279,7 +238,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       <div className="row">
         <div className="col-12">
           <div className="d-flex flex-wrap justify-content-around">
-            {stickerPack.stickers.map(sticker => (<Sticker packId={packId} packKey={stickerPackKey} stickerId={sticker.id} key={sticker.id} />))}
+            {stickerPack.manifest.stickers.map(sticker => (<Sticker packId={packId} packKey={stickerPack.meta.key} stickerId={sticker.id} key={sticker.id} />))}
           </div>
         </div>
       </div>
