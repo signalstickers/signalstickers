@@ -7,6 +7,7 @@ import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import FetchStickerDataPlugin from 'plugins/FetchStickerDataPlugin';
 
 
 /**
@@ -210,6 +211,9 @@ export default (env: string, argv: any): webpack.Configuration => {
     }));
   }
 
+  config.plugins.push(new FetchStickerDataPlugin({
+    filename: 'stickerData.json'
+  }));
 
   // ----- Dev Server ----------------------------------------------------------
 

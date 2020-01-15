@@ -12,7 +12,6 @@ export interface StickerPackJson {
   };
 }
 
-
 /**
  * Shape of transformed objects when loaded from stickers.json such that the
  * sticker pack ID is added to each object.
@@ -21,7 +20,7 @@ export interface StickerPackMetadata {
   id: string;
   key: string;
   source: string;
-  tags: string;
+  tags: Array<string>;
   nsfw?: boolean;
 }
 

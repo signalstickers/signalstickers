@@ -15,7 +15,6 @@ import LocalForage from 'localforage';
 import protobuf from 'protobufjs';
 import * as R from 'ramda';
 
-import {STICKERS_MANIFEST_URL} from 'etc/constants';
 import {
   StickerPackJson,
   StickerPackMetadata,
@@ -38,14 +37,14 @@ import ErrorWithCode from 'lib/error';
 const protobufClient = protobuf.parse(StickersProto).root;
 
 /**
- * Module-local in-memory copy of stickers.json, ensures we only load it once.
+ * Module-local in-memory copy of stickerData.json, ensures we only load it once.
  */
-let stickerPackListCache: Array<StickerPackMetadata> = [];
+let stickerPackListCache: Array<StickerPack> = [];
 
-/**
- * Module-local in-memory cache used for sticker pack data from the Signal API.
- */
-const stickerPackCache = new Map<string, StickerPackManifest>();
+ /**
+  * Module-local in-memory cache used for sticker pack data from the Signal API.
+  */
+let stickerPackCache = new Map<string, StickerPackManifest>();
 
 /**
  * Module-local browser-storage-backed cache used for sticker image data.
@@ -58,25 +57,31 @@ const stickerImageCache = LocalForage.createInstance({
 
 // ----- Functions -------------------------------------------------------------
 
+async function warmCachesIfNecessary() {
+  if (stickerPackListCache.length !== 0) {
+    return;
+  }
+
+  const res = await axios({
+    method: 'GET',
+    url: 'stickerData.json'
+  });
+
+  stickerPackListCache = res.data as Array<StickerPack>;
+
+  // Warm sticker manifest map.
+  stickerPackCache = R.reduce((result, value) => {
+    result.set(value.meta.id, value.manifest);
+    return result;
+  }, new Map<string, StickerPackManifest>(), stickerPackListCache);
+}
+
 /**
  * Loads and transforms stickers.json, which is the source of truth regarding
  * all sticker packs included in the application.
  */
 export async function getStickerPackList(): Promise<Array<StickerPackMetadata>> {
-  if (stickerPackListCache.length === 0) {
-    const res = await axios({
-      method: 'GET',
-      url: STICKERS_MANIFEST_URL
-    });
-
-    stickerPackListCache = R.reduce((result, [id, value]) => {
-      return [
-        ...result,
-        {id, ...value}
-      ];
-    }, [], Object.entries(res.data as StickerPackJson));
-  }
-
+  await warmCachesIfNecessary();
   return stickerPackListCache;
 }
 
@@ -101,11 +106,16 @@ export async function parseManifest(key: string, rawManifest: any): Promise<Stic
  * Provided a sticker pack ID and key, queries the Signal API and resolves with
  * a parsed manifest.
  */
-export async function getStickerPack(id: string, key: string): Promise<StickerPackManifest> {
+export async function getStickerPack(id: string, key: string, fetchStickersIfNecessary: boolean | false): Promise<StickerPackManifest> {
   try {
+    await warmCachesIfNecessary();
+
     const cacheKey = id;
 
-    if (!stickerPackCache.has(cacheKey)) {
+    const hasCachedPack = stickerPackCache.has(cacheKey);
+    const hasStickers = hasCachedPack && stickerPackCache.get(cacheKey).stickers;
+
+    if (!hasCachedPack || (fetchStickersIfNecessary && !hasStickers)) {
       const res = await axios({
         method: 'GET',
         responseType: 'arraybuffer',
@@ -190,7 +200,7 @@ export async function getEmojiForSticker(id: string, key: string, stickerId: num
  * set.
  */
 export function fuzzySearchStickerPacks(needle: string, haystack: Array<StickerPack>): Array<StickerPack> {
-  const searchKeys = ['manifest.title', 'manifest.author', 'meta.tags', 'meta.source'];
+  const searchKeys = ['manifest.title', 'manifest.author', 'meta.tags'];
   const searcher = new FuzzySearch(haystack, searchKeys, {caseSensitive: false});
   return searcher.search(needle);
 }

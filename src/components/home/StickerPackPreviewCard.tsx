@@ -24,6 +24,7 @@ const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: 
   & .card-img-top {
     height: 72px;
     width: 72px;
+    object-fit: contain;
     margin-top: 24px;
     margin-bottom: 24px;
     margin-left: auto;

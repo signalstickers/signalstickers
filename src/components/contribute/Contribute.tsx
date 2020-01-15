@@ -4,6 +4,7 @@ import {styled} from 'linaria/react';
 import {darken} from 'polished';
 import React, {useState} from 'react';
 import * as R from 'ramda';
+import yaml from 'js-yaml';
 
 import {GRAY} from 'etc/colors';
 import {getStickerPackList, getStickerPack} from 'lib/stickers';
@@ -83,9 +84,8 @@ const validators = {
     }
 
     const [, packId, packKey] = matches;
-    const allPacks = await getStickerPackList();
 
-    if (R.find(R.propEq('id', packId), allPacks)) {
+    if (R.find(R.compose(R.propEq('id', packId), R.prop('meta')), await getStickerPackList())) {
       return 'A sticker pack with that ID already exists in the directory.';
     }
 
@@ -117,7 +117,7 @@ const validators = {
 
 const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
-  const [jsonBlob, setJsonBlob] = useState('');
+  const [ymlBlob, setYmlBlob] = useState('');
 
 
   /**
@@ -129,7 +129,7 @@ const ContributeComponent: React.FunctionComponent = () => {
    */
   const onSubmitClick = () => {
     setHasBeenSubmitted(true);
-    setJsonBlob('');
+    setYmlBlob('');
   };
 
 
@@ -145,11 +145,16 @@ const ContributeComponent: React.FunctionComponent = () => {
 
     const [, packId, packKey] = matches;
 
-    setJsonBlob(JSON.stringify({
+    const tags = R.uniq(values.tags
+      .split(',')
+      .map(tag => tag.trim())
+      .filter(tag => tag.length));
+
+    setYmlBlob(yaml.safeDump({
       [packId]: {
         key: packKey,
         source: values.source,
-        tags: values.tags,
+        tags,
         nsfw: values.isNsfw === 'true' ? true : false
       }
     }, null, 2).trim());
@@ -292,7 +297,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                 <div className="form-row">
                   <div className="col-12">
                     <button type="submit" className="btn btn-primary btn-block" disabled={isSubmitting || isValidating} onClick={onSubmitClick}>
-                      Generate JSON
+                      Generate YML
                     </button>
                   </div>
                 </div>
@@ -304,21 +309,21 @@ const ContributeComponent: React.FunctionComponent = () => {
         </div>
       </div>
 
-      {/* Rendered JSON Output */}
-      {jsonBlob ?
+      {/* Rendered YML Output */}
+      {ymlBlob ?
       <>
         <div className="row">
           <div className="col-12">
             <hr />
             <p className="mt-4 mb-4">
-              Great! Below is the JSON blob you will need to add to <code>stickers.json</code> in the <a href="https://github.com/romainricard/signalstickers/edit/master/stickers.json">Signal Stickers repository</a>.
+              Great! Below is the YML blob you will need to add to <code>stickers.yml</code> in the <a href="https://github.com/romainricard/signalstickers/edit/master/stickers.yml">Signal Stickers repository</a>.
             </p>
           </div>
         </div>
         <div className="row">
           <div className="col-12 col-md-10 offset-md-1">
             <div className="card">
-              <pre>{jsonBlob}</pre>
+              <pre>{ymlBlob}</pre>
             </div>
           </div>
         </div>

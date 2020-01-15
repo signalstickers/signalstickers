@@ -132,7 +132,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   const [stickerPack, setStickerPack] = useState<StickerPackManifest>();
 
 
-  // Sticker pack metadata from stickers.json. This will not be available if
+  // Sticker pack metadata from stickerData.json. This will not be available if
   // viewing an unlisted pack.
   const [stickerPackMeta, setStickerPackMeta] = useState<StickerPackMetadata>();
 
@@ -141,27 +141,6 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   // decrypt a sticker pack. This will be used to determine what error message
   // to show the user.
   const [stickerPackError, setStickerPackError] = useState('');
-
-
-  /**
-   * Accepts a "tags" property from a sticker pack's metadata and returns an
-   * array of capitalized tags. If the string is empty, returns 'N/A'.
-   */
-  function parseStickerPackTags(tags: string | undefined) {
-    if (!tags) {
-      return;
-    }
-
-    const tagsArray = tags
-      .split(',')
-      .map(tag => tag.trim())
-      .filter(tag => tag.length)
-      .map(tag => tag.split(' ').map(capitalizeFirst).join(' '));
-
-    if (tagsArray.length) {
-      return tagsArray;
-    }
-  }
 
 
   /**
@@ -176,16 +155,17 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
         return;
       }
 
-      // Try to get metadata (including the pack's key) from stickers.json.
-      const packMetadata = R.find<StickerPackMetadata>(R.propEq('id', packId), await getStickerPackList());
+      // Try to get stickerPack (including the pack's key) from stickerData.json.
+      const allPackMeta = R.map(R.prop('meta'), await getStickerPackList());
+      const packMetadata = R.find<StickerPackMetadata>(R.propEq('id', packId), allPackMeta);
 
-      // If the sticker pack is listed in stickers.json, set metadata and
+      // If the sticker pack is listed in stickerData.json, set metadata and
       // then fetch the pack's manifest from Signal using the key from
       // metadata.
       if (packMetadata) {
         setStickerPackMeta(packMetadata);
         setStickerPackKey(packMetadata.key);
-        setStickerPack(await getStickerPack(packId, packMetadata.key));
+        setStickerPack(await getStickerPack(packId, packMetadata.key, true));
         return;
       }
 
@@ -246,7 +226,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   // N.B. Signal allows strings containing only whitespace as authors. In these
   // cases, use 'Anonymous' instead.
   const author = stickerPack.author.trim() ? stickerPack.author : 'Anonymous';
-  const stickerPackTags = parseStickerPackTags(stickerPackMeta?.tags);
+  const stickerPackTags = stickerPackMeta?.tags;
   const addToSignalHref = `https://signal.art/addstickers/#pack_id=${packId}&pack_key=${stickerPackKey}`;
 
   return (
@@ -289,7 +269,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
             <li className="list-group-item">
               <Octicon name="tag" title="Tags" />
               <div className="text-wrap text-break">
-                {Array.isArray(stickerPackTags) ? stickerPackTags.map(tag => (<Tag key={tag}>{tag}</Tag>)) : 'None'}
+                {stickerPackTags.length === 0 ? 'None' : stickerPackTags.map(tag => (<Tag key={tag}>{tag}</Tag>))}
               </div>
             </li>
           </ul>
