@@ -4,14 +4,14 @@ import {styled} from 'linaria/react';
 import Octicon from 'react-octicon';
 import useAsyncEffect from 'use-async-effect';
 
-import {StickerPack} from 'etc/types';
-import {getStickerInPack} from 'lib/stickers';
+import {StickerPackPartial} from 'etc/types';
+import {getConvertedStickerInPack} from 'lib/stickers';
 
 
 // ----- Props -----------------------------------------------------------------
 
 export interface Props {
-  stickerPack: StickerPack;
+  stickerPack: StickerPackPartial;
 }
 
 
@@ -24,11 +24,12 @@ const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: 
   & .card-img-top {
     height: 72px;
     width: 72px;
+    object-fit: contain;
     margin-top: 24px;
     margin-bottom: 24px;
     margin-left: auto;
     margin-right: auto;
-    transition: transform 0.15s ease-in-out;
+    transition: transform 0.15s ease-in;
     filter: ${props => props.nsfw ? 'blur(4px)' : 'none'};
   }
 
@@ -83,7 +84,7 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
   useAsyncEffect(async () => {
     try {
       if (meta.id !== undefined) { // tslint:disable-line strict-type-predicates
-        const coverImage = await getStickerInPack(meta.id, meta.key, 'cover');
+        const coverImage = await getConvertedStickerInPack(meta.id, meta.key, manifest.cover.id);
         setCover(coverImage);
       }
     } catch (err) {

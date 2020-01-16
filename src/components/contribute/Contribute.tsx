@@ -4,13 +4,14 @@ import {styled} from 'linaria/react';
 import {darken} from 'polished';
 import React, {useState} from 'react';
 import * as R from 'ramda';
+import yaml from 'js-yaml';
 
 import {GRAY} from 'etc/colors';
-import {getStickerPackList, getStickerPack} from 'lib/stickers';
+import {getStickerPackDirectory, getStickerPack} from 'lib/stickers';
 
 /**
- * Test URL:
- * https://signal.art/addstickers/#pack_id=f36f5fb3d8dde697e1527650ea1c12a6&pack_key=eb6be23a93685d18568292818f6a4ebd85161b8ae1edca86a06698c1472200f0
+ * Test pack:
+ * https://signal.art/addstickers/#pack_id=b2e52b07dfb0af614436508c51aa24eb&pack_key=66224990b3e956ad4a735830df8cd071275afeae79db9797e57d99314daffc77
  */
 
 
@@ -83,9 +84,8 @@ const validators = {
     }
 
     const [, packId, packKey] = matches;
-    const allPacks = await getStickerPackList();
 
-    if (R.find(R.propEq('id', packId), allPacks)) {
+    if (R.find(R.pathEq(['meta', 'id'], packId) , await getStickerPackDirectory())) {
       return 'A sticker pack with that ID already exists in the directory.';
     }
 
@@ -117,7 +117,8 @@ const validators = {
 
 const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
-  const [jsonBlob, setJsonBlob] = useState('');
+  const [ymlBlob, setYmlBlob] = useState('');
+  const [previewUrl, setPreviewUrl] = useState('');
 
 
   /**
@@ -129,7 +130,8 @@ const ContributeComponent: React.FunctionComponent = () => {
    */
   const onSubmitClick = () => {
     setHasBeenSubmitted(true);
-    setJsonBlob('');
+    setYmlBlob('');
+    setPreviewUrl('');
   };
 
 
@@ -145,14 +147,23 @@ const ContributeComponent: React.FunctionComponent = () => {
 
     const [, packId, packKey] = matches;
 
-    setJsonBlob(JSON.stringify({
+    const tags = R.uniq(values.tags
+      .split(',')
+      .map(tag => tag.trim())
+      .filter(tag => tag.length));
+
+    setYmlBlob(yaml.safeDump({
       [packId]: {
         key: packKey,
         source: values.source,
-        tags: values.tags,
+        tags,
         nsfw: values.isNsfw === 'true' ? true : false
       }
     }, null, 2).trim());
+
+    setPreviewUrl(
+      `https://signalstickers.com/pack/${packId}?key=${packKey}`
+    );
 
     return true;
   };
@@ -292,7 +303,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                 <div className="form-row">
                   <div className="col-12">
                     <button type="submit" className="btn btn-primary btn-block" disabled={isSubmitting || isValidating} onClick={onSubmitClick}>
-                      Generate JSON
+                      Generate YML
                     </button>
                   </div>
                 </div>
@@ -304,21 +315,35 @@ const ContributeComponent: React.FunctionComponent = () => {
         </div>
       </div>
 
-      {/* Rendered JSON Output */}
-      {jsonBlob ?
+      {/* Rendered YML Output */}
+      {ymlBlob ?
       <>
         <div className="row">
           <div className="col-12">
             <hr />
             <p className="mt-4 mb-4">
-              Great! Below is the JSON blob you will need to add to <code>stickers.json</code> in the <a href="https://github.com/romainricard/signalstickers/edit/master/stickers.json">Signal Stickers repository</a>.
+              Great! Below is the YML blob you will need to add at the end of <code>stickers.yml</code> in the <a href="https://github.com/romainricard/signalstickers/edit/master/stickers.yml" target="_blank" rel="noreferrer">Signal Stickers repository</a>.
             </p>
           </div>
         </div>
         <div className="row">
           <div className="col-12 col-md-10 offset-md-1">
             <div className="card">
-              <pre>{jsonBlob}</pre>
+              <pre className="p-2 mb-0">{ymlBlob}</pre>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <p className="mt-4 mb-4">
+              Please also include this link in your Pull Request description, as it allows us to review your pack easily!
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12 col-md-10 offset-md-1">
+            <div className="card">
+              <pre className="p-2 mb-0">{previewUrl}</pre>
             </div>
           </div>
         </div>

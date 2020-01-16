@@ -7,6 +7,7 @@ import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import FetchStickerDataPlugin from 'plugins/FetchStickerDataPlugin';
 
 
 /**
@@ -104,9 +105,9 @@ export default (env: string, argv: any): webpack.Configuration => {
     }]
   });
 
-  // Text & Protobuf files.
+  // Text files.
   config.module.rules.push({
-    test: /\.(txt|proto)$/,
+    test: /\.txt$/,
     use: [{
       loader: 'raw-loader'
     }]
@@ -210,6 +211,11 @@ export default (env: string, argv: any): webpack.Configuration => {
     }));
   }
 
+  config.plugins.push(new FetchStickerDataPlugin({
+    inputFile: path.resolve(PKG_ROOT, 'stickers.yml'),
+    outputFile: 'stickerData.json'
+  }));
+
 
   // ----- Dev Server ----------------------------------------------------------
 
@@ -252,7 +258,7 @@ export default (env: string, argv: any): webpack.Configuration => {
           minChunks: 1
         },
         data: {
-          test: /src\/.(json|proto)$/,
+          test: /src\/.json$/,
           name: 'data',
           chunks: 'all',
           minChunks: 1
