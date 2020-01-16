@@ -113,7 +113,7 @@ export default class FetchStickerDataPlugin {
 
   apply(compiler: webpack.Compiler) {
     compiler.hooks.emit.tapPromise('FetchStickerDataPlugin', async compilation => {
-      const json = JSON.stringify(await getAllStickerPacks(this.inputFile), null, 2);
+      const json = JSON.stringify(await getAllStickerPacks(this.inputFile));
 
       compilation.assets[this.outputFile] = {
         source: () => json,
