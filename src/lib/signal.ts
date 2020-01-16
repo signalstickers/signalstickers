@@ -87,24 +87,21 @@ export async function getStickerPackManifest(id: string, key: string): Promise<S
  * Note: Web users who want to use this data to render an image will need to
  * prefix this string with "data:image/webp;base64,".
  */
-export async function getStickerInPack(id: string, key: string, stickerId: number | 'cover'): Promise<Uint8Array> {
+export async function getStickerInPack(id: string, key: string, stickerId: number): Promise<Uint8Array> {
   const cacheKey = `${id}-${stickerId}`;
 
   if (!stickerImageCache.has(cacheKey)) {
     stickerImageCache.set(cacheKey, new Promise(async (resolve, reject) => {
       try {
-        const packManifest = await getStickerPackManifest(id, key);
-        const finalStickerId = stickerId === 'cover' ? packManifest.cover.id : stickerId;
-
         const res = await axios({
           method: 'GET',
           responseType: 'arraybuffer',
-          url: `https://cdn-ca.signal.org/stickers/${id}/full/${finalStickerId}`
+          url: `https://cdn-ca.signal.org/stickers/${id}/full/${stickerId}`
         });
 
         const stickerManifest = await decryptManifest(key, res.data);
         const rawWebpData = new Uint8Array(stickerManifest, 0, stickerManifest.byteLength);
-        // const base64Data = btoa(String.fromCharCode.apply(undefined, arrayBufferView));
+
         resolve(rawWebpData);
       } catch (err) {
         reject(err);
@@ -120,11 +117,10 @@ export async function getStickerInPack(id: string, key: string, stickerId: numbe
  * Provided a sticker pack ID, key, and sticker ID, returns the emoji associated
  * with the sticker.
  */
-export async function getEmojiForSticker(id: string, key: string, stickerId: number | 'cover'): Promise<string> {
+export async function getEmojiForSticker(id: string, key: string, stickerId: number): Promise<string> {
   const packManifest = await getStickerPackManifest(id, key);
-  const finalStickerId = stickerId === 'cover' ? packManifest.cover.id : stickerId;
 
-  const sticker = packManifest.stickers.find(curSticker => curSticker.id === finalStickerId);
+  const sticker = packManifest.stickers.find(curSticker => curSticker.id === stickerId);
 
   if (!sticker) {
     throw new Error(`Sticker pack ${id} has no sticker with ID ${stickerId}.`);

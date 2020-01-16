@@ -12,7 +12,7 @@ import {getConvertedStickerInPack, getEmojiForSticker} from 'lib/stickers';
 export interface Props {
   packId: string;
   packKey: string;
-  stickerId: number | 'cover';
+  stickerId: number;
 }
 
 

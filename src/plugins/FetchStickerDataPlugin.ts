@@ -65,7 +65,7 @@ async function getAllStickerPacks(inputFile: string): Promise<Array<StickerPackP
           // To keep the size of the generated JSON file small, only extract
           // the properties from the manifest that we need to generate a list
           // of search results.
-          manifest: R.pick(['title', 'author'], stickerPackManifest)
+          manifest: R.pick(['title', 'author', 'cover'], stickerPackManifest)
         };
 
         await fs.writeJson(cachePath, stickerPackPartial);

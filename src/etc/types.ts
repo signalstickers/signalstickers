@@ -95,5 +95,5 @@ export interface StickerPack {
  */
 export interface StickerPackPartial {
   meta: StickerPack['meta'];
-  manifest: Pick<StickerPackManifest, 'title' | 'author'>;
+  manifest: Pick<StickerPackManifest, 'title' | 'author' | 'cover'>;
 }

@@ -122,24 +122,14 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
  * sticker) queries the Signal API and resolves with a base-64 encoded string
  * representing the image data for the indicated sticker.
  */
-export async function getConvertedStickerInPack(id: string, key: string, stickerId: number | 'cover'): Promise<string> {
+export async function getConvertedStickerInPack(id: string, key: string, stickerId: number): Promise<string> {
   try {
     const cacheKey = `${id}-${stickerId}`;
 
     const imageFromCache = await stickerImageCache.getItem<string | undefined>(cacheKey);
 
     if (!imageFromCache) {
-      // Before we can make the request, we need to get the pack's information
-      // using getStickerPack.
-      const stickerPack = await getStickerPack(id, key);
-
-      if (!stickerPack) {
-        throw new Error(`[getStickerInPack] Unable to get sticker ${stickerId} in pack ${id}.`);
-      }
-
-      const finalStickerId = stickerId === 'cover' ? stickerPack.manifest.cover.id : stickerId;
-
-      const rawImageData = await getStickerInPack(id, key, finalStickerId);
+      const rawImageData = await getStickerInPack(id, key, stickerId);
       const convertedImage = await convertImage(rawImageData);
       await stickerImageCache.setItem(cacheKey, convertedImage);
 
