@@ -44,20 +44,25 @@ function hexToArrayBuffer(hexString: string) {
  * See: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/deriveKey
  */
 async function deriveKeys(encodedKey: string) {
+  const hash = 'SHA-256';
+  const length = 512;
+  const salt = new ArrayBuffer(32);
+  const info = 'Sticker Pack';
+
   if (IS_BROWSER) {
     const masterKey = await window.crypto.subtle.importKey('raw', hexToArrayBuffer(encodedKey), 'HKDF', false, ['deriveKey']);
 
     const algorithm: HkdfParams = {
       name: 'HKDF',
-      hash: 'SHA-256',
-      salt: new ArrayBuffer(32),
-      info: new TextEncoder().encode('Sticker Pack')
+      hash,
+      salt,
+      info: new TextEncoder().encode(info)
     };
 
     const derivedKeyAlgorithm = {
       name: 'HMAC',
-      hash: 'SHA-256',
-      length: 512
+      hash,
+      length
     };
 
     // @ts-ignore (The typedef for the SubtleCrypto API incorrectly states that
@@ -69,12 +74,7 @@ async function deriveKeys(encodedKey: string) {
     return [derivedKeyBytes.slice(0, 32), derivedKeyBytes.slice(32, 64)];
   } else { // tslint:disable-line unnecessary-else
     const masterKey = Buffer.from(encodedKey, 'hex');
-    const hash = 'SHA-256';
-    const length = 512;
-    const info = 'Sticker Pack';
-    const salt = new ArrayBuffer(32);
-    // @ts-ignore
-    const derivedKey = (await hkdf.compute(masterKey, hash, length, info, salt)).key;
+    const derivedKey = (await hkdf.compute(masterKey, hash, length, info, salt as Uint8Array)).key;
     return [derivedKey.slice(0, 32), derivedKey.slice(32, 64)];
   }
 }
@@ -112,12 +112,12 @@ export async function decryptManifest(encodedKey: string, rawManifest: any) {
       const combinedCipherText = rawManifest.slice(0, rawManifest.byteLength - 32);
 
       // Validate signature
-      const computedMac = crypto.createHmac('sha256', hmacKey).update(combinedCipherText).digest('hex');
+      const computedMac = crypto.createHmac('sha256', hmacKey as any).update(combinedCipherText).digest('hex');
       if (theirMac !== computedMac) {
         throw new Error(`MAC verification failed.`);
       }
 
-      const decipher = crypto.createDecipheriv('aes-256-cbc', aesKey, theirIv);
+      const decipher = crypto.createDecipheriv('aes-256-cbc', aesKey as any, theirIv);
       return Buffer.concat([decipher.update(cipherTextBody), decipher.final()]);
     }
   } catch (err) {
