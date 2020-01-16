@@ -4,7 +4,7 @@ import {styled} from 'linaria/react';
 import Octicon from 'react-octicon';
 import useAsyncEffect from 'use-async-effect';
 
-import {getStickerInPack, getEmojiForSticker} from 'lib/stickers';
+import {getConvertedStickerInPack, getEmojiForSticker} from 'lib/stickers';
 
 
 // ----- Props -----------------------------------------------------------------
@@ -12,7 +12,7 @@ import {getStickerInPack, getEmojiForSticker} from 'lib/stickers';
 export interface Props {
   packId: string;
   packKey: string;
-  stickerId: number | 'cover';
+  stickerId: number;
 }
 
 
@@ -62,7 +62,7 @@ const StickerComponent: React.FunctionComponent<Props> = ({packId, packKey, stic
       stickerResult
     ] = await Promise.all([
       getEmojiForSticker(packId, packKey, stickerId),
-      getStickerInPack(packId, packKey, stickerId)
+      getConvertedStickerInPack(packId, packKey, stickerId)
     ]);
 
     setEmoji(emojiResult);

@@ -65,7 +65,7 @@ const FooterComponent: React.FunctionComponent = props => {
             <div className="col-12 col-md-6 about">
               <h1 className="mb-4">About</h1>
               <p>
-                Browse and download more than 100 sticker packs for Signal, the secure messenger. These
+                Browse and download more than 1000 sticker packs for Signal, the secure messenger. These
                 stickers are created by the community; the maintainers of this website do not claim any
                 rights. <strong>This site is not affiliated with Signal</strong>.
               </p>

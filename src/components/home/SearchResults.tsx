@@ -26,7 +26,7 @@ const StickerPackList = styled.div`
 /**
  * How many items we will load each time loadMore() is called.
  */
-const PAGE_SIZE = 32;
+const PAGE_SIZE = 64;
 
 
 const StickerPackListComponent = () => {
@@ -73,7 +73,7 @@ const StickerPackListComponent = () => {
           <StickerPackPreviewCard stickerPack={{meta, manifest}} />
         </Link>
       ))}
-      <Waypoint key={cursor} onEnter={loadMore} />
+      <Waypoint key={cursor} onEnter={loadMore} bottomOffset="-500px" />
     </StickerPackList>
   );
 };

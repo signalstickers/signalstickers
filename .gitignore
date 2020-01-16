@@ -87,10 +87,11 @@ typings/
 # next.js build output
 .next
 
-# Build artifacts
+# Build artifacts.
 /dist
 
 # Linaria's cache directory.
 /.linaria-cache
 
-/NOTES.md
+# Cache directory for FetchStickerDataPlugin.
+/.sticker-pack-cache

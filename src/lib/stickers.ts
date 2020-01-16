@@ -12,39 +12,38 @@
 import axios from 'axios';
 import FuzzySearch from 'fuzzy-search';
 import LocalForage from 'localforage';
-import protobuf from 'protobufjs';
 import * as R from 'ramda';
 
-import {
-  StickerPackJson,
-  StickerPackMetadata,
-  StickerPackManifest,
-  StickerPack,
-  Sticker
-} from 'etc/types';
-import StickersProto from 'etc/Stickers.proto';
-import {convertImage} from 'lib/convert';
-import {decryptManifest} from 'lib/crypto';
+import {StickerPack, StickerPackPartial} from 'etc/types';
+import {convertImage} from 'lib/convert-image';
 import ErrorWithCode from 'lib/error';
+
+import {
+  getStickerPackManifest,
+  getStickerInPack,
+  getEmojiForSticker
+} from 'lib/signal';
 
 
 // ----- Locals ----------------------------------------------------------------
 
 /**
- * Module-local gRPC client used to parse sticker pack manifests from the Signal
- * CDN.
+ * Promise that will resolve with the list of sticker packs enumerated in
+ * stickers.yaml. This collection will contain only those data from a
+ * StickerPack that we want to search on or that we need to display a sticker
+ * pack preview card. We use a promise here rather than the array itself to
+ * ensure that if multiple calls to getStickerPackDirectory are made before the
+ * initial request for stickerData.json resolves, we only make a single request
+ * and only populate the directory once.
  */
-const protobufClient = protobuf.parse(StickersProto).root;
+let stickerPackDirectoryPromise: Promise<Array<StickerPackPartial>>;
+
 
 /**
- * Module-local in-memory copy of stickerData.json, ensures we only load it once.
+ * In-memory cache of StickerPack objects.
  */
-let stickerPackListCache: Array<StickerPack> = [];
+const stickerPackCache = new Map<string, StickerPack>();
 
- /**
-  * Module-local in-memory cache used for sticker pack data from the Signal API.
-  */
-let stickerPackCache = new Map<string, StickerPackManifest>();
 
 /**
  * Module-local browser-storage-backed cache used for sticker image data.
@@ -57,78 +56,63 @@ const stickerImageCache = LocalForage.createInstance({
 
 // ----- Functions -------------------------------------------------------------
 
-async function warmCachesIfNecessary() {
-  if (stickerPackListCache.length !== 0) {
-    return;
-  }
-
-  const res = await axios({
-    method: 'GET',
-    url: 'stickerData.json'
-  });
-
-  stickerPackListCache = res.data as Array<StickerPack>;
-
-  // Warm sticker manifest map.
-  stickerPackCache = R.reduce((result, value) => {
-    result.set(value.meta.id, value.manifest);
-    return result;
-  }, new Map<string, StickerPackManifest>(), stickerPackListCache);
-}
-
 /**
- * Loads and transforms stickers.json, which is the source of truth regarding
- * all sticker packs included in the application.
+ * Resolves with a list of StickerPackPartial objects.
  */
-export async function getStickerPackList(): Promise<Array<StickerPackMetadata>> {
-  await warmCachesIfNecessary();
-  return stickerPackListCache;
-}
-
-
-/**
- * Provided a key and an encrypted manifest from the Signal API, resolves with a
- * decrypted and parsed manifest.
- */
-export async function parseManifest(key: string, rawManifest: any): Promise<StickerPackManifest> {
-  try {
-    const manifest = await decryptManifest(key, rawManifest);
-    const PackMessage = protobufClient.lookupType('Pack');
-    const manifestData = new Uint8Array(manifest, 0, manifest.byteLength);
-    return PackMessage.decode(manifestData) as unknown as StickerPackManifest;
-  } catch (err) {
-    throw new ErrorWithCode(err.code || 'MANIFEST_PARSE', `[parseManifest] ${err.message}`);
-  }
-}
-
-
-/**
- * Provided a sticker pack ID and key, queries the Signal API and resolves with
- * a parsed manifest.
- */
-export async function getStickerPack(id: string, key: string, fetchStickersIfNecessary: boolean | false): Promise<StickerPackManifest> {
-  try {
-    await warmCachesIfNecessary();
-
-    const cacheKey = id;
-
-    const hasCachedPack = stickerPackCache.has(cacheKey);
-    const hasStickers = hasCachedPack && stickerPackCache.get(cacheKey).stickers;
-
-    if (!hasCachedPack || (fetchStickersIfNecessary && !hasStickers)) {
-      const res = await axios({
+export async function getStickerPackDirectory(): Promise<Array<StickerPackPartial>> {
+  if (!stickerPackDirectoryPromise) {
+    stickerPackDirectoryPromise = new Promise(async (resolve, reject) => {
+      const res = await axios.request<Array<StickerPackPartial>>({
         method: 'GET',
-        responseType: 'arraybuffer',
-        url: `https://cdn-ca.signal.org/stickers/${id}/manifest.proto`
+        url: 'stickerData.json'
       });
 
-      const manifest = await parseManifest(key, res.data);
-      stickerPackCache.set(cacheKey, manifest);
+      resolve(res.data);
+    });
+  }
+
+  return stickerPackDirectoryPromise;
+}
+
+
+/**
+ * Provided a sticker pack ID and optional key, queries the Signal API and
+ * resolves with 'full' StickerPack object.
+ */
+export async function getStickerPack(id: string, key?: string): Promise<StickerPack> {
+  try {
+    if (!stickerPackCache.has(id)) {
+      const directory = await getStickerPackDirectory();
+
+      // Build the metadata object using information from a StickerPackPartial
+      // in the directory or, if the requested sticker pack is unlisted, just
+      // the id and key.
+      const partial = R.find(R.pathEq(['meta', 'id'], id), directory);
+      const meta = partial ? partial.meta : {id, key};
+
+      const finalKey = key ?? meta.key;
+
+      if (!finalKey) {
+        throw new ErrorWithCode('NO_KEY_PROVIDED', `No key provided for unlisted pack: ${id}.`);
+      }
+
+      const manifest = await getStickerPackManifest(id, finalKey);
+
+      const stickerPack: StickerPack = {
+        meta,
+        manifest
+      };
+
+      stickerPackCache.set(id, stickerPack);
     }
 
-    return stickerPackCache.get(cacheKey) as StickerPackManifest;
+    return stickerPackCache.get(id) as StickerPack;
   } catch (err) {
-    throw new ErrorWithCode(err.code, `[getStickerPack] ${err.message}`);
+    if (err.isAxiosError && err.response.status === 403) {
+      throw new ErrorWithCode('MANIFEST_DECRYPT', `[getStickerPack] ${err.stack}`);
+    }
+
+    throw new ErrorWithCode(err.code, `[getStickerPack] ${err.stack}`);
   }
 }
 
@@ -138,59 +122,23 @@ export async function getStickerPack(id: string, key: string, fetchStickersIfNec
  * sticker) queries the Signal API and resolves with a base-64 encoded string
  * representing the image data for the indicated sticker.
  */
-export async function getStickerInPack(id: string, key: string, stickerId: number | 'cover'): Promise<string> {
+export async function getConvertedStickerInPack(id: string, key: string, stickerId: number): Promise<string> {
   try {
     const cacheKey = `${id}-${stickerId}`;
 
-    const item = await stickerImageCache.getItem<string | undefined>(cacheKey);
+    const imageFromCache = await stickerImageCache.getItem<string | undefined>(cacheKey);
 
-    if (!item) {
-      // Before we can make the request, we need to get the pack's information
-      // using getStickerPack.
-      const stickerPack = await getStickerPack(id, key);
-
-      if (!stickerPack) {
-        throw new Error(`[getStickerInPack] Unable to get sticker ${stickerId} in pack ${id}.`);
-      }
-
-      const finalStickerId = stickerId === 'cover' ? stickerPack.cover.id : stickerId;
-
-      const res = await axios({
-        method: 'GET',
-        responseType: 'arraybuffer',
-        url: `https://cdn-ca.signal.org/stickers/${id}/full/${finalStickerId}`
-      });
-
-      const manifest = await decryptManifest(key, res.data);
-      const arrayBufferView = new Uint8Array(manifest, 0, manifest.byteLength);
-      const convertedImage = await convertImage(arrayBufferView);
+    if (!imageFromCache) {
+      const rawImageData = await getStickerInPack(id, key, stickerId);
+      const convertedImage = await convertImage(rawImageData);
       await stickerImageCache.setItem(cacheKey, convertedImage);
+
+      return convertedImage;
     }
 
-    return item || await stickerImageCache.getItem<string>(cacheKey);
+    return await stickerImageCache.getItem<string>(cacheKey);
   } catch (err) {
     throw new Error(`[getStickerInPack] Error getting sticker: ${err.message}`);
-  }
-}
-
-
-/**
- * Provided a sticker pack ID, key, and sticker ID, returns the emoji associated
- * with the sticker.
- */
-export async function getEmojiForSticker(id: string, key: string, stickerId: number | 'cover') {
-  try {
-    const stickerPack = await getStickerPack(id, key);
-    const finalStickerId = stickerId === 'cover' ? stickerPack.cover.id : stickerId;
-    const sticker = R.find<Sticker>(R.propEq('id', finalStickerId), stickerPack.stickers);
-
-    if (!sticker) {
-      throw new Error(`Sticker pack ${id} has no sticker with ID ${stickerId}.`);
-    }
-
-    return sticker.emoji;
-  } catch (err) {
-    throw new Error(`[getEmojiForSticker] ${err.stack}`);
   }
 }
 
@@ -204,3 +152,8 @@ export function fuzzySearchStickerPacks(needle: string, haystack: Array<StickerP
   const searcher = new FuzzySearch(haystack, searchKeys, {caseSensitive: false});
   return searcher.search(needle);
 }
+
+
+export {
+  getEmojiForSticker
+};
