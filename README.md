@@ -1,3 +1,5 @@
+[🇩🇪 DE](README.de.md) [🇫🇷 FR](README.fr.md) 
+
 # Signal stickers gallery
 
 ## About
@@ -53,8 +55,6 @@ This is not the goal of this project :-)
 - Head to the [Sticker pack collection
   thread](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650)
   on the [Signal Community forum](https://community.signalusers.org);
-- Visit [signal-stickers.github.io](https://signal-stickers.github.io/), that
-  ported stickers packs from Telegram;
 - Search Twitter for the
   [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick) hashtag.
 
@@ -62,7 +62,7 @@ This is not the goal of this project :-)
 **No**. This project is and will remain open-source.
 
 
-### Who build this?
+### Who built this?
 [@romainricard](https://github.com/romainricard),
 [@darkobits](https://github.com/darkobits),
 [@valkheim](https://github.com/valkheim),
@@ -71,7 +71,8 @@ This is not the goal of this project :-)
 [@u32i64](https://github.com/u32i64) participated to the conception and the
 code.
 
-The stickers were added [by the community](https://github.com/romainricard/signalstickers/graphs/contributors).
+The stickers were added [by the community](https://github.com/romainricard/signalstickers/graphs/contributors).  
+The stickers from Telegram were ported by [@signal-stickers](https://github.com//signal-stickers).
 
 ## License
 See [LICENSE.md](LICENSE.md).
