@@ -72,7 +72,7 @@ This is not the goal of this project :-)
 code.
 
 The stickers were added [by the community](https://github.com/romainricard/signalstickers/graphs/contributors).  
-The stickers from Telegram were ported by [@signal-stickers](https://github.com//signal-stickers).
+The stickers from Telegram were ported by [@signal-stickers](https://github.com/signal-stickers).
 
 ## License
 See [LICENSE.md](LICENSE.md).
