@@ -118,11 +118,33 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
 
 
 /**
+ * [private]
+ *
+ * Returns true if the provided error was thrown because the browser is blocking
+ * use of local storage and/or other storage backends.
+ */
+function isStorageUnavailableError(err: any) {
+  const patterns = [
+    // Firefox in private mode.
+    /the quota has been exceeded/ig
+  ];
+
+  if (err && err.message) {
+    return Boolean(R.find(curPattern => R.test(curPattern, err.message), patterns));
+  }
+
+  return false;
+}
+
+
+/**
  * Provided a sticker pack ID and a sticker ID (or 'cover' for the pack's cover
  * sticker) queries the Signal API and resolves with a base-64 encoded string
  * representing the image data for the indicated sticker.
  */
 export async function getConvertedStickerInPack(id: string, key: string, stickerId: number): Promise<string> {
+  let convertedImage = '';
+
   try {
     const cacheKey = `${id}-${stickerId}`;
 
@@ -130,7 +152,9 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
 
     if (!imageFromCache) {
       const rawImageData = await getStickerInPack(id, key, stickerId);
-      const convertedImage = await convertImage(rawImageData);
+      convertedImage = await convertImage(rawImageData);
+
+      // This line may throw when in private mode in certain browsers.
       await stickerImageCache.setItem(cacheKey, convertedImage);
 
       return convertedImage;
@@ -138,8 +162,14 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
 
     return await stickerImageCache.getItem<string>(cacheKey);
   } catch (err) {
-    throw new Error(`[getStickerInPack] Error getting sticker: ${err.message}`);
+    if (!isStorageUnavailableError(err)) {
+      throw new Error(`[getConvertedStickerInPack] Error getting sticker: ${err.message}`);
+    }
   }
+
+  // This should only be reachable if we got a "storage unavailable error", in
+  // which case return the converted image.
+  return convertedImage;
 }
 
 
