@@ -3,6 +3,7 @@ import findUp from 'find-up';
 import fs from 'fs-extra';
 import yaml from 'js-yaml';
 import pQueue from 'p-queue';
+import pRetry from 'p-retry';
 import ProgressBar from 'progress';
 import * as R from 'ramda';
 import webpack from 'webpack';
@@ -44,13 +45,13 @@ async function getAllStickerPacks(inputFile: string): Promise<Array<StickerPackP
 
   const bar = new ProgressBar('[FetchStickerDataPlugin] [:bar] :current / :total', {
     total: stickerPackEntries.length,
-    width: 80,
+    width: 64,
     clear: true,
     head: '>'
   });
 
   await requestQueue.addAll(stickerPackEntries.map(([id, meta], index) => {
-    return async () => {
+    return () => pRetry(async () => {
       const cachePath = path.resolve(cacheDir, `${id}.json`);
       const cacheHasPack = await fs.pathExists(cachePath);
       let stickerPackPartial: StickerPackPartial;
@@ -73,7 +74,7 @@ async function getAllStickerPacks(inputFile: string): Promise<Array<StickerPackP
 
       stickerPackPartials.push(stickerPackPartial);
       bar.tick();
-    };
+    }, {retries: 2});
   }));
 
   console.log('[FetchStickerDataPlugin] Done.\n');
