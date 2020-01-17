@@ -46,8 +46,7 @@ pour télécharger vos stickers sur Signal.
 > blanc pour améliorer la lisibilité sur les thèmes sombres ! Vous pouvez
 > utiliser [ce script](https://gist.github.com/ondondil/4b8564b404696b3255253b467b413de9#gistcomment-3118471).
 
-### Dois-je ajouter mon pack d'autocollants sur ce site pour le partager avec mes
-amis ?
+### Dois-je ajouter mon pack d'autocollants sur ce site pour le partager avec mes amis ?
 
 **Non**. Vous pouvez simplement envoyer n'importe quel autocollant à vos amis et
 ils pourront installer le pack, ou vous pouvez partager votre pack
@@ -64,8 +63,8 @@ Ce n'est pas le but de ce projet :-)
 
 ### Où puis-je trouver d'autres autocollants ?
 
-+ Rendez-vous sur le [fil de discussion de la collection de packs d'autocollants](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650)
-    sur le [forum de la communauté Signal](https://community.signalusers.org/) ;
++ Rendez-vous sur le [fil de la collection de packs d'autocollants](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650)
+  sur le [forum de la communauté Signal](https://community.signalusers.org/) ;
 + Cherchez sur Twitter le hashtag [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick).
 
 ### Est-ce un projet commercial ?
