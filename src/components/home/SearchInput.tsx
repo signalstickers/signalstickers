@@ -30,8 +30,13 @@ const SearchInput = styled.div`
       font-weight: 400;
     }
   }
-`;
 
+  & .badge-signal{
+    color: ${SIGNAL_BLUE};
+    border: 1px solid ${SIGNAL_BLUE};
+    margin-right: 5px;
+  }
+`;
 
 // ----- Component -------------------------------------------------------------
 
@@ -39,6 +44,7 @@ const SearchInputComponent: React.FunctionComponent = () => {
   const {allStickerPacks, searchQuery, setSearchQuery} = useContext(StickersContext);
   const [searchQueryInputValue, setSearchQueryInputValue] = useState('');
   const {breakpoint} = useBreakpoint(BOOTSTRAP_BREAKPOINTS, 'xl');
+  const suggestedTags = ['cute', 'privacy', 'meme', 'for children'];
 
 
   /**
@@ -58,6 +64,13 @@ const SearchInputComponent: React.FunctionComponent = () => {
     setSearchQueryInputValue(value);
   }
 
+  function onTagClick(event: React.SyntheticEvent) {
+    setSearchQueryInputValue(event.currentTarget.textContent);
+  }
+
+  const tags = suggestedTags.map(tag =>
+    <a href="#" className="badge badge-signal" onClick={onTagClick}>{tag}</a>
+  );
 
   /**
    * [Event Handler] Clears our context's search query state.
@@ -126,6 +139,10 @@ const SearchInputComponent: React.FunctionComponent = () => {
               </button>
             </div>
           </div>
+        </div>
+        <br/>
+        <div>
+          <small>Lost? Why not start with these tags?</small> {tags}
         </div>
       </div>
     </SearchInput>

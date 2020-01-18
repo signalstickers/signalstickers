@@ -8,7 +8,10 @@ ae1d343accdec586fe19954a6be7aee9:
 4830e258138fca961ab2151d9596755c:
   key: 87078ee421bad8bf44092ca72166b67ae5397e943452e4300ced9367b7f6a1a1
   source: 'https://twitter.com/bitsoffreedom/status/1209384967593222145'
-  tags: []
+  tags:
+    - privacy
+    - internet
+    - freedom
   nsfw: false
 123f678abcef7a39c0e710c051c68ae8:
   key: 84e89503556fa3568485a89d113b70ff73a8822a6c9c5c524ba2c7428007551d
@@ -38,7 +41,8 @@ ae1d343accdec586fe19954a6be7aee9:
 29f4f97db620c6b6885d1e56e26a934e:
   key: 7a3bf9d6a68f3e9444dc07f4cc83704838d754a0425aecc9c56469ebeb092b44
   source: ''
-  tags: []
+  tags:
+    - for children
   nsfw: false
 2bfb1518bbb02524383f2264bfe91529:
   key: c4d65a07c6f3791960765ad6ef7a243edad154a8eb08f984e10ebc6ffee47969
@@ -126,7 +130,8 @@ cbc0261b03b764bc31b73118bce2905b:
 7aea4fcc7eebc6110213df4196ecf0c9:
   key: 30c9970d34cb7e8bdae2c7d92cbb14ab53b994affa4e622988594b336fb33c2a
   source: ''
-  tags: []
+  tags:
+    - for children
   nsfw: false
 7c7d3c102be96e72c463b455e30a13e3:
   key: 186a3a149c1844fb49613842f15233519b2836fa48e34bf7feb61538b6824226
@@ -285,11 +290,6 @@ e7685b9eb64b8552b42661cb579b0070:
   source: ''
   tags: []
   nsfw: true
-e7b301b0b91a45db4e4fb1b19a3c8d88:
-  key: f4910a1f9cce06082520603def58ef136754010243885cdfb0265297105ca282
-  source: ''
-  tags: []
-  nsfw: false
 e9842690774b65b643df1e5e24af7c9b:
   key: 45040248f815b63bb534789b99b01e156b6d08e9bf45da8b9c4dba150c7d7a94
   source: ''
@@ -388,7 +388,10 @@ b70e07f4ce2452e9e07b5818c8d755d3:
 3899da794ca964674da70b8d09b95a32:
   key: b1a89fc34af0216b9c6bf6a204e5955131cfccd24601135ea114aecfbe6c4591
   source: ''
-  tags: []
+  tags:
+    - cyber
+    - privacy
+    - internet
   nsfw: false
 8eb47ef126f15d1ca989906c109c18eb:
   key: 61ff6b2c4f974baabc2d41bbe919dab2b223cf4e168fa07b3d5998245101c543
@@ -516,7 +519,8 @@ cd159ee0188e35d5f76967c92cdcf7f7:
 1185d9efcb551b811b2ee9c42b496bf0:
   key: e9da842c0775907ee8b2866c1f1e5ad7d5f067f01a5a601a8434fec0f737ae79
   source: ''
-  tags: []
+  tags:
+    - for children
   nsfw: false
 b867190ab45f6e4f1e8b55db0895bbb7:
   key: 16a284f4759a1d0e614967604a3d770d6e6f5dadac01f4d4b7b8e0cda8688dc7
@@ -923,6 +927,7 @@ a6d9d827b714e5acf1e03a0dceb7a6f3:
     - whatsapp
     - facebook
     - meta
+    - privacy
   nsfw: false
 ce83961e7bffdb0cfbc9b0c614252cdf:
   key: 10b2e91aa996bfdc05cd0950cc0967d454bd798068cfb1f26988fd7c5469bcee
@@ -1775,7 +1780,6 @@ d44ce6386a5493f259d9439a96ac41c0:
     - cartoon
     - princess
     - disney
-    - for children
     - telegram
   nsfw: false
 9b51aaedfc23aa08cb4223dee15bdd58:
@@ -2628,7 +2632,7 @@ fc1d1820e6ad5d46e9945d6a4b1d71a4:
   key: 3f170b261937597be6edccbcd6ec3faf296dc373a9f7c098f9565eeac30da821
   source: 'https://tlgrm.eu/stickers'
   tags:
-    - Carmelo_By_Osmer
+    - Osmer
     - животные
     - animals
     - ящерица
@@ -3635,19 +3639,6 @@ d332bcd24f6af8fabf0c7c1a4274e1dd:
     - DC
     - telegram
   nsfw: false
-fc766a82c7b11cda726416f393a3d068:
-  key: c9de983fe48ad8577f2e98959ae7795c7518269657e4d1741018cd16c2372c18
-  source: 'https://tlgrm.eu/stickers'
-  tags:
-    - EeZee Stickers
-    - DRAKE_4eeZee
-    - музыка
-    - рэп
-    - music
-    - rap
-    - DRAKE @eeZee_4stickers
-    - telegram
-  nsfw: false
 eb26cec5457c0b7db40d118aef6a47b5:
   key: 8274e00cd29c6970fcbf73291683bdb30ac115576013bfc1622a91046e3529c7
   source: 'https://tlgrm.eu/stickers'
@@ -4005,6 +3996,7 @@ ba0a96da500e96c58eb3f1c3f377c4b2:
     - february 14
     - valentine's day
     - Donald and Daisy
+    - for children
   nsfw: false
 b66bc2f676336e60ba4a96282b8664ab:
   key: 62f1411036122cd00f0969347c8ad2bd0b79bb4a6f2fc1c77d3dc9deced2120b
@@ -4023,6 +4015,7 @@ b66bc2f676336e60ba4a96282b8664ab:
     - animals
     - forkids
     - Dumbo
+    - for children
   nsfw: false
 92e34e2317ca47641d2d0bbdbd22480a:
   key: e9b5ed2dd658cd8e09151bd88a4e8de294be4fc182d4c289c83376f2e03d6763
@@ -6574,6 +6567,7 @@ c452310f0f18aa65d20386abc5045f83:
     - valentine's day
     - forkids
     - Lady and the Tramp
+    - for children
   nsfw: false
 8e2e0edefd56ebb3f73c10563bebeffd:
   key: 3adc6ba813883c837d568184632862279ce3c55db35bfd77741852b742e066da
@@ -7205,6 +7199,7 @@ fac8e5f4810a2400ec2c9cb1ee283fef:
     - cartoon
     - длядетей
     - Cookie Monster
+    - for children
   nsfw: false
 1fddae3a57030084ac4874ac2040500d:
   key: efc44cf726d5821cfcfc28f68e7823de79a1890f0a1e18dc3ee4a2552b0fb5c8
@@ -8715,6 +8710,7 @@ e5fffc2834d2c54dd7decb87534a7440:
     - telegram team
     - SquarePants
     - telegram
+    - for children
   nsfw: false
 6023f7540bd1385c4c648b0b0ea5b353:
   key: a0ae7937713afe64985e0f53eaacf7703a8e5fb9019faf48a44556801a58393d
@@ -9074,6 +9070,7 @@ a70eba5485a2ce310708fcefb056d073:
     - пони
     - Pinkie Pie Division
     - telegram
+    - for children
   nsfw: false
 fa58f41595aa60a55a0f59c56ebf7b49:
   key: 18634de66c04aa2c2d872900a9372838184690baa0beb31cf91fd51241c6c4dc
@@ -9478,7 +9475,7 @@ c26731fab6be8c5328a47ba35164dbb6:
     - winter
     - animals
     - new year
-    - crismas
+    - christmas
     - pumba timon
     - Hakuna Matata
     - telegram
