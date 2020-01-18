@@ -72,7 +72,10 @@ async function getAllStickerPacks(inputFile: string): Promise<Array<StickerPackP
         await fs.writeJson(cachePath, stickerPackPartial);
       }
 
-      stickerPackPartials.push(stickerPackPartial);
+      // Order partials in the reverse order of stickers.yml, so the most
+      // recently added pack is first (assuming stickers.yml is only ever
+      // appended to when new packs are added).
+      stickerPackPartials[stickerPackEntries.length - index - 1] = stickerPackPartial;
       bar.tick();
     }, {retries: 2});
   }));
