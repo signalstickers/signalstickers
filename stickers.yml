@@ -44,11 +44,6 @@ ae1d343accdec586fe19954a6be7aee9:
   tags:
     - for children
   nsfw: false
-2bfb1518bbb02524383f2264bfe91529:
-  key: c4d65a07c6f3791960765ad6ef7a243edad154a8eb08f984e10ebc6ffee47969
-  source: ''
-  tags: []
-  nsfw: false
 2e575897d248191bd03aaa5e0351f673:
   key: e0843a2da010cb403535aca515dc68294febaaaa09fc50cb2644535fe715f6ce
   source: ''
@@ -266,7 +261,8 @@ dd2076d5fe7558526ca9ff99274fb802:
 e182457d2e5d558d4d5ee14e5f2512f3:
   key: b7fcf9f50ac1b41a98e2aa74a88f9cd6e8b9aeffe59d7c31feefcc9b1c107bba
   source: ''
-  tags: []
+  tags:
+    - privacy
   nsfw: false
 e38a0fcdbd4c06e7e38aa038536877d2:
   key: 09287edff13d97320b94675836b9aaf51f4eec059e2d1fc1579d84985bb8a8d3
@@ -2684,6 +2680,7 @@ d6a9a92b9bef333c28b47ad507cf020b:
     - pusheen
     - Pusheen
     - telegram
+    - cute
   nsfw: false
 49075a7b0c8f8d6744c8e25e8c2806a7:
   key: 897905227cc3e4b5a65ea069397c419499d59c1b455c4502d0e537029d7758d5
@@ -9554,6 +9551,7 @@ e698e3db06db84afc17e558f9f4cc337:
     - pusheen
     - Pusheen 3.0
     - telegram
+    - cute
   nsfw: false
 649484a1b1f18789cb9d3553fe852496:
   key: 48ebbe4475bb5229f0349c8b15e8bf7addc48ad063022d43648b3d386fa72cff
@@ -16331,6 +16329,7 @@ b49aa220d21668d32690fd4a6db4768f:
     - pusheen
     - Pusheen 2.0
     - telegram
+    - cute
   nsfw: false
 ed7fbcec747903cec0a163e78cef4a46:
   key: cc0ad372eae3b8a9cb7dd2eb36393813726b4936ef6839b7f162e56ae3e215c0
@@ -16345,6 +16344,7 @@ ed7fbcec747903cec0a163e78cef4a46:
     - овервотч
     - Pusheen Overwatch by Eckru
     - telegram
+    - cute
   nsfw: false
 595e21848192d1d1a5033a64b5a951bf:
   key: 01c3214718b95f0edb37713a3680d859fe5b2c25400a8b2925ba911fe2f050d9
@@ -18159,4 +18159,26 @@ ec4a5b7794f3d20dc62f6eff6b198b50:
     - kokila
     - sadhu
     - annavaru
+  nsfw: false
+94d824e1be4c0a9a908976e9f8eb6e83:
+  key: 3c120aa5e9720373befe2982cee10f94b955004b689123c03c2b9b78e3d890a1
+  source: 'https://twitter.com/gts8675309/status/1216582431182147586'
+  tags: []
+  nsfw: false
+8557ce852e35e9e3e1ad93c89ed9119c:
+  key: 8cdd610475611fddf182dc16682327397d85d49c936cc817c0d67e55713ae46a
+  source: 'aamu : https://twitter.com/aamu26917951/status/1217796580578865152'
+  tags:
+    - drawing
+  nsfw: false
+e8745ee664a4287e10078906be665e52:
+  key: 7e089eec9357795af9a03e8632182cd77e4e48b3ec612436597d8c387a5c2618
+  source: 'https://twitter.com/patternsonmouse/status/1216614117026357248'
+  tags: []
+  nsfw: false
+d9df0a5a301c755a4f518cfb057abd38:
+  key: 24b9b2e3bdbdc01702d6a73b2c782b5199ea78a482d116df4686a2cf0f4405e1
+  source: ''
+  tags:
+    - parti pirate
   nsfw: false
