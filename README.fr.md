@@ -36,15 +36,19 @@ puisse parcourir les packs d'autocollants tranquillement.
 
 ## Questions fréquentes
 
-### Comment puis-je créer un pack d'autocollants ?
+### Comment puis-je créer un pack d'autocollants ?
 
 Suivez le tutoriel sur [le site de support de
 Signal](https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca)
 pour télécharger vos stickers sur Signal.
 
-> Note : lors de la création des stickers, n'oubliez pas d'ajouter un contour
+> Note : lors de la création des stickers, n'oubliez pas d'ajouter un contour
 > blanc pour améliorer la lisibilité sur les thèmes sombres ! Vous pouvez
 > utiliser [ce script](https://gist.github.com/ondondil/4b8564b404696b3255253b467b413de9#gistcomment-3118471).
+
+> Note : vous pouvez utiliser [ce projet](https://framagit.org/luc/stickerify-for-signal)
+> pour redimensionner automatiquement et ajouter un contour blanc sur toutes
+> les images PNG et WEBP d'un répertoire.
 
 ### Dois-je ajouter mon pack d'autocollants sur ce site pour le partager avec mes amis ?
 
