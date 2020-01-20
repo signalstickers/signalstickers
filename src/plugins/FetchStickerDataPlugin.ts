@@ -9,7 +9,7 @@ import * as R from 'ramda';
 import webpack from 'webpack';
 
 import {StickerPackPartial, StickerPackYaml} from 'etc/types';
-import {getStickerPackManifest} from 'lib/signal';
+import {getStickerPackManifest} from '@signalstickers/stickers-client';
 
 
 // ----- Locals ----------------------------------------------------------------

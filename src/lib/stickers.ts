@@ -22,7 +22,7 @@ import {
   getStickerPackManifest,
   getStickerInPack,
   getEmojiForSticker
-} from 'lib/signal';
+} from '@signalstickers/stickers-client';
 
 
 // ----- Locals ----------------------------------------------------------------
