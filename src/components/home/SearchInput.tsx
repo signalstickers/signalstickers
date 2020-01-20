@@ -112,39 +112,32 @@ const SearchInputComponent: React.FunctionComponent = () => {
   const placeholder = allStickerPacks ? `Search ${allStickerPacks.length} sticker packs...` : '';
 
   return (
-    <SearchInput className="row mb-4 mb-md-5">
-      <div className="col-12">
-        <div className="form-group m-0">
-          <div className={cx('input-group', ['md', 'lg', 'xl'].includes(breakpoint) && 'input-group-lg')}>
-            <div className="input-group-prepend">
-              <span className="input-group-text">
-                <Octicon name="search" />
-              </span>
-            </div>
-            <input
-              type="text"
-              key="search"
-              className="form-control"
-              onChange={onSearchQueryInputChange}
-              value={searchQueryInputValue}
-              placeholder={placeholder}
-              title="Search"
-              aria-label="search"
-              autoComplete="false"
-              spellCheck="false"
-            />
-            <div className="input-group-append">
-              <button className="input-group-text btn btn-light btn-sm" onClick={clearSearchResults} title="Clear Search Results">
-                &nbsp;<Octicon name="x" className="text-danger" />
-              </button>
-            </div>
-          </div>
+    <SearchInput className="form-group mb-4 mb-md-5">
+      <div className={cx('input-group', ['md', 'lg', 'xl'].includes(breakpoint) && 'input-group-lg')}>
+        <div className="input-group-prepend">
+          <span className="input-group-text">
+            <Octicon name="search" />
+          </span>
         </div>
-        <br/>
-        <div>
-          <small>Lost? Why not start with these tags?</small> {tags}
+        <input
+          type="text"
+          key="search"
+          className="form-control"
+          onChange={onSearchQueryInputChange}
+          value={searchQueryInputValue}
+          placeholder={placeholder}
+          title="Search"
+          aria-label="search"
+          autoComplete="false"
+          spellCheck="false"
+        />
+        <div className="input-group-append">
+          <button className="input-group-text btn btn-light btn-sm" onClick={clearSearchResults} title="Clear Search Results">
+            &nbsp;<Octicon name="x" className="text-danger" />
+          </button>
         </div>
       </div>
+      <small>Lost? Why not start with these tags?</small> {tags}
     </SearchInput>
   );
 };

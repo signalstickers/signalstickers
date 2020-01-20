@@ -1,41 +1,51 @@
-import React from 'react';
+import {hot} from 'react-hot-loader/root';
+import React, {Suspense} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from 'react-router-dom';
 
-import Navbar from 'components/layout/Navbar';
-import Home from 'components/home/Home';
-import StickerPackDetail from 'components/pack/StickerPackDetail';
-import Footer from 'components/layout/Footer';
 import {Provider as StickersContextProvider} from 'contexts/StickersContext';
-import Contribute from 'components/contribute/Contribute';
+import Navbar from 'components/layout/Navbar';
+import SuspenseFallback from 'components/layout/SuspenseFallback';
+
+// Note: Each top-level route should be imported az a lazy-loaded component.
+const About = React.lazy(() => import('components/about/About'));
+const Contribute = React.lazy(() => import('components/contribute/Contribute'));
+const Home = React.lazy(() => import('components/home/Home'));
+const Pack = React.lazy(() => import('components/pack/StickerPackDetail'));
 
 
 const App: React.FunctionComponent = () => {
   return (
-    <Router>
-      <StickersContextProvider>
-        <Navbar />
-        <div className="container">
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/pack/:packId">
-              <StickerPackDetail />
-            </Route>
-            <Route path="/contribute">
-              <Contribute />
-            </Route>
-          </Switch>
-        </div>
-        <Footer />
-      </StickersContextProvider>
-    </Router>
+    <React.StrictMode>
+      <Router>
+        <StickersContextProvider>
+          <Navbar />
+          <div className="container d-flex flex-grow-1 flex-column">
+            <Suspense fallback={<SuspenseFallback />}>
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route path="/pack/:packId">
+                  <Pack />
+                </Route>
+                <Route path="/contribute">
+                  <Contribute />
+                </Route>
+                <Route path="/about">
+                  <About />
+                </Route>
+              </Switch>
+            </Suspense>
+          </div>
+        </StickersContextProvider>
+      </Router>
+    </React.StrictMode>
   );
 };
 
 
-export default App;
+export default hot(App);

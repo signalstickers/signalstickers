@@ -2,12 +2,17 @@ import {Formik, Form, Field, ErrorMessage} from 'formik';
 import {cx} from 'linaria';
 import {styled} from 'linaria/react';
 import {darken} from 'polished';
-import React, {useState} from 'react';
 import * as R from 'ramda';
+import React, {useState} from 'react';
+import {PrismAsyncLight as SyntaxHighlighter} from 'react-syntax-highlighter';
+import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
+import syntaxTheme from 'react-syntax-highlighter/dist/esm/styles/prism/base16-ateliersulphurpool.light';
 import yaml from 'js-yaml';
 
 import {GRAY} from 'etc/colors';
 import {getStickerPackDirectory, getStickerPack} from 'lib/stickers';
+import {bp} from 'lib/utils';
+
 
 /**
  * Test pack:
@@ -20,7 +25,7 @@ import {getStickerPackDirectory, getStickerPack} from 'lib/stickers';
 const Contribute = styled.div`
   background-color: white;
 
-  @media screen and (min-width: 576px) {
+  @media ${bp('lg')} {
     border-radius: 4px;
     border: 1px solid ${darken(0.15, GRAY)};
   }
@@ -32,6 +37,11 @@ const Contribute = styled.div`
    */
   & .invalid-feedback {
     display: block;
+  }
+
+
+  & pre[class*="language-"] {
+    margin: 0;
   }
 `;
 
@@ -115,6 +125,8 @@ const validators = {
 
 // ----- Component -------------------------------------------------------------
 
+SyntaxHighlighter.registerLanguage('yaml', yamlLanguage);
+
 const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
   const [ymlBlob, setYmlBlob] = useState('');
@@ -159,7 +171,9 @@ const ContributeComponent: React.FunctionComponent = () => {
         tags,
         nsfw: values.isNsfw === 'true' ? true : false
       }
-    }, null, 2).trim());
+    }, {
+      indent: 2
+    }).trim());
 
     setPreviewUrl(
       `https://signalstickers.com/pack/${packId}?key=${packKey}`
@@ -172,10 +186,10 @@ const ContributeComponent: React.FunctionComponent = () => {
   // ----- Render --------------------------------------------------------------
 
   return (
-    <Contribute className="px-1 px-md-4 py-4 mt-0 mt-md-5 mb-5">
+    <Contribute className="my-4 p-lg-3 px-lg-4">
       <div className="row">
         <div className="col-12">
-          <p>
+          <p className="mt-lg-3 mb-4">
             Getting your sticker pack listed in the Signal Stickers directory is
             easy! First, paste the <code>signal.art</code> link for your sticker
             pack, including the <code>pack_id</code> and <code>pack_key</code> values,
@@ -185,7 +199,7 @@ const ContributeComponent: React.FunctionComponent = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-12 col-md-8 offset-md-2 mt-4">
+        <div className="col-12 col-md-10 offset-md-1">
           <Formik
             initialValues={initialValues}
             onSubmit={onSubmit}
@@ -278,7 +292,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       </label>
                     </div>
                   </div>
-                  <div className="col-12">
+                  <div className="col-12 mb-1">
                     <div className="custom-control custom-radio">
                       <Field
                         type="radio"
@@ -329,7 +343,9 @@ const ContributeComponent: React.FunctionComponent = () => {
         <div className="row">
           <div className="col-12 col-md-10 offset-md-1">
             <div className="card">
-              <pre className="p-2 mb-0">{ymlBlob}</pre>
+              <SyntaxHighlighter language="yaml" style={syntaxTheme} customStyle={{margin: '0'}}>
+                {ymlBlob}
+              </SyntaxHighlighter>
             </div>
           </div>
         </div>
@@ -342,8 +358,11 @@ const ContributeComponent: React.FunctionComponent = () => {
         </div>
         <div className="row">
           <div className="col-12 col-md-10 offset-md-1">
-            <div className="card">
-              <pre className="p-2 mb-0">{previewUrl}</pre>
+            <div className="card mb-3">
+              {/* Not YAML, but language is mandatory and this gets rendered fine. */}
+              <SyntaxHighlighter language="yaml" style={syntaxTheme} customStyle={{margin: '0'}}>
+                {previewUrl}
+              </SyntaxHighlighter>
             </div>
           </div>
         </div>
