@@ -179,7 +179,7 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
  */
 export function fuzzySearchStickerPacks(needle: string, haystack: Array<StickerPack>): Array<StickerPack> {
   const searchKeys = ['manifest.title', 'manifest.author', 'meta.tags'];
-  const searcher = new FuzzySearch(haystack, searchKeys, {caseSensitive: false});
+  const searcher = new FuzzySearch(haystack, searchKeys, {caseSensitive: false, sort: true});
   return searcher.search(needle);
 }
 

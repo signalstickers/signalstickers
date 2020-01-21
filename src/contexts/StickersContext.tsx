@@ -58,9 +58,9 @@ export const Provider = (props: PropsWithChildren<{}>) => {
     // Set the canonical list of all sticker packs.
     setAllStickerPacks(stickerPacks);
 
-    // Finally, set our search results to the set of all sticker packs, sorted
-    // by title.
-    setSearchResults(R.sortBy(R.path<any>(['manifest', 'title']), stickerPacks));
+    // Finally, set our search results to the set of all sticker packs,
+    // using the default sort order (most recently added first).
+    setSearchResults(stickerPacks);
   }, []);
 
 
@@ -74,13 +74,10 @@ export const Provider = (props: PropsWithChildren<{}>) => {
 
     const rawSearchResults = fuzzySearchStickerPacks(searchQuery, allStickerPacks);
 
-    // Sort search results by title.
-    const sortedSearchResults = R.sortBy(R.path<any>(['manifest', 'title']), rawSearchResults);
-
     // Only call `setSearchResults` if our new results have actually changed.
     // This will save us superfluous re-renders.
-    if (!R.equals(sortedSearchResults, searchResults)) {
-      setSearchResults(sortedSearchResults);
+    if (!R.equals(rawSearchResults, searchResults)) {
+      setSearchResults(rawSearchResults);
     }
   }, [searchQuery]);
 
