@@ -44,7 +44,9 @@ um Ihre Stickers auf Signal hochzuladen.
 > Anmerkung: Vergessen Sie beim Erstellen von Stickers nicht, einen weißen
 > Strich hinzuzufügen, um die Lesbarkeit dunkler Themen zu verbessern! Sie
 > können dieses [Skript](https://gist.github.com/ondondil/4b8564b404696b3255253b467b413de9#gistcomment-3118471) 
-> verwenden.
+> oder [dieses Projekt](https://framagit.org/luc/stickerify-for-signal)
+> verwenden, um automatisch die Größe aller PNG- und WEBP-Bilder eines Verzeichnisses
+> zu ändern und einen weißen Strich hinzuzufügen.
 
 ### Muss ich mein Sticker-Pack zu dieser Site hinfügen, um es mit meinen Freunden zu teilen?
 

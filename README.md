@@ -36,8 +36,10 @@ Follow the tutorial on the [Signal support site](https://support.signal.org/hc/e
 to upload your stickers to Signal.
 
 > Note: when creating stickers, don't forget to add a white stroke to improve
-> legibility on dark themes! You can use [this script](https://gist.github.com/ondondil/4b8564b404696b3255253b467b413de9#gistcomment-3118471).
-
+> legibility on dark themes! You can use [this script](https://gist.github.com/ondondil/4b8564b404696b3255253b467b413de9#gistcomment-3118471)
+> or use [this project](https://framagit.org/luc/stickerify-for-signal)
+> to automatically resize and add a white stroke on all the PNG and WEBP images
+> of a directory.
 
 ### Do I have to add my sticker pack to this site to share it with my friends?
 **No**. You can just send any sticker to your friends and they will be able to
