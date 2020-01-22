@@ -18113,14 +18113,6 @@ ec4a5b7794f3d20dc62f6eff6b198b50:
       - anime
       - nichijou
     nsfw: false
-72afdf6a0fb4e93b359d3bf2974f76a3:
-    key: 52a1f0d0754aca5e8b26fafb84c607f45bf6c88b1cd1b650fad6e83da07e1be8
-    source: ''
-    tags:
-      - bernie
-      - sanders
-      - bernie sanders
-    nsfw: false
 26f539946b56a8a900083d5bfaca4e4d:
     key: 312dee0e01fbd6eea6c274d9479e0a58769aee25ee681c95acf8052ed1f61566
     source: 'https://ihaveprivacy.com'
@@ -18231,4 +18223,15 @@ aaac975582921851fb7a10d7a34069ec:
     - pony
     - for children
     - cute
+  nsfw: false
+95b0bca9d3ec845ca38847b1dbe32c06:
+  key: 62a4557b9caa0de9cf4ab2373412c6642cf5804facd77b11154883ad9571946d
+  source: ''
+  tags:
+    - Bernie
+    - Sanders
+    - Bernie Sanders
+    - '2020'
+    - Democrat
+    - Election
   nsfw: false
