@@ -11,6 +11,7 @@ import {GRAY, SIGNAL_BLUE} from 'etc/colors';
 import {StickerPack} from 'etc/types';
 import useQuery from 'hooks/use-query';
 import {getStickerPack} from 'lib/stickers';
+import {bp} from 'lib/utils';
 
 import Sticker from './Sticker';
 import StickerPackError from './StickerPackError';
@@ -32,7 +33,7 @@ export interface UrlParams {
 const StickerPackDetail = styled.div`
   background-color: white;
 
-  @media screen and (min-width: 576px) {
+  @media ${bp('sm')} {
     border-radius: 4px;
     border: 1px solid ${darken(0.15, GRAY)};
   }
@@ -70,7 +71,7 @@ const StickerPackDetail = styled.div`
     font-weight: 600;
   }
 
-  @media screen and (min-width: 768px) {
+  @media ${bp('md')} {
     & .list-group-item {
       font-size: inherit;
 

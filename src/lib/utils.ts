@@ -1,4 +1,5 @@
 import bytes from 'bytes';
+import {BOOTSTRAP_BREAKPOINTS} from 'etc/constants';
 
 
 /**
@@ -23,4 +24,27 @@ export async function printStorageUsage() {
       console.debug(`IndexedDB is currently using ${bytes(idbUsage)} of data, or ${percentageUsed}% of the ${bytes(quota)} quota.`);
     }
   }
+}
+
+
+/**
+ * Bootstrap media query helper for CSS-in-JS.
+ *
+ * @example
+ *
+ * @media ${bp('sm')} {
+ *   // ...
+ * }
+ */
+export function bp(bpName: string, minMax: 'min' | 'max' = 'min') {
+  // @ts-ignore
+  const bpValue = BOOTSTRAP_BREAKPOINTS[bpName];
+
+  if (!bpValue) {
+    throw new Error(`Invalid breakpoint: ${bpName}`);
+  }
+
+  const value = minMax === 'min' ? bpValue : bpValue - 1;
+
+  return `(${minMax}-width: ${value}px)`;
 }

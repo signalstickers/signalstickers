@@ -27,6 +27,7 @@ export default (env: string, argv: any): webpack.Configuration => {
   config.entry = {
     app: [
       '@babel/polyfill',
+      'react-hot-loader/patch',
       path.resolve(PKG_ROOT, 'src', 'index.tsx')
     ]
   };
@@ -83,7 +84,7 @@ export default (env: string, argv: any): webpack.Configuration => {
     use: [{
       loader: MiniCssExtractPlugin.loader,
       options: {
-        hmr: false
+        hmr: true
       }
     }, {
       loader: 'css-loader',
@@ -226,7 +227,7 @@ export default (env: string, argv: any): webpack.Configuration => {
       historyApiFallback: true,
       disableHostCheck: true,
       host: '0.0.0.0',
-      // hot: true,
+      hot: true,
       inline: true,
       overlay: true,
       quiet: true
@@ -250,20 +251,7 @@ export default (env: string, argv: any): webpack.Configuration => {
   config.optimization = {
     minimize: argv.mode === 'production',
     splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all',
-          minChunks: 1
-        },
-        data: {
-          test: /src\/.json$/,
-          name: 'data',
-          chunks: 'all',
-          minChunks: 1
-        }
-      }
+      chunks: 'all'
     }
   };
 

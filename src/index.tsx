@@ -7,4 +7,5 @@ import './index.css';
 
 
 printStorageUsage(); // tslint:disable-line no-floating-promises
+
 ReactDOM.render(<App />, document.getElementById('root'));

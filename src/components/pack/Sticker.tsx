@@ -5,6 +5,7 @@ import Octicon from 'react-octicon';
 import useAsyncEffect from 'use-async-effect';
 
 import {getConvertedStickerInPack, getEmojiForSticker} from 'lib/stickers';
+import {bp} from 'lib/utils';
 
 
 // ----- Props -----------------------------------------------------------------
@@ -36,7 +37,7 @@ const Sticker = styled.div`
     object-fit: contain;
   }
 
-  @media screen and (min-width: 576px) {
+  @media ${bp('sm')} {
     & img {
       width: 128px;
       height: 128px;
