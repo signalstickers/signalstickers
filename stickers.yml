@@ -18253,3 +18253,11 @@ ea64033919143cd1b0d72a0a52b4924a:
   source: 'https://twitter.com/necrosofty/status/1220504664384270336'
   tags: []
   nsfw: false
+fca36dc3a90183d7efafa6d5a65d2d4c:
+  key: 0c1a9ff20c3a2c4606f2d1ca038e62ac08c795ca709d1c441ad361f7adc925f4
+  source: Telegram
+  tags:
+    - german
+    - funny
+    - meme
+  nsfw: true
