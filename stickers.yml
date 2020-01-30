@@ -18269,3 +18269,8 @@ fca36dc3a90183d7efafa6d5a65d2d4c:
     - funny
     - meme
   nsfw: true
+fa96b23576964e0cfad3602105802346:
+  key: 97b611040b2efc8bf883030b06ad8bc6a9083bdfb3918e8e9ffda72d258a9bf4
+  source: Telegram
+  tags: []
+  nsfw: false
