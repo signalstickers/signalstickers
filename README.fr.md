@@ -13,7 +13,7 @@ Github.
 Utilisez l'outil _Contribute_ en haut de `signalstickers.com`, et suivez le guide !
 
 <a href="https://signalstickers.com/contribute" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/romainricard/signalstickers/master/.github/contribute_button.png" alt="Contribute to signalstickers.com">
+    <img src="https://raw.githubusercontent.com/signalstickers/signalstickers/master/.github/contribute_button.png" alt="Contribute to signalstickers.com">
 </a>
 
 > Note : l'ajout d'un pack d'autocollants nécessite [un compte Github](https://github.com/join).
@@ -49,7 +49,7 @@ pour télécharger vos stickers sur Signal.
 > pour redimensionner automatiquement et ajouter un contour blanc sur toutes
 > les images PNG et WEBP d'un répertoire.
 
-### Dois-je ajouter mon pack d'autocollants sur ce site pour le partager avec mes amis ?
+### Suis-je obligé d'ajouter mon pack d'autocollants sur ce site pour le partager avec mes amis ?
 
 **Non**. Vous pouvez simplement envoyer n'importe quel autocollant à vos amis et
 ils pourront installer le pack, ou vous pouvez partager votre pack
@@ -84,7 +84,7 @@ Ce n'est pas le but de ce projet :-)
 [@u32i64](https://github.com/u32i64) ont
 participé à la conception et au code.
 
-Les autocollants ont été ajoutés par la communauté.  
+Les autocollants ont été ajoutés par [la communauté](https://github.com/signalstickers/signalstickers/graphs/contributors).  
 Les autocollants de Telegram ont été portés par [@signal-stickers](https://github.com/signal-stickers).
 
 ## Licence

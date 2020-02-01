@@ -16,7 +16,7 @@ der Anleitung!
 
 <a href="https://signalstickers.com/contribute" target="_blank"
     rel="noreferrer"> <img
-    src="https://raw.githubusercontent.com/romainricard/signalstickers/master/.github/contribute_button.png"
+    src="https://raw.githubusercontent.com/signalstickers/signalstickers/master/.github/contribute_button.png"
     alt="Contribute to signalstickers.com"> </a>
 
 > Anmerkung: Zum Hinzufügen eines Sticker Packs ist ein
@@ -83,7 +83,7 @@ Das ist nicht das Ziel dieses Projekts :-)
 teilgenommen.
 
 Die Stickers wurden von der
-[Community](https://github.com/romainricard/signalstickers/graphs/contributors)
+[Community](https://github.com/signalstickers/signalstickers/graphs/contributors)
 hinzugefügt.  
 Die Stickers von Telegram wurden von
 [@signal-stickers](https://github.com/signal-stickers) eingefügt.
