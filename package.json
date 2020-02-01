@@ -13,10 +13,10 @@
   "homepage": "https://signalstickers.com/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com//romainricard/signalstickers.git"
+    "url": "git+https://github.com/signalstickers/signalstickers.git"
   },
   "bugs": {
-    "url": "https://github.com/romainricard/signalstickers/issues"
+    "url": "https://github.com/signalstickers/signalstickers/issues"
   },
   "keywords": [],
   "scripts": {

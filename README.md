@@ -12,7 +12,7 @@ Use the tool _Contribute_ at the top of `signalstickers.com`, and follow the
 guide!
 
 <a href="https://signalstickers.com/contribute" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/romainricard/signalstickers/master/.github/contribute_button.png" alt="Contribute to signalstickers.com">
+    <img src="https://raw.githubusercontent.com/signalstickers/signalstickers/master/.github/contribute_button.png" alt="Contribute to signalstickers.com">
 </a>
 
 > Note: adding a sticker pack requires [a Github account](https://github.com/join).
@@ -41,7 +41,7 @@ to upload your stickers to Signal.
 > to automatically resize and add a white stroke on all the PNG and WEBP images
 > of a directory.
 
-### Do I have to add my sticker pack to this site to share it with my friends?
+### Am I required to add my sticker pack to this site to share it with my friends?
 **No**. You can just send any sticker to your friends and they will be able to
 install the pack, or you can share your sticker pack using the `signal.art` link
 that you got when you created your sticker pack, or by using the share button
@@ -73,7 +73,7 @@ This is not the goal of this project :-)
 [@u32i64](https://github.com/u32i64) participated to the conception and the
 code.
 
-The stickers were added [by the community](https://github.com/romainricard/signalstickers/graphs/contributors).  
+The stickers were added [by the community](https://github.com/signalstickers/signalstickers/graphs/contributors).  
 The stickers from Telegram were ported by [@signal-stickers](https://github.com/signal-stickers).
 
 ## License

@@ -336,7 +336,7 @@ const ContributeComponent: React.FunctionComponent = () => {
           <div className="col-12">
             <hr />
             <p className="mt-4 mb-4">
-              Great! Below is the YML blob you will need to add at the end of <code>stickers.yml</code> in the <a href="https://github.com/romainricard/signalstickers/edit/master/stickers.yml" target="_blank" rel="noreferrer">Signal Stickers repository</a>.
+              Great! Below is the YML blob you will need to add at the end of <code>stickers.yml</code> in the <a href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml" target="_blank" rel="noreferrer">Signal Stickers repository</a>.
             </p>
           </div>
         </div>
