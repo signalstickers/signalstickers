@@ -1,6 +1,15 @@
-[🇬🇧 EN](README.md) [🇫🇷 FR](README.fr.md) 
+<a href="#top" id="top">
+  <img src=".github/header_signalstickers_de.png" style="max-width: 100%;"></<img>
+</a>
 
-# Signal Stickers Galerie
+<p align="center">
+  <a href="https://travis-ci.com/signalstickers/signalstickers"><img src="https://travis-ci.com/signalstickers/signalstickers.svg?branch=master"></a>
+  <a href="https://github.com/signalstickers/signalstickers/graphs/contributors"><img src="https://img.shields.io/github/contributors/signalstickers/signalstickers"></a>
+</p>
+
+
+[🇬🇧 EN version](README.md) | [🇫🇷 FR version](README.fr.md) 
+
 
 ## Über dieses Projekt
 
@@ -11,13 +20,8 @@ Github-Repository bereitgestellt.
 
 ## Hinzufügen eines Sticker-Pack zu dieser Site
 
-Verwenden Sie das Tool _Contribute_ oben auf `signalstickers.com` und folgen Sie
-der Anleitung!
-
-<a href="https://signalstickers.com/contribute" target="_blank"
-    rel="noreferrer"> <img
-    src="https://raw.githubusercontent.com/signalstickers/signalstickers/master/.github/contribute_button.png"
-    alt="Contribute to signalstickers.com"> </a>
+Verwenden Sie das Tool [Contribute](https://signalstickers.com/contribute) oben
+auf `signalstickers.com` und folgen Sie der Anleitung!
 
 > Anmerkung: Zum Hinzufügen eines Sticker Packs ist ein
 > [Github-Konto](https://github.com/join) notwendig. Es ist kostenlos!

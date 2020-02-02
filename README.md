@@ -1,6 +1,15 @@
-[🇩🇪 DE](README.de.md) [🇫🇷 FR](README.fr.md) 
+<a href="#top" id="top">
+  <img src=".github/header_signalstickers_de.png" style="max-width: 100%;"></<img>
+</a>
 
-# Signal stickers gallery
+<p align="center">
+  <a href="https://travis-ci.com/signalstickers/signalstickers"><img src="https://travis-ci.com/signalstickers/signalstickers.svg?branch=master"></a>
+  <a href="https://github.com/signalstickers/signalstickers/graphs/contributors"><img src="https://img.shields.io/github/contributors/signalstickers/signalstickers"></a>
+</p>
+
+
+[🇩🇪 DE version](README.de.md) [🇫🇷 FR version](README.fr.md) 
+
 
 ## About
 A nice and handy gallery to browse and download sticker packs for Signal.  
@@ -8,12 +17,8 @@ This site is served on [signalstickers.com](https://signalstickers.com),
 directly from this Github repository.
 
 ## Adding a sticker pack to this site
-Use the tool _Contribute_ at the top of `signalstickers.com`, and follow the
-guide!
-
-<a href="https://signalstickers.com/contribute" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/signalstickers/signalstickers/master/.github/contribute_button.png" alt="Contribute to signalstickers.com">
-</a>
+Use the tool [Contribute](https://signalstickers.com/contribute) at the top of
+`signalstickers.com`, and follow the guide!
 
 > Note: adding a sticker pack requires [a Github account](https://github.com/join).
 > It's free!
