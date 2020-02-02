@@ -1,3 +1,4 @@
+os: linux
 language: node_js
 node_js:
   - 12
@@ -9,9 +10,9 @@ deploy:
   on:
     branch: master
   provider: pages
-  github_token: $GITHUB_DEPLOY_TOKEN
+  token: $GITHUB_DEPLOY_TOKEN
   local_dir: dist
-  skip_cleanup: true
+  cleanup: false
 cache:
   directories:
     - .linaria-cache
