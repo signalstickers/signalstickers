@@ -12,3 +12,7 @@ deploy:
   github_token: $GITHUB_DEPLOY_TOKEN
   local_dir: dist
   skip_cleanup: true
+cache:
+  directories:
+    - .linaria-cache
+    - .sticker-pack-cache
