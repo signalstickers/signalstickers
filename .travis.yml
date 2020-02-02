@@ -12,7 +12,7 @@ deploy:
   provider: pages
   token: $GITHUB_DEPLOY_TOKEN
   local_dir: dist
-  cleanup: false
+  skip_cleanup: true
 cache:
   directories:
     - .linaria-cache
