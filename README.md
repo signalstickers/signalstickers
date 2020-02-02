@@ -1,5 +1,5 @@
 <a href="#top" id="top">
-  <img src=".github/header_signalstickers_de.png" style="max-width: 100%;"></<img>
+  <img src=".github/header_signalstickers_en.png" style="max-width: 100%;"></<img>
 </a>
 
 <p align="center">
