@@ -18343,12 +18343,16 @@ dc6c215c48f7ad6af90a0bb87448f2eb:
   nsfw: false
 76f937beffd4760dafd77baff76ad09b:
   key: 39ed2a2acb4977bec214f028dcb4ad98775b3212dd5310705be87f4c9f162df4
-  source: >-
-    https://play.google.com/store/apps/details?id=com.whamusaurus.gamustickers
-    (made by Gamusaur for WhatsApp)
+  source: https://play.google.com/store/apps/details?id=com.whamusaurus.gamusticker (made by Gamusaur for WhatsApp)
   tags:
     - cute 
     - jojo 
     - anime 
     - manga
+  nsfw: false
+e261f65d0c9cd0d8b9c732b1bde7ab87:
+  key: d9a6579f5427a144bbc543b63c3eb55e5909f41010f0a3fcddcc68b29a32d0c1
+  source: 'AdmiralBahroo (https://www.twitch.tv/admiralbahroo)'
+  tags:
+    - roo
   nsfw: false
