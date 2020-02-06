@@ -5,14 +5,12 @@
 <p align="center">
   <a href="https://travis-ci.com/signalstickers/signalstickers"><img src="https://travis-ci.com/signalstickers/signalstickers.svg?branch=master"></a>
   <a href="https://github.com/signalstickers/signalstickers/graphs/contributors"><img src="https://img.shields.io/github/contributors/signalstickers/signalstickers"></a>
+  <a href="README.de.md"><img src="https://bit.ly/2SnGvCO" alt="Deutsche"></a>
+  <a href="README.fr.md"><img src="https://bit.ly/31xkO7h" alt="Français"></a>
 </p>
 
-
-[🇩🇪 DE version](README.de.md) [🇫🇷 FR version](README.fr.md) 
-
-
 ## About
-A nice and handy gallery to browse and download sticker packs for Signal.  
+A nice and handy gallery to browse and download sticker packs for Signal.
 This site is served on [signalstickers.com](https://signalstickers.com),
 directly from this Github repository.
 
@@ -32,7 +30,7 @@ We will accept all stickers, **except**:
 + Sticker packs that directly promote a brand or a company.
 
 The idea is to keep a family atmosphere: I'd like my grandmother to be able to
-navigate sticker packs quietly.  
+navigate sticker packs quietly.
 
 ## Q&A
 
@@ -78,7 +76,7 @@ This is not the goal of this project :-)
 [@u32i64](https://github.com/u32i64) participated to the conception and the
 code.
 
-The stickers were added [by the community](https://github.com/signalstickers/signalstickers/graphs/contributors).  
+The stickers were added [by the community](https://github.com/signalstickers/signalstickers/graphs/contributors).
 The stickers from Telegram were ported by [@signal-stickers](https://github.com/signal-stickers).
 
 ## License
