@@ -8,6 +8,8 @@ import {PrismAsyncLight as SyntaxHighlighter} from 'react-syntax-highlighter';
 import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
 import syntaxTheme from 'react-syntax-highlighter/dist/esm/styles/prism/base16-ateliersulphurpool.light';
 import yaml from 'js-yaml';
+// @ts-ignore (No type definitions exist for this package.)
+import Octicon from 'react-octicon';
 
 import {GRAY} from 'etc/colors';
 import {getStickerPackDirectory, getStickerPack} from 'lib/stickers';
@@ -364,6 +366,13 @@ const ContributeComponent: React.FunctionComponent = () => {
                 {previewUrl}
               </SyntaxHighlighter>
             </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12 col-md-10 offset-md-1">
+            <a className="btn btn-success btn-block" href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml" rel="noreferrer" target="_blank" title="Open a Pull Request">
+              <Octicon name="link-external" /> Edit the file and open a Pull Request
+            </a>
           </div>
         </div>
       </>
