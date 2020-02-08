@@ -5,11 +5,9 @@
 <p align="center">
   <a href="https://travis-ci.com/signalstickers/signalstickers"><img src="https://travis-ci.com/signalstickers/signalstickers.svg?branch=master"></a>
   <a href="https://github.com/signalstickers/signalstickers/graphs/contributors"><img src="https://img.shields.io/github/contributors/signalstickers/signalstickers"></a>
+  <a href="README.md"><img src="https://bit.ly/31ysLJA" alt="English"></a>
+  <a href="README.fr.md"><img src="https://bit.ly/31xkO7h" alt="Français"></a>
 </p>
-
-
-[🇬🇧 EN version](README.md) | [🇫🇷 FR version](README.fr.md) 
-
 
 ## Über dieses Projekt
 
@@ -39,7 +37,7 @@ meine Großmutter leise durch Sticker-Packs navigieren kann.
 
 ## Fragen und Antworten
 
-### Wie kann ich ein Sticker-Pack schaffen? 
+### Wie kann ich ein Sticker-Pack schaffen?
 
 Folgen Sie das Tutorial auf der
 [Signal-Support-Website](https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca),
@@ -47,7 +45,7 @@ um Ihre Stickers auf Signal hochzuladen.
 
 > Anmerkung: Vergessen Sie beim Erstellen von Stickers nicht, einen weißen
 > Strich hinzuzufügen, um die Lesbarkeit dunkler Themen zu verbessern! Sie
-> können dieses [Skript](https://gist.github.com/ondondil/4b8564b404696b3255253b467b413de9#gistcomment-3118471) 
+> können dieses [Skript](https://gist.github.com/ondondil/4b8564b404696b3255253b467b413de9#gistcomment-3118471)
 > oder [dieses Projekt](https://framagit.org/luc/stickerify-for-signal)
 > verwenden, um automatisch die Größe aller PNG- und WEBP-Bilder eines Verzeichnisses
 > zu ändern und einen weißen Strich hinzuzufügen.
@@ -88,7 +86,7 @@ teilgenommen.
 
 Die Stickers wurden von der
 [Community](https://github.com/signalstickers/signalstickers/graphs/contributors)
-hinzugefügt.  
+hinzugefügt.
 Die Stickers von Telegram wurden von
 [@signal-stickers](https://github.com/signal-stickers) eingefügt.
 
