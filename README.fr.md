@@ -5,11 +5,9 @@
 <p align="center">
   <a href="https://travis-ci.com/signalstickers/signalstickers"><img src="https://travis-ci.com/signalstickers/signalstickers.svg?branch=master"></a>
   <a href="https://github.com/signalstickers/signalstickers/graphs/contributors"><img src="https://img.shields.io/github/contributors/signalstickers/signalstickers"></a>
+  <a href="README.md"><img src="https://bit.ly/31ysLJA" alt="English"></a>
+  <a href="README.de.md"><img src="http://bit.ly/3bljOI0" alt="Deutsch"></a>
 </p>
-
-
-[🇬🇧 EN version](README.md) | [🇩🇪 DE version](README.de.md)
-
 
 ## À propos
 
@@ -90,7 +88,7 @@ Ce n'est pas le but de ce projet :-)
 [@u32i64](https://github.com/u32i64) ont
 participé à la conception et au code.
 
-Les autocollants ont été ajoutés par [la communauté](https://github.com/signalstickers/signalstickers/graphs/contributors).  
+Les autocollants ont été ajoutés par [la communauté](https://github.com/signalstickers/signalstickers/graphs/contributors).
 Les autocollants de Telegram ont été portés par [@signal-stickers](https://github.com/signal-stickers).
 
 ## Licence
