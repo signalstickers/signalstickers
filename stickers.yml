@@ -18522,3 +18522,24 @@ cbc5510880d023fdbb773649d41ba6ce:
     - cartoon
     - girl
   nsfw: false
+c97e2081ce0c90baf2a325659d902a93:
+  key: 91d3973907688d3f47def15e8375c4c5b60c3263ac30b9fca97c7222c57f4b36
+  source: 'https://www.reddit.com/r/signal/comments/er1f5z/ultimate_blu_viberported_sticker_pack/'
+  tags:
+    - cute
+  nsfw: false
+abc15d7e9e7be626009b3234f61cc9ff:
+  key: 070cb63be410716d8decc981d0d7551702deb35f5dbd6847204d020a7e1ffc59
+  source: 'https://www.reddit.com/r/signal/comments/eqxjei/bitcoin_stickers_for_signal/'
+  tags: []
+  nsfw: false
+9da172a7a5d078818a653f7bef3ec980:
+  key: 6592f3fb2a20664037eb2ed5790fa2df03627bfab05ab9b63c852cfd6aaa3e1c
+  source: 'https://www.reddit.com/r/signal/comments/ephw8m/tamil_memes_%E0%AE%A4%E0%AE%AE%E0%AE%B4_%E0%AE%AE%E0%AE%AE%E0%AE%B8/'
+  tags: []
+  nsfw: false
+eef9b8f7ce3f68efbacc346796a219b1:
+  key: 8d58c75e6187a488f1afe78d5a4320613dc1a3b0181cd98976271c7daf6c4183
+  source: 'https://www.reddit.com/r/signal/comments/ekbex0/ren_stimpy_sticker_pack/'
+  tags: []
+  nsfw: false
