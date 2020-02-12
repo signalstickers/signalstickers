@@ -18558,3 +18558,26 @@ b18d03a8c6363a9eb62f92e01e7466cc:
     - characters
     - reactions
   nsfw: false
+7d92da658aa4f556d0a3a593533c3370:
+  key: 8d7485fb07f964da9efc3e4e47f35d0f494c5fd2bef4ae8400966f683e2a7fe6
+  source: 'https://t.me/addstickers/nichijou'
+  tags:
+    - nichijou
+    - anime
+  nsfw: false
+269eb87a1f6a330768e162891365ecf3:
+  key: db05e7ce36ae4439496abd799d64d256e96b83ceae3e33240803176ee02cbca0
+  source: 'https://t.me/addstickers/DangoStickers'
+  tags:
+    - dango
+    - clannad
+    - anime
+  nsfw: false
+07b827e22886a159f67a509173cc8727:
+  key: 890b5f5eda2cbbdcc6707cf5fed5aeaddd5247ad4a054a42a1ccbdecd5c41207
+  source: www.carmenland.com
+  tags:
+    - cute
+    - girl
+    - cartoon
+  nsfw: false
