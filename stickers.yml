@@ -18543,6 +18543,21 @@ eef9b8f7ce3f68efbacc346796a219b1:
   source: 'https://www.reddit.com/r/signal/comments/ekbex0/ren_stimpy_sticker_pack/'
   tags: []
   nsfw: false
+b18d03a8c6363a9eb62f92e01e7466cc:
+  key: 3c6bafbf7172d293f796349a5c364020ce8e605d39cce27a88b358a10c1d3027
+  source: ''
+  tags:
+    - text
+    - faces
+    - lenny
+    - funny
+    - face
+    - letters
+    - emoji
+    - japanese
+    - characters
+    - reactions
+  nsfw: false
 7d92da658aa4f556d0a3a593533c3370:
   key: 8d7485fb07f964da9efc3e4e47f35d0f494c5fd2bef4ae8400966f683e2a7fe6
   source: 'https://t.me/addstickers/nichijou'
