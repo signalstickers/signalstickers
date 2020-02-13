@@ -1,13 +1,13 @@
 import path from 'path';
 
-import webpack from 'webpack';
+import FetchStickerDataPlugin from '@signalstickers/fetch-sticker-data-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 // @ts-ignore (No type definitions exist for this package.)
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import FetchStickerDataPlugin from 'plugins/FetchStickerDataPlugin';
+import webpack from 'webpack';
 
 
 /**
