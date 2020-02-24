@@ -18690,3 +18690,13 @@ cdd510bdaef7ba15502ff66a2d3589f0:
     - берешь
     - делаешь
   nsfw: true
+23a2d348c3f61ba030c752615d32c425:
+  key: 93ad7221d1073ccfab7595bfc3a69e8452463793b8be5e75da8b3f8607d5fb51
+  source: 'https://t.me/addstickers/FreeAsInBullet'
+  tags:
+    - free software
+    - rms
+    - esr
+    - Richard Stallman
+    - Eric S. Raymond
+  nsfw: false
