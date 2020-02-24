@@ -18667,3 +18667,26 @@ b1774c2b8f05ff5acb49c42509f58461:
     - Cute
     - Hero
   nsfw: false
+b48234023a76a1a86843a6bf912e50a4:
+  key: 00b87c68e393c61af64e67da9b526d341f93e2924305e838b8db272bf634de93
+  source: 'https://www.peteforamerica.com/'
+  tags:
+    - Pete Buttigieg
+    - Buttigieg
+    - Pete
+    - Mayor Pete
+    - Mayo Pete
+    - Pete For America
+    - '2020'
+    - Boot Edge Edge
+  nsfw: false
+cdd510bdaef7ba15502ff66a2d3589f0:
+  key: 52a1101301bc2a50bcb15e4a6e88602a3836aad71aff380ac729b2161991c4ad
+  source: impavl
+  tags:
+    - take
+    - make
+    - берёшь
+    - берешь
+    - делаешь
+  nsfw: true
