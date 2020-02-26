@@ -18717,4 +18717,9 @@ cdd510bdaef7ba15502ff66a2d3589f0:
     - cat
     - cute
   nsfw: false
-  
+c7512d8dbe420400f8b75c663251ccbd:
+  key: 8fc8caf71b088a3d2fa295867f9509cc2b59ee140d399d02fdc10417c97ebda1
+  source: 'https://www.reddit.com/r/signal/comments/f9cxa9/mighty_zeus_sticker_pack_ported_from_telegram/'
+  tags:
+    - telegram
+  nsfw: false
