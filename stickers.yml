@@ -18690,3 +18690,31 @@ cdd510bdaef7ba15502ff66a2d3589f0:
     - берешь
     - делаешь
   nsfw: true
+23a2d348c3f61ba030c752615d32c425:
+  key: 93ad7221d1073ccfab7595bfc3a69e8452463793b8be5e75da8b3f8607d5fb51
+  source: 'https://t.me/addstickers/FreeAsInBullet'
+  tags:
+    - free software
+    - rms
+    - esr
+    - Richard Stallman
+    - Eric S. Raymond
+  nsfw: false
+0ecec81d5c899e8ac55bcbeb0cba8c30:
+  key: 00496a6d819efc74a01c74e3db3f2f36c3f393be589ad72789a675d63fe14270
+  source: 'Hibahyba.project, (https://www.facebook.com/hibahyba.project/)'
+  tags:
+    - hibahyba
+    - хібахиба
+    - українська мова
+    - ukrainian
+    - для редакторів
+  nsfw: false
+3a54adff15325392989663d243e8a0d5:
+  key: c68e64c29dd0d7258140d3276eec8ea3cccd2e9a00d2486590511a3efe67d4ab
+  source: 'https://twitter.com/sleepypandie_/status/1231425664755961856'
+  tags:
+    - cat
+    - cute
+  nsfw: false
+  
