@@ -18754,3 +18754,15 @@ a35bd5fb257c9888ae296abf4ff4df58:
     - nowandlater
     - telegram
   nsfw: true
+963fbc6168f5fb40e32cea16922a8f8a:
+  key: 31fe4407e4b5b4bb10ed789201101d1f704f6c7eb1a5f5faf2b7e67608a328a7
+  source: 'Now and Later (NaL), cinnamonspots.com'
+  tags:
+    - dizzy
+    - shep
+    - shepherd
+    - dog
+    - nal
+    - nowandlater
+    - telegram
+  nsfw: false
