@@ -18717,4 +18717,26 @@ cdd510bdaef7ba15502ff66a2d3589f0:
     - cat
     - cute
   nsfw: false
-  
+c7512d8dbe420400f8b75c663251ccbd:
+  key: 8fc8caf71b088a3d2fa295867f9509cc2b59ee140d399d02fdc10417c97ebda1
+  source: 'https://www.reddit.com/r/signal/comments/f9cxa9/mighty_zeus_sticker_pack_ported_from_telegram/'
+  tags:
+    - telegram
+  nsfw: false
+f16c5788066c3b00363ed2885df27a1d:
+  key: a983407565b4c737227c306d81b93852ba3c12edb9da4cbd1bcf5c1b08ab3e00
+  source: 'https://t.me/addstickers/RefugeesWelcome'
+  tags:
+    - politics
+    - refugees
+    - antifa
+    - telegram
+  nsfw: false
+ca671808bb17cbf76c89f48ccea2d938:
+  key: e0454c2d7884d5e7b03ae16e5136d5c6a63d12cddb4ec9a41138c9c92bc1882e
+  source: 'https://chpic.su/en/stickers/KOn_Stickers/'
+  tags:
+    - anime
+    - k-on
+    - k on
+  nsfw: false
