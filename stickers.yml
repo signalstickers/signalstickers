@@ -1642,7 +1642,7 @@ d44ce6386a5493f259d9439a96ac41c0:
     - love
     - Autistic love
     - telegram
-  nsfw: false
+  nsfw: true
 238f8708e68cba25f421db292cdcbad1:
   key: 4050eee7ecf533dba372919b103ef89ac3e2b96a4add5b9266a634cd0c064300
   source: 'https://tlgrm.eu/stickers'
@@ -2455,7 +2455,7 @@ cf238b5b86d5e2c3e8f0a39b1731e551:
     - valentine's day
     - Go Baldly
     - telegram
-  nsfw: false
+  nsfw: true
 ed1b74dfb07917fb59005c969fc8e37c:
   key: 06f9ae9020de0ff265739fbae5a8d1a88187887fdeb2a56442b4be75365fd9da
   source: 'https://tlgrm.eu/stickers'
@@ -6980,7 +6980,7 @@ e94b8ab63dc5602bb4e76d39f487eb1b:
     - party
     - Lovely Banana
     - telegram
-  nsfw: false
+  nsfw: true
 951cb1d498d7de0f20b6a73cda09b0a5:
   key: 91bfdda810d4075d0b2e77552f31e080a5a85163b7203644a22391b374c05565
   source: 'https://tlgrm.eu/stickers'
@@ -9298,7 +9298,7 @@ b3c5fa1aa70ae468af7ea5e111431935:
     - telegramteam
     - Pornstar
     - telegram
-  nsfw: false
+  nsfw: true
 b365583aa68a7c0bdd4b3986f5ea93a3:
   key: 2881523c0e5d77cacaab24fa773ef97dbc60ec43276f279d6ee0d8b1adc589b1
   source: 'https://tlgrm.eu/stickers'
@@ -18738,3 +18738,11 @@ f16c5788066c3b00363ed2885df27a1d:
   tags:
     - Anarchy Copyright
   nsfw: true
+ca671808bb17cbf76c89f48ccea2d938:
+  key: e0454c2d7884d5e7b03ae16e5136d5c6a63d12cddb4ec9a41138c9c92bc1882e
+  source: 'https://chpic.su/en/stickers/KOn_Stickers/'
+  tags:
+    - anime
+    - k-on
+    - k on
+  nsfw: false
