@@ -18810,4 +18810,15 @@ f96ab6dc6e58a615e1b37167e52e5289:
   source: 'https://twitter.com/cryptoravebr/status/1234308556301701125'
   tags: []
   nsfw: false
+66a75f6cd30d79fa38c2a15855d05fd5:
+  key: 7b02c808d8ccbcd4ce7c42ef371de764102fd929d5e18f41807475130569e7d3
+  source: 'https://twitter.com/pico_dragon/status/1234455960887885824'
+  tags: []
+  nsfw: false
+fd6ace2810153d460ef44e0e672da34d:
+  key: d606c9a3c9c869c95c4169b882142c104108e160f62c2fc3116a5d5a2c3473a0
+  source: 'https://twitter.com/andohhowmuch/status/1233914631569043456'
+  tags:
+    - asobi asobase
+  nsfw: false
 
