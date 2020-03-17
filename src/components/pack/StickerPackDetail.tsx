@@ -16,7 +16,7 @@ import {bp} from 'lib/utils';
 import Sticker from './Sticker';
 import StickerPackError from './StickerPackError';
 import Tag from './Tag';
-
+import NsfwModal from './NsfwModal';
 
 // ----- Types -----------------------------------------------------------------
 
@@ -96,6 +96,7 @@ const StickerPackDetail = styled.div`
   & strong {
     font-weight: 600;
   }
+
 `;
 
 
@@ -191,6 +192,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   // viewing an unlisted sticker pack.
   return (
     <StickerPackDetail className="px-1 px-sm-4 py-4 mt-0 mt-sm-5 mb-5">
+    {stickerPack.meta.nsfw ? <NsfwModal></NsfwModal> : null}
       <div className="row mb-4 flex-column-reverse flex-lg-row">
         <div className="col-12 col-lg-8 mt-4 mt-lg-0">
           <div className="title">{stickerPack.manifest.title}</div>
