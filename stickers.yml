@@ -7982,7 +7982,7 @@ b55ac00b75f46b48e02eec3bea932b9a:
     - sex
     - Mr. Zoid
     - telegram
-  nsfw: false
+  nsfw: true
 9ea4b8aa62b91c886159ad1042f3b82c:
   key: b660e36fce7afa5eb0e7cf5759fcd9ec99640a2c00e4d7baf3df1323376f3e64
   source: 'https://tlgrm.eu/stickers'
@@ -10368,7 +10368,7 @@ c5fb525dfd1fcfa33dc3464434c17481:
     - relationship
     - Sigmund Freud
     - telegram
-  nsfw: false
+  nsfw: true
 648376d76011483597c841c07fd451fb:
   key: 9ae6350b7a4d88b756fd64b8075e45d64a72d7b8d9a0af450875461f7b686821
   source: 'https://tlgrm.eu/stickers'
