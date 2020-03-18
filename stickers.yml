@@ -18868,6 +18868,13 @@ c4d174fe9e61444fcc9a354c0f33a61c:
     - hobbes
     - comic
   nsfw: false
+c2a9a8daed732127af08e0ef20ca4c8a:
+  key: 10a049b1651d5b5109afcef7f280c1db63e7eacb4d579f0bc32dacd8b5edd188
+  source: 'https://t.me/addstickers/celestegame'
+  tags:
+    - Celeste
+    - video game
+  nsfw: false
 fef01d99c052393144de181dc94f8aef:
   key: c7fa6f7f94d4149f4802dbb130c93375025d1e840a9f69c5f0e22fa2ff4906e8
   source: 'https://t.me/addstickers/PoohSocialCredit'
