@@ -3,7 +3,7 @@ import {cx} from 'linaria';
 import {styled} from 'linaria/react';
 import {darken} from 'polished';
 import * as R from 'ramda';
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {PrismAsyncLight as SyntaxHighlighter} from 'react-syntax-highlighter';
 import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
 import syntaxTheme from 'react-syntax-highlighter/dist/esm/styles/prism/base16-ateliersulphurpool.light';
@@ -133,6 +133,7 @@ const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
   const [ymlBlob, setYmlBlob] = useState('');
   const [previewUrl, setPreviewUrl] = useState('');
+  const openPrButton = useRef();
 
 
   /**
@@ -180,6 +181,8 @@ const ContributeComponent: React.FunctionComponent = () => {
     setPreviewUrl(
       `https://signalstickers.com/pack/${packId}?key=${packKey}`
     );
+
+    openPrButton.current.scrollIntoView({behavior: 'smooth'});
 
     return true;
   };
@@ -370,7 +373,7 @@ const ContributeComponent: React.FunctionComponent = () => {
         </div>
         <div className="row">
           <div className="col-12 col-md-10 offset-md-1">
-            <a className="btn btn-success btn-block" href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml" rel="noreferrer" target="_blank" title="Open a Pull Request">
+            <a ref={openPrButton} className="btn btn-success btn-block" href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml" rel="noreferrer" target="_blank" title="Open a Pull Request">
               <Octicon name="link-external" /> Edit the file and open a Pull Request
             </a>
           </div>
