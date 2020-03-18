@@ -18875,6 +18875,13 @@ c2a9a8daed732127af08e0ef20ca4c8a:
     - Celeste
     - video game
   nsfw: false
+fef01d99c052393144de181dc94f8aef:
+  key: c7fa6f7f94d4149f4802dbb130c93375025d1e840a9f69c5f0e22fa2ff4906e8
+  source: 'https://t.me/addstickers/PoohSocialCredit'
+  tags:
+    - china
+    - pooh
+  nsfw: false
 8e21a5bde99182638d40c7d70c8c954d:
   key: fd4f26e2952fac93e8304713db4c493eb0b2247fe08b2385342db80e3471c8d5
   source: Romain Ricard
