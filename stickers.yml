@@ -18880,3 +18880,36 @@ c4d174fe9e61444fcc9a354c0f33a61c:
     - telegram
     - furry
   nsfw: false
+d47c560c520885eed89b67ccfdf7aa85:
+  key: e6618937bb6aac45ee08efa22600b4d15e7e6cf21a392cb7d077f95ed6a73889
+  source: 'https://furaffinity.net/user/kunacoyote/'
+  tags:
+    - kuna
+    - kunafeels
+    - coyote
+    - telegram
+    - furry
+  nsfw: false
+c2a9a8daed732127af08e0ef20ca4c8a:
+  key: 10a049b1651d5b5109afcef7f280c1db63e7eacb4d579f0bc32dacd8b5edd188
+  source: 'https://t.me/addstickers/celestegame'
+  tags:
+    - Celeste
+    - video game
+  nsfw: false
+fef01d99c052393144de181dc94f8aef:
+  key: c7fa6f7f94d4149f4802dbb130c93375025d1e840a9f69c5f0e22fa2ff4906e8
+  source: 'https://t.me/addstickers/PoohSocialCredit'
+  tags:
+    - china
+    - pooh
+  nsfw: false
+8e21a5bde99182638d40c7d70c8c954d:
+  key: fd4f26e2952fac93e8304713db4c493eb0b2247fe08b2385342db80e3471c8d5
+  source: Romain Ricard
+  tags:
+    - COVID_19
+    - COVID-19
+    - coronavirus
+    - stayhome
+  nsfw: false
