@@ -41,7 +41,7 @@ Gib den Motiven auf deinen Stickern eventuell eine helle/weiße Umrandung ("Halo
 
 Du kannst [dieses Skript](https://gist.github.com/ondondil/4b8564b404696b3255253b467b413de9#gistcomment-3118471) oder [dieses Projekt](https://framagit.org/luc/stickerify-for-signal) verwenden, um automatisch die Größe aller PNG- und WebP-Bilder eines Verzeichnisses zu ändern und eine weiße Umrandung hinzuzufügen.
 
-### Muss ich meine Sticker zu dieser Site hinfügen, um es mit meinen Freunden zu teilen?
+### Muss ich meine Sticker zu hier hinfügen, um es mit meinen Freunden zu teilen?
 
 **Nein**. 
 Deine Freunde können deine Sticker-Packung "installieren" (d.h. verwenden) sobald du ihnen einen einzigen Sticker per Signal geschickt hast.
@@ -71,7 +71,7 @@ Dieses Projekt ist und bleibt Open Source.
 [@muellermartin](https://github.com/muellermartin),
 [@sticker201](https://github.com/sticker201) und
 [@u32i64](https://github.com/u32i64) 
-haben an der Konzeption und dem Codeteilgenommen.
+haben an der Konzeption und dem Code gearbeitet.
 
 Die Stickers wurden von der [Community](https://github.com/signalstickers/signalstickers/graphs/contributors) hinzugefügt.
 Die Stickers von Telegram wurden von [@signal-stickers](https://github.com/signal-stickers) eingefügt.
