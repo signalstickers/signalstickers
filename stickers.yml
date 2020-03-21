@@ -18941,15 +18941,6 @@ e9f052fa6ccb45e8e58166912c048fe6:
   source: 'https://twitter.com/Fleak/status/1236411738012123138'
   tags: []
   nsfw: false
-8e21a5bde99182638d40c7d70c8c954d:
-  key: fd4f26e2952fac93e8304713db4c493eb0b2247fe08b2385342db80e3471c8d5
-  source: Romain Ricard
-  tags:
-    - COVID_19
-    - COVID-19
-    - coronavirus
-    - stayhome
-  nsfw: false
 66cce81c1eb8a2f38813c00560bb3ed4:
   key: 7a81652acb8921ba92b43a7d029b581333d6a02e7bab5bfc8b5d97b8b75470af
   source: 'Riley, https://furaffinity.net/user/rileyy/'
@@ -18966,4 +18957,19 @@ e9f052fa6ccb45e8e58166912c048fe6:
     - waywardmutt
     - telegram
     - furry
+  nsfw: false
+69ee39d352c02766beaad15d23392689:
+  key: 1bb2ddcfe77acd42c6d8f0964ed8c844653c65381758ee93eaead36437cbf4b9
+  source: 'https://twitter.com/LexScobey/status/1240755976573194240'
+  tags:
+    - emoji
+  nsfw: false
+8e21a5bde99182638d40c7d70c8c954d:
+  key: fd4f26e2952fac93e8304713db4c493eb0b2247fe08b2385342db80e3471c8d5
+  source: Romain Ricard
+  tags:
+    - COVID_19
+    - COVID-19
+    - coronavirus
+    - stayhome
   nsfw: false
