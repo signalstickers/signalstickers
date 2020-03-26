@@ -48,6 +48,11 @@ const AboutComponent: React.FunctionComponent = () => {
               </a>
             </li>
             <li>
+              <a href="https://twitter.com/signalstickers" rel="noreferrer" target="_blank" title="Twitter feed">
+                <Octicon name="link-external" /> Twitter feed
+              </a>
+            </li>
+            <li>
               <a href="https://github.com/signalstickers/signalstickers" rel="noreferrer" target="_blank" title="GitHub Repository">
                 <Octicon name="link-external" /> GitHub Repository
               </a>

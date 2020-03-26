@@ -107,6 +107,11 @@ const NavbarComponent: React.FunctionComponent = () => {
                 About
               </Link>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="https://twitter.com/signalstickers" rel="noreferrer" target="_blank" title="Twitter feed">
+                Twitter feed <Octicon name="link-external" />
+              </a>
+            </li>
           </ul>
         </div>
       </div>

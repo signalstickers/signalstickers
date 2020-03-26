@@ -13,6 +13,10 @@ const HomeComponent: React.FunctionComponent = () => {
             Welcome to Signal Stickers, the unofficial directory for Signal sticker
             packs. You can filter packs by title, author, or tags.
           </p>
+          <p>
+            Follow <a href="https://twitter.com/signalstickers" rel="noreferrer" target="_blank" title="Twitter feed">@signalstickers</a> to
+            stay tuned for new packs!
+            </p>
         </div>
       </div>
       <div className="row">
