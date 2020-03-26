@@ -19030,3 +19030,11 @@ a084936b99af1f34e0a6b26b01198c50:
     - coronavirus
     - stayhome
   nsfw: false
+94787afd0f9bf5565a75ca8657b62e08:
+  key: d94c5cc4eeff3aefd56131a9e2a6fd139ad9e3c21bf33b19bc79fe30e3210280
+  source: 'https://telegram.me/addstickers/AnimeReactions'
+  tags:
+    - anime
+    - reaction
+    - reactions
+  nsfw: false
