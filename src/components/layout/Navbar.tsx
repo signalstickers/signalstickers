@@ -109,7 +109,7 @@ const NavbarComponent: React.FunctionComponent = () => {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="https://twitter.com/signalstickers" rel="noreferrer" target="_blank" title="Twitter feed">
-                Twitter feed <Octicon name="link-external" />
+                Twitter <Octicon name="link-external" />
               </a>
             </li>
           </ul>
