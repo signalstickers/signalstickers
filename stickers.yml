@@ -19038,6 +19038,13 @@ d1db446eba2254e6957f8a1d65dd3384:
   tags:
     - organize
   nsfw: false
+50f4e13908a3cfb27cc19294bb8d3486:
+  key: 1f1de968a6e794f9d43f8d6cbe658a0eae045e4bfc9f6428dd25d581f86b39a9
+  source: 'https://twitter.com/jhthenerd/status/1241817896617160705'
+  tags:
+    - emote
+    - kek
+  nsfw: false
 5ea292ba83bf9448b3489b35c8bdb49c:
   key: 9be0ec3714d3fa16b31df0bed9090bf4e908ac947d71be0d6afafd1296b7a2ac
   source: 'https://twitter.com/writeswrongs/status/1243096441175728128'
