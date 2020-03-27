@@ -19020,6 +19020,18 @@ a084936b99af1f34e0a6b26b01198c50:
     - reaction
     - reactions
   nsfw: false
+d1db446eba2254e6957f8a1d65dd3384:
+  key: 423fe2dce8bd33f42d9afc027229b3178e0d1bd43a2a5acd0083ec0e6e5f07f5
+  source: 'Bradigus, compiled by Canuckistanian'
+  tags:
+    - battletech
+    - mechwarrior
+    - video game
+    - tabletop game
+    - wargame
+    - mecha
+    - memes
+  nsfw: false
 5ea292ba83bf9448b3489b35c8bdb49c:
   key: 9be0ec3714d3fa16b31df0bed9090bf4e908ac947d71be0d6afafd1296b7a2ac
   source: 'https://twitter.com/writeswrongs/status/1243096441175728128'
@@ -19038,4 +19050,4 @@ a084936b99af1f34e0a6b26b01198c50:
     - coronavirus
     - stayhome
   nsfw: false
-  
+
