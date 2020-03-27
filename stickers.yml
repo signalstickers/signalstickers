@@ -19012,6 +19012,14 @@ a084936b99af1f34e0a6b26b01198c50:
   source: 'https://twitter.com/writeswrongs/status/1243096866041917441'
   tags: []
   nsfw: false
+94787afd0f9bf5565a75ca8657b62e08:
+  key: d94c5cc4eeff3aefd56131a9e2a6fd139ad9e3c21bf33b19bc79fe30e3210280
+  source: 'https://telegram.me/addstickers/AnimeReactions'
+  tags:
+    - anime
+    - reaction
+    - reactions
+  nsfw: false
 5ea292ba83bf9448b3489b35c8bdb49c:
   key: 9be0ec3714d3fa16b31df0bed9090bf4e908ac947d71be0d6afafd1296b7a2ac
   source: 'https://twitter.com/writeswrongs/status/1243096441175728128'
@@ -19030,11 +19038,4 @@ a084936b99af1f34e0a6b26b01198c50:
     - coronavirus
     - stayhome
   nsfw: false
-94787afd0f9bf5565a75ca8657b62e08:
-  key: d94c5cc4eeff3aefd56131a9e2a6fd139ad9e3c21bf33b19bc79fe30e3210280
-  source: 'https://telegram.me/addstickers/AnimeReactions'
-  tags:
-    - anime
-    - reaction
-    - reactions
-  nsfw: false
+  
