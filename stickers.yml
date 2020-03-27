@@ -19032,6 +19032,12 @@ d1db446eba2254e6957f8a1d65dd3384:
     - mecha
     - memes
   nsfw: false
+07e682c4a2d0dc06a07696cc828b7b8b:
+  key: 56b20487988a3a9d3a25ed7f46acca83101ee60575cec94b45762557c76d09e5
+  source: 'https://twitter.com/writeswrongs/status/1243385134952267779'
+  tags:
+    - organize
+  nsfw: false
 5ea292ba83bf9448b3489b35c8bdb49c:
   key: 9be0ec3714d3fa16b31df0bed9090bf4e908ac947d71be0d6afafd1296b7a2ac
   source: 'https://twitter.com/writeswrongs/status/1243096441175728128'
