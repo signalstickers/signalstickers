@@ -26,6 +26,9 @@ const schema = {
         },
         nsfw: {
           type: 'boolean'
+        },
+        original: {
+          type: 'boolean'
         }
       },
       additionalProperties: false,
