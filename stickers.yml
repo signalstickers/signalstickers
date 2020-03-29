@@ -19045,6 +19045,11 @@ d1db446eba2254e6957f8a1d65dd3384:
     - emote
     - kek
   nsfw: false
+0f7428855e5efa1a55b9940f98cc1505:
+  key: 9ae7d4805396ff028c035ad8c3918a34dee54806b7b754a6d7b170fd0666f045
+  source: 'https://twitter.com/writeswrongs/status/1244131639048859648'
+  tags: []
+  nsfw: false
 5ea292ba83bf9448b3489b35c8bdb49c:
   key: 9be0ec3714d3fa16b31df0bed9090bf4e908ac947d71be0d6afafd1296b7a2ac
   source: 'https://twitter.com/writeswrongs/status/1243096441175728128'
