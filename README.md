@@ -36,7 +36,7 @@ navigate sticker packs quietly.
 ## Q&A
 
 ### How can I create a sticker pack?
-Follow the tutorial on the [Signal support site](https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca)
+Follow the tutorial on the [Signal support site](https://support.signal.org/hc/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca)
 to upload your stickers to Signal.
 
 > Note: when creating stickers, don't forget to add a white stroke to improve

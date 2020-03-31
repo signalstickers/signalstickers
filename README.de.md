@@ -31,7 +31,7 @@ Die Idee ist, eine familiäre Atmosphäre zu bewahren: Ich möchte, dass auch me
 
 ### Wie kann ich eine Sticker-Packung erstellen?
 
-Folge dem Tutorial auf der [Signal-Support-Website](https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca).
+Folge dem Tutorial auf der [Signal-Support-Website](https://support.signal.org/hc/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca).
 
 Gib den Motiven auf deinen Stickern eventuell eine helle/weiße Umrandung ("Halo"), damit diese auch in der dunklen Variante der Benutzeroberfläche ("Dark Theme") lesbar sind (vergleich: links, ohne Umrandung; rechts, mit Umrandung).
 
