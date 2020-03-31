@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import React, {useState, useContext} from 'react';
+import {Link, useParams, useHistory} from 'react-router-dom';
 import Linkify from 'react-linkify';
 import {styled} from 'linaria/react';
 import {darken} from 'polished';
@@ -16,6 +16,7 @@ import {bp} from 'lib/utils';
 import Sticker from './Sticker';
 import StickerPackError from './StickerPackError';
 import Tag from './Tag';
+import StickersContext from 'contexts/StickersContext';
 
 
 // ----- Types -----------------------------------------------------------------
@@ -130,6 +131,10 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   // to show the user.
   const [stickerPackError, setStickerPackError] = useState('');
 
+  // Current search query, will be used if the users clicks on author
+  const {setSearchQuery} = useContext(StickersContext);
+  const history = useHistory();
+
 
   /**
    * [Effect] Set `stickerPack` when the component mounts.
@@ -147,6 +152,15 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       }
     }
   }, []);
+
+  /**
+   * [Event Handler] Search for packs from the same author
+   */
+  function onAuthorClick(event: React.SyntheticEvent) {
+    event.preventDefault();
+    setSearchQuery(event.currentTarget.textContent);
+    history.push('/');
+  }
 
 
   // ----- Render --------------------------------------------------------------
@@ -198,7 +212,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       <div className="row mb-4 flex-column-reverse flex-lg-row">
         <div className="col-12 col-lg-8 mt-4 mt-lg-0">
           <div className="title">{stickerPack.manifest.title}</div>
-          <div className="author">{author}</div>
+          <div className="author"><a title={`View more packs from ${author}`} href="" onClick={onAuthorClick}>{author}</a></div>
         </div>
         <div className="col-12 col-lg-4 d-flex d-lg-block justify-content-between text-md-right">
           {stickerPack.meta ? <Link to="/">
