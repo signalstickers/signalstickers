@@ -55,6 +55,7 @@ export interface FormValues {
   source: string;
   tags: string;
   isNsfw?: 'true' | 'false';
+  isOriginal?: 'true' | 'false';
 }
 
 
@@ -77,7 +78,8 @@ const initialValues: FormValues = {
   signalArtUrl: '',
   source: '',
   tags: '',
-  isNsfw: undefined
+  isNsfw: undefined,
+  isOriginal: undefined
 };
 
 /**
@@ -119,6 +121,12 @@ const validators = {
   },
   isNsfw: (isNsfw?: boolean) => {
     if (isNsfw === undefined) {
+      return 'This field is required.';
+    }
+  }
+  ,
+  isOriginal: (isOriginal?: boolean) => {
+    if (isOriginal === undefined) {
       return 'This field is required.';
     }
   }
@@ -172,7 +180,8 @@ const ContributeComponent: React.FunctionComponent = () => {
         key: packKey,
         source: values.source,
         tags,
-        nsfw: values.isNsfw === 'true' ? true : false
+        nsfw: values.isNsfw === 'true' ? true : false,
+        original: values.isOriginal === 'true' ? true : false
       }
     }, {
       indent: 2
@@ -312,6 +321,50 @@ const ContributeComponent: React.FunctionComponent = () => {
                     </div>
                     <div className="invalid-feedback">
                       <ErrorMessage name="isNsfw" />&nbsp;
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* [Field] Original */}
+              <div className="form-group">
+                <div className="form-row">
+                  <label className={cx('col-12', 'mb-2', errors.isOriginal && 'text-danger')}>
+                   Is your pack original? Did the author of the pack draw it exclusively for Signal, from original artworks?
+                  </label>
+                </div>
+                <div className="form-row">
+                  <div className="col-12 mb-1">
+                    <div className="custom-control custom-radio">
+                      <Field
+                        type="radio"
+                        id="is-original-true"
+                        name="isOriginal"
+                        validate={validators.isOriginal}
+                        className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
+                        value="true"
+                        checked={values.isOriginal === 'true'}
+                      />
+                      <label className="custom-control-label" htmlFor="is-original-true">
+                        Yes
+                      </label>
+                    </div>
+                  </div>
+                  <div className="col-12 mb-1">
+                    <div className="custom-control custom-radio">
+                      <Field
+                        type="radio"
+                        id="is-original-false"
+                        name="isOriginal"
+                        validate={validators.isOriginal}
+                        className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
+                        value="false"
+                        checked={values.isOriginal === 'false'}
+                      />
+                      <label className="custom-control-label" htmlFor="is-original-false">No</label>
+                    </div>
+                    <div className="invalid-feedback">
+                      <ErrorMessage name="isOriginal" />&nbsp;
                     </div>
                   </div>
                 </div>

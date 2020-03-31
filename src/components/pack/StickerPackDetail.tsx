@@ -62,6 +62,10 @@ const StickerPackDetail = styled.div`
     color: ${SIGNAL_BLUE};
   }
 
+  & .octicon-star {
+    color: gold;
+  }
+
   & .octicon-tag {
     color: ${SIGNAL_BLUE};
   }
@@ -213,6 +217,9 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       {stickerPack.meta ? <div className="row mb-4">
         <div className="col-12 col-lg-6">
           <ul className="list-group">
+            {stickerPack.meta.original ? <li className="list-group-item text-wrap text-break">
+            <Octicon name="star" title="Original sticker pack" /> This pack has been created exclusively for Signal by the artist, from original artworks.
+            </li> : null}
             <li className="list-group-item text-wrap text-break">
               <Octicon name="globe" title="Source" />
               <div>
