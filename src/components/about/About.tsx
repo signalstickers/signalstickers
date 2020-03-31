@@ -48,6 +48,11 @@ const AboutComponent: React.FunctionComponent = () => {
               </a>
             </li>
             <li>
+              <a href="https://twitter.com/signalstickers" rel="noreferrer" target="_blank" title="Twitter feed">
+                <Octicon name="link-external" /> Twitter feed
+              </a>
+            </li>
+            <li>
               <a href="https://github.com/signalstickers/signalstickers" rel="noreferrer" target="_blank" title="GitHub Repository">
                 <Octicon name="link-external" /> GitHub Repository
               </a>
@@ -58,7 +63,7 @@ const AboutComponent: React.FunctionComponent = () => {
               </a>
             </li>
             <li>
-              <a href="https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca" rel="noreferrer" target="_blank" title="Sticker Pack Creation Guide">
+              <a href="https://support.signal.org/hc/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca" rel="noreferrer" target="_blank" title="Sticker Pack Creation Guide">
                 <Octicon name="link-external" /> Sticker Pack Creation Guide
               </a>
             </li>

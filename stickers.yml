@@ -13,6 +13,7 @@ ae1d343accdec586fe19954a6be7aee9:
     - internet
     - freedom
   nsfw: false
+  original: true
 123f678abcef7a39c0e710c051c68ae8:
   key: 84e89503556fa3568485a89d113b70ff73a8822a6c9c5c524ba2c7428007551d
   source: ''
@@ -671,6 +672,7 @@ a76321b39a185872fc759a43a095e332:
   source: 'https://twitter.com/CFWeb/status/1209443173564649479'
   tags: []
   nsfw: false
+  original: true
 8969c957cbd6ae9d033a4f8d3935a16e:
   key: 9c3d2ca44339bca302cdf929e9741b2f7b12556a4dcc8ffabea215d732bbd0c1
   source: 'https://github.com/signalstickers/signalstickers/pull/21'
@@ -870,6 +872,7 @@ a27b2ee11656275c0f900026e1327541:
     - love
     - watercolor
   nsfw: false
+  original: true
 6c160a6938404e27085d04176e828acd:
   key: 33229429b66caff14b1d0c180a088797a97b0be11b4398be7ad220aa16b0b71e
   source: telegram
@@ -922,6 +925,7 @@ a6d9d827b714e5acf1e03a0dceb7a6f3:
     - meta
     - privacy
   nsfw: false
+  original: true
 ce83961e7bffdb0cfbc9b0c614252cdf:
   key: 10b2e91aa996bfdc05cd0950cc0967d454bd798068cfb1f26988fd7c5469bcee
   source: >-
@@ -931,6 +935,7 @@ ce83961e7bffdb0cfbc9b0c614252cdf:
     - flashes
     - tatoo
   nsfw: false
+  original: true
 61bc889ce8ed59fbf3022b25376db025:
   key: 6b3276230265aedbd34824f4b302c73cb0a9a298173df1aff6a06b3d5fd89088
   source: ''
@@ -943,6 +948,7 @@ ce83961e7bffdb0cfbc9b0c614252cdf:
   source: ''
   tags: []
   nsfw: false
+  original: true
 1e012d5b00201f6498bd2596aa351629:
   key: 9d3768e49927d02fa20b8ed87ca6fbd2bad21317349fbeeff9004c3575445956
   source: ''
@@ -985,6 +991,7 @@ ea94b9358b81f288a23a832b1f9f22f3:
     - marie curie
     - marie jackson
   nsfw: false
+  original: true
 9d7f92d41649e2fd3594ae1ae0001055:
   key: 0a2ec8c32491ff264941469be8179956d626081b2b576cb49cc1869bfa54e43a
   source: Saul O'Gorman
@@ -992,6 +999,7 @@ ea94b9358b81f288a23a832b1f9f22f3:
     - oc
     - kid art
   nsfw: false
+  original: true
 107acdd3185620e983d00440302be101:
   key: 799d95aadc54bb04370b07e2b65eaa1898f7cf61810a6eb49dc7526f96f77f66
   source: 'http://vkclub.su/en/stickers/elvis/'
@@ -7982,7 +7990,7 @@ b55ac00b75f46b48e02eec3bea932b9a:
     - sex
     - Mr. Zoid
     - telegram
-  nsfw: false
+  nsfw: true
 9ea4b8aa62b91c886159ad1042f3b82c:
   key: b660e36fce7afa5eb0e7cf5759fcd9ec99640a2c00e4d7baf3df1323376f3e64
   source: 'https://tlgrm.eu/stickers'
@@ -10368,7 +10376,7 @@ c5fb525dfd1fcfa33dc3464434c17481:
     - relationship
     - Sigmund Freud
     - telegram
-  nsfw: false
+  nsfw: true
 648376d76011483597c841c07fd451fb:
   key: 9ae6350b7a4d88b756fd64b8075e45d64a72d7b8d9a0af450875461f7b686821
   source: 'https://tlgrm.eu/stickers'
@@ -18317,6 +18325,7 @@ a294c9cbd93c3c2e09f9c05f1339828a:
     - public transit
     - numtot
   nsfw: false
+  original: true
 a79608cb9d82a68c57e837d3943bf5d2:
   key: 8f76958903ae6506cbbdcad9183d50925fede880627e47e009953d504499d284
   source: ''
@@ -18326,6 +18335,7 @@ a79608cb9d82a68c57e837d3943bf5d2:
     - France
     - rhonexpress
   nsfw: false
+  original: true
 dc6c215c48f7ad6af90a0bb87448f2eb:
   key: 5aaaf51fa965b98ccbe0e986ca3dc11df2a5c4720c04723a7c28171ee5d429af
   source: ''
@@ -18338,6 +18348,7 @@ dc6c215c48f7ad6af90a0bb87448f2eb:
     - tram
     - baguette du fromage
   nsfw: false
+  original: true
 76f937beffd4760dafd77baff76ad09b:
   key: 39ed2a2acb4977bec214f028dcb4ad98775b3212dd5310705be87f4c9f162df4
   source: https://play.google.com/store/apps/details?id=com.whamusaurus.gamusticker (made by Gamusaur for WhatsApp)
@@ -18379,6 +18390,7 @@ c4d50001e190c19f1d7aabc1b83e4041:
   source: 'https://www.instagram.com/dark.art.cat/'
   tags: []
   nsfw: false
+  original: true
 6bfa006d7c5c6478c5f88e0080b2195d:
   key: 69f6ddd1db5057a9089f6aaf22b1aff58948915a1275da7fd6f76df726d8b77c
   source: ''
@@ -18399,6 +18411,7 @@ c4d50001e190c19f1d7aabc1b83e4041:
     - Motorcycle
     - bike
   nsfw: false
+  original: true
 6bdfc11c96f763965d5eb6b7abadea83:
   key: 1320504bedc7a334527bc3ba6609b2732132723db96e00ff68976b8f39bdf6ba
   source: WhatsApp
@@ -18508,12 +18521,14 @@ cca32f5b905208b7d0f1e17f23fdc185:
   tags:
     - Signal
   nsfw: false
+  original: true
 e61fa0867031597467ccc036cc65d403:
   key: 13ae7b1a7407318280e9b38c1261ded38e0e7138b9f964a6ccbb73e40f737a9b
   source: 'https://signal.org/blog/swoon/'
   tags:
     - Signal
   nsfw: false
+  original: true
 cbc5510880d023fdbb773649d41ba6ce:
   key: df210abdb5591436a6c30f3fb4748df038f214501b46610f5b18a655322c9ef8
   source: www.carmenland.com
@@ -18868,6 +18883,214 @@ c4d174fe9e61444fcc9a354c0f33a61c:
     - hobbes
     - comic
   nsfw: false
+73a5a017d9b6eb0d34f43286d2cc5723:
+  key: 9416ced01b16b8b4e93d80ae1a7df219ce1b6aa3a827bc6c43328ec891cdbf76
+  source: 'Now and Later (NaL), cinnamonspots.com'
+  tags:
+    - magarnan
+    - mag
+    - dog
+    - nal
+    - nowandlater
+    - telegram
+    - furry
+  nsfw: false
+d47c560c520885eed89b67ccfdf7aa85:
+  key: e6618937bb6aac45ee08efa22600b4d15e7e6cf21a392cb7d077f95ed6a73889
+  source: 'https://furaffinity.net/user/kunacoyote/'
+  tags:
+    - kuna
+    - kunafeels
+    - coyote
+    - telegram
+    - furry
+  nsfw: false
+c2a9a8daed732127af08e0ef20ca4c8a:
+  key: 10a049b1651d5b5109afcef7f280c1db63e7eacb4d579f0bc32dacd8b5edd188
+  source: 'https://t.me/addstickers/celestegame'
+  tags:
+    - Celeste
+    - video game
+  nsfw: false
+fef01d99c052393144de181dc94f8aef:
+  key: c7fa6f7f94d4149f4802dbb130c93375025d1e840a9f69c5f0e22fa2ff4906e8
+  source: 'https://t.me/addstickers/PoohSocialCredit'
+  tags:
+    - china
+    - pooh
+  nsfw: false
+133ee7975f66a1565771b9c233e6f2c4:
+  key: 98ae81b206199d915d1b0536458c81f6309a535dcf0cb4fc81d0b3f8264dd831
+  source: ''
+  tags:
+    - Larry
+    - David
+    - Curb
+    - Enthusiasm
+    - HBO
+    - series
+    - Seinfeld
+  nsfw: false
+197e16a1d8e4fe8e7b95cabab25b33d7:
+  key: a1c197edcc3cb4a31e8a8aabc66194bc06d0cd75e6f53955147836dff6d81737
+  source: 'https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/245'
+  tags: []
+  nsfw: false
+a068463e5da3b4b602c7fb68fd87a7fc:
+  key: cd3d84fc9c4b7c67fa59e4476da26cac5693edcc09fc0d9e5df4a9c527221539
+  source: 'https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/248'
+  tags: []
+  nsfw: false
+4822d2eb47620bca48ddb0c8cd76f682:
+  key: b81a0f231ccc92e34217c308c64ef9d4a745a61f524984c3dca1956f1403343f
+  source: 'https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/248'
+  tags: []
+  nsfw: false
+e9f052fa6ccb45e8e58166912c048fe6:
+  key: 543865be2319bfcd0348afb993bb8649e37d48e6ef54767232a16c571dae561f
+  source: 'https://twitter.com/Fleak/status/1236962821134528513'
+  tags: []
+  nsfw: false
+  original: true
+076ff304f216d736e5450d30b6fd3b20:
+  key: b09decd96695145e81551bdb1c58961a241414b0ad68fa6b332b5e2fb2fd9b9d
+  source: 'https://twitter.com/Fleak/status/1236411738012123138'
+  tags: []
+  nsfw: false
+  original: true
+66cce81c1eb8a2f38813c00560bb3ed4:
+  key: 7a81652acb8921ba92b43a7d029b581333d6a02e7bab5bfc8b5d97b8b75470af
+  source: 'Riley, https://furaffinity.net/user/rileyy/'
+  tags:
+    - xyk
+    - xykyote
+    - quickxyk
+    - coyote
+    - yote
+    - cactus
+    - cacti
+    - riley
+    - rileyy
+    - waywardmutt
+    - telegram
+    - furry
+  nsfw: false
+69ee39d352c02766beaad15d23392689:
+  key: 1bb2ddcfe77acd42c6d8f0964ed8c844653c65381758ee93eaead36437cbf4b9
+  source: 'https://twitter.com/LexScobey/status/1240755976573194240'
+  tags:
+    - emoji
+  nsfw: false
+9a5570c9f3268e4c9ae9916c9b173de4:
+  key: 1fcfedaf0fc159e3f68bb091a029b643047ed5622ee00640664fd87f3a3f0f62
+  source: ''
+  tags:
+    - cute
+    - mr zip
+    - letters
+  nsfw: false
+0a41cb27e0037cf406a7131752094d93:
+  key: 7311349ef248f2bc4078ed555a1ae4f5ad56eba766566e0e59da2cbf5d164933
+  source: ''
+  tags:
+    - meme
+    - boomer
+    - zoomer
+    - doomer
+    - bloomer
+    - gloomer
+    - pepe
+  nsfw: false
+1fca977c7a6d59dc8974bf2f450d1fc9:
+  key: a3b215a4ecfdbd03626e790732f6ff870f8448e3241426c4253f30c709adcdda
+  source: ''
+  tags:
+    - anime
+    - cute
+    - reactions
+  nsfw: false
+b9976aeb8b2dfb1a8f1d16dbd82fe330:
+  key: e81a099e00d71efc7706cdbda186fd472a6f58f368a2db4f7ea383654bd60ca2
+  source: 'https://twitter.com/writeswrongs/status/1243164838513106944'
+  tags:
+    - mermaid
+  nsfw: false
+  original: true
+23cc6d83aab2ac59f7f443beb03506d6:
+  key: cf44a9ffd8ebcdcf499dbd6a31f668a3b4cd9d551e507649a7157d50b2890002
+  source: 'https://twitter.com/writeswrongs/status/1243107565069713410'
+  tags:
+    - help
+    - strike
+    - society
+    - protest
+  nsfw: false
+  original: true
+a084936b99af1f34e0a6b26b01198c50:
+  key: 7a6530403168a608b6fba83238d7c25a4f39a28fa30dbb84a81ee2849a734afa
+  source: 'https://twitter.com/writeswrongs/status/1243096866041917441'
+  tags: []
+  nsfw: false
+  original: true
+94787afd0f9bf5565a75ca8657b62e08:
+  key: d94c5cc4eeff3aefd56131a9e2a6fd139ad9e3c21bf33b19bc79fe30e3210280
+  source: 'https://telegram.me/addstickers/AnimeReactions'
+  tags:
+    - anime
+    - reaction
+    - reactions
+  nsfw: false
+d1db446eba2254e6957f8a1d65dd3384:
+  key: 423fe2dce8bd33f42d9afc027229b3178e0d1bd43a2a5acd0083ec0e6e5f07f5
+  source: 'Bradigus, compiled by Canuckistanian'
+  tags:
+    - battletech
+    - mechwarrior
+    - video game
+    - tabletop game
+    - wargame
+    - mecha
+    - memes
+  nsfw: false
+07e682c4a2d0dc06a07696cc828b7b8b:
+  key: 56b20487988a3a9d3a25ed7f46acca83101ee60575cec94b45762557c76d09e5
+  source: 'https://twitter.com/writeswrongs/status/1243385134952267779'
+  tags:
+    - organize
+  nsfw: false
+  original: true
+50f4e13908a3cfb27cc19294bb8d3486:
+  key: 1f1de968a6e794f9d43f8d6cbe658a0eae045e4bfc9f6428dd25d581f86b39a9
+  source: 'https://twitter.com/jhthenerd/status/1241817896617160705'
+  tags:
+    - emote
+    - kek
+  nsfw: false
+0f7428855e5efa1a55b9940f98cc1505:
+  key: 9ae7d4805396ff028c035ad8c3918a34dee54806b7b754a6d7b170fd0666f045
+  source: 'https://twitter.com/writeswrongs/status/1244131639048859648'
+  tags: []
+  nsfw: false
+  original: true
+98f69b4ed2942258669ed7cdb2ace42f:
+  key: 473fa93762172d88bf5a02932887443b14d465379bdf4a84df4c13c9d460314a
+  source: RuneScape
+  tags:
+    - RuneScape
+    - Zezima
+    - Jagex
+  nsfw: false
+  original: true
+5ea292ba83bf9448b3489b35c8bdb49c:
+  key: 9be0ec3714d3fa16b31df0bed9090bf4e908ac947d71be0d6afafd1296b7a2ac
+  source: 'https://twitter.com/writeswrongs/status/1243096441175728128'
+  tags:
+    - COVID_19
+    - COVID-19
+    - coronavirus
+    - stayhome
+  nsfw: false
+  original: true
 8e21a5bde99182638d40c7d70c8c954d:
   key: fd4f26e2952fac93e8304713db4c493eb0b2247fe08b2385342db80e3471c8d5
   source: Romain Ricard

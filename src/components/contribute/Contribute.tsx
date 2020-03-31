@@ -3,7 +3,7 @@ import {cx} from 'linaria';
 import {styled} from 'linaria/react';
 import {darken} from 'polished';
 import * as R from 'ramda';
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {PrismAsyncLight as SyntaxHighlighter} from 'react-syntax-highlighter';
 import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
 import syntaxTheme from 'react-syntax-highlighter/dist/esm/styles/prism/base16-ateliersulphurpool.light';
@@ -55,6 +55,7 @@ export interface FormValues {
   source: string;
   tags: string;
   isNsfw?: 'true' | 'false';
+  isOriginal?: 'true' | 'false';
 }
 
 
@@ -77,7 +78,8 @@ const initialValues: FormValues = {
   signalArtUrl: '',
   source: '',
   tags: '',
-  isNsfw: undefined
+  isNsfw: undefined,
+  isOriginal: undefined
 };
 
 /**
@@ -122,6 +124,12 @@ const validators = {
       return 'This field is required.';
     }
   }
+  ,
+  isOriginal: (isOriginal?: boolean) => {
+    if (isOriginal === undefined) {
+      return 'This field is required.';
+    }
+  }
 };
 
 
@@ -133,6 +141,7 @@ const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
   const [ymlBlob, setYmlBlob] = useState('');
   const [previewUrl, setPreviewUrl] = useState('');
+  const openPrButton = useRef();
 
 
   /**
@@ -171,7 +180,8 @@ const ContributeComponent: React.FunctionComponent = () => {
         key: packKey,
         source: values.source,
         tags,
-        nsfw: values.isNsfw === 'true' ? true : false
+        nsfw: values.isNsfw === 'true' ? true : false,
+        original: values.isOriginal === 'true' ? true : false
       }
     }, {
       indent: 2
@@ -180,6 +190,8 @@ const ContributeComponent: React.FunctionComponent = () => {
     setPreviewUrl(
       `https://signalstickers.com/pack/${packId}?key=${packKey}`
     );
+
+    openPrButton.current.scrollIntoView({behavior: 'smooth'});
 
     return true;
   };
@@ -314,6 +326,50 @@ const ContributeComponent: React.FunctionComponent = () => {
                 </div>
               </div>
 
+              {/* [Field] Original */}
+              <div className="form-group">
+                <div className="form-row">
+                  <label className={cx('col-12', 'mb-2', errors.isOriginal && 'text-danger')}>
+                   Is your pack original? Did the author of the pack draw it exclusively for Signal, from original artworks?
+                  </label>
+                </div>
+                <div className="form-row">
+                  <div className="col-12 mb-1">
+                    <div className="custom-control custom-radio">
+                      <Field
+                        type="radio"
+                        id="is-original-true"
+                        name="isOriginal"
+                        validate={validators.isOriginal}
+                        className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
+                        value="true"
+                        checked={values.isOriginal === 'true'}
+                      />
+                      <label className="custom-control-label" htmlFor="is-original-true">
+                        Yes
+                      </label>
+                    </div>
+                  </div>
+                  <div className="col-12 mb-1">
+                    <div className="custom-control custom-radio">
+                      <Field
+                        type="radio"
+                        id="is-original-false"
+                        name="isOriginal"
+                        validate={validators.isOriginal}
+                        className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
+                        value="false"
+                        checked={values.isOriginal === 'false'}
+                      />
+                      <label className="custom-control-label" htmlFor="is-original-false">No</label>
+                    </div>
+                    <div className="invalid-feedback">
+                      <ErrorMessage name="isOriginal" />&nbsp;
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* [Control] Submit */}
               <div className="form-group">
                 <div className="form-row">
@@ -370,7 +426,7 @@ const ContributeComponent: React.FunctionComponent = () => {
         </div>
         <div className="row">
           <div className="col-12 col-md-10 offset-md-1">
-            <a className="btn btn-success btn-block" href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml" rel="noreferrer" target="_blank" title="Open a Pull Request">
+            <a ref={openPrButton} className="btn btn-success btn-block" href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml" rel="noreferrer" target="_blank" title="Open a Pull Request">
               <Octicon name="link-external" /> Edit the file and open a Pull Request
             </a>
           </div>

@@ -5,7 +5,7 @@ import {darken} from 'polished';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
 
-import SignalLogoUrl from 'assets/signal-logo.png';
+import SignalLogoUrl from 'assets/favicon.png';
 import {SIGNAL_BLUE} from 'etc/colors';
 import {bp} from 'lib/utils';
 
@@ -106,6 +106,11 @@ const NavbarComponent: React.FunctionComponent = () => {
               <Link to="/about" className="nav-link" title="About">
                 About
               </Link>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="https://twitter.com/signalstickers" rel="noreferrer" target="_blank" title="Twitter feed">
+                Twitter <Octicon name="link-external" />
+              </a>
             </li>
           </ul>
         </div>
