@@ -7,6 +7,7 @@
   <a href="https://github.com/signalstickers/signalstickers/graphs/contributors"><img src="https://img.shields.io/github/contributors/signalstickers/signalstickers"></a>
   <a href="README.md"><img src="https://bit.ly/31ysLJA" alt="English"></a>
   <a href="README.de.md"><img src="http://bit.ly/3bljOI0" alt="Deutsch"></a>
+  <a href="https://twitter.com/signalstickers"><img src="https://img.shields.io/twitter/follow/signalstickers?label=Feed&style=social"></a>
 </p>
 
 ## À propos
@@ -43,7 +44,7 @@ puisse parcourir les packs d'autocollants tranquillement.
 ### Comment puis-je créer un pack d'autocollants ?
 
 Suivez le tutoriel sur [le site de support de
-Signal](https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca)
+Signal](https://support.signal.org/hc/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca)
 pour télécharger vos stickers sur Signal.
 
 > Note : lors de la création des stickers, n'oubliez pas d'ajouter un contour
