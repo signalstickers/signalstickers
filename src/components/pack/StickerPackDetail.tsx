@@ -16,7 +16,7 @@ import {bp} from 'lib/utils';
 import Sticker from './Sticker';
 import StickerPackError from './StickerPackError';
 import Tag from './Tag';
-
+import NsfwModal from './NsfwModal';
 
 // ----- Types -----------------------------------------------------------------
 
@@ -62,6 +62,10 @@ const StickerPackDetail = styled.div`
     color: ${SIGNAL_BLUE};
   }
 
+  & .octicon-star {
+    color: gold;
+  }
+
   & .octicon-tag {
     color: ${SIGNAL_BLUE};
   }
@@ -96,6 +100,7 @@ const StickerPackDetail = styled.div`
   & strong {
     font-weight: 600;
   }
+
 `;
 
 
@@ -191,6 +196,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   // viewing an unlisted sticker pack.
   return (
     <StickerPackDetail className="px-1 px-sm-4 py-4 mt-0 mt-sm-5 mb-5">
+    {stickerPack.meta.nsfw ? <NsfwModal></NsfwModal> : null}
       <div className="row mb-4 flex-column-reverse flex-lg-row">
         <div className="col-12 col-lg-8 mt-4 mt-lg-0">
           <div className="title">{stickerPack.manifest.title}</div>
@@ -213,6 +219,9 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       {stickerPack.meta ? <div className="row mb-4">
         <div className="col-12 col-lg-6">
           <ul className="list-group">
+            {stickerPack.meta.original ? <li className="list-group-item text-wrap text-break">
+            <Octicon name="star" title="Original sticker pack" /> This pack has been created exclusively for Signal by the artist, from original artworks.
+            </li> : null}
             <li className="list-group-item text-wrap text-break">
               <Octicon name="globe" title="Source" />
               <div>
