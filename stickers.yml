@@ -19164,6 +19164,15 @@ beaf36a4cb8aba728fd79c360544f1b3:
     - Nyctivoe
   nsfw: false
   original: false
+02d7e5360d11b8d85b1017beff7ad3d4:
+  key: 541464ddabcc98052d549d67efbc5103f20faa787903c32e12314ebdc045e4bb
+  source: Duke Corgi
+  tags:
+    - Duke Corgi
+    - Corgi
+    - Furry
+    - Dog
+  nsfw: true
 5ea292ba83bf9448b3489b35c8bdb49c:
   key: 9be0ec3714d3fa16b31df0bed9090bf4e908ac947d71be0d6afafd1296b7a2ac
   source: 'https://twitter.com/writeswrongs/status/1243096441175728128'
@@ -19183,3 +19192,4 @@ beaf36a4cb8aba728fd79c360544f1b3:
     - coronavirus
     - stayhome
   nsfw: false
+
