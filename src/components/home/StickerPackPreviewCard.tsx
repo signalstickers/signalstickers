@@ -17,9 +17,25 @@ export interface Props {
 
 // ----- Styles ----------------------------------------------------------------
 
-const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: boolean}>`
+const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: boolean} & {original?: boolean}>`
   text-align: center;
   transition: box-shadow 0.15s ease-in-out;
+  overflow: hidden;
+
+  &::after{
+    content: 'Original';
+    top: 13px;
+    left: O;
+    display: ${props => props.original ? 'block' : 'none'};
+    background-color: #3a76f0;
+    position: absolute;
+    padding: 3px 6px 3px 3px;
+    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.2);
+    color: white;
+    font-size: 12px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+  }
 
   & .card-img-top {
     height: 72px;
@@ -98,7 +114,7 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
   const title = [manifest.title, meta.nsfw && ' (NSFW)'].filter(Boolean).join('');
 
   return (
-    <StickerPackPreviewCard className="card" nsfw={meta.nsfw} aria-label={title}>
+    <StickerPackPreviewCard className="card" original={meta.original} nsfw={meta.nsfw} aria-label={title}>
       {cover ? <img className="card-img-top" src={cover} /> : <div className="card-img-top"></div>}
       <div className="card-header">{title}</div>
     </StickerPackPreviewCard>

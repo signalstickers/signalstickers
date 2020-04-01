@@ -44,7 +44,7 @@ puisse parcourir les packs d'autocollants tranquillement.
 ### Comment puis-je créer un pack d'autocollants ?
 
 Suivez le tutoriel sur [le site de support de
-Signal](https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca)
+Signal](https://support.signal.org/hc/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca)
 pour télécharger vos stickers sur Signal.
 
 > Note : lors de la création des stickers, n'oubliez pas d'ajouter un contour

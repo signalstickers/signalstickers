@@ -167,7 +167,6 @@ export default (env: string, argv: any): webpack.Configuration => {
       minimize: true
     }));
 
-    const ICON_BACKGROUND_COLOR = '#2090EA';
 
     config.plugins.push(new FaviconsWebpackPlugin({
       logo: path.resolve(PKG_ROOT, 'src', 'assets', 'favicon.png'),
@@ -180,34 +179,6 @@ export default (env: string, argv: any): webpack.Configuration => {
         version: '',
         developerName: '',
         developerURL: '',
-        background: ICON_BACKGROUND_COLOR,
-        theme_color: ICON_BACKGROUND_COLOR,
-        icons: {
-          android: {
-            background: ICON_BACKGROUND_COLOR
-          },
-          appleIcon: {
-            background: ICON_BACKGROUND_COLOR
-          },
-          appleStartup: {
-            background: ICON_BACKGROUND_COLOR
-          },
-          coast: {
-            background: ICON_BACKGROUND_COLOR
-          },
-          favicons: {
-            background: ICON_BACKGROUND_COLOR
-          },
-          firefox: {
-            background: ICON_BACKGROUND_COLOR
-          },
-          windows: {
-            background: ICON_BACKGROUND_COLOR
-          },
-          yandex: {
-            background: ICON_BACKGROUND_COLOR
-          }
-        }
       }
     }));
   }

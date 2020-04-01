@@ -5,7 +5,7 @@ import {darken} from 'polished';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
 
-import SignalLogoUrl from 'assets/signal-logo.png';
+import SignalLogoUrl from 'assets/favicon.png';
 import {SIGNAL_BLUE} from 'etc/colors';
 import {bp} from 'lib/utils';
 
