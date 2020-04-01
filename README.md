@@ -7,6 +7,7 @@
   <a href="https://github.com/signalstickers/signalstickers/graphs/contributors"><img src="https://img.shields.io/github/contributors/signalstickers/signalstickers"></a>
   <a href="README.de.md"><img src="http://bit.ly/3bljOI0" alt="Deutsch"></a>
   <a href="README.fr.md"><img src="https://bit.ly/31xkO7h" alt="Français"></a>
+  <a href="https://twitter.com/signalstickers"><img src="https://img.shields.io/twitter/follow/signalstickers?label=Feed&style=social"></a>
 </p>
 
 ## About
@@ -35,7 +36,7 @@ navigate sticker packs quietly.
 ## Q&A
 
 ### How can I create a sticker pack?
-Follow the tutorial on the [Signal support site](https://support.signal.org/hc/en-us/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca)
+Follow the tutorial on the [Signal support site](https://support.signal.org/hc/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca)
 to upload your stickers to Signal.
 
 > Note: when creating stickers, don't forget to add a white stroke to improve

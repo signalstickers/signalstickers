@@ -12,6 +12,7 @@ export interface StickerPackYaml {
     source: string;
     tags: Array<string>;
     nsfw?: boolean;
+    original?: boolean;
   };
 }
 
@@ -25,6 +26,7 @@ export interface StickerPackMetadata {
   source?: string;
   tags?: Array<string>;
   nsfw?: boolean;
+  original?: boolean;
 }
 
 
