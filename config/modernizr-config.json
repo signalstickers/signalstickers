@@ -1,0 +1,6 @@
+{
+  "minify": true,
+  "feature-detects": [
+    "css/backdropfilter"
+  ]
+}

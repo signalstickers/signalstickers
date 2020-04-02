@@ -1,4 +1,5 @@
 import {styled} from 'linaria/react';
+import Modernizr from 'modernizr';
 import {Link} from 'react-router-dom';
 import React, {useEffect} from 'react';
 // @ts-ignore (No type definitions exist for this package.)
@@ -14,7 +15,7 @@ import {NAVBAR_HEIGHT} from 'etc/constants';
  * the component is mounted.
  */
 const NsfwModal = styled.div`
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, ${() => Modernizr.backdropfilter ? 0.75 : 1});
   backdrop-filter: blur(20px);
   margin-top: ${NAVBAR_HEIGHT}px;
   margin-bottom: ${NAVBAR_HEIGHT}px;
