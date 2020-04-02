@@ -68,8 +68,8 @@ const SearchInputComponent: React.FunctionComponent = () => {
     setSearchQueryInputValue(event.currentTarget.textContent);
   }
 
-  const tags = suggestedTags.map(tag =>
-    <a href="#" className="badge badge-signal" onClick={onTagClick}>{tag}</a>
+  const tags = suggestedTags.map((tag, index) =>
+    <a href="#" key={index} className="badge badge-signal" onClick={onTagClick}>{tag}</a>
   );
 
   /**
