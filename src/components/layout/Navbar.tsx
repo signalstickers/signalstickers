@@ -15,7 +15,12 @@ import {bp} from 'lib/utils';
 
 const StyledNav = styled.nav`
   background-color: ${SIGNAL_BLUE};
-  height: ${NAVBAR_HEIGHT}px;
+
+  /*
+   * N.B. Navbar height will need to increase when the navigation menu is
+   * expanded on mobile.
+   */
+  min-height: ${NAVBAR_HEIGHT}px;
 
   /**
    * We need to fight with Bootstrap's specificity a little here, hence the
