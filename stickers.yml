@@ -18883,6 +18883,49 @@ c4d174fe9e61444fcc9a354c0f33a61c:
     - hobbes
     - comic
   nsfw: false
+08ef84d72822c9002e10debad29fa86e:
+  key: c2540467080b4c04b0f16b40f51fe54b6ff14aff6e3810373f62170f8d632e4a
+  source: art-mutt.com
+  tags:
+    - duncan
+    - duncandog
+    - dog
+    - telegram
+    - furry
+  nsfw: true
+2fc91eb3965d4341707a785035ce51f4:
+  key: 4348eb12faa5af02f8e0443d7ee4a2018efa6ef5ebdde7acb10d7b014657afc7
+  source: 'Cap.Grolarbear, https://furaffinity.net/user/cap.grolarbear/'
+  tags:
+    - jinn
+    - boar
+    - jinntheboar
+    - capgrolarbear
+    - grolarbear
+    - furaffinity
+    - telegram
+    - furry
+  nsfw: true
+fa0bd96d518bd9e0366aac25101ad7eb:
+  key: 5b84bef14e4b4571a0a7f9f7c8f179cc8f5a86318f96f541c22b7a796762ef9c
+  source: 'Ayanaki, https://furaffinity.net/user/ayanaki/'
+  tags:
+    - baeo
+    - husky
+    - dog
+    - ayanaki
+    - telegram
+    - furry
+  nsfw: true
+02d7e5360d11b8d85b1017beff7ad3d4:
+  key: 541464ddabcc98052d549d67efbc5103f20faa787903c32e12314ebdc045e4bb
+  source: Duke Corgi
+  tags:
+    - Duke Corgi
+    - Corgi
+    - Furry
+    - Dog
+  nsfw: true
 73a5a017d9b6eb0d34f43286d2cc5723:
   key: 9416ced01b16b8b4e93d80ae1a7df219ce1b6aa3a827bc6c43328ec891cdbf76
   source: 'Now and Later (NaL), cinnamonspots.com'
@@ -19072,6 +19115,98 @@ d1db446eba2254e6957f8a1d65dd3384:
   tags: []
   nsfw: false
   original: true
+98f69b4ed2942258669ed7cdb2ace42f:
+  key: 473fa93762172d88bf5a02932887443b14d465379bdf4a84df4c13c9d460314a
+  source: RuneScape
+  tags:
+    - RuneScape
+    - Zezima
+    - Jagex
+  nsfw: false
+  original: true
+487359562ab8fc84c758f79191e5702e:
+  key: 5d0d94d1bd612254271ae3c2a8efaff1df321a18180d48fd5343397526134914
+  source: 'https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/260'
+  tags:
+    - emoji
+    - emoticon
+  nsfw: false
+  original: false
+f2736c52fd71b1b288ebbfdf83e580f6:
+  key: 742e84c37ffcbc7ae4274da6bddeebb14d9d824990eb6ffe5d43f9c872317f3f
+  source: 'https://www.reddit.com/r/signal/comments/fsarht/i_ripped_some_animegame_stickers_from_line/'
+  tags: []
+  nsfw: false
+  original: false
+91a5b28be9c760eff73a13ef08bbee86:
+  key: a66dfe4a805f2777d429933f3e21cd221bdb20a8c6570dcb63ab0c26f1a8aa07
+  source: 'https://www.reddit.com/r/signal/comments/fsarht/i_ripped_some_animegame_stickers_from_line/'
+  tags: []
+  nsfw: false
+  original: false
+024e8a67981c68d09da7e7dcda082f9f:
+  key: 993a0b37f90402e4b345ac043c3f5ceb32b0531dc5256e4ea648f06591f4610d
+  source: 'https://www.reddit.com/r/signal/comments/fsarht/i_ripped_some_animegame_stickers_from_line/'
+  tags: []
+  nsfw: false
+  original: false
+92bb9356d1b9341264b8f67772c0545f:
+  key: 29f02c200c214825c248edba95c29edc88827f23999cbc879946b5d24cedb62a
+  source: 'https://www.reddit.com/r/signal/comments/fsarht/i_ripped_some_animegame_stickers_from_line/'
+  tags: []
+  nsfw: false
+  original: false
+cb8e40c8a847cc927da52a729247da7b:
+  key: 64f172b2810562b2e005c10ddfd7bcd2c0a2e8a4257b084575b9164c59c8d59f
+  source: 'https://www.reddit.com/r/signal/comments/fsarht/i_ripped_some_animegame_stickers_from_line/'
+  tags: []
+  nsfw: false
+  original: false
+cc1a9b780fbd113e0b5e18adba6c2885:
+  key: 8504d4bc3683c05a2530060398d1af8ead1604dc75b2ab3c6234d0f0f64d5404
+  source: 'https://www.reddit.com/r/signal/comments/fsarht/i_ripped_some_animegame_stickers_from_line/'
+  tags: []
+  nsfw: false
+  original: false
+4a1881fbc93df3e41c7c007dbbc31daf:
+  key: 0762194abd81f8c2a53c7124b93fab6ad5ca0e8ccce1d1928d2e56940bdca780
+  source: 'https://www.reddit.com/r/signal/comments/frx1fj/animal_crossing_sticker_pack/'
+  tags:
+    - Nintendo
+  nsfw: false
+  original: false
+7f2aa00913a0a8a8e47c5058d4f94878:
+  key: 612da93b918d99bde232a43435fe33a632c954442eea222fa0747dc717edd0ba
+  source: 'https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/259'
+  tags: []
+  nsfw: false
+  original: false
+beaf36a4cb8aba728fd79c360544f1b3:
+  key: a6759f439062803869401ff4fe7b150aafb912ff2c33673ab0929c4ec8594723
+  source: Comedy Central
+  tags:
+    - South Park
+    - Comedy Central
+    - Nyctivoe
+  nsfw: true
+  original: false
+7b8d8e2b73fe918d6d08468aed46b3a2:
+  key: 8bf0c3e1cb9dda37baeaaf39d29fd273b81002a2b48829a9f41493fc403e86c4
+  source: South Park
+  tags:
+    - South Park
+    - Nyctivoe
+  nsfw: true
+  original: false
+4d0d851d85a09d9b49c8da2f880be4be:
+  key: d44ca98c4e983b8fe2382d299842a73a9da7411aaba66cd7d7ae7bbc637c01c1
+  source: Sticky & Co
+  tags:
+    - Donut and Coffee
+    - Sticky and Co
+    - Nyctivoe
+  nsfw: false
+  original: false
 5ea292ba83bf9448b3489b35c8bdb49c:
   key: 9be0ec3714d3fa16b31df0bed9090bf4e908ac947d71be0d6afafd1296b7a2ac
   source: 'https://twitter.com/writeswrongs/status/1243096441175728128'
