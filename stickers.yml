@@ -19207,6 +19207,16 @@ beaf36a4cb8aba728fd79c360544f1b3:
     - Nyctivoe
   nsfw: false
   original: false
+f821bb37adb7a2cc6afb8901505aff56:
+  key: 4f735e58fb6b8ff5baaa6b52f7d7801cfdc7c3386da32f0f5c4e8a358bb8aead
+  source: 'https://twitter.com/helscy/status/1246099614064926721'
+  tags:
+    - COVID_19
+    - COVID-19
+    - coronavirus
+    - stayhome
+  nsfw: false
+  original: true
 5ea292ba83bf9448b3489b35c8bdb49c:
   key: 9be0ec3714d3fa16b31df0bed9090bf4e908ac947d71be0d6afafd1296b7a2ac
   source: 'https://twitter.com/writeswrongs/status/1243096441175728128'
