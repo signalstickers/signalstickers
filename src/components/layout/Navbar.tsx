@@ -7,6 +7,7 @@ import Octicon from 'react-octicon';
 
 import SignalLogoUrl from 'assets/favicon.png';
 import {SIGNAL_BLUE} from 'etc/colors';
+import {NAVBAR_HEIGHT} from 'etc/constants';
 import {bp} from 'lib/utils';
 
 
@@ -14,6 +15,12 @@ import {bp} from 'lib/utils';
 
 const StyledNav = styled.nav`
   background-color: ${SIGNAL_BLUE};
+
+  /*
+   * N.B. Navbar height will need to increase when the navigation menu is
+   * expanded on mobile.
+   */
+  min-height: ${NAVBAR_HEIGHT}px;
 
   /**
    * We need to fight with Bootstrap's specificity a little here, hence the
@@ -44,6 +51,7 @@ const StyledNav = styled.nav`
     & img {
       bottom: 2px;
       height: 42px;
+      margin-right: 8px;
       position: relative;
       width: 42px;
     }

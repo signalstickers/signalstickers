@@ -8,3 +8,9 @@ export const BOOTSTRAP_BREAKPOINTS = {
   lg: 992,
   xl: 1200
 };
+
+
+/**
+ * Height of the navbar (px).
+ */
+export const NAVBAR_HEIGHT = 70;
