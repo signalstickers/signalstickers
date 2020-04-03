@@ -247,9 +247,6 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
               <Octicon name="file-directory" title="Sticker Count" />
               {numStickers}
             </li>
-            {stickerPack.meta.nsfw ? <li className="list-group-item text-wrap text-break">
-              <Octicon name="alert" title="NSFW" /> <strong>NSFW</strong>
-            </li> : null}
             <li className="list-group-item">
               <Octicon name="tag" title="Tags" />
               <div className="text-wrap text-break">

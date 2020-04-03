@@ -59,7 +59,6 @@ export default (env: string, argv: any): webpack.Configuration => {
     });
   }
 
-
   // TypeScript & JavaScript files.
   config.module.rules.push({
     test: /\.(ts|tsx|js|jsx)$/,
@@ -76,7 +75,6 @@ export default (env: string, argv: any): webpack.Configuration => {
       }
     }]
   });
-
 
   // Stylesheets.
   config.module.rules.push({
@@ -125,10 +123,29 @@ export default (env: string, argv: any): webpack.Configuration => {
     }]
   });
 
+  // Modernizr.
+  config.module.rules.push({
+    type: 'javascript/auto',
+    test: /modernizr-config\.json?$/,
+    use: [{
+      loader: 'modernizr-loader'
+    }, {
+      loader: 'json-loader'
+    }]
+  });
+
 
   // ----- Module Resolution ---------------------------------------------------
 
   config.resolve = {
+    alias: {
+      // This tells Webpack to load our Modernizr configuration file whenever we
+      // import a module named 'modernizr'. The loader rule above will then
+      // match our config file being loaded and pass it to modernizr-loader
+      // which will create a custom Modernizr build per our configuration and
+      // return the resulting JavaScript to the file that imported it.
+      modernizr$: path.resolve(PKG_ROOT, 'config', 'modernizr-config.json')
+    },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
   };
 
