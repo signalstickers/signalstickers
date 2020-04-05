@@ -19235,6 +19235,14 @@ e33ffda9d9a946d815ae63e6fe15df19:
     - sulli_or
   nsfw: false
   original: false
+edc93fac0afe79a6689532e63b78ad43:
+  key: 2fe8a3bdb61f88c115a74ad87d887c2e89a59c6aba4a1f6e8a531fac34b5f82e
+  source: >-
+    https://www.reddit.com/r/signal/comments/fuxnz2/oc_i_made_a_raccoon_sticker_pack/
+  tags:
+    - cute
+  nsfw: false
+  original: true
 f821bb37adb7a2cc6afb8901505aff56:
   key: 4f735e58fb6b8ff5baaa6b52f7d7801cfdc7c3386da32f0f5c4e8a358bb8aead
   source: 'https://twitter.com/helscy/status/1246099614064926721'
