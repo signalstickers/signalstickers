@@ -19252,6 +19252,25 @@ fb31cc06c70dc7e38e8d1365bcf9ef67:
     - play
   nsfw: false
   original: true
+b1f94a16f750c237797423e1b820d077:
+  key: e6c9ee481dbbff2c527d8a8ff53409105016eb8871ced63862cd86f5b139d87a
+  source: Telegram
+  tags:
+    - kaamelott
+    - fr
+    - french
+    - france
+    - tv
+    - arthur
+    - merlin
+    - perceval
+    - lancelot
+    - guenievre
+    - leodagan
+    - blaise
+    - karadok
+  nsfw: false
+  original: false
 f821bb37adb7a2cc6afb8901505aff56:
   key: 4f735e58fb6b8ff5baaa6b52f7d7801cfdc7c3386da32f0f5c4e8a358bb8aead
   source: 'https://twitter.com/helscy/status/1246099614064926721'
