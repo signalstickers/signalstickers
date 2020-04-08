@@ -19310,6 +19310,13 @@ b1f94a16f750c237797423e1b820d077:
     - thomas
   nsfw: false
   original: false
+6ac75dfce17458ed23d4b70daf84f07b:
+  key: c5b87a08132a3a6aca8ca17ef1c3596cc8c76e3d0529e176572c43d12ec035ef
+  source: >-
+    https://www.reddit.com/r/signal/comments/fxb8ru/emotional_potatoes_2_if_you_have_ideas_for_more/
+  tags: []
+  nsfw: false
+  original: true
 f821bb37adb7a2cc6afb8901505aff56:
   key: 4f735e58fb6b8ff5baaa6b52f7d7801cfdc7c3386da32f0f5c4e8a358bb8aead
   source: 'https://twitter.com/helscy/status/1246099614064926721'
