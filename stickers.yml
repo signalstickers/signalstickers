@@ -19313,3 +19313,11 @@ f821bb37adb7a2cc6afb8901505aff56:
     - coronavirus
     - stayhome
   nsfw: false
+2be1813b5002b674b767a74aa8818975:
+  key: 9c6f3d4df856b6da45db8f488e872ef9de08f3d8ea4325363db40e34ca64f59c
+  source: 'https://www.arknights.global/fankit'
+  tags:
+    - arknights
+  nsfw: false
+  original: false
+ 
