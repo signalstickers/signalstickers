@@ -113,11 +113,6 @@ cbc0261b03b764bc31b73118bce2905b:
     - animals
     - telegram
   nsfw: false
-70bd80cab7c81f8aaf796e30385895e8:
-  key: 3fde67622ef92fb58acb4481efcbcf948f1da2ae7d3806b700e158357d374783
-  source: ''
-  tags: []
-  nsfw: false
 780f5eff33f4a982a580dc2482aa7eb3:
   key: 5039d4d258542a943c9e2a290f53927ac3d0f9b21adaa93a26a6ddf6c67d806b
   source: ''
@@ -19310,13 +19305,6 @@ b1f94a16f750c237797423e1b820d077:
     - thomas
   nsfw: false
   original: false
-6ac75dfce17458ed23d4b70daf84f07b:
-  key: c5b87a08132a3a6aca8ca17ef1c3596cc8c76e3d0529e176572c43d12ec035ef
-  source: >-
-    https://www.reddit.com/r/signal/comments/fxb8ru/emotional_potatoes_2_if_you_have_ideas_for_more/
-  tags: []
-  nsfw: false
-  original: true
 33d25476e630964765182dd1a5b52d05:
   key: 015fa3b3f8c4940065bb7c13b9130c8f3a9c77a1f178cc2301a24dedc234f9c4
   source: redbubble.com
@@ -19369,6 +19357,14 @@ b1f94a16f750c237797423e1b820d077:
     - nvidia
   nsfw: false
   original: false
+d11b2d6f59e9542df4c0d898904fc921:
+  key: 689d425ad371b58abdbffbdec405ff40c41568295161c8aaa478277854051fd0
+  source: 'https://www.reddit.com/user/Tharunaya'
+  tags:
+    - cute
+    - party
+  nsfw: false
+  original: true
 f821bb37adb7a2cc6afb8901505aff56:
   key: 4f735e58fb6b8ff5baaa6b52f7d7801cfdc7c3386da32f0f5c4e8a358bb8aead
   source: 'https://twitter.com/helscy/status/1246099614064926721'
