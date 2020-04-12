@@ -19365,6 +19365,16 @@ d11b2d6f59e9542df4c0d898904fc921:
     - party
   nsfw: false
   original: true
+cdcca34a4b7d08187e1cddf6e7747c15:
+  key: 64ea3ec3189179281c41d011d1cce1480fbb450d2b46d22db2b34e44a806d818
+  source: >-
+    https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/263
+  tags:
+    - BSD
+    - open-source
+    - UNIX
+  nsfw: false
+  original: false
 f821bb37adb7a2cc6afb8901505aff56:
   key: 4f735e58fb6b8ff5baaa6b52f7d7801cfdc7c3386da32f0f5c4e8a358bb8aead
   source: 'https://twitter.com/helscy/status/1246099614064926721'
