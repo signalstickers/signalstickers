@@ -613,6 +613,7 @@ ce9d395268e045b6ee96a53bdc8c62f1:
     - pan
     - cartoon
   nsfw: false
+  original: true
 aa6edcc941b9c9043dea44eaf667801b:
   key: 8f0ed5150bebd1c6b9e72c8f07aec93650fb476201d338479bdfdf0af16545a3
   source: ''
@@ -18243,6 +18244,7 @@ c79f2a1bb18a43e85db6a89ab1155aa6:
     - street
     - art
   nsfw: false
+  original: false
 ea64033919143cd1b0d72a0a52b4924a:
   key: 913f69f31c87ce65b2b4e584ec2dbe6e7912214a26c39ec692de1e0f08abbbea
   source: 'https://twitter.com/propaganda_6_21/status/1220729477728215041'
@@ -18380,6 +18382,7 @@ dae4c4dc68556064acd7bc1fd9a5df00:
     - klocuch
     - youtube
   nsfw: false
+  original: true
 c4d50001e190c19f1d7aabc1b83e4041:
   key: 8bc75494e7428ca4905f631ec1e6c45cbc63f60b1986ef05bbca3e65c07a54ae
   source: 'https://www.instagram.com/dark.art.cat/'
@@ -18568,6 +18571,7 @@ b18d03a8c6363a9eb62f92e01e7466cc:
     - characters
     - reactions
   nsfw: false
+  original: false
 7d92da658aa4f556d0a3a593533c3370:
   key: 8d7485fb07f964da9efc3e4e47f35d0f494c5fd2bef4ae8400966f683e2a7fe6
   source: 'https://t.me/addstickers/nichijou'
@@ -18616,6 +18620,7 @@ d07e0388d63eb81b0852c254e0c8bbe8:
     - wolmo
     - szypko
   nsfw: false
+  original: true
 8bb780c4d219d4d90ceb7549de89977a:
   key: a0827aec0c7d0eb48b9eafc67d14bd195266bd6245fe4a3e0cb39fcd39e8a9ed
   source: ''
@@ -18969,6 +18974,7 @@ fef01d99c052393144de181dc94f8aef:
     - series
     - Seinfeld
   nsfw: false
+  original: true
 197e16a1d8e4fe8e7b95cabab25b33d7:
   key: a1c197edcc3cb4a31e8a8aabc66194bc06d0cd75e6f53955147836dff6d81737
   source: 'https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/245'
