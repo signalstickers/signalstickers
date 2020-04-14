@@ -969,6 +969,7 @@ e20efa2d09b66fa90b813af93f9e6865:
     - angry
     - bean
   nsfw: false
+  original: true
 eb503c662934a80e245f518e4890f09b:
   key: fa14bdcecaf21183334d164e9a7848b65cf925a409a4de5995c43d95808914a9
   source: ''
