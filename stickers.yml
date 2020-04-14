@@ -19392,6 +19392,24 @@ cdcca34a4b7d08187e1cddf6e7747c15:
     - norddeutsch
   nsfw: false
   original: true
+3d01fe70390d52f5a23a097292f1208c:
+  key: 836ac5ce9d26db1e2f361b616933975074e61408f0b1ccdcfec229ece3105a52
+  source: 'https://twitter.com/msense_app/status/1250096344645210114'
+  tags:
+    - headaches
+    - migraine
+  nsfw: false
+  original: false
+15bb0efd5ce2f9fc431d1398de6898a3:
+  key: 3a18389964c652a599bdb2fa02fd181659ff8f74fbbc51fec08ab383a21b382b
+  source: 'https://twitter.com/helscy/status/1250029534939959297'
+  tags:
+    - COVID_19
+    - COVID-19
+    - coronavirus
+    - stayhome
+  nsfw: false
+  original: true
 f821bb37adb7a2cc6afb8901505aff56:
   key: 4f735e58fb6b8ff5baaa6b52f7d7801cfdc7c3386da32f0f5c4e8a358bb8aead
   source: 'https://twitter.com/helscy/status/1246099614064926721'
