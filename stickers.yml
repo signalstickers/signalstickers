@@ -19422,3 +19422,13 @@ f821bb37adb7a2cc6afb8901505aff56:
     - stayhome
   nsfw: false
   original: false
+  
+  c208c1f160109fc1e45cb845f02f9bf1:
+  key: 8c68b816f5cb79077dc901395972ceef63b703f31cd517db151b00c43fe088e6
+  source: 'Telegram stickers'
+  tags: -Evangelion
+        -eva
+        -NGE
+        -anime
+  nsfw: true
+  original: false
