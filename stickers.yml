@@ -19447,6 +19447,12 @@ c208c1f160109fc1e45cb845f02f9bf1:
     - yunohost
   nsfw: false
   original: false
+e4f827f001b6d7dc6762cd39dab44290:
+  key: 5e5859667774f2759c66083b55eee4132caa3d4de8e3147fa0feda4add395b78
+  source: 'https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/264'
+  tags: []
+  nsfw: false
+  original: false
 15bb0efd5ce2f9fc431d1398de6898a3:
   key: 3a18389964c652a599bdb2fa02fd181659ff8f74fbbc51fec08ab383a21b382b
   source: 'https://twitter.com/helscy/status/1250029534939959297'
