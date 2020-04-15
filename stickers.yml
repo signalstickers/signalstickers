@@ -19392,6 +19392,61 @@ cdcca34a4b7d08187e1cddf6e7747c15:
     - norddeutsch
   nsfw: false
   original: true
+3d01fe70390d52f5a23a097292f1208c:
+  key: 836ac5ce9d26db1e2f361b616933975074e61408f0b1ccdcfec229ece3105a52
+  source: 'https://twitter.com/msense_app/status/1250096344645210114'
+  tags:
+    - headaches
+    - migraine
+  nsfw: false
+  original: false
+932c4b4c95d72b287f617a1e4319b542:
+  key: 483a03dc241000345d3290303e56ae29ca7c7794f1a375b8b321ab947e0a78d2
+  source: ffdn.org
+  tags:
+    - ffdn
+    - ail-network
+    - aquilenet
+    - arn
+    - auvernet
+    - bainoet
+    - cafai
+    - faibreizh
+    - faimaison
+    - fdn
+    - franciliens.net
+    - grifon
+    - igwan.net
+    - ilico
+    - illyse
+    - iloth
+    - ldn
+    - midways-network
+    - mycélium
+    - netopi
+    - neutrinet
+    - rézine
+    - rhizome
+    - sames-wireless
+    - scani
+    - stolon
+    - tdn
+    - teleragno
+    - tetaneutral
+    - labriqueinternet
+    - yunohost
+  nsfw: false
+  original: false
+15bb0efd5ce2f9fc431d1398de6898a3:
+  key: 3a18389964c652a599bdb2fa02fd181659ff8f74fbbc51fec08ab383a21b382b
+  source: 'https://twitter.com/helscy/status/1250029534939959297'
+  tags:
+    - COVID_19
+    - COVID-19
+    - coronavirus
+    - stayhome
+  nsfw: false
+  original: true
 f821bb37adb7a2cc6afb8901505aff56:
   key: 4f735e58fb6b8ff5baaa6b52f7d7801cfdc7c3386da32f0f5c4e8a358bb8aead
   source: 'https://twitter.com/helscy/status/1246099614064926721'
