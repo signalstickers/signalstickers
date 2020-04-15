@@ -19400,6 +19400,16 @@ cdcca34a4b7d08187e1cddf6e7747c15:
     - migraine
   nsfw: false
   original: false
+c208c1f160109fc1e45cb845f02f9bf1:
+  key: 8c68b816f5cb79077dc901395972ceef63b703f31cd517db151b00c43fe088e6
+  source: 'Telegram stickers'
+  tags:
+    - Evangelion
+    - eva
+    - NGE
+    - anime
+  nsfw: true
+  original: false
 932c4b4c95d72b287f617a1e4319b542:
   key: 483a03dc241000345d3290303e56ae29ca7c7794f1a375b8b321ab947e0a78d2
   source: ffdn.org
@@ -19478,12 +19488,3 @@ f821bb37adb7a2cc6afb8901505aff56:
   nsfw: false
   original: false
   
-  c208c1f160109fc1e45cb845f02f9bf1:
-  key: 8c68b816f5cb79077dc901395972ceef63b703f31cd517db151b00c43fe088e6
-  source: 'Telegram stickers'
-  tags: -Evangelion
-        -eva
-        -NGE
-        -anime
-  nsfw: true
-  original: false
