@@ -19453,6 +19453,24 @@ e4f827f001b6d7dc6762cd39dab44290:
   tags: []
   nsfw: false
   original: false
+4f6c58d30712d70c1d1e384bf71559f4:
+  key: 607ea1c42281673b3ef4647c99f72b067be25305eaad1b4ce6943f30f1bd7f2d
+  source: 'https://t.me/addstickers/snoopydoggy'
+  tags:
+    - Charlie Brown
+    - Peanuts
+    - Telegram
+  nsfw: false
+  original: false
+dce2bd16ecc6ccd0dd9dc86293cc2a95:
+  key: dc538e4e7004d9da3df2afc13ad1a46a7be3fc768dd3e9bdf22e7547397f2779
+  source: 'https://t.me/addstickers/Snoopy2'
+  tags:
+    - Charlie Brown
+    - Peanuts
+    - Telegram
+  nsfw: false
+  original: false
 15bb0efd5ce2f9fc431d1398de6898a3:
   key: 3a18389964c652a599bdb2fa02fd181659ff8f74fbbc51fec08ab383a21b382b
   source: 'https://twitter.com/helscy/status/1250029534939959297'
