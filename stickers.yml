@@ -19471,6 +19471,29 @@ dce2bd16ecc6ccd0dd9dc86293cc2a95:
     - Telegram
   nsfw: false
   original: false
+71a595d4ec0a3a9322b8ed1e64a70418:
+  key: 204fd0eddc2c0b773da50697971d17514e3f0674bd01f9d115500bdb41c05457
+  source: 'https://www.facebook.com/stickers/1389786324656182/'
+  tags:
+    - Snoopy
+    - Charlie Brown
+  nsfw: false
+  original: false
+55a89e2cc77dd9e708b28bbc6615dbfc:
+  key: 3218bdef157f7a039871fce2e79e09ea681d48deedab80fceaf6d6e9c35e0014
+  source: 'https://www.facebook.com/stickers/974381839378744/'
+  tags:
+    - pins
+    - pinned
+  nsfw: false
+  original: false
+5efbb63476dbbd6b91a6164529f7068d:
+  key: d7273bbf6e10923365eeaa5057dc1d3c69ed9779fce5b5bd634c623add3ec53d
+  source: 'https://www.facebook.com/stickers/1195842697144501/'
+  tags:
+    - tattoo
+  nsfw: false
+  original: false
 15bb0efd5ce2f9fc431d1398de6898a3:
   key: 3a18389964c652a599bdb2fa02fd181659ff8f74fbbc51fec08ab383a21b382b
   source: 'https://twitter.com/helscy/status/1250029534939959297'
