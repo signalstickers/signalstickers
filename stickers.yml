@@ -19513,6 +19513,59 @@ bf7819aaba06873e3df90a4af68f1493:
     - bug
   nsfw: false
   original: false
+3b24350bfd8f78d917b9b59ab12fa9cb:
+  key: 81e01efb7101302851934847f0a48c138e068b024481771e337f3441a8a55ec6
+  source: 'https://www.facebook.com/stickers/1758110050953186/'
+  tags:
+    - animals
+    - funny
+  nsfw: false
+  original: false
+e76aa7abd9b786122495281e0c369650:
+  key: 8dbe67d3872b479a01c75b464a568e753ed82561e3d3144480f501e3ddf63971
+  source: 'https://www.facebook.com/stickers/451722341935748/ and https://www.facebook.com/stickers/180149872577874/'
+  tags:
+    - football
+    - soccer
+    - Argentina
+    - Australia
+    - Belgique
+    - Brazil
+    - Colombia
+    - Costa Rica
+    - Croatia
+    - Danmark
+    - Egypt
+    - England
+    - France
+    - Germany
+    - Deutschland
+    - Island
+    - Iran
+    - Korea
+    - Japan
+    - Maroc
+    - Mexico
+    - Niger
+    - Panama
+    - Peru
+    - Poland
+    - Portugal
+    - Russia
+    - Saudi Arabia
+    - Senegal
+    - Sénégal
+    - Spain
+    - Espana
+    - Serbia
+    - Tunisia
+    - Tunisie
+    - Swiss
+    - Suisse
+    - Sweden
+    - Uruguay
+  nsfw: false
+  original: false
 15bb0efd5ce2f9fc431d1398de6898a3:
   key: 3a18389964c652a599bdb2fa02fd181659ff8f74fbbc51fec08ab383a21b382b
   source: 'https://twitter.com/helscy/status/1250029534939959297'
