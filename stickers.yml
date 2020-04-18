@@ -19494,6 +19494,25 @@ dce2bd16ecc6ccd0dd9dc86293cc2a95:
     - tattoo
   nsfw: false
   original: false
+ea0f4ad873957872e1721e8aeb8ff711:
+  key: 01b7a32faa570d1c739e6511221f47851ab03e9bbad6c22b60ce7e2157bbea56
+  source: 'https://www.facebook.com/stickers/1028205884242215/'
+  tags:
+    - together
+    - COVID
+    - stayhome
+  nsfw: false
+  original: false
+bf7819aaba06873e3df90a4af68f1493:
+  key: 227e15f09152ce8bf55493f903baad2bf21dd0ee6433e1f235294862086c9d4a
+  source: 'https://www.facebook.com/stickers/478376198960746/'
+  tags:
+    - developper
+    - dev
+    - code
+    - bug
+  nsfw: false
+  original: false
 15bb0efd5ce2f9fc431d1398de6898a3:
   key: 3a18389964c652a599bdb2fa02fd181659ff8f74fbbc51fec08ab383a21b382b
   source: 'https://twitter.com/helscy/status/1250029534939959297'
