@@ -57,6 +57,26 @@ const stickerImageCache = LocalForage.createInstance({
 // ----- Functions -------------------------------------------------------------
 
 /**
+ * [private]
+ *
+ * Returns true if the provided error was thrown because the browser is blocking
+ * use of local storage and/or other storage backends.
+ */
+function isStorageUnavailableError(err: any) {
+  const patterns = [
+    // Firefox in private mode.
+    /the quota has been exceeded/ig
+  ];
+
+  if (err && err.message) {
+    return Boolean(R.find(curPattern => R.test(curPattern, err.message), patterns));
+  }
+
+  return false;
+}
+
+
+/**
  * Resolves with a list of StickerPackPartial objects.
  */
 export async function getStickerPackDirectory(): Promise<Array<StickerPackPartial>> {
@@ -80,8 +100,10 @@ export async function getStickerPackDirectory(): Promise<Array<StickerPackPartia
  * resolves with 'full' StickerPack object.
  */
 export async function getStickerPack(id: string, key?: string): Promise<StickerPack> {
+  const cacheKey = key ? `${id}-${key}` : id;
+
   try {
-    if (!stickerPackCache.has(id)) {
+    if (!stickerPackCache.has(cacheKey)) {
       const directory = await getStickerPackDirectory();
 
       // Build the metadata object using information from a StickerPackPartial
@@ -103,10 +125,10 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
         manifest
       };
 
-      stickerPackCache.set(id, stickerPack);
+      stickerPackCache.set(cacheKey, stickerPack);
     }
 
-    return stickerPackCache.get(id) as StickerPack;
+    return stickerPackCache.get(cacheKey) as StickerPack;
   } catch (err) {
     if (err.isAxiosError && err.response.status === 403) {
       throw new ErrorWithCode('MANIFEST_DECRYPT', `[getStickerPack] ${err.stack}`);
@@ -118,29 +140,9 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
 
 
 /**
- * [private]
- *
- * Returns true if the provided error was thrown because the browser is blocking
- * use of local storage and/or other storage backends.
- */
-function isStorageUnavailableError(err: any) {
-  const patterns = [
-    // Firefox in private mode.
-    /the quota has been exceeded/ig
-  ];
-
-  if (err && err.message) {
-    return Boolean(R.find(curPattern => R.test(curPattern, err.message), patterns));
-  }
-
-  return false;
-}
-
-
-/**
- * Provided a sticker pack ID and a sticker ID (or 'cover' for the pack's cover
- * sticker) queries the Signal API and resolves with a base-64 encoded string
- * representing the image data for the indicated sticker.
+ * Provided a sticker pack ID, pack key, and sticker ID, and queries the Signal
+ * API and resolves with a base-64 encoded string containing either WebP or PNG
+ * data (based on client support for the former) for the indicated sticker.
  */
 export async function getConvertedStickerInPack(id: string, key: string, stickerId: number): Promise<string> {
   let convertedImage = '';
