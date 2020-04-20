@@ -19447,8 +19447,8 @@ c208c1f160109fc1e45cb845f02f9bf1:
     - yunohost
   nsfw: false
   original: false
-e4f827f001b6d7dc6762cd39dab44290:
-  key: 5e5859667774f2759c66083b55eee4132caa3d4de8e3147fa0feda4add395b78
+ac92977e2dc6018921909acd5cae2e52:
+  key: 9bdf41fa3dc08c3fb1b9af909e57dcddbd23063ae8ec3ee4b36c7ea989d6c2a0
   source: 'https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650/264'
   tags: []
   nsfw: false
@@ -19585,6 +19585,12 @@ cfd6bd87874fb4b9dadecd582507ad72:
   source: 'https://twitter.com/writeswrongs/status/1251796157006667777'
   tags:
     - cute
+  nsfw: false
+  original: true
+4404e3db8afb5653400fe66e39cb471c:
+  key: f6d31a6e2fa6b7b504f798619c31c78134d4565ace53f15973300b187d6d031b
+  source: 'https://twitter.com/Nyachan23892212/status/1252268337297608710'
+  tags: []
   nsfw: false
   original: true
 15bb0efd5ce2f9fc431d1398de6898a3:
