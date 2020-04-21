@@ -69,7 +69,7 @@ const SIGNAL_ART_URL_PATTERN = /^https:\/\/signal.art\/addstickers\/#pack_id=([A
 /**
  * Regular expression used to validate lists of tags.
  */
-const TAGS_PATTERN = /^(?:([\w\d-_ ]+))+(?:, ([\w\d-_ ]+))*$/g;
+const TAGS_PATTERN = /^(?:([\w\d-_ ]+))+(?:, ?([\w\d-_ ]+))*$/g;
 
 /**
  * Initial values for the form.
