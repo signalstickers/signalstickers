@@ -19654,3 +19654,13 @@ cfd6bd87874fb4b9dadecd582507ad72:
     - tesv
   nsfw: false
   original: false
+00a786d9f65b900cc1eb7d6380026c7d:
+  key: 48c6fb82e6eb4e973edf0053a32ff05f147842334a827470e1813dcfe7b7c1b1
+  source: 'https://twitter.com/helscy/status/1253314623572512768'
+  tags:
+    - COVID_19
+    - COVID-19
+    - coronavirus
+    - stayhome
+  nsfw: false
+  original: true
