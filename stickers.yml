@@ -19748,12 +19748,33 @@ c0ca6f32258a82f7598cdfd7405f2532:
     - vpn
   nsfw: false
   original: true
-  a61b29db02b683b219d2d63e39163bfb:
+a61b29db02b683b219d2d63e39163bfb:
   key: cd4d3028ab243ca7e89495c95bb5072badbc96c1b49c4ec6f21aab37fb5dc673
   source: Greenpeace
   tags:
     - animals
     - hoax
     - greepeace
+  nsfw: false
+  original: false
+360ef62c6a3feab954284860071f0cc8:
+  key: bfeedfee17b1b60db45133c18aa7994c1839864e30bb1d6e3cb48d3743dc0247
+  source: etsubu
+  tags:
+    - stonks
+    - meme man
+    - mememan
+  nsfw: false
+  original: false
+0859358dc897520bfc14f376097492d4:
+  key: 3e7d58c7d605adb89102e182075f115300ca5c27f25a3d82fb0c4de9cd2e4f16
+  source: 'https://tlgrm.eu/stickers/TheLittleMole'
+  tags:
+    - Krtek
+    - little
+    - mole
+    - Maulwurf
+    - cute
+    - animal
   nsfw: false
   original: false
