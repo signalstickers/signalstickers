@@ -18142,6 +18142,7 @@ ec4a5b7794f3d20dc62f6eff6b198b50:
       - hmm
       - whatsapp
     nsfw: false
+    original: true
 35ca6c4ebddcc7d5a96cc5ab400f0953:
     key: 2c6e8a5177670da90cda4159ff031ca9613c2203f0362c2fc0ad3d65e4c58032
     source: 'https://twitter.com/joh_pic/status/1215598075030523905'
