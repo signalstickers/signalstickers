@@ -832,31 +832,55 @@ d6210ef1c3903daf7c6ddd29e77a8d36:
   nsfw: false
 38cbd00d9b3df4ef4e6b91c7c0d7e70a:
   key: aa1f6735382b06154bc8535bd5b774330f49119eea8aa35061d8df32d64ffc1e
-  source: ''
+  source: 'Apple Inc.'
   tags:
     - cat
+    - Apple
+    - Memoji
     - emoji
+    - iPhone
+    - iPad
+    - animal
+    - pet
   nsfw: false
 082363ad771dd42ce378d4f430be9005:
   key: 24b7ebcc8ad917a2420bb963cb3936cfd4fcaa487608319d307afeaf3b98f9ab
-  source: ''
+  source: 'Apple Inc.'
   tags:
     - dog
+    - Apple
+    - Memoji
     - emoji
+    - iPhone
+    - iPad
+    - animal
+    - pet
   nsfw: false
 6f7a9ea034cf34d57e7a8107212e95d9:
   key: d69566939fff887819648223d1522bdd72d01bca5de316404799c522ac4706ac
-  source: ''
+  source: 'Apple Inc.'
   tags:
     - poop
+    - Apple
+    - Memoji
     - emoji
+    - iPhone
+    - iPad
+    - brown
   nsfw: false
 b2cc85e43529bd7696920d76289559df:
   key: a86fe08c49fd08217619a1853bd9c741c306da05235ce20dff46446528886e14
-  source: ''
+  source: 'Apple Inc.'
   tags:
     - unicorn
+    - Apple
+    - Memoji
     - emoji
+    - iPhone
+    - iPad
+    - pink
+    - horse
+    - animal
   nsfw: false
 a27b2ee11656275c0f900026e1327541:
   key: fc54be80a8d773e5a3ed75993c6c64899f4f67458a8464c8fd00c1e31c5db1b0
@@ -19788,7 +19812,7 @@ a61b29db02b683b219d2d63e39163bfb:
   original: false
 25b84bd2bfa07ba8da410249fad69277:
   key: b1d178be08f14ce5d3fba69f212479e203c1abb648e8427c0fd38a44661f0083
-  source: 'https://janostrowka.com'
+  source: 'Apple Inc.'
   tags:
     - Zosia
     - Zofia
@@ -19814,7 +19838,7 @@ a61b29db02b683b219d2d63e39163bfb:
   original: true
 e374df1d3ddbc818ee7f60972157c034:
   key: 138d585234ea098eeec8c5292d6b5465871cea735e347332c34ee5a21f79a1c6
-  source: 'https://janostrowka.com'
+  source: 'Apple Inc.'
   tags:
     - Oliwia
     - Olivia
