@@ -68,6 +68,40 @@ const AboutComponent: React.FunctionComponent = () => {
               </a>
             </li>
           </ul>
+          <br />
+          <hr />
+          <br />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
+          <h2 className="mb-4">Privacy policy</h2>
+          <p>
+            <h4>What do we collect?</h4>
+            We count the number of visitors on <code>signalstickers.com</code>, in a way that does <b>not</b> log your IP address, so our visitors count is anonymous.<br/>
+            <code>signalstickers.com</code> is hosted on <a href="https://pages.github.com/" rel="noopener noreferrer" target="_blank" >GitHub Pages</a>, and we use
+            third-party scripts, which might collect your IP address.
+          </p>
+          <h4>What don't we collect?</h4>
+          <p>
+            All the rest. We don't use cookies, and don't track you as you visit <code>signalstickers.com</code>, or any other site.
+          </p>
+          <h4>What data do you sell?</h4>
+          <p>
+            <b>None</b>, as 1. we are an open-source project that values privacy, and 2. we don't collect any personal data about you in the first place.
+          </p>
+          <br />
+          <hr />
+          <br />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
+        <h2 className="mb-4">Terms of service</h2>
+        <p>
+          <code>signalstickers.com</code> is provided "as is". We try the best we can to keep it up and running, but we are volunteers, and we rely on third-parties,
+          so we can't guarantee that <code>signalstickers.com</code> will be accessible at any time.
+        </p>
         </div>
       </div>
     </About>
