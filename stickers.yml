@@ -19939,6 +19939,18 @@ e14352887151a0ccd7f67adce3ddf05b:
     - Red Hair
   nsfw: false
   original: true
+09b073ed1126dc152290fc62bed6a8a5:
+  key: 12f964b308ac3e1f43b23dd14fc691e71713201c524bde598103e34aeb91fa87
+  source: Me
+  tags:
+    - Vocaloid
+    - Megurine
+    - Luka
+    - Crypton
+    - Project
+    - Diva
+  nsfw: false
+  original: false
 4c616ae2e24fefbc1f4769cfb4a474d9:
   key: 06683b1e52820888deac6dfe87b52befaee673319e77c1ae4273590f29bea505
   source: 'https://twitter.com/OrangeCMS/status/1261024433357164546'
@@ -19946,6 +19958,9 @@ e14352887151a0ccd7f67adce3ddf05b:
     - linuxboot
     - coreboot
     - Linux
+    - gentoo
+    - Larry the cow
+    - BIOShazard
     - open-source
     - open source
     - free software
