@@ -19812,23 +19812,6 @@ a61b29db02b683b219d2d63e39163bfb:
   tags: []
   nsfw: false
   original: false
-25b84bd2bfa07ba8da410249fad69277:
-  key: b1d178be08f14ce5d3fba69f212479e203c1abb648e8427c0fd38a44661f0083
-  source: 'Apple Inc.'
-  tags:
-    - Zosia
-    - Zofia
-    - Sofie
-    - Sophie
-    - Apple
-    - Memoji
-    - emoji
-    - iPhone
-    - iPad
-    - girl
-    - blond
-  nsfw: false
-  original: true
 4356e18977ee42176627d71332ae456a:
   key: e22aaa9c656f3419357e7cc472a13c4179bc91bdc983ce5ed23befb50b7ccd20
   source: 'https://twitter.com/StevenAlleyn/status/1257703386557841410'
@@ -19984,3 +19967,20 @@ e14352887151a0ccd7f67adce3ddf05b:
     - gay
   nsfw: true
   original: false
+aeea3874ef5216b9f4c28fef1af790c9:
+  key: cdf6603941eca33957f4fe1fe8e1f956114ae98c554fe60d6afba34ad40d1e7b
+  source: Apple Inc.
+  tags:
+    - Zosia
+    - Zofia
+    - Sofie
+    - Sophie
+    - Apple
+    - Memoji
+    - emoji
+    - iPhone
+    - iPad
+    - girl
+    - blond
+  nsfw: false
+  original: true
