@@ -1,10 +1,47 @@
 import React from 'react';
 
+import Context from 'contexts/StickersContext';
+import useQuery from 'hooks/use-query';
+import useUpdateUrl from 'hooks/use-update-url';
+
+import {SEARCH_QUERY_PARAM} from 'etc/constants';
+
 import SearchInput from './SearchInput';
 import StickerPackList from './SearchResults';
 
 
 const HomeComponent: React.FunctionComponent = () => {
+  const {searchQuery, setSearchQuery} = React.useContext(Context);
+  const query = useQuery();
+  const updateUrl = useUpdateUrl();
+
+
+  /**
+   * Perform a one-time URL-to-state sync when the component mounts.
+   */
+  React.useEffect(() => {
+    const searchQueryFromUrl = query?.SEARCH_QUERY_PARAM;
+
+    if (typeof searchQueryFromUrl === 'string') {
+      setSearchQuery(searchQueryFromUrl);
+    }
+  }, []);
+
+
+  /**
+   * Perform a state-to-URL sync when the search query changes.
+   */
+  React.useEffect(() => {
+    updateUrl({
+      query: {
+        // Coerce empty strings to undefined to cause the query param to be
+        // removed from the URL when the search query is cleared.
+        [SEARCH_QUERY_PARAM]: searchQuery || undefined
+      }
+    });
+  }, [searchQuery]);
+
+
   return (
     <>
       <div className="row">

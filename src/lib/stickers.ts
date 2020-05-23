@@ -10,7 +10,6 @@
  * far more slowly than Chrome).
  */
 import axios from 'axios';
-import FuzzySearch from 'fuzzy-search';
 import LocalForage from 'localforage';
 import * as R from 'ramda';
 
@@ -168,21 +167,6 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
   // This should only be reachable if we got a "storage unavailable error", in
   // which case return the converted image.
   return convertedImage;
-}
-
-
-/**
- * Performs a fuzzy search on cached StickerPack data and returns the result
- * set.
- */
-export function fuzzySearchStickerPacks(needle: string, haystack: Array<StickerPackPartial>): Array<StickerPackPartial> {
-  const searchKeys = ['manifest.title', 'manifest.author', 'meta.tags'];
-  const searcher = new FuzzySearch(haystack, searchKeys, {
-    caseSensitive: false,
-    sort: true
-  });
-
-  return searcher.search(needle);
 }
 
 
