@@ -1,6 +1,7 @@
 import path from 'path';
 
 import FetchStickerDataPlugin from '@signalstickers/fetch-sticker-data-webpack-plugin';
+import {CleanWebpackPlugin} from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 // @ts-ignore (No type definitions exist for this package.)
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
@@ -41,23 +42,20 @@ export default (env: string, argv: any): webpack.Configuration => {
 
   // ----- Loaders -------------------------------------------------------------
 
-  // TSLint (Development only).
-  if (argv.mode === 'development') {
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      exclude: /node_modules/,
-      enforce: 'pre',
-      use: [{
-        loader: 'tslint-loader',
-        options: {
-          configFile: path.resolve(PKG_ROOT, 'tslint.json'),
-          tsConfigFile: path.resolve(PKG_ROOT, 'tsconfig.json'),
-          formatter: 'codeFrame',
-          typeCheck: true
-        }
-      }]
-    });
-  }
+  // ESLint
+  config.module.rules.push({
+    test: /\.(ts|tsx)$/,
+    exclude: /node_modules/,
+    enforce: 'pre',
+    use: [{
+      loader: 'eslint-loader',
+      options: {
+        emitErrors: true,
+        emitWarning: true,
+        failOnError: argv.mode === 'production'
+      }
+    }]
+  });
 
   // TypeScript & JavaScript files.
   config.module.rules.push({
@@ -164,26 +162,30 @@ export default (env: string, argv: any): webpack.Configuration => {
     config.plugins.push(new FriendlyErrorsWebpackPlugin());
 
     config.plugins.push(new MiniCssExtractPlugin({
-      filename: 'styles.css',
+      filename: 'styles.css'
     }));
   }
 
   if (argv.mode === 'production') {
-    config.plugins.push(new CopyWebpackPlugin([{
-      // When performing a production build, instruct Webpack to copy all files
-      // in the 'static' directory into the build directory.
-      from: path.resolve(PKG_ROOT, 'static'),
-      to: path.resolve(PKG_ROOT, 'dist')
-    }]));
+    // Delete the build output directory before production builds.
+    config.plugins.push(new CleanWebpackPlugin());
+
+    config.plugins.push(new CopyWebpackPlugin({
+      patterns: [{
+        // When performing a production build, instruct Webpack to copy all
+        // files in the 'static' directory into the build directory.
+        from: path.resolve(PKG_ROOT, 'static'),
+        to: path.resolve(PKG_ROOT, 'dist')
+      }]
+    }));
 
     config.plugins.push(new MiniCssExtractPlugin({
-      filename: 'styles-[contenthash].css',
+      filename: 'styles-[contenthash].css'
     }));
 
     config.plugins.push(new webpack.LoaderOptionsPlugin({
       minimize: true
     }));
-
 
     config.plugins.push(new FaviconsWebpackPlugin({
       logo: path.resolve(PKG_ROOT, 'src', 'assets', 'favicon.png'),
@@ -195,7 +197,7 @@ export default (env: string, argv: any): webpack.Configuration => {
         appDescription: '',
         version: '',
         developerName: '',
-        developerURL: '',
+        developerURL: ''
       }
     }));
   }

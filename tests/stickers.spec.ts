@@ -46,7 +46,7 @@ describe('stickers.yml', () => {
   // This will throw if there are any syntax errors in the file.
   it('should be able to parse sticker.yml', () => {
     expect(() => {
-      stickersYml = yaml.safeLoad(fs.readFileSync('./stickers.yml'));
+      stickersYml = yaml.safeLoad(fs.readFileSync('./stickers.yml', {encoding: 'utf8'}));
     }).not.toThrow();
   });
 

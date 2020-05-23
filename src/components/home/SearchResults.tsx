@@ -1,12 +1,11 @@
 import {styled} from 'linaria/react';
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import {Link} from 'react-router-dom';
 import {Waypoint} from 'react-waypoint';
 import * as R from 'ramda';
-import useAsyncEffect from 'use-async-effect';
 
 import StickerContext from 'contexts/StickersContext';
-import {StickerPack} from 'etc/types';
+import {StickerPackPartial} from 'etc/types';
 import StickerPackPreviewCard from './StickerPackPreviewCard';
 
 
@@ -34,14 +33,14 @@ const StickerPackListComponent = () => {
   // Used by Waypoint to persist the component across re-renders.
   const [cursor, setCursor] = useState(0);
   // Subset of total search results that have been rendered.
-  const [renderedSearchResults, setRenderedSearchResults] = useState<Array<StickerPack>>([]);
+  const [renderedSearchResults, setRenderedSearchResults] = useState<Array<StickerPackPartial>>([]);
 
 
   /**
    * Adds PAGE_SIZE items from searchResults to renderedSearchResults and
    * updates the cursor.
    */
-  async function loadMore() {
+  const loadMore = React.useCallback(() => {
     // If we have rendered all search results, bail.
     if (renderedSearchResults.length >= searchResults.length) {
       return;
@@ -50,17 +49,21 @@ const StickerPackListComponent = () => {
     const newCursor = cursor + PAGE_SIZE;
     setCursor(newCursor);
     setRenderedSearchResults(R.take(newCursor, searchResults));
-  }
+  }, [
+    cursor,
+    searchResults,
+    renderedSearchResults
+  ]);
 
 
   /**
    * [Effect] When the list of search results is updated, re-set our rendered
    * search results and cursor.
    */
-  useAsyncEffect(async () => {
+  React.useEffect(() => {
     setCursor(0);
     setRenderedSearchResults([]);
-    await loadMore();
+    loadMore();
   }, [searchResults]);
 
 

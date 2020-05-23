@@ -36,7 +36,7 @@ import {
  * initial request for stickerData.json resolves, we only make a single request
  * and only populate the directory once.
  */
-let stickerPackDirectoryPromise: Promise<Array<StickerPackPartial>>;
+let stickerPackDirectoryPromise: Promise<Array<StickerPackPartial>> | undefined;
 
 
 /**
@@ -60,15 +60,15 @@ const stickerImageCache = LocalForage.createInstance({
  * [private]
  *
  * Returns true if the provided error was thrown because the browser is blocking
- * use of local storage and/or other storage backends.
+ * use of local storage and/or other storage back-ends.
  */
 function isStorageUnavailableError(err: any) {
   const patterns = [
     // Firefox in private mode.
-    /the quota has been exceeded/ig
+    /the quota has been exceeded/gi
   ];
 
-  if (err && err.message) {
+  if (err?.message) {
     return Boolean(R.find(curPattern => R.test(curPattern, err.message), patterns));
   }
 
@@ -81,14 +81,10 @@ function isStorageUnavailableError(err: any) {
  */
 export async function getStickerPackDirectory(): Promise<Array<StickerPackPartial>> {
   if (!stickerPackDirectoryPromise) {
-    stickerPackDirectoryPromise = new Promise(async (resolve, reject) => {
-      const res = await axios.request<Array<StickerPackPartial>>({
-        method: 'GET',
-        url: 'stickerData.json'
-      });
-
-      resolve(res.data);
-    });
+    stickerPackDirectoryPromise = axios.request<Array<StickerPackPartial>>({
+      method: 'GET',
+      url: 'stickerData.json'
+    }).then(R.prop('data'));
   }
 
   return stickerPackDirectoryPromise;
@@ -120,10 +116,10 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
 
       const manifest = await getStickerPackManifest(id, finalKey);
 
-      const stickerPack: StickerPack = {
+      const stickerPack = {
         meta,
         manifest
-      };
+      } as StickerPack;
 
       stickerPackCache.set(cacheKey, stickerPack);
     }
@@ -179,9 +175,13 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
  * Performs a fuzzy search on cached StickerPack data and returns the result
  * set.
  */
-export function fuzzySearchStickerPacks(needle: string, haystack: Array<StickerPack>): Array<StickerPack> {
+export function fuzzySearchStickerPacks(needle: string, haystack: Array<StickerPackPartial>): Array<StickerPackPartial> {
   const searchKeys = ['manifest.title', 'manifest.author', 'meta.tags'];
-  const searcher = new FuzzySearch(haystack, searchKeys, {caseSensitive: false, sort: true});
+  const searcher = new FuzzySearch(haystack, searchKeys, {
+    caseSensitive: false,
+    sort: true
+  });
+
   return searcher.search(needle);
 }
 

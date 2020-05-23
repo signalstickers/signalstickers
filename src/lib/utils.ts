@@ -7,10 +7,12 @@ import {BOOTSTRAP_BREAKPOINTS} from 'etc/constants';
  */
 export async function printStorageUsage() {
   if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     const storageEstimate = navigator.storage && await navigator.storage.estimate();
 
     // The navigator.storage object is undefined when using private mode in
     // Safari.
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!storageEstimate) {
       return;
     }
@@ -20,7 +22,7 @@ export async function printStorageUsage() {
     const quota = storageEstimate.quota;
 
     if (idbUsage && quota) {
-      const percentageUsed = ((idbUsage / quota) * 100).toFixed(2);
+      const percentageUsed = (idbUsage / quota * 100).toFixed(2);
       console.debug(`IndexedDB is currently using ${bytes(idbUsage)} of data, or ${percentageUsed}% of the ${bytes(quota)} quota.`);
     }
   }

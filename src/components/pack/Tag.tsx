@@ -17,27 +17,42 @@ const Tag = styled.button`
   margin: 2px;
   padding: 2px 8px;
   text-transform: capitalize;
+
+  &:hover {
+    color: white;
+  }
 `;
 
 
-const TagComponent: React.FunctionComponent = props => {
+export interface TagProps {
+  label: string;
+}
+
+
+const TagComponent: React.FunctionComponent<TagProps> = ({label}) => {
   // Current search query, will be used if the users clicks on tags
   const {setSearchQuery} = useContext(StickersContext);
   const history = useHistory();
 
-
   /**
-   * [Event Handler] Search from packs with same tags
+   * [Event Handler] Search from packs with same tags.
    */
-  function onTagClick(event: React.SyntheticEvent) {
+  const onTagClick = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    setSearchQuery(event.currentTarget.textContent);
-    history.push('/');
-  }
+
+    if (event.currentTarget.textContent) {
+      setSearchQuery(event.currentTarget.textContent);
+      history.push('/');
+    }
+  };
 
   return (
-    <Tag className="btn" onClick={onTagClick} title={`View more packs with tag "${props.children}"`}>
-      {props.children}
+    <Tag
+      title={`View more packs with tag "${label}"`}
+      className="btn"
+      onClick={onTagClick}
+    >
+      {label}
     </Tag>
   );
 };

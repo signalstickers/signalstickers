@@ -1,29 +1,7 @@
 const path = require('path');
 
-
-const PKG_ROOT = path.resolve(__dirname, '..');
-
-
-const EXTENSIONS = ['ts', 'tsx', 'js', 'jsx', 'node'];
-
-const ALWAYS_IGNORE = [
-  `${PKG_ROOT}/dist`,
-  '/node_modules/'
-];
-
-
-module.exports = {
-  rootDir: PKG_ROOT,
-  testEnvironment: 'node',
-  testRegex: '^.+\\.spec.*$',
-  testPathIgnorePatterns: ALWAYS_IGNORE,
-  coveragePathIgnorePatterns: ALWAYS_IGNORE,
-  moduleFileExtensions: [...EXTENSIONS, 'json'],
-  collectCoverageFrom: [
-    `${PKG_ROOT}/src/**/*.{${EXTENSIONS.join(',')}}`,
-    `${PKG_ROOT}/tests/**/*.{${EXTENSIONS.join(',')}}`,
-    '!**/node_modules/**',
-  ],
+module.exports = require('@darkobits/ts-unified/dist/config/jest')({
+  rootDir: path.resolve(__dirname, '..'),
   clearMocks: true,
   coverageThreshold: {
     global: {
@@ -33,4 +11,4 @@ module.exports = {
       lines: 100
     }
   }
-};
+});

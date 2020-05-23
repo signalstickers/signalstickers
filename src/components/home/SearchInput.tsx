@@ -59,27 +59,40 @@ const SearchInputComponent: React.FunctionComponent = () => {
   /**
    * [Event Handler] Updates our context's search query state.
    */
-  function onSearchQueryInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const onSearchQueryInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {value} = event.target;
     setSearchQueryInputValue(value);
-  }
+  };
 
-  function onTagClick(event: React.SyntheticEvent) {
-    setSearchQueryInputValue(event.currentTarget.textContent);
-  }
 
-  const tags = suggestedTags.map((tag, index) =>
-    <a href="#" key={index} className="badge badge-signal" onClick={onTagClick}>{tag}</a>
-  );
+  const onTagClick = (event: React.SyntheticEvent) => {
+    if (event.currentTarget.textContent) {
+      setSearchQueryInputValue(event.currentTarget.textContent);
+    }
+  };
+
+  /**
+   * [Memo] JSX fragment containing the set of suggested tags.
+   */
+  const tagsFragment = React.useMemo(() => suggestedTags.map(tag => (
+    <button
+      type="button"
+      key={tag}
+      className="badge badge-signal"
+      onClick={onTagClick}
+    >
+      {tag}
+    </button>
+  )), [suggestedTags]);
 
   /**
    * [Event Handler] Clears our context's search query state.
    */
-  function clearSearchResults(event: React.SyntheticEvent) {
+  const clearSearchResults = (event: React.SyntheticEvent) => {
     event.preventDefault();
     setSearchQueryInputValue('');
     setSearchQuery('');
-  }
+  };
 
 
   /**
@@ -90,7 +103,7 @@ const SearchInputComponent: React.FunctionComponent = () => {
     if (searchQuery) {
       setSearchQueryInputValue(searchQuery);
     }
-  }, []);
+  }, [searchQuery]);
 
 
   /**
@@ -104,7 +117,10 @@ const SearchInputComponent: React.FunctionComponent = () => {
     return () => {
       debouncedSetSearchQuery.cancel();
     };
-  }, [searchQueryInputValue]);
+  }, [
+    debouncedSetSearchQuery,
+    searchQueryInputValue
+  ]);
 
 
   // ----- Render --------------------------------------------------------------
@@ -132,12 +148,17 @@ const SearchInputComponent: React.FunctionComponent = () => {
           spellCheck="false"
         />
         <div className="input-group-append">
-          <button className="input-group-text btn btn-light btn-sm" onClick={clearSearchResults} title="Clear Search Results">
+          <button
+            type="button"
+            className="input-group-text btn btn-light btn-sm"
+            onClick={clearSearchResults}
+            title="Clear Search Results"
+          >
             &nbsp;<Octicon name="x" className="text-danger" />
           </button>
         </div>
       </div>
-      <small>Lost? Why not start with these tags?</small> {tags}
+      <small>Lost? Why not start with these tags?</small> {tagsFragment}
     </SearchInput>
   );
 };

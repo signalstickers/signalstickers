@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import {styled} from 'linaria/react';
-// @ts-ignore (No type definitions exist for this package.)
-import Octicon from 'react-octicon';
 import useAsyncEffect from 'use-async-effect';
 
 import {StickerPackPartial} from 'etc/types';
@@ -26,7 +24,7 @@ const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: 
     content: 'Original';
     top: 13px;
     left: O;
-    display: ${props => props.original ? 'block' : 'none'};
+    display: ${props => (props.original ? 'block' : 'none')};
     background-color: #3a76f0;
     position: absolute;
     padding: 3px 6px 3px 3px;
@@ -46,7 +44,7 @@ const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: 
     margin-left: auto;
     margin-right: auto;
     transition: transform 0.15s ease-in;
-    filter: ${props => props.nsfw ? 'blur(4px)' : 'none'};
+    filter: ${props => (props.nsfw ? 'blur(4px)' : 'none')};
   }
 
   & .card-header {
@@ -99,23 +97,27 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
    */
   useAsyncEffect(async () => {
     try {
-      if (meta.id !== undefined) { // tslint:disable-line strict-type-predicates
+      if (meta.id !== undefined) {
         const coverImage = await getConvertedStickerInPack(meta.id, meta.key, manifest.cover.id);
         setCover(coverImage);
       }
     } catch (err) {
       console.error(`[StickerPackPreviewCard::Effect::GetCover] ${err.message}`);
     }
-  }, []);
+  }, [
+    meta.id,
+    meta.key,
+    manifest.cover.id
+  ]);
 
 
   // ----- Render --------------------------------------------------------------
 
-  const title = [manifest.title, meta.nsfw && ' (NSFW)'].filter(Boolean).join('');
+  const title =`${manifest.title}${meta.nsfw ? ' (NSFW)' : ''}`;
 
   return (
     <StickerPackPreviewCard className="card" original={meta.original} nsfw={meta.nsfw} aria-label={title}>
-      {cover ? <img className="card-img-top" src={cover} /> : <div className="card-img-top"></div>}
+      {cover ? <img className="card-img-top" src={cover} alt="cover" /> : <div className="card-img-top" />}
       <div className="card-header">{title}</div>
     </StickerPackPreviewCard>
   );
