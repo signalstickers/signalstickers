@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom';
 import {Waypoint} from 'react-waypoint';
 import * as R from 'ramda';
 
-import StickerContext from 'contexts/StickersContext';
-import {StickerPackPartial} from 'etc/types';
+import StickersContext from 'contexts/StickersContext';
+
 import StickerPackPreviewCard from './StickerPackPreviewCard';
 
 
@@ -29,11 +29,11 @@ const PAGE_SIZE = 64;
 
 
 const StickerPackListComponent = () => {
-  const {searchResults} = useContext(StickerContext);
+  const {searchResults} = useContext(StickersContext);
   // Used by Waypoint to persist the component across re-renders.
   const [cursor, setCursor] = useState(0);
   // Subset of total search results that have been rendered.
-  const [renderedSearchResults, setRenderedSearchResults] = useState<Array<StickerPackPartial>>([]);
+  const [renderedSearchResults, setRenderedSearchResults] = useState<typeof searchResults>([]);
 
 
   /**
@@ -60,7 +60,7 @@ const StickerPackListComponent = () => {
    * [Effect] When the list of search results is updated, re-set our rendered
    * search results and cursor.
    */
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     setCursor(0);
     setRenderedSearchResults([]);
     loadMore();
@@ -71,9 +71,9 @@ const StickerPackListComponent = () => {
 
   return (
     <StickerPackList className="row">
-      {renderedSearchResults.map(({meta, manifest}) => (
-        <Link className="col-6 col-md-4 col-lg-3 mb-4" key={meta.id} to={`/pack/${meta.id}`}>
-          <StickerPackPreviewCard stickerPack={{meta, manifest}} />
+      {renderedSearchResults.map(result => (
+        <Link className="col-6 col-md-4 col-lg-3 mb-4" key={result.item.meta.id} to={`/pack/${result.item.meta.id}`}>
+          <StickerPackPreviewCard stickerPack={result.item} />
         </Link>
       ))}
       <Waypoint key={cursor} onEnter={loadMore} bottomOffset="-500px" />

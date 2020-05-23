@@ -2,9 +2,8 @@ import React, {useContext} from 'react';
 import {styled} from 'linaria/react';
 import {useHistory} from 'react-router-dom';
 
-import {SIGNAL_BLUE} from 'etc/colors';
-
 import StickersContext from 'contexts/StickersContext';
+import {SIGNAL_BLUE} from 'etc/colors';
 
 
 const Tag = styled.button`
@@ -31,7 +30,7 @@ export interface TagProps {
 
 const TagComponent: React.FunctionComponent<TagProps> = ({label}) => {
   // Current search query, will be used if the users clicks on tags
-  const {setSearchQuery} = useContext(StickersContext);
+  const {searcher, setSearchQuery} = useContext(StickersContext);
   const history = useHistory();
 
   /**
@@ -40,8 +39,13 @@ const TagComponent: React.FunctionComponent<TagProps> = ({label}) => {
   const onTagClick = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    if (event.currentTarget.textContent) {
-      setSearchQuery(event.currentTarget.textContent);
+    if (searcher && event.currentTarget.textContent) {
+      setSearchQuery(searcher.buildQueryString({
+        attributeQueries: [{
+          tag: event.currentTarget.textContent
+        }]
+      }));
+
       history.push('/');
     }
   };

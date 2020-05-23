@@ -1,7 +1,7 @@
 import debounceFn from 'debounce-fn';
 import {cx} from 'linaria';
 import {styled} from 'linaria/react';
-import React, {useContext, useState, useEffect} from 'react';
+import React from 'react';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
 import useBreakpoint from 'use-breakpoint';
@@ -38,11 +38,12 @@ const SearchInput = styled.div`
   }
 `;
 
+
 // ----- Component -------------------------------------------------------------
 
 const SearchInputComponent: React.FunctionComponent = () => {
-  const {allStickerPacks, searchQuery, setSearchQuery} = useContext(StickersContext);
-  const [searchQueryInputValue, setSearchQueryInputValue] = useState('');
+  const {allStickerPacks, searcher, searchQuery, setSearchQuery} = React.useContext(StickersContext);
+  const [searchQueryInputValue, setSearchQueryInputValue] = React.useState('');
   const {breakpoint} = useBreakpoint(BOOTSTRAP_BREAKPOINTS, 'xl');
   const suggestedTags = ['cute', 'privacy', 'meme', 'for children'];
 
@@ -66,10 +67,15 @@ const SearchInputComponent: React.FunctionComponent = () => {
 
 
   const onTagClick = (event: React.SyntheticEvent) => {
-    if (event.currentTarget.textContent) {
-      setSearchQueryInputValue(event.currentTarget.textContent);
+    if (searcher && event.currentTarget.textContent) {
+      setSearchQuery(searcher.buildQueryString({
+        attributeQueries: [{
+          tag: event.currentTarget.textContent
+        }]
+      }));
     }
   };
+
 
   /**
    * [Memo] JSX fragment containing the set of suggested tags.
@@ -85,6 +91,7 @@ const SearchInputComponent: React.FunctionComponent = () => {
     </button>
   )), [suggestedTags]);
 
+
   /**
    * [Event Handler] Clears our context's search query state.
    */
@@ -99,7 +106,7 @@ const SearchInputComponent: React.FunctionComponent = () => {
    * [Effect] When the component mounts, set the search input's value to the
    * current search query from our context.
    */
-  useEffect(() => {
+  React.useEffect(() => {
     if (searchQuery) {
       setSearchQueryInputValue(searchQuery);
     }
@@ -110,7 +117,7 @@ const SearchInputComponent: React.FunctionComponent = () => {
    * [Effect] When the search query is updated, call our de-bounced update
    * function.
    */
-  useEffect(() => {
+  React.useEffect(() => {
     debouncedSetSearchQuery.cancel();
     debouncedSetSearchQuery(searchQueryInputValue);
 

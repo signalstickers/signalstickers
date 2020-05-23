@@ -141,11 +141,15 @@ const linkifyHrefDecorator = (decoratedHref: string, decoratedText: string, key:
 
 
 const StickerPackDetailComponent: React.FunctionComponent = () => {
+  const {setSearchQuery, searcher} = useContext(StickersContext);
+  const history = useHistory();
+  const query = useQuery();
+
   // Extract :packId from the URL.
   const {packId} = useParams<UrlParams>();
 
   // Extract the optional "key" query param from the URL.
-  const key = useQuery().get('key') ?? undefined;
+  const key = typeof query.key === 'string' ? query.key : undefined;
 
   // StickerPack object for the requested pack.
   const [stickerPack, setStickerPack] = useState<StickerPack>();
@@ -154,10 +158,6 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   // decrypt a sticker pack. This will be used to determine what error message
   // to show the user.
   const [stickerPackError, setStickerPackError] = useState('');
-
-  // Current search query, will be used if the user clicks on author.
-  const {setSearchQuery} = useContext(StickersContext);
-  const history = useHistory();
 
 
   /**
@@ -186,8 +186,13 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   const onAuthorClick = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    if (event.currentTarget.textContent) {
-      setSearchQuery(event.currentTarget.textContent);
+    if (searcher && event.currentTarget.textContent) {
+      setSearchQuery(searcher.buildQueryString({
+        attributeQueries: [{
+          author: event.currentTarget.textContent
+        }]
+      }));
+
       history.push('/');
     }
   };
@@ -199,32 +204,32 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
     // If an error code has been set, display an error alert to the user.
     if (stickerPackError) {
       switch (stickerPackError) {
-      case 'NO_KEY_PROVIDED':
-        return (
-          <StickerPackError>
-            <p>
-              This sticker pack is not listed in the Signal Stickers directory.
-              However, if you have the pack's <strong>key</strong>, you can
-              still preview the sticker pack by supplying a <code>key</code>
-              parameter in the URL.
-            </p>
-            <p>
-              For example: <code>{`/pack/${packId}?key=sticker-pack-key`}</code>
-            </p>
-          </StickerPackError>
-        );
-      case 'MANIFEST_DECRYPT':
-        return (
-          <StickerPackError>
-            <p>The provided key is invalid.</p>
-          </StickerPackError>
-        );
-      default:
-        return (
-          <StickerPackError>
-            <p>An unknown error occurred ({stickerPackError}).</p>
-          </StickerPackError>
-        );
+        case 'NO_KEY_PROVIDED':
+          return (
+            <StickerPackError>
+              <p>
+                This sticker pack is not listed in the Signal Stickers directory.
+                However, if you have the pack's <strong>key</strong>, you can
+                still preview the sticker pack by supplying a <code>key</code>
+                parameter in the URL.
+              </p>
+              <p>
+                For example: <code>{`/pack/${packId}?key=sticker-pack-key`}</code>
+              </p>
+            </StickerPackError>
+          );
+        case 'MANIFEST_DECRYPT':
+          return (
+            <StickerPackError>
+              <p>The provided key is invalid.</p>
+            </StickerPackError>
+          );
+        default:
+          return (
+            <StickerPackError>
+              <p>An unknown error occurred ({stickerPackError}).</p>
+            </StickerPackError>
+          );
       }
     }
 
