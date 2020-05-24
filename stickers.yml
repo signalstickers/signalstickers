@@ -415,10 +415,12 @@ abdde9406f8efd488e013182f4123d17:
   source: ''
   tags: []
   nsfw: false
-d909ceca9f29d323eadc03e277ff11e4:
-  key: 9bd3062ffdeac0372f69d52a2e986db619e0f5564711a8d206ff488db4c3f621
+e62d12fecc060ee419d743395252ef04:
+  key: 3da3e438bf6f5f030cd5f364c4f157f3921b135f24622785bac3243e0cf82630
   source: ''
-  tags: []
+  tags:
+    - telegram
+    - pepe the frog
   nsfw: false
 bc6fa4c6b26dd7a8f4bf70be46392234:
   key: 882e4af15b4506af59fde2884be2cae091eea58bf1695ba9e729ab3b436f469a
@@ -19989,12 +19991,5 @@ dbb4e3f41c9a33e6ec29d80a58010bad:
   source: 'https://twitter.com/Beatzzsoi5/status/1263407082482663425'
   tags:
     - bubble tea
-  nsfw: false
-  original: false
-  e62d12fecc060ee419d743395252ef04:
-  key: 3da3e438bf6f5f030cd5f364c4f157f3921b135f24622785bac3243e0cf82630
-  source: Telegram
-  tags:
-    - Pepe
   nsfw: false
   original: false
