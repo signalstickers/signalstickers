@@ -20005,6 +20005,36 @@ dbb4e3f41c9a33e6ec29d80a58010bad:
     - for children
   nsfw: false
   original: false
+c7c24d8480203db6d71f1c33f7773781:
+  key: ac50a343e3ad3d3eca07f7af1216aa2ebc560e973945372600518391a33b24af
+  source: WDR
+  tags:
+    - Elephant
+    - Mouse
+    - Duck
+    - Rabbit
+    - Cute
+    - For Children
+  nsfw: false
+  original: false
+2beb9e6ddc47a97d7d84f93586b53fea:
+  key: ef007a3f8a3613c311466d994b614ae033540030605693c8aeca93280c31ad08
+  source: Imported from Line
+  tags:
+    - Doraemon
+    - For Children
+    - Cute
+  nsfw: false
+  original: false
+fdfb68300f9370caf20d192e121abc82:
+  key: 9a312c075fe4b621e3d952148b4e222e50e0073d2dd1bfbfc6463b41d49771c2
+  source: Imported from Line
+  tags:
+    - Barbapapa
+    - For Children
+    - Cute
+  nsfw: false
+  original: false
 d61a5dec78bab59cdc38d964c8a9b461:
   key: dbb6c5939df09d71c717e876a15ec364d4746f702cb2744520f9d39d397c7500
   source: Imported from Line
