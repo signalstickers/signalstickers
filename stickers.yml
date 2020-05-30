@@ -738,16 +738,6 @@ b9b48c7cf2d813d8088d009cd54cf1fa:
     - alexa bliss
     - wwe
   nsfw: false
-9338b3db8ad40e5a59feb25deea4b7b9:
-  key: e9df28439cf6fd3e161cc26c139e522bf6fcf8778c3988ee92a76907558d454f
-  source: 'https://github.com/hehnope/signal-classic-meme-sticker-pack'
-  tags:
-    - memes
-    - trollface
-    - brainlet
-    - derp
-    - mcmahon
-  nsfw: false
 82adf729d1f7c14f692f50d452530abd:
   key: d1669c8db8a79e0d3537893b5769100c86c453ea8f2a3131eb9eed8a52a65b9b
   source: ''
