@@ -20164,3 +20164,11 @@ be2e17fafbfc38d8e8d5c765e4787ba6:
     - slic3r
   nsfw: false
   original: false
+5975a84cc7e6cc0b210c80badb695a47:
+  key: dd00ed9736d59533395ac4ec99891c71ae6e1c085880d7b81c0bb27252cb3a9c
+  source: 'https://twitter.com/xor/status/1268005133696274433'
+  tags:
+    - police violence
+    - police brutality
+  nsfw: false
+  original: true
