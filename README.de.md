@@ -1,4 +1,4 @@
-<a href="#top" id="top">
+<a href="https://signalstickers.com" id="top">
   <img src=".github/header_signalstickers_de.png" style="max-width: 100%;"></<img>
 </a>
 
