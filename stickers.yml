@@ -20191,3 +20191,39 @@ be2e17fafbfc38d8e8d5c765e4787ba6:
     - police brutality
   nsfw: false
   original: true
+874944aab78c145afd1672ca24764857:
+  key: fcf4e102b6282a4d23c03fe040abf19e278cb28b467d4b87c7c01e16c0dfccb3
+  source: Telegram
+  tags:
+    - Windows
+    - Windows 95
+    - proprietary software
+  nsfw: false
+  original: false
+c6b83611dd5076fa5f24a8d42c40dd6a:
+  key: 9a0177966d88e1dd6590f0a1d17ea121b74ef91a3beb3bcf8ae75920e129aac2
+  source: Telegram
+  tags:
+    - Linux
+    - free software
+    - GNULinux
+  nsfw: false
+  original: false
+ac092df8d6230929b9e2097660c59815:
+  key: 73a6e88a47dae781461efb6dabfa539e97620ccd4add36ad7885f09d5b52dcd3
+  source: Telegram
+  tags:
+    - SpaceX
+    - PayPal
+  nsfw: false
+  original: false
+2e44cea7dd87cbfe59e71e97d395813d:
+  key: 06bad0961e7f5e0475daad626c4b94f14d06929d4b2112d89bbfd870addf017c
+  source: Telegram
+  tags:
+    - Bird
+    - reaction
+    - meme
+    - funny
+  nsfw: false
+  original: false
