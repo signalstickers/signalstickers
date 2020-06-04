@@ -49,7 +49,7 @@ pour télécharger vos stickers sur Signal.
 
 > Note : lors de la création des stickers, n'oubliez pas d'ajouter un contour
 > blanc pour améliorer la lisibilité sur les thèmes sombres ! Vous pouvez
-> utiliser [ce script](https://gist.github.com/ondondil/4b8564b404696b3255253b467b413de9#gistcomment-3118471),
+> utiliser [ce script](https://gist.github.com/romainricard/d0d26015ed08387dbf89b24c92bb2bca),
 > ou [ce projet](https://framagit.org/luc/stickerify-for-signal)
 > pour redimensionner automatiquement et ajouter un contour blanc sur toutes
 > les images PNG et WEBP d'un répertoire.
