@@ -20360,3 +20360,20 @@ a8fc00347294e7a2ce1492ed2665ce29:
     - Telegram
   nsfw: false
   original: false
+cd5386b013e92baa1929f840ee1da573:
+  key: eb98fda9d7800a74143ea61adf99946b794a3176ac23aea28b8f690def3dc708
+  source: 'https://twitter.com/epicLouT/status/1270425809501773826'
+  tags: []
+  nsfw: false
+  original: true
+d62864e473972014274b69df859cc2ff:
+  key: de0c8a57157f1468ee41c34d83b816d5ec3f308c7b3babfa5982869d59179311
+  source: ''
+  tags:
+    - movie
+    - Rawhide
+    - The Good the Bad and the Ugly
+    - Gran Torino
+    - Telegram
+  nsfw: false
+  original: false
