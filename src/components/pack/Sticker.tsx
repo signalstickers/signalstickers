@@ -5,7 +5,6 @@ import Octicon from 'react-octicon';
 import useAsyncEffect from 'use-async-effect';
 
 import {getConvertedStickerInPack, getEmojiForSticker} from 'lib/stickers';
-import {bp} from 'lib/utils';
 
 
 // ----- Props -----------------------------------------------------------------
@@ -20,9 +19,15 @@ export interface Props {
 // ----- Styles ----------------------------------------------------------------
 
 const Sticker = styled.div`
-  border: 1px solid rgba(0, 0, 0, .125);
+  align-items: center;
   border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, .125);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  padding: 16px;
   position: relative;
+  width: 100%;
 
   & .emoji {
     position: absolute;
@@ -32,16 +37,22 @@ const Sticker = styled.div`
   }
 
   & img {
-    width: 72px;
-    height: 72px;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
   }
 
-  @media ${bp('sm')} {
-    & img {
-      width: 128px;
-      height: 128px;
-    }
+  /**
+   * This ensures that the component has a 1:1 aspect ratio, even if there is
+   * no content or the content's aspect ratio is not 1:1. This way, the page's
+   * structure can be laid-out while stickers are loaded.
+   */
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 0px;
+    padding-bottom: calc(100%);
   }
 `;
 
@@ -73,14 +84,17 @@ const StickerComponent: React.FunctionComponent<Props> = ({packId, packKey, stic
 
   // ----- Render --------------------------------------------------------------
 
-  if (!emoji || !stickerSrc) {
-    return null; // tslint:disable-line no-null-keyword
-  }
-
   return (
-    <Sticker className="shadow-sm m-3 p-4">
-      <div className="emoji">{emoji}</div>
-      <img src={stickerSrc} alt="Sticker" />
+    <Sticker className="shadow-sm">
+      {emoji && stickerSrc
+        ? <>
+            <div className="emoji">{emoji}</div>
+            <img src={stickerSrc} alt="Sticker" />
+          </>
+        : <div className="spinner-border text-light" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+      }
     </Sticker>
   );
 };
