@@ -18237,7 +18237,7 @@ ba771fe4149df880804b68f86eb156d7:
 aaac975582921851fb7a10d7a34069ec:
   key: ea76773056c447c9131b515de4d090191d9c1eb75c8863caac8694b2ee55cb2a
   source: "@MLP_Stickers"
-  tags: 
+  tags:
     - my little pony
     - mlp
     - fluttershy
@@ -18370,9 +18370,9 @@ dc6c215c48f7ad6af90a0bb87448f2eb:
   key: 39ed2a2acb4977bec214f028dcb4ad98775b3212dd5310705be87f4c9f162df4
   source: https://play.google.com/store/apps/details?id=com.whamusaurus.gamusticker (made by Gamusaur for WhatsApp)
   tags:
-    - cute 
-    - jojo 
-    - anime 
+    - cute
+    - jojo
+    - anime
     - manga
   nsfw: false
 e261f65d0c9cd0d8b9c732b1bde7ab87:
@@ -18479,7 +18479,7 @@ cd5e97fa1a5ae44fc8c08786f3732b01:
 afb89234d73b132f09d1ea9a6417a299:
   key: af12528aadcbe99772bf151b2722e84e1c38312b5d31fbec4e712947afdcc9b4
   source: ''
-  tags: 
+  tags:
     - crayon shinchan
     - for children
   nsfw: false
@@ -18653,9 +18653,9 @@ d07e0388d63eb81b0852c254e0c8bbe8:
   key: 95fc29bb683666c019f161c696ca50945d428f2d45be9bea2ecc3c93f611af39
   source: Gamegenorator
   tags:
-    - zeptolab 
-    - omnom 
-    - cuttherope 
+    - zeptolab
+    - omnom
+    - cuttherope
   nsfw: false
 0a042227bb1a4fc6894b7bc15bc8a557:
   key: 6ecec01772fc4ce1c09a47b6023a2f99b9c2ff68208775c7746c5a48c542d903
@@ -18892,7 +18892,7 @@ fd6ace2810153d460ef44e0e672da34d:
     - pope
     - telegram
     - russian
-    - orthodox 
+    - orthodox
     - bishop
   nsfw: false
 c4d174fe9e61444fcc9a354c0f33a61c:
@@ -19244,7 +19244,7 @@ beaf36a4cb8aba728fd79c360544f1b3:
   source: >-
     Stickerset by Revo, https://rebellion.earth ,
     https://extinctionrebellion.de/ , The Extinction Symbol was created by
-    London artist ESP in 2011. 
+    London artist ESP in 2011.
   tags:
     - Extinction Rebellion
     - ExtinctionRebellion
@@ -20375,5 +20375,14 @@ d62864e473972014274b69df859cc2ff:
     - The Good the Bad and the Ugly
     - Gran Torino
     - Telegram
+  nsfw: false
+  original: false
+752061899579bd2be924b231433afdfd:
+  key: 7251cdc1275995685adfec734f62c913931a9bd85983d810e9babaa883967c6e
+  source: 'Original artwork by Jayde Fish. https://jaydefish.com/'
+  tags:
+    - Animal
+    - Animals
+    - Facebook
   nsfw: false
   original: false
