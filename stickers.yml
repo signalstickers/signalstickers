@@ -16512,18 +16512,6 @@ c396f5450f43791fcad0607e6d6297f5:
     - Renshu
     - telegram
   nsfw: false
-1267f0b4aeac05061adbf55084371561:
-  key: a3f227816322c2bdda57206d2d9f9942e85087d17f8ed2aa7db2948acc5a38b6
-  source: 'https://tlgrm.eu/stickers'
-  tags:
-    - retarded_wojak
-    - мемы
-    - юмор
-    - умственно отсталый
-    - memes
-    - Retarded Wojak
-    - telegram
-  nsfw: false
 7d25e0fbaae47100be7bf3bf50881377:
   key: 695710fab0897e7df39eae9e00d833e169a6f80a636788f1234ee01c9638d96b
   source: 'https://tlgrm.eu/stickers'
@@ -18237,7 +18225,7 @@ ba771fe4149df880804b68f86eb156d7:
 aaac975582921851fb7a10d7a34069ec:
   key: ea76773056c447c9131b515de4d090191d9c1eb75c8863caac8694b2ee55cb2a
   source: "@MLP_Stickers"
-  tags: 
+  tags:
     - my little pony
     - mlp
     - fluttershy
@@ -18370,9 +18358,9 @@ dc6c215c48f7ad6af90a0bb87448f2eb:
   key: 39ed2a2acb4977bec214f028dcb4ad98775b3212dd5310705be87f4c9f162df4
   source: https://play.google.com/store/apps/details?id=com.whamusaurus.gamusticker (made by Gamusaur for WhatsApp)
   tags:
-    - cute 
-    - jojo 
-    - anime 
+    - cute
+    - jojo
+    - anime
     - manga
   nsfw: false
 e261f65d0c9cd0d8b9c732b1bde7ab87:
@@ -18479,7 +18467,7 @@ cd5e97fa1a5ae44fc8c08786f3732b01:
 afb89234d73b132f09d1ea9a6417a299:
   key: af12528aadcbe99772bf151b2722e84e1c38312b5d31fbec4e712947afdcc9b4
   source: ''
-  tags: 
+  tags:
     - crayon shinchan
     - for children
   nsfw: false
@@ -18653,9 +18641,9 @@ d07e0388d63eb81b0852c254e0c8bbe8:
   key: 95fc29bb683666c019f161c696ca50945d428f2d45be9bea2ecc3c93f611af39
   source: Gamegenorator
   tags:
-    - zeptolab 
-    - omnom 
-    - cuttherope 
+    - zeptolab
+    - omnom
+    - cuttherope
   nsfw: false
 0a042227bb1a4fc6894b7bc15bc8a557:
   key: 6ecec01772fc4ce1c09a47b6023a2f99b9c2ff68208775c7746c5a48c542d903
@@ -18892,7 +18880,7 @@ fd6ace2810153d460ef44e0e672da34d:
     - pope
     - telegram
     - russian
-    - orthodox 
+    - orthodox
     - bishop
   nsfw: false
 c4d174fe9e61444fcc9a354c0f33a61c:
@@ -19244,7 +19232,7 @@ beaf36a4cb8aba728fd79c360544f1b3:
   source: >-
     Stickerset by Revo, https://rebellion.earth ,
     https://extinctionrebellion.de/ , The Extinction Symbol was created by
-    London artist ESP in 2011. 
+    London artist ESP in 2011.
   tags:
     - Extinction Rebellion
     - ExtinctionRebellion
@@ -20377,14 +20365,13 @@ d62864e473972014274b69df859cc2ff:
     - Telegram
   nsfw: false
   original: false
-
 08d662207baa720bb2a5385950f52777:
   key: aee175897ba161ad9b8bb9702d505f6cd27107c06589f8dd3345505fd2f5469c
   source: LINE
   tags:
     - Hatsune
     - Miku
-    - 初音ミク
+    - '初音ミク'
     - Vocaloid
     - Magical Mirai
     - cute
@@ -20394,9 +20381,66 @@ d62864e473972014274b69df859cc2ff:
     - food
     - chibi
     - LINE
-   
   nsfw: false
   original: false
-  https://signalstickers.com/pack/08d662207baa720bb2a5385950f52777?key=aee175897ba161ad9b8bb9702d505f6cd27107c06589f8dd3345505fd2f5469c
-  
-  
+752061899579bd2be924b231433afdfd:
+  key: 7251cdc1275995685adfec734f62c913931a9bd85983d810e9babaa883967c6e
+  source: 'Original artwork by Jayde Fish. https://jaydefish.com/'
+  tags:
+    - Animal
+    - Animals
+    - Facebook
+  nsfw: false
+  original: false
+122348b7ab9e67dfe9b35c61d510a59c:
+  key: 9f971fb6707a5f7229e738dbeb9d8d6926cdd83f1e1100663f5dfaa7eadfc1d9
+  source: 'https://t.me/addstickers/TeletubbiesSayHello'
+  tags:
+    - Hong Kong
+    - Teletubbies
+  nsfw: false
+  original: false
+fd37f432806542b407dd32313cf261be:
+  key: 20b983b5ffdbd0027ff42d4e447f1b4fe63c3c2f2f12a815d6ad72d060957773
+  source: '1-800-HOTLINEBLING'
+  tags:
+    - Drake
+    - Drake Meme
+    - meme
+    - outline
+    - 1-800-HOTLINEBLING
+    - HOTLINE BLING
+    - HOTLINEBLING
+    - '1-800'
+    - '1'
+    - '800'
+    - Aubrey Drake Graham
+    - Aubrey
+    - Graham
+    - you used to call me on my cell phone
+  nsfw: false
+  original: true
+d487b6cc33797ae711380bb1e52324e0:
+  key: b5771b4a3a7f12c6160ba68a3104bc5f6a2c690391874955174cadf7aaeb5c25
+  source: Arkham Horror LCG
+  tags:
+    - arkham
+    - tokens
+  nsfw: false
+  original: false
+377979c2667d53ad3316eed4f57b9e1f:
+  key: 0af2ba90c43876c4c5044707e135007812c4873296fc6a91d7597ac7b4bae63c
+  source: 'Gloomhaven; images from https://www.medusasglaze.com/gloomhaven'
+  tags:
+    - gloomhaven
+  nsfw: false
+  original: false
+761a43f5cb8868c706df2877be67d4ab:
+  key: d13af9cf31d6caa531b042c1a475fa78bc7410d2845f5bf5763214f41c29c312
+  source: 4chan
+  tags:
+    - meme
+    - memes
+    - Rage Faces
+  nsfw: false
+  original: false
