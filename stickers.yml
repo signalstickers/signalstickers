@@ -20365,6 +20365,24 @@ d62864e473972014274b69df859cc2ff:
     - Telegram
   nsfw: false
   original: false
+08d662207baa720bb2a5385950f52777:
+  key: aee175897ba161ad9b8bb9702d505f6cd27107c06589f8dd3345505fd2f5469c
+  source: LINE
+  tags:
+    - Hatsune
+    - Miku
+    - '初音ミク'
+    - Vocaloid
+    - Magical Mirai
+    - cute
+    - blue hair
+    - anime
+    - kawaii
+    - food
+    - chibi
+    - LINE
+  nsfw: false
+  original: false
 752061899579bd2be924b231433afdfd:
   key: 7251cdc1275995685adfec734f62c913931a9bd85983d810e9babaa883967c6e
   source: 'Original artwork by Jayde Fish. https://jaydefish.com/'
@@ -20380,5 +20398,49 @@ d62864e473972014274b69df859cc2ff:
   tags:
     - Hong Kong
     - Teletubbies
+  nsfw: false
+  original: false
+fd37f432806542b407dd32313cf261be:
+  key: 20b983b5ffdbd0027ff42d4e447f1b4fe63c3c2f2f12a815d6ad72d060957773
+  source: '1-800-HOTLINEBLING'
+  tags:
+    - Drake
+    - Drake Meme
+    - meme
+    - outline
+    - 1-800-HOTLINEBLING
+    - HOTLINE BLING
+    - HOTLINEBLING
+    - '1-800'
+    - '1'
+    - '800'
+    - Aubrey Drake Graham
+    - Aubrey
+    - Graham
+    - you used to call me on my cell phone
+  nsfw: false
+  original: true
+d487b6cc33797ae711380bb1e52324e0:
+  key: b5771b4a3a7f12c6160ba68a3104bc5f6a2c690391874955174cadf7aaeb5c25
+  source: Arkham Horror LCG
+  tags:
+    - arkham
+    - tokens
+  nsfw: false
+  original: false
+377979c2667d53ad3316eed4f57b9e1f:
+  key: 0af2ba90c43876c4c5044707e135007812c4873296fc6a91d7597ac7b4bae63c
+  source: 'Gloomhaven; images from https://www.medusasglaze.com/gloomhaven'
+  tags:
+    - gloomhaven
+  nsfw: false
+  original: false
+761a43f5cb8868c706df2877be67d4ab:
+  key: d13af9cf31d6caa531b042c1a475fa78bc7410d2845f5bf5763214f41c29c312
+  source: 4chan
+  tags:
+    - meme
+    - memes
+    - Rage Faces
   nsfw: false
   original: false
