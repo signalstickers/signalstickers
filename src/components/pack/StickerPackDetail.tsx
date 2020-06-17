@@ -102,7 +102,29 @@ const StickerPackDetail = styled.div`
   & strong {
     font-weight: 600;
   }
+`;
 
+const StickerGridView = styled.div`
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-between;
+
+  @media ${bp('sm')} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media ${bp('md')} {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media ${bp('lg')} {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media ${bp('xl')} {
+    grid-template-columns: repeat(6, 1fr);
+  }
 `;
 
 
@@ -160,7 +182,11 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
    */
   function onAuthorClick(event: React.SyntheticEvent) {
     event.preventDefault();
-    setSearchQuery(event.currentTarget.textContent);
+
+    if (event.currentTarget?.textContent) {
+      setSearchQuery(event.currentTarget?.textContent);
+    }
+
     history.push('/');
   }
 
@@ -206,12 +232,11 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   const stickerPackTags = stickerPack.meta.tags || [];
   const addToSignalHref = `https://signal.art/addstickers/#pack_id=${packId}&pack_key=${stickerPack.meta.key}`;
 
-
   // TODO: Fix logic around displaying home button to better detect when we're
   // viewing an unlisted sticker pack.
   return (
     <StickerPackDetail className="px-1 px-sm-4 py-4 mt-0 mt-sm-5 mb-5">
-    {stickerPack.meta.nsfw ? <NsfwModal></NsfwModal> : null}
+      {stickerPack.meta.nsfw ? <NsfwModal></NsfwModal> : null}
       <div className="row mb-4 flex-column-reverse flex-lg-row">
         <div className="col-12 col-lg-8 mt-4 mt-lg-0">
           <div className="title">{stickerPack.manifest.title}</div>
@@ -259,9 +284,16 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
 
       <div className="row">
         <div className="col-12">
-          <div className="d-flex flex-wrap justify-content-around">
-            {stickerPack.manifest.stickers.map(sticker => (<Sticker packId={packId} packKey={stickerPack.meta.key} stickerId={sticker.id} key={sticker.id} />))}
-          </div>
+          <StickerGridView>
+            {stickerPack.manifest.stickers.map(sticker => (
+              <Sticker
+                packId={packId}
+                packKey={stickerPack.meta.key}
+                stickerId={sticker.id}
+                key={sticker.id}
+              />
+            ))}
+          </StickerGridView>
         </div>
       </div>
     </StickerPackDetail>
