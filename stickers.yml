@@ -20462,3 +20462,19 @@ d487b6cc33797ae711380bb1e52324e0:
     - cute
   nsfw: false
   original: true
+531298b2d2103fa9f4c933586782d999:
+  key: eac262e5f4059ff08cfe042a02068ff2c562e1ef776bdaba8283ac89e22842af
+  source: 'https://stickers.cloud/pack/little-witch-academia'
+  tags:
+    - witch
+    - anime
+  nsfw: false
+  original: false
+45931d132a0f2bbc376aa98acbc83637:
+  key: 7e44fac82a5693671fd77eb58d26d237b83d1481eec79b9cf259d9d38d50f6b0
+  source: 'https://stickers.cloud/pack/little-witch-academia-2'
+  tags:
+    - witch
+    - anime
+  nsfw: false
+  original: false
