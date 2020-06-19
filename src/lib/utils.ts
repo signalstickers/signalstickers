@@ -50,3 +50,13 @@ export function bp(bpName: string, minMax: 'min' | 'max' = 'min') {
 
   return `(${minMax}-width: ${value}px)`;
 }
+
+
+/**
+ * Used for analytics.
+ */
+export function sendBeacon() {
+  if (process.env.NODE_ENV === 'production') {
+    navigator.sendBeacon('https://ping.signalstickers.com/ping', '');
+  }
+}
