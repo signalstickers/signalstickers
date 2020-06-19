@@ -20478,3 +20478,20 @@ d487b6cc33797ae711380bb1e52324e0:
     - anime
   nsfw: false
   original: false
+c507d6d3c4f259f0caedf3ec3c9f076b:
+  key: 18d4fc569218abfbb1e43eb255f89865ddc065eb230c19eb79597f56a0414bd1
+  source: Telegram
+  tags:
+    - russia
+    - communism
+    - Telegram
+  nsfw: false
+  original: false
+977cd115e59aada5e4f0d90d629632d6:
+  key: a6a6b379f80fee7351b78f7c0e89b0673681f141350be0a08f376269019e9ea7
+  source: Telegram
+  tags:
+    - dab
+    - Telegram
+  nsfw: false
+  original: false
