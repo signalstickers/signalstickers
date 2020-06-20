@@ -20495,3 +20495,13 @@ c507d6d3c4f259f0caedf3ec3c9f076b:
     - Telegram
   nsfw: false
   original: false
+9ff932499e4107d928214e790721be88:
+  key: 52aae5eb4bb53c18b9ed889fd5fddc4ea9418589af821e6f2ab3f09248576f08
+  source: 'https://twitter.com/jilles_com/status/1274268291733884928'
+  tags:
+    - HACK THE PLANET
+    - hacker
+    - infosec
+    - right to repair
+  nsfw: false
+  original: true
