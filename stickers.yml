@@ -20505,3 +20505,12 @@ c507d6d3c4f259f0caedf3ec3c9f076b:
     - right to repair
   nsfw: false
   original: true
+29337132d9860f918519da3030d96c83:
+  key: 613b3816910c7eaf7c0768885c2fbe97fe990d089a85cd9ca3e523ba56a5d15b
+  source: ratti
+  tags:
+    - factorio
+    - game
+    - gaming
+  nsfw: true
+  original: false
