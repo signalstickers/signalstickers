@@ -20513,3 +20513,11 @@ c507d6d3c4f259f0caedf3ec3c9f076b:
   tags:
     - Fox News
     - Fake News
+cb06b3d52b5ca8321ec912b93f81c2a8:
+  key: 3e4307f99d73beac6766d1337a232844952a10f8878dea30fb0aeb5d7c14b57a
+  source: 'Dora Ilce https://sometimesketches.wordpress.com/'
+  tags:
+    - cats
+    - deers
+  nsfw: false
+  original: true
