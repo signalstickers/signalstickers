@@ -1013,12 +1013,6 @@ ea94b9358b81f288a23a832b1f9f22f3:
     - kid art
   nsfw: false
   original: true
-107acdd3185620e983d00440302be101:
-  key: 799d95aadc54bb04370b07e2b65eaa1898f7cf61810a6eb49dc7526f96f77f66
-  source: 'http://vkclub.su/en/stickers/elvis/'
-  tags:
-    - donkey
-  nsfw: false
 f36f5fb3d8dde697e1527650ea1c12a6:
   key: eb6be23a93685d18568292818f6a4ebd85161b8ae1edca86a06698c1472200f0
   source: 'https://tlgrm.eu/stickers'
@@ -4323,7 +4317,7 @@ d08b7997371170b51b76a301f30047d5:
   tags:
     - Mikhail Golub
     - Elvis_ByOsmer
-    - donckey
+    - donkey
     - осел
     - животые
     - animals
@@ -20505,11 +20499,28 @@ c507d6d3c4f259f0caedf3ec3c9f076b:
     - right to repair
   nsfw: false
   original: true
+29337132d9860f918519da3030d96c83:
+  key: 613b3816910c7eaf7c0768885c2fbe97fe990d089a85cd9ca3e523ba56a5d15b
+  source: ratti
+  tags:
+    - factorio
+    - game
+    - gaming
+  nsfw: false
+  original: false
 1009f6100acdc0efac99d90b411bb47a:
   key: 1b222088b2910166076c2abb5bb8606551a0e2a56afa0fb5326234290b9437c0
   source: ''
-  nsfw: false
-  original: false
   tags:
     - Fox News
     - Fake News
+  nsfw: false
+  original: false
+cb06b3d52b5ca8321ec912b93f81c2a8:
+  key: 3e4307f99d73beac6766d1337a232844952a10f8878dea30fb0aeb5d7c14b57a
+  source: 'Dora Ilce https://sometimesketches.wordpress.com/'
+  tags:
+    - cats
+    - deers
+  nsfw: false
+  original: true
