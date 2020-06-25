@@ -70,7 +70,7 @@ export async function hasWebpSupport() {
 export async function convertImage(rawImageData: Uint8Array) {
   if (await hasWebpSupportPromise) {
     // If the browser supports WebP, we don't need to convert it to PNG.
-    const base64Data = btoa(String.fromCharCode.apply(undefined, rawImageData));
+    const base64Data = btoa(String.fromCharCode.apply(undefined, [...rawImageData]));
     return `data:image/webp;base64,${base64Data}`;
   }
 

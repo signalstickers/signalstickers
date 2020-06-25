@@ -15,13 +15,13 @@ import {NAVBAR_HEIGHT} from 'etc/constants';
  * the component is mounted.
  */
 const NsfwModal = styled.div`
-  background: rgba(255, 255, 255, ${() => Modernizr.backdropfilter ? 0.75 : 1});
+  background: rgba(255, 255, 255, ${() => (Modernizr.backdropfilter ? 0.75 : 1)});
   backdrop-filter: blur(20px);
   margin-top: ${NAVBAR_HEIGHT}px;
   margin-bottom: ${NAVBAR_HEIGHT}px;
 
   & .modal-dialog {
-    min-height: calc(100% - ${NAVBAR_HEIGHT * 1}px);
+    min-height: calc(100% - ${Number(NAVBAR_HEIGHT)}px);
     margin: 0 auto ${NAVBAR_HEIGHT}px auto;
 
     &:before {
@@ -88,7 +88,7 @@ const NsfwModalComponent: React.FunctionComponent = () => {
           <div className="modal-body">
             <p>
               This pack has been marked <i>Not Safe For Work</i> (<a href="https://www.urbandictionary.com/define.php?term=NSFW" target="_blank" rel="noopener noreferrer">NSFW</a>).
-              <br/>
+              <br />
               This means that it may contain nudity, sexual content, or other potentially disturbing subject matter.
             </p>
             <p>You should not view this pack at work, or with children around.</p>
@@ -97,7 +97,7 @@ const NsfwModalComponent: React.FunctionComponent = () => {
             <Link to="/" className="btn btn-secondary" title="Go back home">
               Go back home
             </Link>
-            <button className="btn btn-primary" onClick={onHideNsfwModalClick}>
+            <button type="button" className="btn btn-primary" onClick={onHideNsfwModalClick}>
               Show the pack
             </button>
           </div>

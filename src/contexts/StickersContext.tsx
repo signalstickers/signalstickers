@@ -2,10 +2,9 @@ import React, {createContext, PropsWithChildren, useEffect, useState} from 'reac
 import * as R from 'ramda';
 import useAsyncEffect from 'use-async-effect';
 
-import {StickerPack} from 'etc/types';
+import {StickerPackPartial} from 'etc/types';
 import {
   getStickerPackDirectory,
-  getStickerPack,
   fuzzySearchStickerPacks
 } from 'lib/stickers';
 
@@ -17,7 +16,7 @@ export interface StickersProviderContext {
   /**
    * List of all sticker packs known to the application.
    */
-  allStickerPacks: Array<StickerPack> | undefined;
+  allStickerPacks: Array<StickerPackPartial> | undefined;
 
   /**
    * Current search query. This is persisted here so that should the user return
@@ -28,23 +27,23 @@ export interface StickersProviderContext {
   /**
    * Current result set based on the current value of search Query.
    */
-  searchResults: Array<StickerPack>;
+  searchResults: Array<StickerPackPartial>;
 
   /**
    * Allows a consumer to set the current search query, which will in turn
    * update the current search results.
    */
-  setSearchQuery(needle: string): void;
+  setSearchQuery: (needle: string) => void;
 }
 
 
 const Context = createContext<StickersProviderContext>({} as any);
 
 
-export const Provider = (props: PropsWithChildren<{}>) => {
+export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<Array<StickerPack>>([]);
-  const [allStickerPacks, setAllStickerPacks] = useState<Array<StickerPack>>();
+  const [searchResults, setSearchResults] = useState<Array<StickerPackPartial>>([]);
+  const [allStickerPacks, setAllStickerPacks] = useState<Array<StickerPackPartial>>();
 
 
   /**
@@ -79,18 +78,26 @@ export const Provider = (props: PropsWithChildren<{}>) => {
     if (!R.equals(rawSearchResults, searchResults)) {
       setSearchResults(rawSearchResults);
     }
-  }, [searchQuery]);
+  }, [
+    allStickerPacks,
+    searchQuery,
+    searchResults
+  ]);
 
 
   // ----- Render --------------------------------------------------------------
 
   return (
-    <Context.Provider value={{
-      allStickerPacks,
-      searchQuery,
-      setSearchQuery,
-      searchResults
-    }}>{props.children}</Context.Provider>
+    <Context.Provider
+      value={{
+        allStickerPacks,
+        searchQuery,
+        setSearchQuery,
+        searchResults
+      }}
+    >
+      {props.children}
+    </Context.Provider>
   );
 };
 

@@ -4,7 +4,7 @@ import {styled} from 'linaria/react';
 import {darken} from 'polished';
 import * as R from 'ramda';
 import React, {useState, useRef} from 'react';
-import {PrismAsyncLight as SyntaxHighlighter} from 'react-syntax-highlighter';
+import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism-light';
 import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
 import syntaxTheme from 'react-syntax-highlighter/dist/esm/styles/prism/base16-ateliersulphurpool.light';
 import yaml from 'js-yaml';
@@ -41,6 +41,9 @@ const Contribute = styled.div`
     display: block;
   }
 
+  & legend {
+    font-size: 1em;
+  }
 
   & pre[class*="language-"] {
     margin: 0;
@@ -64,12 +67,12 @@ export interface FormValues {
 /**
  * Regular expression used to validate signal.art URLs for sticker packs.
  */
-const SIGNAL_ART_URL_PATTERN = /^https:\/\/signal.art\/addstickers\/#pack_id=([A-Za-z0-9]+)&pack_key=([A-Za-z0-9]+)$/g;
+const SIGNAL_ART_URL_PATTERN = /^https:\/\/signal.art\/addstickers\/#pack_id=([\dA-Za-z]+)&pack_key=([\dA-Za-z]+)$/g;
 
 /**
  * Regular expression used to validate lists of tags.
  */
-const TAGS_PATTERN = /^(?:([\w\d-_ ]+))+(?:, ?([\w\d-_ ]+))*$/g;
+const TAGS_PATTERN = /^(?:([\w ]+))+(?:, ?([\w ]+))*$/g;
 
 /**
  * Initial values for the form.
@@ -99,13 +102,13 @@ const validators = {
 
     const [, packId, packKey] = matches;
 
-    if (R.find(R.pathEq(['meta', 'id'], packId) , await getStickerPackDirectory())) {
+    if (R.find(R.pathEq(['meta', 'id'], packId), await getStickerPackDirectory())) {
       return 'A sticker pack with that ID already exists in the directory.';
     }
 
     try {
       await getStickerPack(packId, packKey);
-    } catch (err) {
+    } catch {
       return 'Invalid sticker pack. Please check the pack ID and key.';
     }
   },
@@ -115,7 +118,7 @@ const validators = {
     }
   },
   tags: (tags: string) => {
-    if (tags !== '' && !(new RegExp(TAGS_PATTERN).test(tags))) {
+    if (tags !== '' && !new RegExp(TAGS_PATTERN).test(tags)) {
       return 'Invalid value. Tags must be a list of comma-delimited strings.';
     }
   },
@@ -123,8 +126,7 @@ const validators = {
     if (isNsfw === undefined) {
       return 'This field is required.';
     }
-  }
-  ,
+  },
   isOriginal: (isOriginal?: boolean) => {
     if (isOriginal === undefined) {
       return 'This field is required.';
@@ -141,7 +143,7 @@ const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
   const [ymlBlob, setYmlBlob] = useState('');
   const [previewUrl, setPreviewUrl] = useState('');
-  const openPrButton = useRef();
+  const openPrButton = useRef<HTMLAnchorElement>(null);
 
 
   /**
@@ -191,7 +193,9 @@ const ContributeComponent: React.FunctionComponent = () => {
       `https://signalstickers.com/pack/${packId}?key=${packKey}`
     );
 
-    openPrButton.current.scrollIntoView({behavior: 'smooth'});
+    if (openPrButton.current) {
+      openPrButton.current.scrollIntoView({behavior: 'smooth'});
+    }
 
     return true;
   };
@@ -285,9 +289,9 @@ const ContributeComponent: React.FunctionComponent = () => {
               {/* [Field] NSFW */}
               <div className="form-group">
                 <div className="form-row">
-                  <label className={cx('col-12', 'mb-2', errors.isNsfw && 'text-danger')}>
+                  <legend className={cx('col-12', 'mb-2', errors.isNsfw && 'text-danger')}>
                     Is your sticker pack <a href="https://www.urbandictionary.com/define.php?term=NSFW" target="_blank" rel="noreferrer">NSFW</a>?
-                  </label>
+                  </legend>
                 </div>
                 <div className="form-row">
                   <div className="col-12 mb-1">
@@ -329,9 +333,9 @@ const ContributeComponent: React.FunctionComponent = () => {
               {/* [Field] Original */}
               <div className="form-group">
                 <div className="form-row">
-                  <label className={cx('col-12', 'mb-2', errors.isOriginal && 'text-danger')}>
-                   Is your pack original? Did the author of the pack draw it exclusively for Signal, from original artworks?
-                  </label>
+                  <legend className={cx('col-12', 'mb-2', errors.isOriginal && 'text-danger')}>
+                    Is your pack original? Did the author of the pack draw it exclusively for Signal, from original artworks?
+                  </legend>
                 </div>
                 <div className="form-row">
                   <div className="col-12 mb-1">
@@ -389,50 +393,66 @@ const ContributeComponent: React.FunctionComponent = () => {
 
       {/* Rendered YML Output */}
       {ymlBlob ?
-      <>
-        <div className="row">
-          <div className="col-12">
-            <hr />
-            <p className="mt-4 mb-4">
-              Great! Below is the YML blob you will need to add at the end of <code>stickers.yml</code> in the <a href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml" target="_blank" rel="noreferrer">Signal Stickers repository</a>.
-            </p>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12 col-md-10 offset-md-1">
-            <div className="card">
-              <SyntaxHighlighter language="yaml" style={syntaxTheme} customStyle={{margin: '0'}}>
-                {ymlBlob}
-              </SyntaxHighlighter>
+        <>
+          <div className="row">
+            <div className="col-12">
+              <hr />
+              <p className="mt-4 mb-4">
+                Great! Below is the YML blob you will need to add at the end
+                of <code>stickers.yml</code> in the <a href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml" target="_blank" rel="noreferrer">Signal Stickers repository</a>.
+              </p>
             </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <p className="mt-4 mb-4">
-              Please also include this link in your Pull Request description, as it allows us to review your pack easily!
-            </p>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12 col-md-10 offset-md-1">
-            <div className="card mb-3">
-              {/* Not YAML, but language is mandatory and this gets rendered fine. */}
-              <SyntaxHighlighter language="yaml" style={syntaxTheme} customStyle={{margin: '0'}}>
-                {previewUrl}
-              </SyntaxHighlighter>
+          <div className="row">
+            <div className="col-12 col-md-10 offset-md-1">
+              <div className="card">
+                <SyntaxHighlighter
+                  language="yaml"
+                  style={syntaxTheme}
+                  customStyle={{margin: '0'}}
+                >
+                  {ymlBlob}
+                </SyntaxHighlighter>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-12 col-md-10 offset-md-1">
-            <a ref={openPrButton} className="btn btn-success btn-block" href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml" rel="noreferrer" target="_blank" title="Open a Pull Request">
-              <Octicon name="link-external" /> Edit the file and open a Pull Request
-            </a>
+          <div className="row">
+            <div className="col-12">
+              <p className="mt-4 mb-4">
+                Please also include this link in your Pull Request description,
+                as it allows us to review your pack easily!
+              </p>
+            </div>
           </div>
-        </div>
-      </>
-      : null}
+          <div className="row">
+            <div className="col-12 col-md-10 offset-md-1">
+              <div className="card mb-3">
+                <SyntaxHighlighter
+                  language="yaml"
+                  style={syntaxTheme}
+                  customStyle={{margin: '0'}}
+                >
+                  {previewUrl}
+                </SyntaxHighlighter>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12 col-md-10 offset-md-1">
+              <a
+                ref={openPrButton}
+                className="btn btn-success btn-block"
+                href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml"
+                target="_blank"
+                rel="noreferrer"
+                title="Open a Pull Request"
+              >
+                <Octicon name="link-external" /> Edit the file and open a Pull Request
+              </a>
+            </div>
+          </div>
+        </>
+        : null}
     </Contribute>
   );
 };

@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import {styled} from 'linaria/react';
-// @ts-ignore (No type definitions exist for this package.)
-import Octicon from 'react-octicon';
 import useAsyncEffect from 'use-async-effect';
 
 import {getConvertedStickerInPack, getEmojiForSticker} from 'lib/stickers';
@@ -79,7 +77,11 @@ const StickerComponent: React.FunctionComponent<Props> = ({packId, packKey, stic
 
     setEmoji(emojiResult);
     setStickerSrc(stickerResult);
-  }, []);
+  }, [
+    packId,
+    packKey,
+    stickerId
+  ]);
 
 
   // ----- Render --------------------------------------------------------------
@@ -90,7 +92,7 @@ const StickerComponent: React.FunctionComponent<Props> = ({packId, packKey, stic
         ? <>
             <div className="emoji">{emoji}</div>
             <img src={stickerSrc} alt="Sticker" />
-          </>
+        </>
         : <div className="spinner-border text-light" role="status">
             <span className="sr-only">Loading...</span>
           </div>

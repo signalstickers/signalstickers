@@ -11,10 +11,10 @@ import Navbar from 'components/layout/Navbar';
 import SuspenseFallback from 'components/layout/SuspenseFallback';
 
 // Note: Each top-level route should be imported az a lazy-loaded component.
-const About = React.lazy(() => import('components/about/About'));
-const Contribute = React.lazy(() => import('components/contribute/Contribute'));
-const Home = React.lazy(() => import('components/home/Home'));
-const Pack = React.lazy(() => import('components/pack/StickerPackDetail'));
+const About = React.lazy(async () => import('components/about/About'));
+const Contribute = React.lazy(async () => import('components/contribute/Contribute'));
+const Home = React.lazy(async () => import('components/home/Home'));
+const Pack = React.lazy(async () => import('components/pack/StickerPackDetail'));
 
 
 const App: React.FunctionComponent = () => {
