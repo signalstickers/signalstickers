@@ -20524,3 +20524,16 @@ cb06b3d52b5ca8321ec912b93f81c2a8:
     - deers
   nsfw: false
   original: true
+efa03a942fa3d207c2155e1eb664d5a1:
+  key: e8e0d924c9eccb1da7c7e2614f0e0ac28ef053830af9462e60fa821cde4f5b97
+  source: 'https://twitter.com/positiv_trigger/status/1276674233091805184'
+  tags:
+    - dog
+  nsfw: false
+  original: true
+5e4289375837cce39ad44519b2430e40:
+  key: be7ec34594b623b958af203034fa8cb88a57e1a78e2a615160a875cff7e097a3
+  source: 'https://twitter.com/Mari_The_Sheep/status/1276862480795533314'
+  tags: []
+  nsfw: false
+  original: false
