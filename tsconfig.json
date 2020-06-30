@@ -5,7 +5,8 @@
     "jsx": "react",
     "lib": ["DOM", "es2020"],
     "paths": {"*": ["*", "src/*"]},
-    "skipLibCheck": true,
-    "downlevelIteration": true
+    "plugins": [
+      {"name": "typescript-styled-plugin"}
+    ]
   }
 }
