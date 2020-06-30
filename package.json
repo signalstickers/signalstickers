@@ -31,6 +31,7 @@
     "@signalstickers/stickers-client": "^1.0.1",
     "axios": "^0.19.2",
     "bytes": "^3.1.0",
+    "core-js": "^3.6.5",
     "debounce-fn": "^4.0.0",
     "formik": "^2.1.4",
     "fuse.js": "^6.3.1",
@@ -55,8 +56,7 @@
     "webp-hero": "0.0.0-dev.24"
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.10.1",
-    "@darkobits/ts-unified": "^5.1.1",
+    "@darkobits/ts-unified": "^5.1.3",
     "@signalstickers/fetch-sticker-data-webpack-plugin": "^1.0.0",
     "@types/ajv": "^1.0.0",
     "@types/bootstrap": "^4.5.0",
