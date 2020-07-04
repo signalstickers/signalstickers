@@ -20611,3 +20611,20 @@ b0be0907403457aec975e27bfd47b1cd:
   - hallyu
   nsfw: false
   original: false
+450e4d089c8c9d225b06a05e4ffe37c0:
+  key: 6a1aa24cf25c8e14445e7838b6b694a13aa7b849f00153d657de0d703795117f
+  source: 'https://twitter.com/201d/status/1278899842966847488'
+  tags:
+    - Animal Crossing
+    - New Horizon
+    - emote
+  nsfw: false
+  original: false
+f2f8f680144ac922d2f24aee6767563e:
+  key: 54123d967866f3ae7648d67190ea99eabd46cb29be39ee4e02227b42a9d76101
+  source: 'https://twitter.com/feiziyou/status/1279356990234472448'
+  tags:
+    - Buddha
+    - zen
+  nsfw: false
+  original: true
