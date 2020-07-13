@@ -20684,3 +20684,23 @@ e04441f987dc90722d003161df8a5774:
     - SHUM SIR
   nsfw: false
   original: true
+22d63c4d1fc72b2aa67caccb0218c6e5:
+  key: 1bc653674fa71dc0b860a44fe7135dd199e116d8f5147903fc092ad5dc8b68a7
+  source: 'https://twitter.com/yipkawang/status/1281600071163764737'
+  tags: []
+  nsfw: false
+  original: false
+7a0758995aa7dd0b65d8b60be29a57f4:
+  key: b802f36fec83029cd15036a236a49945ce944ba037be2c575bf2cabc325f54c0
+  source: 'https://twitter.com/yipkawang/status/1281598433749372930'
+  tags: []
+  nsfw: false
+  original: false
+a32f490e15e118950273612287ca73e7:
+  key: bb5890f87f5af56a1fe1bed80fefb49e2ab4bd53779452941605f6e25a59988e
+  source: 'https://twitter.com/glowascii/status/1281648555510206466'
+  tags:
+    - bot
+    - robot
+  nsfw: false
+  original: true
