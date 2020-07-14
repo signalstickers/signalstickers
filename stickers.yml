@@ -20796,6 +20796,21 @@ ac5cd66853f2575813e4e4627adfaf6f:
     - telegram
   nsfw: false
   original: false
+bb3a5eda1900a7e626741ec24bcf2b5e:
+  key: 8f5bf5d858ea5796ddf1ad681d6eb8fa422ff7fd6ae5b0f76350c4ae5471d62e
+  source: ShumSirHK
+  tags:
+    - CUTE
+    - SHUM
+    - BALD
+    - BLUE
+    - HK
+    - HONG KONG
+    - CANTONESE
+    - CHINESE
+    - SHUM SIR
+  nsfw: false
+  original: true
 ac878e1589108c709b1f6a939af5ab17:
   key: 8c8725ab3e4b47d06de28278af547da257c39d2311317555177008a8aab7a53c
   source: cynnyk
@@ -20807,4 +20822,3 @@ ac878e1589108c709b1f6a939af5ab17:
     - s4f
   nsfw: false
   original: false
-
