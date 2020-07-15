@@ -20837,3 +20837,26 @@ c6fbf982d4eab99314af3090b244a4a7:
     - SHUM SIR
   nsfw: false
   original: true
+391e9e984911b1b09e352481133ae240:
+  key: e5aa909f48c261442c92309eb74675f8bb39fabf906ddc7066ac8d2e742fe86b
+  source: ''
+  tags:
+    - PiS
+    - Jaroslaw
+    - Kaczynski
+    - Andrzej
+    - Duda
+    - Mateusz
+    - Morawiecki
+    - Jebac
+  nsfw: false
+  original: true
+263a807c94e48bbb47a8f5f6068f95be:
+  key: efe395df94a7a30fa2008357ccb7151fbb37b2c2aa76b8058184b2a06b58ac56
+  source: ''
+  tags:
+    - twitch
+    - komodo
+    - removepog
+  nsfw: false
+  original: false
