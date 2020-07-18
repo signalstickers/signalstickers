@@ -20867,3 +20867,13 @@ b881509c82a400a8ae83549b20e904a8:
     - illustration
   nsfw: true
   original: true
+3d69401e5d2a79ca70600593ff1b48d5:
+  key: 53268e5ca6fc970c9693cf9aa82c50285f4752b7eddd3978e87b01d0eb8ef784
+  source: 'https://infosec-handbook.eu'
+  tags:
+    - infosec
+    - security
+    - privacy
+    - cybersecurity
+  nsfw: false
+  original: true
