@@ -20878,3 +20878,19 @@ d5f91db5daea689890eba0405b82a8c8:
     - summer
   nsfw: false
   original: false
+aa957ae62410c6aefdb4ee4b588766f3:
+  key: bc72665c2c76f20ca0ead4eb28b48b9dd6e239e3150b774fb135000c9620517a
+  source: Jinping Xi
+  tags: []
+  nsfw: false
+  original: true
+3d69401e5d2a79ca70600593ff1b48d5:
+  key: 53268e5ca6fc970c9693cf9aa82c50285f4752b7eddd3978e87b01d0eb8ef784
+  source: 'https://infosec-handbook.eu'
+  tags:
+    - infosec
+    - security
+    - privacy
+    - cybersecurity
+  nsfw: false
+  original: true
