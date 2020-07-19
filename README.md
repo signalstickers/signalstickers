@@ -22,8 +22,13 @@ Use the tool [Contribute](https://signalstickers.com/contribute) at the top of
 > Note: adding a sticker pack requires [a Github account](https://github.com/join).
 > It's free!
 
+Alternatively, you can send us the results of the
+[Contribute](https://signalstickers.com/contribute) page via a Twitter private
+message at [@signalstickers](https://twitter.com/signalstickers). Please only
+use this if you have no way to open a PR on Github!
+
 ### Contribution guidelines
-We will accept all stickers, **except**:
+We won't accept the following packs:
 + Stickers packs that call for hatred or violence against people or communities
   based on age, body size, disability, ethnicity, gender identity and
   expression, nationality, personal appearance, race, religion, or sexual
@@ -32,6 +37,9 @@ We will accept all stickers, **except**:
 
 The idea is to keep a family atmosphere: I'd like my grandmother to be able to
 navigate sticker packs quietly.
+
+Note that we reserve the right to moderate packs, and remove stickers that go
+against these guidelines.
 
 ## Q&A
 
@@ -78,7 +86,7 @@ This is not the goal of this project :-)
 code.
 
 The stickers were added [by the community](https://github.com/signalstickers/signalstickers/graphs/contributors).
-The stickers from Telegram were ported by [@signal-stickers](https://github.com/signal-stickers).
+Most of stickers from Telegram were ported by [@signal-stickers](https://github.com/signal-stickers).
 
 ## License
 See [LICENSE.md](LICENSE.md).
