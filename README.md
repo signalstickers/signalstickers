@@ -28,18 +28,18 @@ message at [@signalstickers](https://twitter.com/signalstickers). Please only
 use this if you have no way to open a PR on Github!
 
 ### Contribution guidelines
-We won't accept the following packs:
+We reserve the right to moderate and refuse packs or stickers. In particular:
 + Stickers packs that call for hatred or violence against people or communities
   based on age, body size, disability, ethnicity, gender identity and
   expression, nationality, personal appearance, race, religion, or sexual
   identity and orientation;
 + Sticker packs that directly promote a brand or a company.
 
+We also reserve the right to moderate packs or stickers after their submission
+and acceptance.
+
 The idea is to keep a family atmosphere: I'd like my grandmother to be able to
 navigate sticker packs quietly.
-
-Note that we reserve the right to moderate packs, and remove stickers that go
-against these guidelines.
 
 ## Q&A
 
