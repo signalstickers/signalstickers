@@ -4,11 +4,13 @@ import {styled} from 'linaria/react';
 import React from 'react';
 // @ts-ignore (No type definitions exist for this package.)
 import Octicon from 'react-octicon';
+import {HashLink} from 'react-router-hash-link';
 import useBreakpoint from 'use-breakpoint';
 
 import {SIGNAL_BLUE} from 'etc/colors';
 import {BOOTSTRAP_BREAKPOINTS} from 'etc/constants';
 import StickersContext from 'contexts/StickersContext';
+import {bp} from 'lib/utils';
 
 
 // ----- Styles ----------------------------------------------------------------
@@ -19,10 +21,12 @@ const SearchInput = styled.div`
     font-size: 14px;
     position: relative;
     left: -1px;
+    font-size: 24px;
   }
 
   & .input-group-lg {
-    & .octicon {
+    & .octicon-search,
+    & .octicon-x {
       font-size: 24px;
     }
 
@@ -31,10 +35,48 @@ const SearchInput = styled.div`
     }
   }
 
-  & .badge-signal{
+  & .badge-signal {
     color: ${SIGNAL_BLUE};
     border: 1px solid ${SIGNAL_BLUE};
     margin-right: 5px;
+  }
+
+  & input::placeholder {
+    opacity: 0.8;
+  }
+
+  & input:focus::placeholder {
+    opacity: 0.5;
+  }
+`;
+
+const SearchHelp = styled.div`
+  align-items: center;
+  display: flex;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 54px;
+  top: 0;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 3;
+
+  & a {
+    opacity: 0.6;
+    transition: opacity 0.15s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  & .octicon {
+    font-size: 18px;
+  }
+
+  @media ${bp('md')} {
+    right: 76px;
   }
 `;
 
@@ -44,6 +86,7 @@ const SearchInput = styled.div`
 const SearchInputComponent: React.FunctionComponent = () => {
   const {allStickerPacks, searcher, searchQuery, setSearchQuery} = React.useContext(StickersContext);
   const [searchQueryInputValue, setSearchQueryInputValue] = React.useState('');
+  const searchHelpRef = React.useRef<HTMLDivElement>(null);
   const {breakpoint} = useBreakpoint(BOOTSTRAP_BREAKPOINTS, 'xl');
   const suggestedTags = ['cute', 'privacy', 'meme', 'for children'];
 
@@ -60,13 +103,18 @@ const SearchInputComponent: React.FunctionComponent = () => {
   /**
    * [Event Handler] Updates our context's search query state.
    */
-  const onSearchQueryInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onSearchQueryInputChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const {value} = event.target;
     setSearchQueryInputValue(value);
-  };
+  }, [
+    setSearchQueryInputValue
+  ]);
 
 
-  const onTagClick = (event: React.SyntheticEvent) => {
+  /**
+   * [Event Handler] Sets the search query when a tag is clicked.
+   */
+  const onTagClick = React.useCallback((event: React.SyntheticEvent) => {
     if (searcher && event.currentTarget.textContent) {
       setSearchQuery(searcher.buildQueryString({
         attributeQueries: [{
@@ -74,32 +122,61 @@ const SearchInputComponent: React.FunctionComponent = () => {
         }]
       }));
     }
-  };
+  }, [
+    searcher,
+    setSearchQuery
+  ]);
 
 
   /**
-   * [Memo] JSX fragment containing the set of suggested tags.
+   * [Event Handler] Show the search help icon when the input element is
+   * focused.
    */
-  const tagsFragment = React.useMemo(() => suggestedTags.map(tag => (
-    <button
-      type="button"
-      key={tag}
-      className="badge badge-signal"
-      onClick={onTagClick}
-    >
-      {tag}
-    </button>
-  )), [suggestedTags]);
+  const handleInputFocus = React.useCallback(() => {
+    if (!searchHelpRef.current) {
+      return;
+    }
+
+    searchHelpRef.current.style.opacity = '1';
+    searchHelpRef.current.style.pointerEvents = 'initial';
+  }, [searchHelpRef]);
+
+
+  /**
+   * [Event Handler] Hide the search help icon when the input element is
+   * blurred. We also disable pointer events to prevent clicking on the element
+   * when it is not visible.
+   */
+  const handleInputBlur = React.useCallback(() => {
+    if (!searchHelpRef.current) {
+      return;
+    }
+
+    searchHelpRef.current.style.opacity = '0';
+
+    // Allows a click on the search help icon to proceed before disabling
+    // pointer events.
+    setTimeout(() => {
+      if (!searchHelpRef.current) {
+        return;
+      }
+
+      searchHelpRef.current.style.pointerEvents = 'none';
+    }, 100);
+  }, [searchHelpRef]);
 
 
   /**
    * [Event Handler] Clears our context's search query state.
    */
-  const clearSearchResults = (event: React.SyntheticEvent) => {
+  const clearSearchResults = React.useCallback((event: React.SyntheticEvent) => {
     event.preventDefault();
     setSearchQueryInputValue('');
     setSearchQuery('');
-  };
+  }, [
+    setSearchQueryInputValue,
+    setSearchQuery
+  ]);
 
 
   /**
@@ -130,6 +207,21 @@ const SearchInputComponent: React.FunctionComponent = () => {
   ]);
 
 
+  /**
+   * [Memo] JSX fragment containing the set of suggested tags.
+   */
+  const tagsFragment = React.useMemo(() => suggestedTags.map(tag => (
+    <button
+      type="button"
+      key={tag}
+      className="badge badge-signal"
+      onClick={onTagClick}
+    >
+      {tag}
+    </button>
+  )), [suggestedTags]);
+
+
   // ----- Render --------------------------------------------------------------
 
   const placeholder = allStickerPacks ? `Search ${allStickerPacks.length} sticker packs...` : '';
@@ -146,7 +238,9 @@ const SearchInputComponent: React.FunctionComponent = () => {
           type="text"
           key="search"
           className="form-control"
+          onBlur={handleInputBlur}
           onChange={onSearchQueryInputChange}
+          onFocus={handleInputFocus}
           value={searchQueryInputValue}
           placeholder={placeholder}
           title="Search"
@@ -164,6 +258,11 @@ const SearchInputComponent: React.FunctionComponent = () => {
             &nbsp;<Octicon name="x" className="text-danger" />
           </button>
         </div>
+        <SearchHelp ref={searchHelpRef}>
+          <HashLink to="/about#searching" title="Search Help">
+            <Octicon name="info" className="text-muted" />
+          </HashLink>
+        </SearchHelp>
       </div>
       <small>Lost? Why not start with these tags?</small> {tagsFragment}
     </SearchInput>
