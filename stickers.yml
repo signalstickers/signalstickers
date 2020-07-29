@@ -20987,7 +20987,20 @@ d6165dabed1beb18f3f875f4198293d5:
     - cute
   nsfw: false
   original: false
-  0ac5fc71b0cf77a0cda8437854059b56:
+98b0b6e3c061991e3674eb5cfad11216:
+  key: be5b8361d26e085f4d648d865ddb0efa17effa29c22d21ad432693530ec3a057
+  source: 'https://www.baretreemedia.com/portfolio/garfield-line-emojis/'
+  tags:
+    - garfield
+    - cat
+    - cartoon
+    - jim davis
+    - lasagna
+    - meme
+    - cute
+  nsfw: false
+  original: false
+0ac5fc71b0cf77a0cda8437854059b56:
   key: 0e5c70e1220cf20994ab77c5c9abd064c436b0168d5d20c5b906087a28184cd9
   source: ''
   tags:
