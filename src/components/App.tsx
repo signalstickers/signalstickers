@@ -1,5 +1,6 @@
 import {hot} from 'react-hot-loader/root';
 import React, {Suspense} from 'react';
+import {IconContext} from 'react-icons';
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,29 +21,41 @@ const Pack = React.lazy(async () => import('components/pack/StickerPackDetail'))
 const App: React.FunctionComponent = () => {
   return (
     <React.StrictMode>
-      <Router>
-        <StickersContextProvider>
-          <Navbar />
-          <div className="container d-flex flex-grow-1 flex-column">
-            <Suspense fallback={<SuspenseFallback />}>
-              <Switch>
-                <Route exact path="/">
-                  <Home />
-                </Route>
-                <Route path="/pack/:packId">
-                  <Pack />
-                </Route>
-                <Route path="/contribute">
-                  <Contribute />
-                </Route>
-                <Route path="/about">
-                  <About />
-                </Route>
-              </Switch>
-            </Suspense>
-          </div>
-        </StickersContextProvider>
-      </Router>
+      <IconContext.Provider
+        value={{
+          className: 'icon',
+          style: {
+            lineHeight: '1em',
+            verticalAlign: '-0.125em',
+            minHeight: '1em',
+            minWidth: '1em'
+          }
+        }}
+      >
+        <Router>
+          <StickersContextProvider>
+            <Navbar />
+            <div className="container d-flex flex-grow-1 flex-column">
+              <Suspense fallback={<SuspenseFallback />}>
+                <Switch>
+                  <Route exact path="/">
+                    <Home />
+                  </Route>
+                  <Route path="/pack/:packId">
+                    <Pack />
+                  </Route>
+                  <Route path="/contribute">
+                    <Contribute />
+                  </Route>
+                  <Route path="/about">
+                    <About />
+                  </Route>
+                </Switch>
+              </Suspense>
+            </div>
+          </StickersContextProvider>
+        </Router>
+      </IconContext.Provider>
     </React.StrictMode>
   );
 };

@@ -38,11 +38,10 @@ export async function printStorageUsage() {
  *   // ...
  * }
  */
-export function bp(bpName: string, minMax: 'min' | 'max' = 'min') {
-  // @ts-ignore
+export function bp(bpName: keyof typeof BOOTSTRAP_BREAKPOINTS, minMax: 'min' | 'max' = 'min') {
   const bpValue = BOOTSTRAP_BREAKPOINTS[bpName];
 
-  if (!bpValue) {
+  if (bpValue === undefined) {
     throw new Error(`Invalid breakpoint: ${bpName}`);
   }
 

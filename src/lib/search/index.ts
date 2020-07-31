@@ -137,7 +137,7 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
    * Keep a cache of Fuse instances for each attribute that we search on. This
    * prevents unnecessary re-indexing.
    */
-  const searchers = new Map<string | number | symbol, Fuse<T, typeof BASE_CONFIG>>();
+  const searchers = new Map<string | number | symbol, Fuse<T>>();
 
 
   // ----- Private Methods -----------------------------------------------------

@@ -23,6 +23,7 @@ export interface StickerPackYaml {
 export interface StickerPackMetadata {
   id: string;
   key: string;
+  unlisted: boolean;
   source?: string;
   tags?: Array<string>;
   nsfw?: boolean;

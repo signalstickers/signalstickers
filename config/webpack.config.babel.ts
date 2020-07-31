@@ -7,7 +7,9 @@ import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import * as R from 'ramda';
 import webpack from 'webpack';
+import { FaviconWebpackPlugionOptions } from 'favicons-webpack-plugin/src/options';
 
 
 /**
@@ -90,9 +92,17 @@ export default (env: string, argv: any): webpack.Configuration => {
     }]
   });
 
-  // Images.
+  // SVG.
   config.module.rules.push({
-    test: /\.(png|jpg|gif|svg)$/,
+    test: /\.svg$/,
+    use: [{
+      loader: '@svgr/webpack'
+    }]
+  });
+
+  // Other images.
+  config.module.rules.push({
+    test: /\.(png|jpg|gif)$/,
     use: [{
       loader: 'url-loader',
       options: {
@@ -142,13 +152,76 @@ export default (env: string, argv: any): webpack.Configuration => {
       // match our config file being loaded and pass it to modernizr-loader
       // which will create a custom Modernizr build per our configuration and
       // return the resulting JavaScript to the file that imported it.
-      modernizr$: path.resolve(PKG_ROOT, 'config', 'modernizr-config.json')
+      'modernizr$': path.resolve(PKG_ROOT, 'config', 'modernizr-config.json'),
+      // Use the @hot-loader variant of react-dom in development to avoid this
+      // issue: https://github.com/gatsbyjs/gatsby/issues/11934#issuecomment-469046186
+      'react-dom': argv.mode === 'production' ? 'react-dom' : '@hot-loader/react-dom'
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
   };
 
 
   // ----- Plugins -------------------------------------------------------------
+
+  const iconsBaseConfig: Partial<FaviconWebpackPlugionOptions> = {
+    mode: 'webapp',
+    inject: true,
+    prefix: 'icons/',
+    favicons: {
+      appName: 'Signal Stickers',
+      appDescription: '',
+      version: '',
+      developerName: '',
+      developerURL: '',
+      icons: {
+        android: false,
+        appleIcon: false,
+        appleStartup: false,
+        coast: false,
+        favicons: false,
+        firefox: false,
+        windows: false,
+        yandex: false
+      }
+    }
+  };
+
+  // Favicons.
+  config.plugins.push(new FaviconsWebpackPlugin(R.mergeDeepRight(iconsBaseConfig, {
+    logo: path.resolve(PKG_ROOT, 'src', 'assets', 'favicon.png'),
+    favicons: {
+      icons: {
+        favicons: true,
+        firefox: true,
+        coast: true,
+        yandex: true
+      }
+    }
+  })));
+
+  // App icon.
+  config.plugins.push(new FaviconsWebpackPlugin(R.mergeDeepRight(iconsBaseConfig, {
+    logo: path.resolve(PKG_ROOT, 'src', 'assets', 'app-icon.png'),
+    favicons: {
+      icons: {
+        appleIcon: true,
+        android: true
+      }
+    }
+  })));
+
+  // Apple startup splash screen.
+  config.plugins.push(new FaviconsWebpackPlugin(R.mergeDeepRight(iconsBaseConfig, {
+    logo: path.resolve(PKG_ROOT, 'src', 'assets', 'launch-screen.png'),
+    favicons: {
+      icons: {
+        appleStartup: {
+          // N.B. This is derived from Bootstrap's default 'primary' color.
+          background: '#007BFF'
+        }
+      }
+    }
+  })));
 
   config.plugins.push(new webpack.NamedModulesPlugin());
 
@@ -158,12 +231,25 @@ export default (env: string, argv: any): webpack.Configuration => {
     inject: true
   }));
 
+  config.plugins.push(new MiniCssExtractPlugin({
+    filename: argv.mode === 'production' ? 'styles-[contenthash].css' : 'styles.css'
+  }));
+
+  config.plugins.push(new webpack.LoaderOptionsPlugin({
+    minimize: argv.mode === 'production'
+  }));
+
+  config.plugins.push(new FetchStickerDataPlugin({
+    inputFile: path.resolve(PKG_ROOT, 'stickers.yml'),
+    outputFile: 'stickerData.json'
+  }));
+
+  config.plugins.push(new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(argv.mode)
+  }));
+
   if (argv.mode === 'development') {
     config.plugins.push(new FriendlyErrorsWebpackPlugin());
-
-    config.plugins.push(new MiniCssExtractPlugin({
-      filename: 'styles.css'
-    }));
   }
 
   if (argv.mode === 'production') {
@@ -178,34 +264,7 @@ export default (env: string, argv: any): webpack.Configuration => {
         to: path.resolve(PKG_ROOT, 'dist')
       }]
     }));
-
-    config.plugins.push(new MiniCssExtractPlugin({
-      filename: 'styles-[contenthash].css'
-    }));
-
-    config.plugins.push(new webpack.LoaderOptionsPlugin({
-      minimize: true
-    }));
-
-    config.plugins.push(new FaviconsWebpackPlugin({
-      logo: path.resolve(PKG_ROOT, 'src', 'assets', 'favicon.png'),
-      cache: true,
-      inject: true,
-      prefix: 'icons/',
-      favicons: {
-        appName: 'Signal Stickers',
-        appDescription: '',
-        version: '',
-        developerName: '',
-        developerURL: ''
-      }
-    }));
   }
-
-  config.plugins.push(new FetchStickerDataPlugin({
-    inputFile: path.resolve(PKG_ROOT, 'stickers.yml'),
-    outputFile: 'stickerData.json'
-  }));
 
 
   // ----- Dev Server ----------------------------------------------------------

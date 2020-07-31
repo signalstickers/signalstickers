@@ -9,19 +9,22 @@
  * settings, Safari seems to be able to handle this load without issue (albeit
  * far more slowly than Chrome).
  */
-import axios from 'axios';
-import LocalForage from 'localforage';
-import * as R from 'ramda';
-
-import {StickerPack, StickerPackPartial} from 'etc/types';
-import {convertImage} from 'lib/convert-image';
-import ErrorWithCode from 'lib/error';
-
 import {
   getStickerPackManifest,
   getStickerInPack,
   getEmojiForSticker
 } from '@signalstickers/stickers-client';
+import axios from 'axios';
+import LocalForage from 'localforage';
+import * as R from 'ramda';
+
+import {
+  StickerPack,
+  StickerPackPartial,
+  StickerPackMetadata
+} from 'etc/types';
+import {convertImage} from 'lib/convert-image';
+import ErrorWithCode from 'lib/error';
 
 
 // ----- Locals ----------------------------------------------------------------
@@ -104,14 +107,24 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
       // Build the metadata object using information from a StickerPackPartial
       // in the directory or, if the requested sticker pack is unlisted, just
       // the id and key.
-      const partial = R.find(R.pathEq(['meta', 'id'], id), directory);
-      const meta = partial ? partial.meta : {id, key};
+      const partial = R.find<StickerPackPartial>(R.pathEq(['meta', 'id'], id), directory);
 
-      const finalKey = key ?? meta.key;
+      // Use the key from the directory if possible. Otherwise, use the key
+      // provided by the caller.
+      const finalKey = partial?.meta.key ?? key;
 
       if (!finalKey) {
         throw new ErrorWithCode('NO_KEY_PROVIDED', `No key provided for unlisted pack: ${id}.`);
       }
+
+      const meta: StickerPackMetadata = partial ? {
+        ...partial.meta,
+        unlisted: false
+      } : {
+        id,
+        key: finalKey,
+        unlisted: true
+      };
 
       const manifest = await getStickerPackManifest(id, finalKey);
 
@@ -157,7 +170,7 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
       return convertedImage;
     }
 
-    return await stickerImageCache.getItem<string>(cacheKey);
+    return await stickerImageCache.getItem(cacheKey) as string;
   } catch (err) {
     if (!isStorageUnavailableError(err)) {
       throw new Error(`[getConvertedStickerInPack] Error getting sticker: ${err.message}`);

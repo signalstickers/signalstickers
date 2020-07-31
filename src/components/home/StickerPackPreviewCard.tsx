@@ -25,9 +25,9 @@ const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: 
     top: 13px;
     left: O;
     display: ${props => (props.original ? 'block' : 'none')};
-    background-color: #3a76f0;
+    background-color: var(--primary);
     position: absolute;
-    padding: 3px 6px 3px 3px;
+    padding: 3px 6px;
     box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.2);
     color: white;
     font-size: 12px;
@@ -52,7 +52,6 @@ const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: 
     border-top: 1px solid rgba(0, 0, 0, 0.125);
     color: black;
     font-size: 14px;
-    font-weight: 400;
     white-space: nowrap;
     overflow: hidden;
     position: relative;
@@ -116,8 +115,16 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
   const title =`${manifest.title}${meta.nsfw ? ' (NSFW)' : ''}`;
 
   return (
-    <StickerPackPreviewCard className="card" original={meta.original} nsfw={meta.nsfw} aria-label={title}>
-      {cover ? <img className="card-img-top" src={cover} alt="cover" /> : <div className="card-img-top" />}
+    <StickerPackPreviewCard
+      className="card"
+      original={meta.original}
+      nsfw={meta.nsfw}
+      aria-label={title}
+    >
+      {cover
+        ? <img className="card-img-top" src={cover} alt="Cover" />
+        : <div className="card-img-top">{' '}</div>
+      }
       <div className="card-header">{title}</div>
     </StickerPackPreviewCard>
   );

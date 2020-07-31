@@ -1,11 +1,12 @@
 import {styled} from 'linaria/react';
 import Modernizr from 'modernizr';
+import {BsExclamationTriangle} from 'react-icons/bs';
 import {Link} from 'react-router-dom';
 import React, {useEffect} from 'react';
-// @ts-ignore (No type definitions exist for this package.)
-import Octicon from 'react-octicon';
 
+import ExternalLink from 'components/general/ExternalLink';
 import {NAVBAR_HEIGHT} from 'etc/constants';
+
 
 // ----- Styles ----------------------------------------------------------------
 
@@ -34,12 +35,11 @@ const NsfwModal = styled.div`
     box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.12);
   }
 
-  & .octicon {
-    font-size: 1em;
-    height: 1em;
-    width: 1em;
+  & svg {
+    transform: translateY(-2px);
   }
 `;
+
 
 // ----- Component -------------------------------------------------------------
 
@@ -62,7 +62,7 @@ const NsfwModalComponent: React.FunctionComponent = () => {
     // closed.
     $('#nsfw-modal').addClass('fade');
 
-    // We don't use Bootstraps top-level backdrop, so hide it.
+    // We don't use Bootstrap's top-level backdrop, so hide it.
     $('.modal-backdrop').css('display', 'none');
   }, []);
 
@@ -82,22 +82,30 @@ const NsfwModalComponent: React.FunctionComponent = () => {
         <div className="modal-content">
           <div className="modal-header">
             <h3 className="modal-title">
-              <Octicon name="alert" /> Content Warning
+              <BsExclamationTriangle className="mr-1 text-primary" /> Content Warning
             </h3>
           </div>
           <div className="modal-body">
             <p>
-              This pack has been marked <i>Not Safe For Work</i> (<a href="https://www.urbandictionary.com/define.php?term=NSFW" target="_blank" rel="noopener noreferrer">NSFW</a>).
+              This pack has been marked <i>Not Safe For Work</i> (<ExternalLink href="https://www.urbandictionary.com/define.php?term=NSFW">NSFW</ExternalLink>).
               <br />
               This means that it may contain nudity, sexual content, or other potentially disturbing subject matter.
             </p>
             <p>You should not view this pack at work, or with children around.</p>
           </div>
           <div className="modal-footer">
-            <Link to="/" className="btn btn-secondary" title="Go back home">
+            <Link
+              to="/"
+              className="btn btn-secondary"
+              title="Go back home"
+            >
               Go back home
             </Link>
-            <button type="button" className="btn btn-primary" onClick={onHideNsfwModalClick}>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={onHideNsfwModalClick}
+            >
               Show the pack
             </button>
           </div>

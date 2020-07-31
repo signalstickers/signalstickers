@@ -1,5 +1,5 @@
 <a href="https://signalstickers.com" id="top">
-  <img src=".github/header_signalstickers_en.png" style="max-width: 100%;"></<img>
+  <img src="https://user-images.githubusercontent.com/441546/87215225-358fb380-c2e9-11ea-8c77-02aad9ed3a5a.png" style="max-width: 100%;" />
 </a>
 
 <p align="center">
@@ -13,7 +13,7 @@
 ## About
 A nice and handy gallery to browse and download sticker packs for Signal.
 This site is served on [signalstickers.com](https://signalstickers.com),
-directly from this Github repository.
+directly from this GitHub repository.
 
 ## Adding a sticker pack to this site
 Use the tool [Contribute](https://signalstickers.com/contribute) at the top of

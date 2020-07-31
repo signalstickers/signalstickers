@@ -1,7 +1,6 @@
 os: linux
 language: node_js
-node_js:
-  - 12
+node_js: 12
 script:
   - npm run lint
   - npm run test
@@ -14,6 +13,7 @@ deploy:
   local_dir: dist
   skip_cleanup: true
 cache:
+  npm: true
   directories:
     - .linaria-cache
     - .sticker-pack-cache
