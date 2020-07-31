@@ -4,6 +4,7 @@ import Context from 'contexts/StickersContext';
 import useQuery from 'hooks/use-query';
 import useUpdateUrl from 'hooks/use-update-url';
 
+import ExternalLink from 'components/general/ExternalLink';
 import {SEARCH_QUERY_PARAM} from 'etc/constants';
 
 import SearchInput from './SearchInput';
@@ -42,15 +43,34 @@ const HomeComponent: React.FunctionComponent = () => {
   }, [searchQuery]);
 
 
+  const stickerPackLink = React.useMemo(() => (
+    <ExternalLink
+      href="https://support.signal.org/hc/en-us/articles/360031836512-Stickers"
+      title="Stickers - Signal Support"
+    >
+      sticker packs
+    </ExternalLink>
+  ), []);
+
+
+  const twitterLink = React.useMemo(() => (
+    <ExternalLink
+      href="https://twitter.com/signalstickers"
+      title="Twitter"
+    >
+      @signalstickers
+    </ExternalLink>
+  ), []);
+
+
   return (
     <>
       <div className="row">
-        <div className="col-12">
-          <p className="my-4 py-lg-2">
-            Welcome to Signal Stickers, the unofficial directory for Signal sticker
-            packs. You can filter packs by title, author, or tags.<br />
-            Follow <a href="https://twitter.com/signalstickers" rel="noreferrer" target="_blank" title="Twitter feed">@signalstickers</a> to
-            stay tuned for new packs!
+        <div className="col-12 mt-4 mb-1 mb-md-3 pt-lg-2">
+          <p>
+            Welcome to Signal Stickers, the unofficial directory for Signal {stickerPackLink}.
+            You can filter packs by title, author, or tags. Follow {twitterLink} on Twitter to stay
+            tuned for new packs!
           </p>
         </div>
       </div>

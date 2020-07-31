@@ -72,9 +72,11 @@ const StickerPackListComponent = () => {
   return (
     <StickerPackList className="row">
       {renderedSearchResults.map(result => (
-        <Link className="col-6 col-md-4 col-lg-3 mb-4" key={result.item.meta.id} to={`/pack/${result.item.meta.id}`}>
-          <StickerPackPreviewCard stickerPack={result.item} />
-        </Link>
+        <div className="col-6 col-md-4 col-lg-3 mb-4" key={result.item.meta.id}>
+          <Link to={`/pack/${result.item.meta.id}`}>
+            <StickerPackPreviewCard stickerPack={result.item} />
+          </Link>
+        </div>
       ))}
       <Waypoint key={cursor} onEnter={loadMore} bottomOffset="-500px" />
     </StickerPackList>

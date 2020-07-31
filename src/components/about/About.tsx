@@ -1,6 +1,7 @@
 import React from 'react';
-// @ts-ignore (No type definitions exist for this package.)
-import Octicon from 'react-octicon';
+import {BsBoxArrowUpRight} from 'react-icons/bs';
+
+import ExternalLink from 'components/general/ExternalLink';
 
 
 // ----- Search Help -----------------------------------------------------------
@@ -24,7 +25,7 @@ const Term = ({children}: {children: React.ReactNode}) => (
 const SearchHelp = () => (
   <div className="row">
     <div className="col-12">
-      <h2 id="searching" className="mb-4">Advanced Searching</h2>
+      <h1 id="searching" className="mb-4">Advanced Searching</h1>
       <p className="mb-4">
         Generally, a search query will search across all indexed attributes of a sticker pack. These
         attributes are <Attr>title</Attr>, <Attr>author</Attr>, and <Attr>tags</Attr>. It is also
@@ -61,7 +62,7 @@ const SearchHelp = () => (
 const TermsOfService = () => (
   <div className="row">
     <div className="col-12">
-      <h2 id="terms-of-service" className="mb-4">Terms of Service</h2>
+      <h1 id="terms-of-service" className="mb-4">Terms of Service</h1>
       <p>
         <code>signalstickers.com</code> is provided "as is". We try the best we can to keep it up and
         running, but we are volunteers, and we rely on third-parties, so we can't guarantee
@@ -77,14 +78,14 @@ const TermsOfService = () => (
 const PrivacyPolicy = () => (
   <div className="row">
     <div className="col-12">
-      <h2 id="privacy-policy" className="mb-4">Privacy Policy</h2>
+      <h1 id="privacy-policy" className="mb-4">Privacy Policy</h1>
       <h5 className="my-4">What do we collect?</h5>
       <p>
         We count the number of visitors on <code>signalstickers.com</code> in a way that
         does <b>not</b> log your IP address, so our visitors count is anonymous.
       </p>
       <p>
-        <code>signalstickers.com</code> is hosted on <a href="https://pages.github.com/" rel="noopener noreferrer" target="_blank">GitHub Pages</a>,
+        <code>signalstickers.com</code> is hosted on <ExternalLink href="https://pages.github.com/">GitHub Pages</ExternalLink>,
         and we use third-party scripts, which might collect your IP address.
       </p>
       <h5 className="my-4">What don't we collect?</h5>
@@ -104,65 +105,32 @@ const PrivacyPolicy = () => (
 
 // ----- Links -----------------------------------------------------------------
 
-const Links = () => (
-  <div className="row">
-    <div className="col-12">
-      <h2 id="links" className="mb-4">Links</h2>
-      <ul className="list-unstyled">
-        <li>
-          <a
-            href="https://signal.org"
-            rel="noreferrer"
-            target="_blank"
-            title="Learn More About Signal"
-          >
-            <Octicon name="link-external" /> Learn More About Signal
-          </a>
+const Links = () => {
+  const externalLinks = [{
+    name: 'Learn More About Signal',
+    href: 'https://signal.org'
+  }, {
+    name: 'Sticker Pack Creation Guide',
+    href: 'https://support.signal.org/hc/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca'
+  }, {
+    name: 'Report an Issue',
+    href: 'https://github.com/signalstickers/signalstickers/issues/new'
+  }];
+
+  return (<>
+    <h1 className="mb-4">Links</h1>
+    <ul className="list-unstyled">
+      {externalLinks.map(({name, href}) => (
+        <li key={href}>
+          <ExternalLink href={href} title={name}>
+            <BsBoxArrowUpRight className="mr-1" />
+            {name}
+          </ExternalLink>
         </li>
-        <li>
-          <a
-            href="https://twitter.com/signalstickers"
-            rel="noreferrer"
-            target="_blank"
-            title="Twitter feed"
-          >
-            <Octicon name="link-external" /> Twitter Feed
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://github.com/signalstickers/signalstickers"
-            rel="noreferrer"
-            target="_blank"
-            title="GitHub Repository"
-          >
-            <Octicon name="link-external" /> GitHub Repository
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://github.com/signalstickers/signalstickers/issues/new"
-            rel="noreferrer"
-            target="_blank"
-            title="Report an Issue"
-          >
-            <Octicon name="link-external" /> Report an Issue
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://support.signal.org/hc/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca"
-            rel="noreferrer"
-            target="_blank"
-            title="Sticker Pack Creation Guide"
-          >
-            <Octicon name="link-external" /> Sticker Pack Creation Guide
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-);
+      ))}
+    </ul>
+  </>);
+};
 
 
 // ----- Component -------------------------------------------------------------
@@ -172,16 +140,16 @@ const AboutComponent: React.FunctionComponent = () => {
     <div className="my-4 p-lg-3">
       <div className="row">
         <div className="col-12">
-          <h2 id="about" className="mb-4">About</h2>
+          <h1 id="about" className="mb-4">About</h1>
           <p>
             Signal Stickers is a community-organized, unofficial directory of sticker packs for Signal,
             the secure messenger. All content on this website is copyrighted by their respective owners.
             This website is not affiliated with Signal or Open Whisper Systems.
           </p>
           <p>
-            <a href="https://twitter.com/search?q=%23makeprivacystick&src=typed_query" rel="noreferrer" target="_blank">
+            <ExternalLink href="https://twitter.com/search?q=%23makeprivacystick&src=typed_query">
               <strong>#makeprivacystick</strong>
-            </a>
+            </ExternalLink>
           </p>
         </div>
       </div>

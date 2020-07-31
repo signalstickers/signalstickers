@@ -1,19 +1,16 @@
-import {Formik, Form, Field, ErrorMessage} from 'formik';
+import {Formik, Form, Field, ErrorMessage, FieldValidator} from 'formik';
 import {cx} from 'linaria';
 import {styled} from 'linaria/react';
-import {darken} from 'polished';
 import * as R from 'ramda';
-import React, {useState, useRef} from 'react';
+import React from 'react';
+import {BsBoxArrowUpRight} from 'react-icons/bs';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism-light';
 import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
 import syntaxTheme from 'react-syntax-highlighter/dist/esm/styles/prism/base16-ateliersulphurpool.light';
 import yaml from 'js-yaml';
-// @ts-ignore (No type definitions exist for this package.)
-import Octicon from 'react-octicon';
 
-import {GRAY} from 'etc/colors';
+import ExternalLink from 'components/general/ExternalLink';
 import {getStickerPackDirectory, getStickerPack} from 'lib/stickers';
-import {bp} from 'lib/utils';
 
 
 /**
@@ -26,11 +23,6 @@ import {bp} from 'lib/utils';
 
 const Contribute = styled.div`
   background-color: white;
-
-  @media ${bp('lg')} {
-    border-radius: 4px;
-    border: 1px solid ${darken(0.15, GRAY)};
-  }
 
   /**
    * Ensures error feedback containers are always visible (even if empty) so
@@ -88,7 +80,7 @@ const initialValues: FormValues = {
 /**
  * Validators for each field in our form.
  */
-const validators = {
+const validators: Record<string, FieldValidator> = {
   signalArtUrl: async (signalArtUrl: string) => {
     if (!signalArtUrl) {
       return 'This field is required.';
@@ -140,10 +132,10 @@ const validators = {
 SyntaxHighlighter.registerLanguage('yaml', yamlLanguage);
 
 const ContributeComponent: React.FunctionComponent = () => {
-  const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
-  const [ymlBlob, setYmlBlob] = useState('');
-  const [previewUrl, setPreviewUrl] = useState('');
-  const openPrButton = useRef<HTMLAnchorElement>(null);
+  const [hasBeenSubmitted, setHasBeenSubmitted] = React.useState(false);
+  const [ymlBlob, setYmlBlob] = React.useState('');
+  const [previewUrl, setPreviewUrl] = React.useState('');
+  const openPrButton = React.useRef<HTMLAnchorElement>(null);
 
 
   /**
@@ -203,19 +195,85 @@ const ContributeComponent: React.FunctionComponent = () => {
 
   // ----- Render --------------------------------------------------------------
 
+  const gitHubLink = React.useMemo(() => (
+    <ExternalLink
+      href="https://github.com"
+      title="GitHub"
+    >
+      GitHub
+    </ExternalLink>
+  ), []);
+
+  const pullRequestLink = React.useMemo(() => (
+    <ExternalLink
+      href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests"
+      title="Pull Request"
+    >
+      Pull Request
+    </ExternalLink>
+  ), []);
+
+  const stickerPackGuideLink = React.useMemo(() => (
+    <ExternalLink
+      href="https://support.signal.org/hc/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca"
+      title="Sticker Creator Guidelines"
+    >
+      Sticker Creator Guidelines
+    </ExternalLink>
+  ), []);
+
+  const yamlLink = React.useMemo(() => (
+    <ExternalLink
+      href="https://en.wikipedia.org/wiki/YAML"
+      title="YAML"
+    >
+      YAML
+    </ExternalLink>
+  ), []);
+
+  const editStickersYmlLink = React.useMemo(() => (
+    <ExternalLink
+      href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml"
+      title="Signal Stickers repository"
+    >
+      Signal Stickers repository
+    </ExternalLink>
+  ), []);
+
+
   return (
     <Contribute className="my-4 p-lg-3 px-lg-4">
       <div className="row">
         <div className="col-12">
+          <h1 className="mb-4">Contribute</h1>
           <p className="mt-lg-3 mb-4">
-            Getting your sticker pack listed in the Signal Stickers directory is
-            easy! First, paste the <code>signal.art</code> link for your sticker
-            pack, including the <code>pack_id</code> and <code>pack_key</code> values,
-            into the form below. Then, answer a few questions about your sticker
-            pack and add optional metadata.
+            To get your sticker pack listed in the Signal Stickers directory:
+          </p>
+          <ol>
+            <li className="mb-2">
+              If you don't already have one, create a {gitHubLink} account. You will need one in order
+              to open a {pullRequestLink} against the Signal Stickers repository.
+            </li>
+            <li className="mb-2">
+              Create a sticker pack using the Signal desktop app. For help, see Signal's {stickerPackGuideLink}.
+              Be sure to save the <code>signal.art</code> URL for your pack. If you are creating a
+              sticker pack derived from an existing one on another platform or from someone else's
+              artwork, please consider using the original author's name in the <strong>Author</strong> field
+              when creating your pack in Signal, and consider adding their website, Twitter handle, or
+              other online presence to the <strong>Source</strong> field below.
+            </li>
+            <li className="mb-2">
+              Open a Pull Request in the Signal Stickers GitHub repository updating <code>stickers.yml</code> to
+              to include an entry for your sticker pack.
+            </li>
+          </ol>
+          <p>
+            The form below will guide you through the process of generating the {yamlLink} entry for
+            your pack that you will need to add to <code>stickers.yml</code>.
           </p>
         </div>
       </div>
+      <hr className="pt-3 pb-2" />
       <div className="row">
         <div className="col-12 col-md-10 offset-md-1">
           <Formik
@@ -226,11 +284,11 @@ const ContributeComponent: React.FunctionComponent = () => {
           >{({values, errors, isValidating, isSubmitting}) => (
             <Form noValidate>
 
-              {/* [Field] Signal Art Url */}
+              {/* [Field] Signal.art Url */}
               <div className="form-group">
                 <div className="form-row">
                   <label className={cx('col-12', errors.signalArtUrl && 'text-danger')} htmlFor="signal-art-url">
-                    Signal Art URL:
+                    Signal.art URL:
                     <Field
                       type="text"
                       id="signal-art-url"
@@ -290,7 +348,7 @@ const ContributeComponent: React.FunctionComponent = () => {
               <div className="form-group">
                 <div className="form-row">
                   <legend className={cx('col-12', 'mb-2', errors.isNsfw && 'text-danger')}>
-                    Is your sticker pack <a href="https://www.urbandictionary.com/define.php?term=NSFW" target="_blank" rel="noreferrer">NSFW</a>?
+                    Is your sticker pack <ExternalLink href="https://www.urbandictionary.com/define.php?term=NSFW" title="NSFW">NSFW</ExternalLink>?
                   </legend>
                 </div>
                 <div className="form-row">
@@ -378,7 +436,12 @@ const ContributeComponent: React.FunctionComponent = () => {
               <div className="form-group">
                 <div className="form-row">
                   <div className="col-12">
-                    <button type="submit" className="btn btn-primary btn-block" disabled={isSubmitting || isValidating} onClick={onSubmitClick}>
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-block btn-lg"
+                      disabled={isSubmitting || isValidating}
+                      onClick={onSubmitClick}
+                    >
                       Generate YML
                     </button>
                   </div>
@@ -398,8 +461,8 @@ const ContributeComponent: React.FunctionComponent = () => {
             <div className="col-12">
               <hr />
               <p className="mt-4 mb-4">
-                Great! Below is the YML blob you will need to add at the end
-                of <code>stickers.yml</code> in the <a href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml" target="_blank" rel="noreferrer">Signal Stickers repository</a>.
+                Great! Below is the YAML entry you will need to add to the end of <code>stickers.yml</code> in
+                the {editStickersYmlLink}:
               </p>
             </div>
           </div>
@@ -419,14 +482,14 @@ const ContributeComponent: React.FunctionComponent = () => {
           <div className="row">
             <div className="col-12">
               <p className="mt-4 mb-4">
-                Please also include this link in your Pull Request description,
-                as it allows us to review your pack easily!
+                Please also include this link in your Pull Request description, as it allows us to
+                review your pack easily:
               </p>
             </div>
           </div>
           <div className="row">
-            <div className="col-12 col-md-10 offset-md-1">
-              <div className="card mb-3">
+            <div className="col-12">
+              <div className="card mb-5">
                 <SyntaxHighlighter
                   language="yaml"
                   style={syntaxTheme}
@@ -439,20 +502,20 @@ const ContributeComponent: React.FunctionComponent = () => {
           </div>
           <div className="row">
             <div className="col-12 col-md-10 offset-md-1">
-              <a
-                ref={openPrButton}
-                className="btn btn-success btn-block"
-                href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml"
-                target="_blank"
-                rel="noreferrer"
+              <ExternalLink
                 title="Open a Pull Request"
+                href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml"
+                className="btn btn-success btn-block btn-lg"
+                ref={openPrButton}
               >
-                <Octicon name="link-external" /> Edit the file and open a Pull Request
-              </a>
+                Edit the file and open a Pull Request
+                <BsBoxArrowUpRight className="ml-2" />
+              </ExternalLink>
             </div>
           </div>
-        </>
-        : null}
+        </> :
+        null
+      }
     </Contribute>
   );
 };

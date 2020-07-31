@@ -13,7 +13,7 @@ export const BOOTSTRAP_BREAKPOINTS = {
 /**
  * Height of the navbar (px).
  */
-export const NAVBAR_HEIGHT = 70;
+export const NAVBAR_HEIGHT = 64;
 
 
 /**

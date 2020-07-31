@@ -1,5 +1,5 @@
 <a href="https://signalstickers.com" id="top">
-  <img src=".github/header_signalstickers_de.png" style="max-width: 100%;"></<img>
+  <img src="https://user-images.githubusercontent.com/441546/87215223-33c5f000-c2e9-11ea-92cc-7db8589c0ae4.png" style="max-width: 100%;"></<img>
 </a>
 
 <p align="center">
@@ -44,7 +44,7 @@ Du kannst [dieses Skript](https://gist.github.com/romainricard/d0d26015ed08387db
 
 ### Muss ich meine Sticker hier hinfügen, um es mit meinen Freunden zu teilen?
 
-**Nein**. 
+**Nein**.
 Deine Freunde können deine Sticker-Packung "installieren" (d.h. verwenden) sobald du ihnen einen einzigen Sticker per Signal geschickt hast.
 Du kannst deine Sticker auch per "Signal Art URL" (wird dir bei der Erstellung mit dem "Sticker pack creator" angezeigt) oder direkt über die "Share"-Funktion (wenn du eine Sticker-Packung innerhalb der Signal App betrachtest), mit anderen teilen.
 
@@ -61,7 +61,7 @@ Das ist nicht das Ziel dieses Projekts :-)
 
 ### Ist das ein kommerzielles Projekt?
 
-**Nein.** 
+**Nein.**
 Dieses Projekt ist und bleibt Open Source.
 
 ### Wer seid ihr?
@@ -71,7 +71,7 @@ Dieses Projekt ist und bleibt Open Source.
 [@valkheim](https://github.com/valkheim),
 [@muellermartin](https://github.com/muellermartin),
 [@sticker201](https://github.com/sticker201) und
-[@u32i64](https://github.com/u32i64) 
+[@u32i64](https://github.com/u32i64)
 haben an der Konzeption und dem Code gearbeitet.
 
 Die Stickers wurden von der [Community](https://github.com/signalstickers/signalstickers/graphs/contributors) hinzugefügt.
