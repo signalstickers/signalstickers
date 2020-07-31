@@ -21055,3 +21055,20 @@ a12dcca26f0fa3656777eceef7e55981:
     - nua nia
   nsfw: false
   original: false
+2af236873e21f9ae4282a3220d963d5e:
+  key: ff18c9014379c4b16b50230e1b428fefb4b0b390e41cb7c0b1f6cf3db8c8c33a
+  source: Telegram
+  tags:
+    - Islamic
+    - Arabic
+    - Muslim
+  nsfw: false
+  original: false
+e25554eb9776fa23c6ac7df784106a34:
+  key: 297ea96f2fc60c2638f00b988185e8798098034803d9a9ad1bafe8bf5ce0e4d1
+  source: PlayStore
+  tags:
+    - cat
+    - cute
+  nsfw: false
+  original: false
