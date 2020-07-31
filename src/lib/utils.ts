@@ -56,7 +56,11 @@ export function bp(bpName: string, minMax: 'min' | 'max' = 'min') {
  * Used for analytics.
  */
 export function sendBeacon() {
-  if (process.env.NODE_ENV === 'production') {
-    navigator.sendBeacon('https://ping.signalstickers.com/ping', '');
+  if (process.env.NODE_ENV === 'production' ) {
+    try {
+      navigator.sendBeacon('https://ping.signalstickers.com/ping', '');
+    } catch (err){
+      console.log(`${err}. No worries, it's okay!`);
+    }
   }
 }
