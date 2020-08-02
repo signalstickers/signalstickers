@@ -17,7 +17,6 @@ html {
 }
 
 body {
-  background-color: var(--primary);
   font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -32,7 +31,6 @@ a {
 }
 
 #root {
-  background-color: white;
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - env(safe-area-inset-top, 0px));

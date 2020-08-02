@@ -6,42 +6,37 @@ import {BsSearch, BsX} from 'react-icons/bs';
 import {FaInfoCircle} from 'react-icons/fa';
 
 import StickersContext from 'contexts/StickersContext';
+import {DANGER_SATURATED, GRAY_DARKER_2} from 'etc/colors';
 
 
 // ----- Styles ----------------------------------------------------------------
 
 const SearchInput = styled.div`
+  position: relative;
+
+  & input {
+    padding-left: 42px;
+    padding-right: 72px;
+  }
+
   & input:focus,
-  & button:focus,
   & button:active:focus {
-    border-color: #ced4da;
     box-shadow: none;
     outline: none;
   }
+`;
 
-  & input::placeholder {
-    opacity: 0.8;
-    transition: opacity 0.2s ease-in-out;
-  }
-
-  & input:focus::placeholder {
-    opacity: 0.5;
-  }
-
-  & svg.x-icon {
-    transform: scale(1.5);
-  }
-
-  & .input-group-append button {
-    & svg {
-      opacity: 0.8;
-      transition: opacity 0.2s ease-in-out;
-    }
-
-    &:hover svg {
-      opacity: 1;
-    }
-  }
+const SearchPrepend = styled.div`
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+  height: 100%;
+  left: 0;
+  padding-left: 14px;
+  position:absolute;
+  top: 0;
+  transition: color 0.2s ease-in-out;
+  z-index: 3;
 `;
 
 const SearchHelp = styled.div`
@@ -49,10 +44,11 @@ const SearchHelp = styled.div`
   display: flex;
   height: 100%;
   opacity: 0;
+  padding: 3px 4px 0px 4px;
   pointer-events: none;
   position: absolute;
-  right: 54px;
-  top: 0;
+  right: 50px;
+  top: -2px;
   transition: opacity 0.2s ease-in-out;
   transform: translateY(2px);
   z-index: 3;
@@ -71,6 +67,78 @@ const SearchHelp = styled.div`
   }
 `;
 
+const SearchClear = styled.div`
+  position:absolute;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  right: 0;
+  top: 0;
+  padding-right: 4px;
+  z-index: 3;
+
+  & button {
+    font-size: 20px;
+
+    & .icon {
+      opacity: 0.8;
+      color: ${DANGER_SATURATED};
+      transition: opacity 0.2s ease-in-out, transform 0.1s ease;
+      transform: scale(1.5);
+    }
+
+    &:hover .icon {
+      opacity: 1;
+      transform: scale(1.6);
+    }
+
+    &:active {
+      box-shadow: none;
+      outline: none;
+
+      & .icon {
+        transform: scale(1.5);
+      }
+    }
+
+    &:focus {
+      box-shadow: none;
+      outline: none;
+    }
+  }
+
+  .theme-dark & {
+    & .icon {
+      opacity: 0.6;
+    }
+  }
+`;
+
+const MiniTag = styled.button`
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0 5px;
+
+  &:hover {
+    color: var(--primary);
+
+    &:active {
+      border-color: var(--primary) !important;
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.12rem rgba(var(--primary), 0.25);
+  }
+
+  .theme-dark & {
+    background-color: ${GRAY_DARKER_2};
+  }
+`;
+
 
 // ----- Component -------------------------------------------------------------
 
@@ -85,13 +153,32 @@ const SearchInputComponent: React.FunctionComponent = () => {
    * Allows us to de-bounce calls to setSearchQuery to avoid making excessive
    * re-renders when the input value is updated.
    */
-  const debouncedSetSearchQuery = debounceFn((value: string) => {
-    setSearchQuery(value);
-  }, {wait: 250});
+  const debouncedSetSearchQuery = debounceFn(setSearchQuery, {wait: 250});
 
 
   /**
-   * [Effect] Input state -> debounced context value.
+   * [Effect] Context state -> local/input state.
+   */
+  React.useEffect(() => {
+    if (searchQuery) {
+      setSearchQueryInputValue(searchQuery);
+    }
+  }, [searchQuery]);
+
+
+  /**
+   * [Event Handler] Input state -> local state.
+   */
+  const onSearchQueryInputChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const {value} = event.target;
+    setSearchQueryInputValue(value);
+  }, [
+    setSearchQueryInputValue
+  ]);
+
+
+  /**
+   * [Effect] Local state -> context state (debounced).
    */
   React.useEffect(() => {
     debouncedSetSearchQuery.cancel();
@@ -103,27 +190,6 @@ const SearchInputComponent: React.FunctionComponent = () => {
   }, [
     debouncedSetSearchQuery,
     searchQueryInputValue
-  ]);
-
-
-  /**
-   * [Effect] Sync input value to state.
-   */
-  React.useEffect(() => {
-    if (searchQuery) {
-      setSearchQueryInputValue(searchQuery);
-    }
-  }, [searchQuery]);
-
-
-  /**
-   * [Event Handler] Updates our context's search query state.
-   */
-  const onSearchQueryInputChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const {value} = event.target;
-    setSearchQueryInputValue(value);
-  }, [
-    setSearchQueryInputValue
   ]);
 
 
@@ -155,7 +221,9 @@ const SearchInputComponent: React.FunctionComponent = () => {
 
     searchHelpRef.current.style.opacity = '1';
     searchHelpRef.current.style.pointerEvents = 'initial';
-  }, [searchHelpRef]);
+  }, [
+    searchHelpRef
+  ]);
 
 
   /**
@@ -178,8 +246,10 @@ const SearchInputComponent: React.FunctionComponent = () => {
       }
 
       searchHelpRef.current.style.pointerEvents = 'none';
-    }, 100);
-  }, [searchHelpRef]);
+    }, 250);
+  }, [
+    searchHelpRef
+  ]);
 
 
   /**
@@ -227,14 +297,14 @@ const SearchInputComponent: React.FunctionComponent = () => {
    * [Memo] JSX fragment containing the set of suggested tags.
    */
   const tagsFragment = React.useMemo(() => suggestedTags.map(tag => (
-    <button
+    <MiniTag
       type="button"
       key={tag}
-      className="badge badge-light border border-primary text-primary mr-1"
+      className="btn mr-1"
       onClick={onTagClick}
     >
       {tag}
-    </button>
+    </MiniTag>
   )), [suggestedTags]);
 
 
@@ -242,16 +312,14 @@ const SearchInputComponent: React.FunctionComponent = () => {
 
   return (
     <SearchInput className="form-group mb-4 mb-md-5">
-      <div className="input-group input-group-lg mb-1">
-        <div className="input-group-prepend">
-          <span className="input-group-text text-primary bg-transparent">
-            <BsSearch />
-          </span>
-        </div>
+      <div className="mb-1 position-relative">
+        <SearchPrepend>
+          <BsSearch />
+        </SearchPrepend>
         <input
           type="text"
           key="search"
-          className="form-control border-left-0 border-right-0 px-0"
+          className="form-control form-control-lg"
           onBlur={handleInputBlur}
           onChange={onSearchQueryInputChange}
           onFocus={handleInputFocus}
@@ -261,7 +329,6 @@ const SearchInputComponent: React.FunctionComponent = () => {
           autoComplete="off"
           autoCapitalize="off"
           autoCorrect="off"
-          autoFocus
           spellCheck="false"
         />
         <SearchHelp ref={searchHelpRef}>
@@ -269,16 +336,16 @@ const SearchInputComponent: React.FunctionComponent = () => {
             <FaInfoCircle className="text-muted" />
           </HashLink>
         </SearchHelp>
-        <div className="input-group-append">
+        <SearchClear>
           <button
             type="button"
-            className="input-group-text btn text-danger bg-transparent border-left-0"
+            className="btn btn-link border-0"
             title="Clear Search Results"
             onClick={clearSearchResults}
           >
-            <BsX className="x-icon" />
+            <BsX />
           </button>
-        </div>
+        </SearchClear>
       </div>
       <div className="d-flex justify-content-between">
         <div>
@@ -290,7 +357,7 @@ const SearchInputComponent: React.FunctionComponent = () => {
         </div>
         <div className="text-muted">
           <small>
-            {searchResults?.length || 0} results
+            {searchResults?.length || 0} {searchResults.length === 1 ? 'result' : 'results'}
           </small>
         </div>
       </div>
