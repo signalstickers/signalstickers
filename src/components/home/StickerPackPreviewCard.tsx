@@ -15,24 +15,36 @@ export interface Props {
 
 // ----- Styles ----------------------------------------------------------------
 
-const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: boolean} & {original?: boolean}>`
+const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: boolean} & {original?: boolean} & {animated?: boolean} >`
   text-align: center;
   transition: box-shadow 0.15s ease-in-out;
   overflow: hidden;
 
-  &::after{
-    content: 'Original';
+  &::before, &::after{
     top: 13px;
-    left: O;
-    display: ${props => (props.original ? 'block' : 'none')};
-    background-color: var(--primary);
     position: absolute;
-    padding: 3px 6px;
+    padding: 3px 6px 3px 3px;
     box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.2);
     color: white;
     font-size: 12px;
+  }
+
+  &::before{
+    content: 'Original';
+    left: 0;
+    display: ${props => (props.original ? 'block' : 'none')};
+    background-color: #3a76f0;
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
+  }
+
+  &::after{
+    content: 'Animated';
+    right: 0;
+    display: ${props => (props.animated ? 'block' : 'none')};
+    background-color: #f57f17;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
   }
 
   & .card-img-top {
@@ -118,6 +130,7 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
     <StickerPackPreviewCard
       className="card"
       original={meta.original}
+      animated={meta.animated}
       nsfw={meta.nsfw}
       aria-label={title}
     >
