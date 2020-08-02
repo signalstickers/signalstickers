@@ -93,7 +93,7 @@ const PrivacyPolicy = () => (
         All the rest. We don't use cookies, and don't track you as you visit <code>signalstickers.com</code>,
         or any other site.
       </p>
-      <h5 className="my-4">What data do you sell?</h5>
+      <h5 className="my-4">What data do we sell?</h5>
       <p>
         <b>None</b>, as 1. we are an open-source project that values privacy, and 2. we don't collect
         any personal data about you in the first place.
@@ -107,10 +107,10 @@ const PrivacyPolicy = () => (
 
 const Links = () => {
   const externalLinks = [{
-    name: 'Learn More About Signal',
+    name: 'Learn more about Signal',
     href: 'https://signal.org'
   }, {
-    name: 'Sticker Pack Creation Guide',
+    name: 'Sticker pack creation guide',
     href: 'https://support.signal.org/hc/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca'
   }, {
     name: 'Report an Issue',

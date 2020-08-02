@@ -239,7 +239,15 @@ const ContributeComponent: React.FunctionComponent = () => {
       Signal Stickers repository
     </ExternalLink>
   ), []);
-
+  
+  const twitterLink = React.useMemo(() => (
+    <ExternalLink
+      href="https://twitter.com/signalstickers"
+      title="Twitter"
+    >
+      @signalstickers
+    </ExternalLink>
+  ), []);
 
   return (
     <Contribute className="my-4 p-lg-3 px-lg-4">
@@ -270,6 +278,10 @@ const ContributeComponent: React.FunctionComponent = () => {
           <p>
             The form below will guide you through the process of generating the {yamlLink} entry for
             your pack that you will need to add to <code>stickers.yml</code>.
+          </p>
+          <p>
+            Alternatively, you can send us the YAML via a Twitter message at {twitterLink}.
+            Please only use this if you have no way to open a Pull Request on GitHub!
           </p>
         </div>
       </div>
@@ -442,7 +454,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       disabled={isSubmitting || isValidating}
                       onClick={onSubmitClick}
                     >
-                      Generate YML
+                      Generate YAML
                     </button>
                   </div>
                 </div>
