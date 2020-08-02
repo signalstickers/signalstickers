@@ -29,6 +29,9 @@ const schema = {
         },
         original: {
           type: 'boolean'
+        },
+        animated: {
+          type: 'boolean'
         }
       },
       additionalProperties: false,

@@ -13,6 +13,7 @@ export interface StickerPackYaml {
     tags: Array<string>;
     nsfw?: boolean;
     original?: boolean;
+    animated?: boolean;
   };
 }
 
@@ -28,6 +29,7 @@ export interface StickerPackMetadata {
   tags?: Array<string>;
   nsfw?: boolean;
   original?: boolean;
+  animated?: boolean;
 }
 
 

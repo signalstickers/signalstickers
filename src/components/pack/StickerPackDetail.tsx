@@ -3,6 +3,7 @@ import {
   BsArrowLeftShort,
   BsAt,
   BsFolder,
+  BsFillCameraVideoFill,
   BsPlus,
   BsStarFill,
   BsTag
@@ -285,6 +286,15 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
                   ? <li className="list-group-item text-wrap text-break">
                       <BsStarFill title="Original" className="star-icon mr-4" />
                       This pack has been created exclusively for Signal by the artist, from original artworks.
+                    </li>
+                  : null
+                }
+
+                {/* Animated */}
+                {stickerPack.meta.animated
+                  ? <li className="list-group-item text-wrap text-break">
+                      <BsFillCameraVideoFill title="Animated" className="text-primary mr-4" />
+                      This pack contains animated stickers!
                     </li>
                   : null
                 }
