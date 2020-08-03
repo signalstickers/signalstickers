@@ -52,6 +52,12 @@ const SearchHelp = () => (
         term <Term>unicorn</Term> in <em>any</em> attribute:
       </p>
       <Example>author:Sindre tag:awesome unicorn</Example>
+      <p className="mb-4">
+        Finally, you can filter by metadata.
+        Supported metadata are <Attr>nsfw</Attr>, <Attr>original</Attr> and <Attr>animated</Attr>. For
+        example, to search for all animated pack not-NSFW:
+      </p>
+      <Example>nsfw:false animated:true</Example>
     </div>
   </div>
 );

@@ -64,13 +64,14 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
     // Create a searcher using our collection of sticker pack partials.
     setSearcher(SearchFactory({
       collection: stickerPacks,
-      identity: pack => pack.meta.id,
+      identity: R.path(['meta', 'id']),
       keys: {
         title: ['manifest', 'title'],
         author: ['manifest', 'author'],
         tag: ['meta', 'tags'],
         nsfw: ['meta', 'nsfw'],
-        original: ['meta', 'original']
+        original: ['meta', 'original'],
+        animated: ['meta', 'animated']
       }
     }));
   }, []);
