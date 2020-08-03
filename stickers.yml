@@ -1980,7 +1980,6 @@ e11c7c2b4409311bf3b5841ed74b45ce:
     - животные
     - белка
     - squirrel
-    - animated
     - Bella
     - the squirrel
     - telegram
@@ -21154,6 +21153,7 @@ b3604dfedf2a539d4ebf447814e1b627:
     - bear
     - cute
     - couple
+    - animated
   nsfw: false
   original: false
   animated: true
