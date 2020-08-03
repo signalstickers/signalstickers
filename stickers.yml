@@ -21126,3 +21126,34 @@ b3604dfedf2a539d4ebf447814e1b627:
     - mermaid
   nsfw: false
   original: true
+451eb50a2a6f117391e5833f09e541ee:
+  key: 079dda56e1bba4638f73b4e1c6994802c872e76103a7fe6a6f4708bc4665b2fd
+  source: 'signalstickers.com'
+  tags:
+    - pixel
+    - pig
+    - animated
+  nsfw: false
+  original: false
+  animated: true
+1dfd489f19cb796ea477f7c0aa7ac4bc:
+  key: 3baf81752a614d8a73b0bf1a72f3522d6544f4af44b3238aa62a888fed7eec64
+  source: 'signalstickers.com'
+  tags:
+    - pusheen
+    - cute
+    - animated
+  nsfw: false
+  original: false
+  animated: true
+2abaece7b68e04ff4a7d09448271a140:
+  key: 50839115f141bffed0f36d821e92f06e0f6441d5af6f287a9a8b8444de05106f
+  source: 'signalstickers.com'
+  tags:
+    - milk and mocha
+    - bear
+    - cute
+    - couple
+  nsfw: false
+  original: false
+  animated: true
