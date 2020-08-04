@@ -21175,3 +21175,24 @@ b3604dfedf2a539d4ebf447814e1b627:
   nsfw: false
   original: false
   animated: true
+e72df9c7dd33d2edbac3aa5de363812d:
+  key: 4e77dd2e0e5f5a52366ee56eacf55dfb968f6c58aba9e4b83030f8c2ed5db79c
+  source: 'signalstickers.com'
+  tags:
+    - mario
+    - sonic
+    - animated
+    - pixel
+  nsfw: false
+  original: false
+  animated: true
+b617947035cd8c32b587c6b479fe018a:
+  key: cdd0b0dbe95bafc4f9d32954cf825b7d34506dadb6fdf08f762a024012a3b0d8
+  source: 'signalstickers.com'
+  tags:
+    - party parrot
+    - meme
+    - animated
+  nsfw: false
+  original: false
+  animated: true
