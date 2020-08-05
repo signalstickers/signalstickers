@@ -6,6 +6,7 @@
  * simultaneous calls to this function when the site loads, we use an
  * asynchronous task queue to limit concurrency of image conversion jobs.
  */
+import imageType from 'image-type';
 import pQueue from 'p-queue';
 import pWaitFor from 'p-wait-for';
 import {
@@ -54,10 +55,31 @@ const imageConversionQueue = new pQueue({concurrency: 1});
 // ----- Functions -------------------------------------------------------------
 
 /**
- * Resolves with `true` if the browser supports WebP or `false` otherwise.
+ * Provided a UInt8Array or Buffer containing image data, returns the image's
+ * MIME type.
  */
-export async function hasWebpSupport() {
-  return hasWebpSupportPromise;
+function getImageMimeType(rawImageData: Uint8Array | Buffer): string {
+  const typeInfo = imageType(rawImageData);
+
+  if (!typeInfo) {
+    throw new Error('[getImageMimeType] Unable to determine MIME type of image.');
+  }
+
+  return typeInfo.mime;
+}
+
+
+/**
+ * Converts a Uint8Array to a base-64 encoded string.
+ */
+function uInt8ToBase64(data: Uint8Array): string {
+  let strData = '';
+
+  for (const byte of data) {
+    strData += String.fromCharCode(byte);
+  }
+
+  return btoa(strData);
 }
 
 
@@ -68,24 +90,26 @@ export async function hasWebpSupport() {
  * suitable for using in the "src" attribute of an img tag.
  */
 export async function convertImage(rawImageData: Uint8Array) {
-  if (await hasWebpSupportPromise) {
-    // If the browser supports WebP, we don't need to convert it to PNG.
-    const base64Data = btoa(String.fromCharCode.apply(undefined, [...rawImageData]));
-    return `data:image/webp;base64,${base64Data}`;
+  const mimeType = getImageMimeType(rawImageData);
+  const hasWebpSupport = await hasWebpSupportPromise;
+
+  // If the image is WebP and the browser lacks support for WebP, convert the
+  // image to PNG. This will take a noticeable amount of time/memory on the
+  // user's machine, but is the only way we can display these images at this
+  // time.
+  if (mimeType === 'image/webp' && !hasWebpSupport) {
+    return imageConversionQueue.add(async () => {
+      try {
+        // @ts-ignore (`busy` is not an exposed member of WebpMachine.)
+        await pWaitFor(() => webpConverter.busy === false);
+
+        return await webpConverter.decode(rawImageData);
+      } catch (err) {
+        console.error(`[convertImage] Image conversion failed: ${err.message}`);
+        throw err;
+      }
+    });
   }
 
-  // Otherwise, convert the WEBP image to PNG. This will take a noticeable
-  // amount of time/memory on the user's machine, but is the only way we can
-  // display these images at this time.
-  return imageConversionQueue.add(async () => {
-    try {
-      // @ts-ignore (`busy` is not an exposed member of WebpMachine.)
-      await pWaitFor(() => webpConverter.busy === false);
-
-      return await webpConverter.decode(rawImageData);
-    } catch (err) {
-      console.error(`[convertImage] Image conversion failed: ${err.message}`);
-      throw err;
-    }
-  });
+  return `data:${mimeType};base64,${uInt8ToBase64(rawImageData)}`;
 }
