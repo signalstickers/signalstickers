@@ -36,7 +36,7 @@ const HomeComponent: React.FunctionComponent = () => {
    * Perform a one-time URL-to-state sync when the component mounts.
    */
   React.useEffect(() => {
-    const searchQueryFromUrl = query?.SEARCH_QUERY_PARAM;
+    const searchQueryFromUrl = query[SEARCH_QUERY_PARAM] ? query[SEARCH_QUERY_PARAM] : null;
 
     if (typeof searchQueryFromUrl === 'string') {
       setSearchQuery(searchQueryFromUrl);
