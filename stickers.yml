@@ -21286,6 +21286,12 @@ d92d7acd7e220d5303e3c5b863779509:
   nsfw: false
   original: false
   animated: true
+f6f4e0491082707d5a1c8812853d79cc:
+  key: 3881bdb697f5079a98a1dd05b570e98ff563b46e4af63e1009ed8ba2231e7d8b
+  source: ''
+  tags: []
+  nsfw: false
+  original: true
 4da48906758d4de90618dcb82cac8a82:
   key: ba8796dfc490f3340bf78bf61d2ad22e15dd0774a8095a3427957e56b692c187
   source: ShumSirHK
@@ -21315,9 +21321,23 @@ d92d7acd7e220d5303e3c5b863779509:
     - politician
   nsfw: false
   original: true
+0b8408ec32ff13b88afbe2f0688258cc:
+  key: e611a2e992c95afa050eda07599fb67e1bb90f49289666c468616db1292973a9
+  source: ''
+  tags:
+    - cute
+    - japanese
+    - 癒やされる
+    - もちもち
+  nsfw: false
+  original: true
 52f9180a404efdc28085821a8b9ff612:
   key: 463056b9b70e6e400021501b54ad2b7c536a8a5ca8817893eb24b543b123041d
   source: ''
-  tags: []
+  tags:
+    - the room
+    - lisa
+    - movie
+    - Tommy Wiseau
   nsfw: false
   original: false
