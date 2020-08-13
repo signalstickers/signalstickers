@@ -38,6 +38,10 @@ const Contribute = styled.div`
   & pre[class*="language-"] {
     margin: 0;
   }
+
+  & a.btn-success {
+    color: white;
+  }
 `;
 
 
