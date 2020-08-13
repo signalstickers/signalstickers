@@ -240,7 +240,20 @@ const NavbarComponent: React.FunctionComponent = () => {
                 title="Dark Mode"
                 onClick={toggleDarkMode}
               >
-                <span className="d-inline-block d-md-none mr-1">Dark Mode</span> {darkMode ? <FiMoon /> : <FiSun />}
+                {darkMode ?
+                  <>
+                    <span className="d-inline-block d-md-none mr-1">
+                      Light mode
+                    </span>
+                    <FiSun />
+                  </>
+                  :
+                  <>
+                    <span className="d-inline-block d-md-none mr-1">
+                      Dark mode
+                    </span>
+                    <FiMoon />
+                  </>}
               </button>
             </li>
           </ul>
