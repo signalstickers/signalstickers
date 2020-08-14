@@ -64,7 +64,8 @@ export const globals = css`
         }
       }
 
-      & .btn-primary {
+      & .btn-primary,
+      & .btn-success {
         color: var(--light);
 
         &:hover {
@@ -74,7 +75,6 @@ export const globals = css`
 
       & .btn-secondary {
         background-color: var(--secondary);
-
       }
 
       & .card {

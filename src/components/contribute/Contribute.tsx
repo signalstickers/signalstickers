@@ -38,10 +38,6 @@ const Contribute = styled.div`
   & pre[class*="language-"] {
     margin: 0;
   }
-
-  & a.btn-success {
-    color: white;
-  }
 `;
 
 
@@ -241,7 +237,7 @@ const ContributeComponent: React.FunctionComponent = () => {
       Signal Stickers repository
     </ExternalLink>
   ), []);
-  
+
   const twitterLink = React.useMemo(() => (
     <ExternalLink
       href="https://twitter.com/signalstickers"
