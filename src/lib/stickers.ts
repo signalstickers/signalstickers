@@ -25,6 +25,7 @@ import {
 } from 'etc/types';
 import {convertImage} from 'lib/convert-image';
 import ErrorWithCode from 'lib/error';
+import {isStorageUnavailableError} from 'lib/utils';
 
 
 // ----- Locals ----------------------------------------------------------------
@@ -57,26 +58,6 @@ const stickerImageCache = LocalForage.createInstance({
 
 
 // ----- Functions -------------------------------------------------------------
-
-/**
- * [private]
- *
- * Returns true if the provided error was thrown because the browser is blocking
- * use of local storage and/or other storage back-ends.
- */
-function isStorageUnavailableError(err: any) {
-  const patterns = [
-    // Firefox in private mode.
-    /the quota has been exceeded/gi
-  ];
-
-  if (err?.message) {
-    return Boolean(R.find(curPattern => R.test(curPattern, err.message), patterns));
-  }
-
-  return false;
-}
-
 
 /**
  * Resolves with a list of StickerPackPartial objects.

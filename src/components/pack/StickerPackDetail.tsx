@@ -1,3 +1,4 @@
+import {styled} from 'linaria/react';
 import React, {useState, useContext} from 'react';
 import {
   BsArrowLeftShort,
@@ -10,11 +11,11 @@ import {
 } from 'react-icons/bs';
 import {Link, useParams, useHistory} from 'react-router-dom';
 import Linkify from 'react-linkify';
-import {styled} from 'linaria/react';
 import useAsyncEffect from 'use-async-effect';
 
 import ExternalLink from 'components/general/ExternalLink';
 import StickersContext from 'contexts/StickersContext';
+import {GRAY_DARKER} from 'etc/colors';
 import {StickerPack} from 'etc/types';
 import useQuery from 'hooks/use-query';
 import {getStickerPack} from 'lib/stickers';
@@ -39,8 +40,6 @@ export interface UrlParams {
 // ----- Styles ----------------------------------------------------------------
 
 const StickerPackDetail = styled.div`
-  background-color: white;
-
   & h1 {
     font-size: 2rem;
   }
@@ -70,6 +69,7 @@ const StickerPackDetail = styled.div`
 
   & .list-group-item {
     align-items: center;
+    background-color: transparent;
     display: flex;
     flex-direction: row;
     font-size: 14px;
@@ -87,6 +87,14 @@ const StickerPackDetail = styled.div`
 
     & .list-group-item {
       font-size: inherit;
+    }
+  }
+
+  .theme-dark & {
+    border-color: ${GRAY_DARKER};
+
+    & .list-group-item {
+      border-color: ${GRAY_DARKER};
     }
   }
 `;
@@ -172,10 +180,11 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
     packId
   ]);
 
+
   /**
    * [Event Handler] Search for packs from the same author
    */
-  const onAuthorClick = (event: React.SyntheticEvent) => {
+  const onAuthorClick = React.useCallback((event: React.SyntheticEvent) => {
     event.preventDefault();
 
     if (searcher && event.currentTarget.textContent) {
@@ -187,7 +196,11 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
 
       history.push('/');
     }
-  };
+  }, [
+    history,
+    searcher,
+    setSearchQuery
+  ]);
 
 
   // ----- Render --------------------------------------------------------------
@@ -236,10 +249,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
 
   return (
     <StickerPackDetail className="px-1 px-sm-4 py-4 mt-0 my-sm-4">
-      {stickerPack.meta.nsfw
-        ? <NsfwModal />
-        : null
-      }
+      {stickerPack.meta.nsfw && <NsfwModal />}
 
       {/* Header */}
       <div className="row mb-4 flex-column-reverse flex-lg-row">
@@ -258,11 +268,11 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
           </div>
         </div>
         <div className="col-12 col-lg-4 d-flex d-lg-block justify-content-between text-md-right mb-3 mb-lg-0">
-          {stickerPack.meta.unlisted
-            ? null
-            : <Link to="/" className="btn btn-light mr-2">
-                <BsArrowLeftShort className="arrow-left-icon" /> Back
-              </Link>
+          {stickerPack.meta.unlisted ?
+            null :
+            <Link to="/" className="btn btn-light mr-2">
+              <BsArrowLeftShort className="arrow-left-icon" /> Back
+            </Link>
           }
           <ExternalLink
             href={`https://signal.art/addstickers/#pack_id=${packId}&pack_key=${stickerPack.meta.key}`}
@@ -275,61 +285,57 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       </div>
 
       {/* Metadata Table */}
-      {stickerPack.meta.unlisted
-        ? null
-        : <div className="row mb-4">
-            <div className="col-12 col-lg-9">
-              <ul className="list-group">
+      {!stickerPack.meta.unlisted &&
+        <div className="row mb-4">
+          <div className="col-12 col-lg-9">
+            <ul className="list-group">
 
-                {/* Original */}
-                {stickerPack.meta.original
-                  ? <li className="list-group-item text-wrap text-break">
-                      <BsStarFill title="Original" className="star-icon mr-4" />
-                      This pack has been created exclusively for Signal by the artist, from original artworks.
-                    </li>
-                  : null
-                }
-
-                {/* Animated */}
-                {stickerPack.meta.animated
-                  ? <li className="list-group-item text-wrap text-break">
-                      <BsFillCameraVideoFill title="Animated" className="text-primary mr-4" />
-                      This pack contains animated stickers!
-                    </li>
-                  : null
-                }
-
-                {/* Source */}
-                {stickerPack.meta.source
-                  ? <li className="list-group-item text-wrap text-break">
-                      <BsAt title="Source" className="mr-4 text-primary mention-icon" />
-                      <div>
-                        <Linkify componentDecorator={linkifyHrefDecorator}>
-                          {stickerPack.meta.source}
-                        </Linkify>
-                      </div>
-                    </li>
-                  : null
-                }
-
-                {/* Sticker Count */}
+              {/* Original */}
+              {stickerPack.meta.original &&
                 <li className="list-group-item text-wrap text-break">
-                  <BsFolder title="Sticker Count" className="mr-4 text-primary" />
-                  {stickerPack.manifest.stickers.length}
+                  <BsStarFill title="Original" className="star-icon mr-4" />
+                  This pack has been created exclusively for Signal by the artist, from original artworks.
                 </li>
+              }
 
-                {/* Tags */}
-                <li className="list-group-item">
-                  <BsTag title="Tags" className="mr-4 text-primary" />
-                  <div className="text-wrap text-break mb-n1">
-                    {stickerPack.meta.tags && stickerPack.meta.tags.length > 0 ? stickerPack.meta.tags.map(tag => (
-                      <Tag key={tag} className="mb-1 mr-1" label={tag} />
-                    )) : 'None'}
+              {/* Animated */}
+              {stickerPack.meta.animated &&
+                <li className="list-group-item text-wrap text-break">
+                  <BsFillCameraVideoFill title="Animated" className="text-primary mr-4" />
+                  This pack contains animated stickers!
+                </li>
+              }
+
+              {/* Source */}
+              {stickerPack.meta.source &&
+                <li className="list-group-item text-wrap text-break">
+                  <BsAt title="Source" className="mr-4 text-primary mention-icon" />
+                  <div>
+                    <Linkify componentDecorator={linkifyHrefDecorator}>
+                      {stickerPack.meta.source}
+                    </Linkify>
                   </div>
                 </li>
-              </ul>
-            </div>
+              }
+
+              {/* Sticker Count */}
+              <li className="list-group-item text-wrap text-break">
+                <BsFolder title="Sticker Count" className="mr-4 text-primary" />
+                {stickerPack.manifest.stickers.length}
+              </li>
+
+              {/* Tags */}
+              <li className="list-group-item">
+                <BsTag title="Tags" className="mr-4 text-primary" />
+                <div className="text-wrap text-break mb-n1">
+                  {stickerPack.meta.tags && stickerPack.meta.tags.length > 0 ? stickerPack.meta.tags.map(tag => (
+                    <Tag key={tag} className="mb-1 mr-1" label={tag} />
+                  )) : 'None'}
+                </div>
+              </li>
+            </ul>
           </div>
+        </div>
       }
 
       {/* Stickers */}

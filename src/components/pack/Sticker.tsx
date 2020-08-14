@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
 import {styled} from 'linaria/react';
+import React, {useState} from 'react';
 import useAsyncEffect from 'use-async-effect';
 
+import {GRAY_DARKER} from 'etc/colors';
 import {getConvertedStickerInPack, getEmojiForSticker} from 'lib/stickers';
 
 
@@ -30,7 +31,7 @@ const Sticker = styled.div`
   & .emoji {
     position: absolute;
     top: 2px;
-    left: 6px;
+    left: 5px;
     opacity: 0.75;
   }
 
@@ -51,6 +52,15 @@ const Sticker = styled.div`
     width: 1px;
     height: 0px;
     padding-bottom: calc(100%);
+  }
+
+  .theme-light & {
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+  }
+
+  .theme-dark & {
+    border-color: ${GRAY_DARKER};
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
   }
 `;
 
@@ -87,15 +97,15 @@ const StickerComponent: React.FunctionComponent<Props> = ({packId, packKey, stic
   // ----- Render --------------------------------------------------------------
 
   return (
-    <Sticker className="shadow-sm">
-      {emoji && stickerSrc
-        ? <>
-            <div className="emoji">{emoji}</div>
-            <img src={stickerSrc} alt="Sticker" />
-        </>
-        : <div className="spinner-border text-light" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>
+    <Sticker>
+      {emoji && stickerSrc ?
+        <>
+          <div className="emoji">{emoji}</div>
+          <img src={stickerSrc} alt="Sticker" />
+        </> :
+        <div className="spinner-border text-light" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
       }
     </Sticker>
   );

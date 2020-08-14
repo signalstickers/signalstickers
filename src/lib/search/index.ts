@@ -174,7 +174,7 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
       case 'Undefined':
         return 'false';
       default:
-        throw new Error(`[Search::getFn] Unable to parse value of type "${valueType}" at path "${path}".`);
+        throw new Error(`[Search::getFn] Unable to parse value of type "${valueType}" at path "${String(path)}".`);
     }
   };
 

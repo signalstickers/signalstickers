@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import React, {useEffect} from 'react';
 
 import ExternalLink from 'components/general/ExternalLink';
+import {DARK_THEME_BACKGROUND} from 'etc/colors';
 import {NAVBAR_HEIGHT} from 'etc/constants';
 
 
@@ -37,6 +38,16 @@ const NsfwModal = styled.div`
 
   & svg {
     transform: translateY(-2px);
+  }
+
+  .theme-dark & {
+    background: rgba(42, 42, 42, ${() => (Modernizr.backdropfilter ? 0.75 : 1)});
+
+    & .modal-content {
+      /* background-color: blue !important; */
+      background-color: ${DARK_THEME_BACKGROUND};
+      color: var(--white);
+    }
   }
 `;
 
@@ -96,7 +107,7 @@ const NsfwModalComponent: React.FunctionComponent = () => {
           <div className="modal-footer">
             <Link
               to="/"
-              className="btn btn-secondary"
+              className="btn btn-light"
               title="Go back home"
             >
               Go back home
