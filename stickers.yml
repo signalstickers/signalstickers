@@ -21464,7 +21464,7 @@ b3ae78d46e2eb9f23febc7b1a00b1f8b:
   original: false
 afbfbb1658b55784f7402b1a0e634ad4:
   key: 4e2394cfbf70d87ae1e1687ed97e1b1cd35aed7f856ee9d2cc25504279d11289
-  source: 'Part 2: https://signalstickers.com/pack/09cf7581ffe8e34c3992018e50fcabe3?key=8138fdc1c0bbb35d4b34f4243c39cfabeda0bf83d905e63dac81de9bad38978b'
+  source: ''
   tags:
     - linux
     - gnu
@@ -21484,7 +21484,7 @@ afbfbb1658b55784f7402b1a0e634ad4:
   original: false
 09cf7581ffe8e34c3992018e50fcabe3:
   key: 8138fdc1c0bbb35d4b34f4243c39cfabeda0bf83d905e63dac81de9bad38978b
-  source: 'Part 1: https://signalstickers.com/pack/afbfbb1658b55784f7402b1a0e634ad4?key=4e2394cfbf70d87ae1e1687ed97e1b1cd35aed7f856ee9d2cc25504279d11289'
+  source: ''
   tags:
     - linux
     - gnu
