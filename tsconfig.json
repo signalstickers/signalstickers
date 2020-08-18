@@ -3,7 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "jsx": "react",
-    "lib": ["DOM"],
-    "paths": {"*": ["*", "src/*"]}
+    "lib": ["DOM", "es2020"],
+    "paths": {"*": ["*", "src/*"]},
+    "plugins": [
+      {"name": "typescript-styled-plugin"}
+    ]
   }
 }

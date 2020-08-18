@@ -1,22 +1,25 @@
-import React, {createContext, PropsWithChildren, useEffect, useState} from 'react';
 import * as R from 'ramda';
+import React, {createContext, PropsWithChildren} from 'react';
 import useAsyncEffect from 'use-async-effect';
 
 import {StickerPackPartial} from 'etc/types';
-import {
-  getStickerPackDirectory,
-  fuzzySearchStickerPacks
-} from 'lib/stickers';
+import {getStickerPackDirectory} from 'lib/stickers';
+import SearchFactory, {SearchResults, Search} from 'lib/search';
 
 
 /**
  * Shape of the object provided by this Context.
  */
-export interface StickersProviderContext {
+export interface StickersContext {
   /**
    * List of all sticker packs known to the application.
    */
   allStickerPacks: Array<StickerPackPartial> | undefined;
+
+  /**
+   * Searcher instance.
+   */
+  searcher?: Search<StickerPackPartial>;
 
   /**
    * Current search query. This is persisted here so that should the user return
@@ -27,7 +30,7 @@ export interface StickersProviderContext {
   /**
    * Current result set based on the current value of search Query.
    */
-  searchResults: Array<StickerPackPartial>;
+  searchResults: SearchResults<StickerPackPartial>;
 
   /**
    * Allows a consumer to set the current search query, which will in turn
@@ -37,18 +40,19 @@ export interface StickersProviderContext {
 }
 
 
-const Context = createContext<StickersProviderContext>({} as any);
+const Context = createContext<StickersContext>({} as any);
 
 
 export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<Array<StickerPackPartial>>([]);
-  const [allStickerPacks, setAllStickerPacks] = useState<Array<StickerPackPartial>>();
+  const [allStickerPacks, setAllStickerPacks] = React.useState<StickersContext['allStickerPacks']>();
+  const [searcher, setSearcher] = React.useState<Search<StickerPackPartial>>();
+  const [searchQuery, setSearchQuery] = React.useState<StickersContext['searchQuery']>('');
+  const [searchResults, setSearchResults] = React.useState<StickersContext['searchResults']>([]);
 
 
   /**
-   * [Effect] When the component/context mounts, set the list of sticker
-   * packs from stickerData.json and setup the initial search results.
+   * [Effect] When the context mounts, set the list of sticker packs from
+   * stickerData.json and set-up the initial search results.
    */
   useAsyncEffect(async () => {
     // Load the set of sticker packs we need from stickerData.json.
@@ -57,31 +61,48 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
     // Set the canonical list of all sticker packs.
     setAllStickerPacks(stickerPacks);
 
-    // Finally, set our search results to the set of all sticker packs,
-    // using the default sort order (most recently added first).
-    setSearchResults(stickerPacks);
+    // Create a searcher using our collection of sticker pack partials.
+    setSearcher(SearchFactory({
+      collection: stickerPacks,
+      identity: R.path(['meta', 'id']),
+      keys: {
+        title: ['manifest', 'title'],
+        author: ['manifest', 'author'],
+        tag: ['meta', 'tags'],
+        nsfw: ['meta', 'nsfw'],
+        original: ['meta', 'original'],
+        animated: ['meta', 'animated']
+      }
+    }));
   }, []);
 
 
   /**
-   * [Effect] Update `searchResults` when `searchQuery` changes.
+   * [Effect] Update `searchResults` when `searchQuery` changes. This effect
+   * will also set the default set of search results to `allStickerPacks` if
+   * there is no query.
    */
-  useEffect(() => {
-    if (!allStickerPacks) {
+  React.useEffect(() => {
+    if (!allStickerPacks || !searcher) {
       return;
     }
 
-    const rawSearchResults = fuzzySearchStickerPacks(searchQuery, allStickerPacks);
+    // If there is currently no query, set the search results to the result of
+    // mapping the full list of sticker packs into a list with the same shape
+    // returned by the search function.
+    if (searchQuery.length === 0) {
+      setSearchResults(R.map(stickerPack => ({
+        item: stickerPack
+      }), allStickerPacks) as SearchResults<StickerPackPartial>);
 
-    // Only call `setSearchResults` if our new results have actually changed.
-    // This will save us superfluous re-renders.
-    if (!R.equals(rawSearchResults, searchResults)) {
-      setSearchResults(rawSearchResults);
+      return;
     }
+
+    setSearchResults(searcher.search(searchQuery));
   }, [
     allStickerPacks,
-    searchQuery,
-    searchResults
+    searcher,
+    searchQuery
   ]);
 
 
@@ -91,9 +112,10 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
     <Context.Provider
       value={{
         allStickerPacks,
+        searcher,
         searchQuery,
-        setSearchQuery,
-        searchResults
+        searchResults,
+        setSearchQuery
       }}
     >
       {props.children}

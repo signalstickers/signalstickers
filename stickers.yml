@@ -32,8 +32,12 @@ ae1d343accdec586fe19954a6be7aee9:
 186cbb983fd8613e2292692a6ba31557:
   key: 33cc80357a10a7a0b162158f63eb6e98034472e0288a245bd02d07818208f399
   source: ''
-  tags: []
+  tags:
+    - games
+    - Lucasarts
+    - Day of the Tentacle
   nsfw: false
+  original: true
 2745f59ea0444bffb1db0984cc0ae65c:
   key: d1f656151045c812ca41cf65a1267d70d313e19925417aaa0e609d5f8e81ea7e
   source: ''
@@ -252,8 +256,10 @@ dad4d585930de459ea69ad5364e6c1fe:
 dbbdcc8cea92b39ee5a04e882895fff4:
   key: 7e7b0d320114cfea3ee00bfb7df3a2c4e50dc7feb29046e36f92e82a4cf10905
   source: ''
-  tags: []
+  tags:
+    - sports
   nsfw: false
+  original: true
 dd2076d5fe7558526ca9ff99274fb802:
   key: a87550d8dba47bce27b1f61b9611d8370f362857603695ffab192d2ee7a2a163
   source: ''
@@ -716,8 +722,10 @@ b9b48c7cf2d813d8088d009cd54cf1fa:
   key: 5db678fd5bad89552f412b82d623ed034cdd25c85358f12e1872c00bf0c8a479
   source: ''
   tags:
-    - monkey island
+    - games
+    - Lucasarts
   nsfw: false
+  original: true
 2f977990cc97776e3507f1f8c8ffa1b9:
   key: 9ef33e78c237f9da414e8758af1fba810878ae34c03afea43b2035bcb2d5321a
   source: ''
@@ -990,8 +998,10 @@ eb503c662934a80e245f518e4890f09b:
   key: fa14bdcecaf21183334d164e9a7848b65cf925a409a4de5995c43d95808914a9
   source: ''
   tags:
-    - monkey island
+    - games
+    - Lucasarts
   nsfw: false
+  original: true
 ea94b9358b81f288a23a832b1f9f22f3:
   key: 93d170819a194e2efb02134f9dbcb9f3ba60ce45063e408c3a376caaa88711d9
   source: ''
@@ -1980,7 +1990,6 @@ e11c7c2b4409311bf3b5841ed74b45ce:
     - животные
     - белка
     - squirrel
-    - animated
     - Bella
     - the squirrel
     - telegram
@@ -18734,6 +18743,7 @@ cdd510bdaef7ba15502ff66a2d3589f0:
     - cat
     - cute
   nsfw: false
+  original: true
 c7512d8dbe420400f8b75c663251ccbd:
   key: 8fc8caf71b088a3d2fa295867f9509cc2b59ee140d399d02fdc10417c97ebda1
   source: 'https://www.reddit.com/r/signal/comments/f9cxa9/mighty_zeus_sticker_pack_ported_from_telegram/'
@@ -20894,3 +20904,633 @@ aa957ae62410c6aefdb4ee4b588766f3:
     - cybersecurity
   nsfw: false
   original: true
+0f0e9bf5c48027f7807f789a1a820196:
+  key: b1eea3e38d6d24b7d4b9e28f575436e00aaa1a8d5037449aa4c3a10b70737180
+  source: ShumSirHK
+  tags:
+    - CUTE
+    - SHUM
+    - BALD
+    - GREY
+    - HK
+    - HONG KONG
+    - CANTONESE
+    - CHINESE
+    - SHUM SIR
+  nsfw: false
+  original: true
+10395b673d76e189cb7da637705c38d9:
+  key: c416a7980dcd0d69cf374bd164abf5394cd11f8461dfecb58cd374e7be0c1ffc
+  source: 'https://twitter.com/morgenlab/status/1286240810619539456'
+  tags:
+    - bike
+    - velo
+    - bicycle
+    - cargo bike
+    - ride
+  nsfw: false
+  original: true
+caf8f4cf36e1f3a5a35c7af0c7559841:
+  key: fc93a12bb5624d43f82b07679ee68c6bf811cc0de3c9de7896d971d5ca232e9e
+  source: 'https://twitter.com/sailorSARS/status/1286404829955457025'
+  tags:
+    - Bolsonaro
+  nsfw: false
+  original: false
+3f6f760f1a88474766a10f5dd34836f1:
+  key: 608a4fac6bf7093a6c1d6b1667a70bfcc2c30c7c950dd6e4ad545acd996c73b0
+  source: ShumSirHK
+  tags:
+    - CUTE
+    - SHUM
+    - BALD
+    - BLACK
+    - HK
+    - HONG KONG
+    - CANTONESE
+    - CHINESE
+    - SHUM SIR
+  nsfw: false
+  original: true
+3493d9f5908b5f8eae9774532b09a27b:
+  key: 6de69554690e17a01f0c90c0b254e7aa89ca7e9c05ce098cc42082fe6105bbc9
+  source: 'https://whatsticker.online/p/181142597478/HK/zh'
+  tags:
+    - dindong
+  nsfw: false
+  original: false
+21067f6ddc103846b4c65e728d79bbe4:
+  key: 7a9ca9ab090b44eabe01254265695065535fba091d3d7c382a0b3583b7075360
+  source: 'https://twitter.com/PolyInPictures/status/1287801917800943622'
+  tags: []
+  nsfw: false
+  original: false
+3a0cc9d63bc6873a1090af8bc8c090aa:
+  key: cd58a8b04285d012c83c7efdf44305b47049e941dd0a406659bcc1149a586b1b
+  source: ''
+  tags:
+    - bunny
+    - cute
+  nsfw: false
+  original: false
+ac58ca3b6c30705541170215a7f3906c:
+  key: af4e0e30526f5b7b73188d6b7e6edf3a00d8c8ba40eb3a64de2db3d841295510
+  source: ''
+  tags:
+    - bunny
+    - cute
+  nsfw: false
+  original: false
+8d0baf4e2711d878f76d95191ff02b79:
+  key: aecadbc80cf4fbac8b8afc2f60946afa334acfbf8937d09c3acf5363a7865d28
+  source: ''
+  tags:
+    - bunny
+    - cute
+  nsfw: false
+  original: false
+d6165dabed1beb18f3f875f4198293d5:
+  key: 7a720a0dcacc51df4f0220152df3587f628139e464ae05b17ae1e6dbf26b20b9
+  source: ''
+  tags:
+    - corgi
+    - cute
+  nsfw: false
+  original: false
+98b0b6e3c061991e3674eb5cfad11216:
+  key: be5b8361d26e085f4d648d865ddb0efa17effa29c22d21ad432693530ec3a057
+  source: 'https://www.baretreemedia.com/portfolio/garfield-line-emojis/'
+  tags:
+    - garfield
+    - cat
+    - cartoon
+    - jim davis
+    - lasagna
+    - meme
+    - cute
+  nsfw: false
+  original: false
+0ac5fc71b0cf77a0cda8437854059b56:
+  key: 0e5c70e1220cf20994ab77c5c9abd064c436b0168d5d20c5b906087a28184cd9
+  source: ''
+  tags:
+    - flag
+    - flags
+    - world
+    - earth
+    - global
+    - country
+    - countries
+  nsfw: false
+  original: false
+90f38ac139068748572ee9f8e3eb73c6:
+  key: 19612c46481f33fc48650abc3a24fe73cca4c7e3122062e7ec02bb2c5c81503e
+  source: 'https://twitter.com/sleepypandie_/status/1288491918700081153'
+  tags:
+    - cute
+    - frog
+  nsfw: false
+  original: true
+5c7aae71d9fc911541d7a1892af432dd:
+  key: 3b27bd461e50f8859ec24243849caa9e2de6c9f6f2fc22e5df93b55ffad81036
+  source: 'https://twitter.com/sleepypandie_'
+  tags:
+    - cute
+  nsfw: false
+  original: true
+95c50b40f9359a68b00a32da24ce7f03:
+  key: db38400f2c38b5cb1be5ee716f387f4c0bf9211094454e85c85077d686fe7d26
+  source: ''
+  tags:
+    - 80s
+    - Magnum
+    - Hawaii
+    - selleck
+  nsfw: false
+  original: false
+6da45c2144eefba16084eb5f08a25bc0:
+  key: 860ab3ff1a691154a83844b22c0f61419e50dede9e50461de02cb68122f2ea57
+  source: ''
+  tags:
+    - shitty robots
+    - maker
+  nsfw: false
+  original: false
+a12dcca26f0fa3656777eceef7e55981:
+  key: 793f1c9740bffdfd571151feaf5e84b79e53199145dfa8a7bdf8fe31f7373ea4
+  source: ''
+  tags:
+    - cat
+    - nua nia
+  nsfw: false
+  original: false
+2af236873e21f9ae4282a3220d963d5e:
+  key: ff18c9014379c4b16b50230e1b428fefb4b0b390e41cb7c0b1f6cf3db8c8c33a
+  source: Telegram
+  tags:
+    - Islamic
+    - Arabic
+    - Muslim
+  nsfw: false
+  original: false
+e25554eb9776fa23c6ac7df784106a34:
+  key: 297ea96f2fc60c2638f00b988185e8798098034803d9a9ad1bafe8bf5ce0e4d1
+  source: PlayStore
+  tags:
+    - cat
+    - cute
+  nsfw: false
+  original: false
+711eafabe40b99c50d9c9f7f75610304:
+  key: 762a52dfd29ed9e1901bd4a9d2a451dd9b261e23bd0096c9a34af3a7e05f229b
+  source: ''
+  tags:
+    - Vaporwave
+    - aesthetic
+    - Telegram
+  nsfw: false
+  original: false
+f714025b1d3cd6d3dc841d4c6d02ee84:
+  key: c1a4e22110b267e276a947269d0ceeba3144e04a9356c7e94ee44fb203984912
+  source: ShumSirHK
+  tags:
+    - CUTE
+    - SHUM
+    - BALD
+    - RED
+    - HK
+    - HONG KONG
+    - CANTONESE
+    - CHINESE
+    - SHUM SIR
+  nsfw: false
+  original: true
+b3604dfedf2a539d4ebf447814e1b627:
+  key: 816f8d3d1373c06bb4c9bc8ee3f150b6d946f613494316dab67d24e14366ba45
+  source: ''
+  tags:
+    - Saul
+    - Goodman
+    - better
+    - breaking
+    - bad
+    - Jimmy
+    - lawyer
+  nsfw: false
+  original: false
+2531071139efd60bcca04b0f07734276:
+  key: db1027c3a88299b6e340912e735d282b2de4e1db9632a53cba837e5ed57cbbf6
+  source: ''
+  tags:
+    - Cage
+    - Nick
+    - Nicolas
+    - funny
+  nsfw: false
+  original: false
+9a7fc55a7c77dc219dae56e5a636ef53:
+  key: 9afb1689d14e02176759f6ed21d7044731edad0a263d961bef2231afe9dd787e
+  source: 'https://twitter.com/gojuu_art/status/1289654612312522752'
+  tags:
+    - mermaid
+  nsfw: false
+  original: true
+10b251c6faa9cd476bb7db7b9ff5fbd7:
+  key: 9ba33dee07db1daa853fb07b1647ac2662eaf6cdfe0e13ded8ab4938ece21fee
+  source: 'https://twitter.com/nofundis/status/1290319978449833986'
+  tags:
+    - pro choice
+    - feminism
+  nsfw: false
+  original: true
+fbd438af9ac04c71aab2cc6bf20e9620:
+  key: 97ae8294ca63db489cb25df7b5a37639cfd11c353a24b9977ddb901ec7397057
+  source: LINE
+  tags:
+    - Professor Layton
+    - puzzle
+  nsfw: false
+  original: false
+019b8660eea59445d28e674e9e80a881:
+  key: 30e892c837b3395a5b4365197b8bc21ac8156bce45133480249a62b3f91498ac
+  source: LINE
+  tags: []
+  nsfw: false
+  original: false
+e4fac2188b853213eb99a1ff30849771:
+  key: d8d709256fcc4c4db647fc99ca5309e3fe085e9064f0ce970e05041f84f136c7
+  source: LINE
+  tags:
+    - Neon Genesis Evangelion
+    - anime
+  nsfw: false
+  original: false
+08cb9a41f92e761ee666f6e78760f139:
+  key: 8c501d2adb3ea9f9f2820677785f0955343c130d24c22751f2e99837649c27b0
+  source: LINE
+  tags:
+    - Yuru Yuri
+    - anime
+  nsfw: false
+  original: false
+20af163b8686ff7f4d0828cce864572e:
+  key: e516b2d10437bfd8c1a6a3032b8f0728edd408aecf49604f7fe654b24dcf43c8
+  source: LINE
+  tags:
+    - Ghost in the Shell
+    - anime
+  nsfw: false
+  original: false
+ace6d39cdb366c969fe9565eba334414:
+  key: 99055d887cec90ca584acf069fa5bca342d5f0aaa1586b36fa98e91707271b6e
+  source: LINE
+  tags:
+    - yugioh
+    - anime
+  nsfw: false
+  original: false
+451eb50a2a6f117391e5833f09e541ee:
+  key: 079dda56e1bba4638f73b4e1c6994802c872e76103a7fe6a6f4708bc4665b2fd
+  source: 'signalstickers.com'
+  tags:
+    - pixel
+    - pig
+    - animated
+  nsfw: false
+  original: false
+  animated: true
+1dfd489f19cb796ea477f7c0aa7ac4bc:
+  key: 3baf81752a614d8a73b0bf1a72f3522d6544f4af44b3238aa62a888fed7eec64
+  source: 'signalstickers.com'
+  tags:
+    - pusheen
+    - cute
+    - animated
+  nsfw: false
+  original: false
+  animated: true
+2abaece7b68e04ff4a7d09448271a140:
+  key: 50839115f141bffed0f36d821e92f06e0f6441d5af6f287a9a8b8444de05106f
+  source: 'signalstickers.com'
+  tags:
+    - milk and mocha
+    - bear
+    - cute
+    - couple
+    - animated
+  nsfw: false
+  original: false
+  animated: true
+38542e7dc2b31fed0e8f302bea18c0db:
+  key: 2276b30e6c0de8d7ac1fc1a7b6687d6e285917ffa0209c8e75c67d02b4851a70
+  source: 'https://www.reddit.com/user/lover-of-memes/'
+  tags:
+    - Neon Genesis Evangelion
+    - 16 bits
+    - mecha anime
+  nsfw: false
+  original: false
+  animated: true
+e72df9c7dd33d2edbac3aa5de363812d:
+  key: 4e77dd2e0e5f5a52366ee56eacf55dfb968f6c58aba9e4b83030f8c2ed5db79c
+  source: 'signalstickers.com'
+  tags:
+    - mario
+    - sonic
+    - animated
+    - pixel
+  nsfw: false
+  original: false
+  animated: true
+b617947035cd8c32b587c6b479fe018a:
+  key: cdd0b0dbe95bafc4f9d32954cf825b7d34506dadb6fdf08f762a024012a3b0d8
+  source: 'signalstickers.com'
+  tags:
+    - party parrot
+    - meme
+    - animated
+  nsfw: false
+  original: false
+  animated: true
+946989b0d22fec56fc3c2108b786fedb:
+  key: 984a196472939490eb851ecc3bf59de9a8939c3b9436459edcd38016ded4b752
+  source: 'signalstickers.com'
+  tags:
+    - trash dove
+    - facebook
+    - messenger
+    - animated
+  nsfw: false
+  original: false
+  animated: true
+fe9982e4da736709c26091cea5532d6a:
+  key: 726f0cc85e86d94824131611d74687c2d8e6aac40795fa31d38e1eb01a63a20b
+  source: 'signalstickers.com'
+  tags:
+    - gamer cat
+    - facebook
+    - messenger
+    - animated
+  nsfw: false
+  original: false
+  animated: true
+d92d7acd7e220d5303e3c5b863779509:
+  key: ad33b0bc082f7bf65bf1fbee4b2c6468dea4c537baa89060a6384dfe1a4361bf
+  source: 'signalstickers.com'
+  tags:
+    - tuzki
+    - Momo Wang
+    - facebook
+    - messenger
+    - animated
+  nsfw: false
+  original: false
+  animated: true
+f6f4e0491082707d5a1c8812853d79cc:
+  key: 3881bdb697f5079a98a1dd05b570e98ff563b46e4af63e1009ed8ba2231e7d8b
+  source: ''
+  tags: []
+  nsfw: false
+  original: true
+4da48906758d4de90618dcb82cac8a82:
+  key: ba8796dfc490f3340bf78bf61d2ad22e15dd0774a8095a3427957e56b692c187
+  source: ShumSirHK
+  tags:
+    - CUTE
+    - SHUM
+    - BALD
+    - BLUE
+    - HK
+    - HONG KONG
+    - CANTONESE
+    - CHINESE
+    - SHUM SIR
+  nsfw: false
+  original: true
+85a0b54af1883c4d4c79651c44b4d1e2:
+  key: dcd8825a06aa72d6cac0e5a1952b2085fff28e4ef1340c3b8a442df8ae3eda66
+  source: 'https://www.facebook.com/Werschafe/'
+  tags:
+    - sheep
+  nsfw: false
+  original: true
+233b2eb84d94cb6a834807c0e3f9c3a7:
+  key: f950381ba1f1c06afa282f972f8f57c8658b78c511d8669003f7b3826f95cb85
+  source: ''
+  tags:
+    - politician
+  nsfw: false
+  original: true
+0b8408ec32ff13b88afbe2f0688258cc:
+  key: e611a2e992c95afa050eda07599fb67e1bb90f49289666c468616db1292973a9
+  source: ''
+  tags:
+    - cute
+    - japanese
+    - 癒やされる
+    - もちもち
+  nsfw: false
+  original: true
+52f9180a404efdc28085821a8b9ff612:
+  key: 463056b9b70e6e400021501b54ad2b7c536a8a5ca8817893eb24b543b123041d
+  source: ''
+  tags:
+    - the room
+    - lisa
+    - movie
+    - Tommy Wiseau
+  nsfw: false
+  original: false
+51cd50568aa9932257e18d226d78123a:
+  key: 39995dcec3462c678f395f203bd20b2c0a58e60bfce106cc7a47a8db9c379828
+  source: 'https://twitter.com/VivienneChow/status/1293905627601727489'
+  tags:
+    - "All's Well"
+    - 'Ends Well'
+    - HK
+    - 'Hong Kong'
+    - comedy
+    - '家有囍事'
+  nsfw: false
+  original: false
+7c857e4c7a97c82912c2d2678440bec8:
+  key: 71cd3a190dd1ef69eae1ec54ce05c0f859c3dfd07219370742e2b76fe2fb6c49
+  source: 'https://conexionsegura.org/signal'
+  tags:
+    - privacy
+    - reaction
+    - espanol
+    - spanish
+    - español
+  nsfw: false
+  original: true
+9778603c0c0c220da6dbc92a85007373:
+  key: f276d8883e8f780458529e37ab5e52a90cb0b922e267b1a972baba8bf0fc76a9
+  source: 'https://conexionsegura.org/signal'
+  tags:
+    - espanol
+    - spanish
+    - español
+  nsfw: false
+  original: true
+dcaea672ee5be0bc7662314edca5de1b:
+  key: 9926dd3f0e9a7ab4cc18af97cc0dbf77d9142d3a778a155d3d2dc3b3032355d1
+  source: 'https://conexionsegura.org/signal'
+  tags:
+    - espanol
+    - spanish
+    - español
+  nsfw: false
+  original: true
+868cdefedba1cb415fd5e99ef7e1a577:
+  key: c52687044a377e78992efe740e2fd97ea2d52025a9baa62e3f9299b8db00a424
+  source: signalstickers.com
+  tags:
+    - American Chopper Argument
+    - meme
+    - chair
+    - Paul Teutul Jr
+    - Paul Teutul Sr
+  nsfw: false
+  original: true
+d433ed9161d27a955e887f4d12255e2c:
+  key: 7e337450b2e5f1f11fd014bf303ced6f1b12884a4263209ca3ac5a82511a67e6
+  source: 'https://twitter.com/lumpenfreude/status/1294471888677240833'
+  tags:
+    - heathcliff
+    - cat
+    - cartoon
+  nsfw: false
+  original: false
+baf93a1cbaba4e2951559aea66444ee7:
+  key: c0a2333f9eca69a20c275cc2be7c7fd46784aacae5501876efbbe0eacf929ebd
+  source: signalstickers.com
+  tags:
+    - bongo cat
+    - meme
+    - cute
+  nsfw: false
+  original: false
+  animated: true
+b0443a2b8a8b9d7fc5c81457ca46de3f:
+  key: 193e0d696e847410b77bf50b7c069115d10a8eb1bfd0780e39ef3433921fbd77
+  source: >-
+    https://www.undp.org/content/undp/en/home/sustainable-development-goals/sdg-pandas.html
+  tags:
+    - sgd
+    - 17 goals
+    - undp
+    - sustainability
+    - no poverty
+    - zero hunger
+    - good health
+    - quality education
+    - compact
+    - gender equality
+    - clean water
+    - decent work
+    - industry
+    - reduced inequalities
+    - sustainable cities
+    - responsible consumption
+    - climate action
+    - life under water
+    - life on land
+    - peace
+    - partnerships
+  nsfw: false
+  original: false
+b3ae78d46e2eb9f23febc7b1a00b1f8b:
+  key: c639c5afadced689c865740c1a3124fb0ad23599472e3c25b4022586a1332f20
+  source: signalstickers.com
+  tags:
+    - cute
+  nsfw: false
+  original: false
+6ed54c8a448a48fd8ed475ad578755e8:
+  key: 2b38829c094b464711e90bffb4abf113a2236eaaa8333007e750da466e2a5937
+  source: ''
+  tags:
+    - garfield
+    - cat
+    - cartoon
+    - jim davis
+    - lasagna
+    - meme
+    - cute
+    - letters
+    - alphabet
+  nsfw: false
+  original: false
+afbfbb1658b55784f7402b1a0e634ad4:
+  key: 4e2394cfbf70d87ae1e1687ed97e1b1cd35aed7f856ee9d2cc25504279d11289
+  source: ''
+  tags:
+    - linux
+    - gnu
+    - gnulinux
+    - gnu linux
+    - gnu plus linux
+    - gnu slash linux tux
+    - privacy
+    - cute
+    - for children
+    - tux paint
+    - paint
+    - stamps
+    - free software
+    - libre software
+  nsfw: false
+  original: false
+09cf7581ffe8e34c3992018e50fcabe3:
+  key: 8138fdc1c0bbb35d4b34f4243c39cfabeda0bf83d905e63dac81de9bad38978b
+  source: ''
+  tags:
+    - linux
+    - gnu
+    - gnulinux
+    - gnu linux
+    - gnu plus linux
+    - gnu slash linux tux
+    - privacy
+    - cute
+    - for children
+    - tux paint
+    - paint
+    - stamps
+    - free software
+    - libre software
+  nsfw: false
+  original: false
+ebaf3cefaa9c602c78ef122930a3eaab:
+  key: 71d3bca1f9d1b8cff8dc648488888df969e16ebc47288edd921752985d1a419e
+  source: 'https://knowyourmeme.com/memes/catjam'
+  tags:
+    - catJAM
+    - cat
+    - meme
+    - animated
+    - gif
+  nsfw: false
+  original: false
+  animated: true
+eb0043b645acadbd8a90e07427635691:
+  key: eec8515d4aee3c7b1614d75f76bec880173fe1bb53cbbf0dc24b8ee56e775262
+  source: Nickelodeon
+  tags:
+    - doug
+    - doug funnie
+    - 90s cartoon
+    - cartoon
+    - 90s
+    - Nickelodeon
+  nsfw: false
+  original: false
+9bc880bd2c9e1058d24989b3bb5415ab:
+  key: 5bc2a2d5655edf523317bc7b835249f3b278f28a48a3e2142a2a402b428f067f
+  source: 'https://twitter.com/CorySanin/status/1295602258021842944'
+  tags:
+    - clippy
+    - microsoft
+  nsfw: false
+  original: false

@@ -1,5 +1,5 @@
 <a href="https://signalstickers.com" id="top">
-  <img src=".github/header_signalstickers_fr.png" style="max-width: 100%;"></<img>
+  <img src="https://user-images.githubusercontent.com/441546/87215224-34f71d00-c2e9-11ea-9163-29c7fb369228.png" style="max-width: 100%;"></<img>
 </a>
 
 <p align="center">

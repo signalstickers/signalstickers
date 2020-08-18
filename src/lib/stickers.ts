@@ -9,20 +9,23 @@
  * settings, Safari seems to be able to handle this load without issue (albeit
  * far more slowly than Chrome).
  */
-import axios from 'axios';
-import FuzzySearch from 'fuzzy-search';
-import LocalForage from 'localforage';
-import * as R from 'ramda';
-
-import {StickerPack, StickerPackPartial} from 'etc/types';
-import {convertImage} from 'lib/convert-image';
-import ErrorWithCode from 'lib/error';
-
 import {
   getStickerPackManifest,
   getStickerInPack,
   getEmojiForSticker
 } from '@signalstickers/stickers-client';
+import axios from 'axios';
+import LocalForage from 'localforage';
+import * as R from 'ramda';
+
+import {
+  StickerPack,
+  StickerPackPartial,
+  StickerPackMetadata
+} from 'etc/types';
+import {convertImage} from 'lib/convert-image';
+import ErrorWithCode from 'lib/error';
+import {isStorageUnavailableError} from 'lib/utils';
 
 
 // ----- Locals ----------------------------------------------------------------
@@ -57,26 +60,6 @@ const stickerImageCache = LocalForage.createInstance({
 // ----- Functions -------------------------------------------------------------
 
 /**
- * [private]
- *
- * Returns true if the provided error was thrown because the browser is blocking
- * use of local storage and/or other storage back-ends.
- */
-function isStorageUnavailableError(err: any) {
-  const patterns = [
-    // Firefox in private mode.
-    /the quota has been exceeded/gi
-  ];
-
-  if (err?.message) {
-    return Boolean(R.find(curPattern => R.test(curPattern, err.message), patterns));
-  }
-
-  return false;
-}
-
-
-/**
  * Resolves with a list of StickerPackPartial objects.
  */
 export async function getStickerPackDirectory(): Promise<Array<StickerPackPartial>> {
@@ -105,14 +88,24 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
       // Build the metadata object using information from a StickerPackPartial
       // in the directory or, if the requested sticker pack is unlisted, just
       // the id and key.
-      const partial = R.find(R.pathEq(['meta', 'id'], id), directory);
-      const meta = partial ? partial.meta : {id, key};
+      const partial = R.find<StickerPackPartial>(R.pathEq(['meta', 'id'], id), directory);
 
-      const finalKey = key ?? meta.key;
+      // Use the key from the directory if possible. Otherwise, use the key
+      // provided by the caller.
+      const finalKey = partial?.meta.key ?? key;
 
       if (!finalKey) {
         throw new ErrorWithCode('NO_KEY_PROVIDED', `No key provided for unlisted pack: ${id}.`);
       }
+
+      const meta: StickerPackMetadata = partial ? {
+        ...partial.meta,
+        unlisted: false
+      } : {
+        id,
+        key: finalKey,
+        unlisted: true
+      };
 
       const manifest = await getStickerPackManifest(id, finalKey);
 
@@ -158,7 +151,7 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
       return convertedImage;
     }
 
-    return await stickerImageCache.getItem<string>(cacheKey);
+    return await stickerImageCache.getItem(cacheKey) as string;
   } catch (err) {
     if (!isStorageUnavailableError(err)) {
       throw new Error(`[getConvertedStickerInPack] Error getting sticker: ${err.message}`);
@@ -168,21 +161,6 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
   // This should only be reachable if we got a "storage unavailable error", in
   // which case return the converted image.
   return convertedImage;
-}
-
-
-/**
- * Performs a fuzzy search on cached StickerPack data and returns the result
- * set.
- */
-export function fuzzySearchStickerPacks(needle: string, haystack: Array<StickerPackPartial>): Array<StickerPackPartial> {
-  const searchKeys = ['manifest.title', 'manifest.author', 'meta.tags'];
-  const searcher = new FuzzySearch(haystack, searchKeys, {
-    caseSensitive: false,
-    sort: true
-  });
-
-  return searcher.search(needle);
 }
 
 

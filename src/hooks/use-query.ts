@@ -1,3 +1,4 @@
+import queryString from 'query-string';
 import {useLocation} from 'react-router-dom';
 
 
@@ -10,5 +11,5 @@ import {useLocation} from 'react-router-dom';
  * query.get('foo');
  */
 export default function useQuery() {
-  return new URLSearchParams(useLocation().search);
+  return queryString.parse(useLocation().search);
 }

@@ -13,4 +13,10 @@ export const BOOTSTRAP_BREAKPOINTS = {
 /**
  * Height of the navbar (px).
  */
-export const NAVBAR_HEIGHT = 70;
+export const NAVBAR_HEIGHT = 64;
+
+
+/**
+ * Value of the query parameter used to track the current search query.
+ */
+export const SEARCH_QUERY_PARAM = 's';
