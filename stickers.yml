@@ -21511,6 +21511,9 @@ ebaf3cefaa9c602c78ef122930a3eaab:
     - meme
     - animated
     - gif
+  nsfw: false
+  original: false
+  animated: true
 eb0043b645acadbd8a90e07427635691:
   key: eec8515d4aee3c7b1614d75f76bec880173fe1bb53cbbf0dc24b8ee56e775262
   source: Nickelodeon
