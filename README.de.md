@@ -40,7 +40,7 @@ Gib den Motiven auf deinen Stickern eventuell eine helle/weiße Umrandung ("Halo
 <img src=".github/with white margin.png">
 </p>
 
-Du kannst [dieses Skript](https://gist.github.com/romainricard/d0d26015ed08387dbf89b24c92bb2bca) oder [dieses Projekt](https://framagit.org/luc/stickerify-for-signal) verwenden, um automatisch die Größe aller PNG- und WebP-Bilder eines Verzeichnisses zu ändern und eine weiße Umrandung hinzuzufügen.
+Du kannst [dieses Skript](https://github.com/signalstickers/stickers-scripts/blob/master/add_border.sh) oder [dieses Projekt](https://framagit.org/luc/stickerify-for-signal) verwenden, um automatisch die Größe aller PNG- und WebP-Bilder eines Verzeichnisses zu ändern und eine weiße Umrandung hinzuzufügen.
 
 ### Muss ich meine Sticker hier hinfügen, um es mit meinen Freunden zu teilen?
 

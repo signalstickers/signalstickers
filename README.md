@@ -48,7 +48,7 @@ Follow the tutorial on the [Signal support site](https://support.signal.org/hc/a
 to upload your stickers to Signal.
 
 > Note: when creating stickers, don't forget to add a white stroke to improve
-> legibility on dark themes! You can use [this script](https://gist.github.com/romainricard/d0d26015ed08387dbf89b24c92bb2bca)
+> legibility on dark themes! You can use [this script](https://github.com/signalstickers/stickers-scripts/blob/master/add_border.sh)
 > or use [this project](https://framagit.org/luc/stickerify-for-signal)
 > to automatically resize and add a white stroke on all the PNG and WEBP images
 > of a directory.

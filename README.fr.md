@@ -26,7 +26,8 @@ Utilisez l'outil [Contribute](https://signalstickers.com/contribute) en haut de
 
 ### Guide de contribution
 
-Nous acceptons tous les autocollants, **sauf** :
+Nous nous réservons le droit de modérer et refuser les packs et les stickers, et
+en particulier :
 
 + Les paquets d'autocollants qui appellent à la haine ou à la violence contre
   des personnes ou des communautés en fonction de l'âge, de la taille, du
@@ -35,6 +36,9 @@ Nous acceptons tous les autocollants, **sauf** :
   de l'orientation sexuelles ;
 + Les packs d'autocollants qui font la promotion directe d'une marque ou d'une
   entreprise.
+
+Nous nous réservons également le droit de modérer les packs ou certains stickers
+après leur mise en ligne.
 
 L'idée est de conserver une atmosphère familiale : j'aimerais que ma grand-mère
 puisse parcourir les packs d'autocollants tranquillement.
@@ -49,7 +53,7 @@ pour télécharger vos stickers sur Signal.
 
 > Note : lors de la création des stickers, n'oubliez pas d'ajouter un contour
 > blanc pour améliorer la lisibilité sur les thèmes sombres ! Vous pouvez
-> utiliser [ce script](https://gist.github.com/romainricard/d0d26015ed08387dbf89b24c92bb2bca),
+> utiliser [ce script](https://github.com/signalstickers/stickers-scripts/blob/master/add_border.sh),
 > ou [ce projet](https://framagit.org/luc/stickerify-for-signal)
 > pour redimensionner automatiquement et ajouter un contour blanc sur toutes
 > les images PNG et WEBP d'un répertoire.
@@ -94,4 +98,4 @@ Les autocollants de Telegram ont été portés par [@signal-stickers](https://gi
 
 ## Licence
 
-Consultez [LICENCE.md](LICENSE.md).
+Consultez [LICENSE.md](LICENSE.md).
