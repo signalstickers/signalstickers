@@ -21556,6 +21556,17 @@ d82c23e5c1321e7a41df7f6b3212cf79:
   tags: []
   nsfw: false
   original: false
+5dd3e3cbb01b0b82baf7927a7d8844e1:
+  key: b6b0526ac91a6984964e58d6bd46e636d8a7aa2d9b27a375012e71152a151ac9
+  source: >-
+    https://www.reddit.com/r/signal/comments/idyfc2/friday_fun_your_weekly_rsignal_sticker_pack_thread/g2ibofg/
+  tags:
+    - communism
+    - comrade
+    - lenin
+    - marx
+  nsfw: false
+  original: false
 085dd0ddcac423a7be5807bf42301349:
   key: e891105ac845afd33bd593dfd436eff9f337db8c3f9626e30ba61413e2c1678a
   source: signalstickers.com
@@ -21564,6 +21575,7 @@ d82c23e5c1321e7a41df7f6b3212cf79:
     - cute
     - for children
     - 'ぴよまる'
+    - Quan Inc
   nsfw: false
   original: false
   animated: true
