@@ -61,12 +61,6 @@ const StickerPackDetail = styled.div`
     }
   }
 
-  & .author {
-    font-size: 16px;
-    font-weight: 400;
-    opacity: 0.6;
-  }
-
   & .list-group-item {
     align-items: center;
     background-color: transparent;
@@ -182,7 +176,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
 
 
   /**
-   * [Event Handler] Search for packs from the same author
+   * [Event Handler] Search for packs from the same author.
    */
   const onAuthorClick = React.useCallback((event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -255,17 +249,15 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       <div className="row mb-4 flex-column-reverse flex-lg-row">
         <div className="col-12 col-lg-8 mt-2 mt-lg-0">
           <h1>{stickerPack.manifest.title}</h1>
-          <div className="author">
-            <button
-              type="button"
-              role="link"
-              title={`View more packs from ${author}`}
-              className="btn btn-link p-0 border-0 text-left"
-              onClick={onAuthorClick}
-            >
-              {author}
-            </button>
-          </div>
+          <button
+            type="button"
+            role="link"
+            title={`View more packs from ${author}`}
+            className="btn btn-link p-0 border-0 text-left"
+            onClick={onAuthorClick}
+          >
+            {author}
+          </button>
         </div>
         <div className="col-12 col-lg-4 d-flex d-lg-block justify-content-between text-md-right mb-3 mb-lg-0">
           {stickerPack.meta.unlisted ?
