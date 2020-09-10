@@ -4,6 +4,17 @@
 # When adding a new pack, please remember to add it AT THE END OF THE FILE,
 # and pay attention to the indentation.
 
+c3657a3de0c63b0e766813287156a0cc:
+  key: 1f8f37b1e5f4a6f16026d5b26f85fdbcd48c9dd0431855db91d7bffa549e7f35
+  source: 'Fat Rabbit Farm - original artists Jason Ponggasm and Patty Veriboa '
+  tags:
+    - rabbit
+    - bunny
+    - chubby
+    - fat
+  nsfw: false
+  original: false
+
 ae1d343accdec586fe19954a6be7aee9:
   key: ffea9831b6af7617e4ab1b3868ce6f26f5c7c8ab3f05fb8d68b436f9253232ab
   source: ''
