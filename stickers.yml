@@ -21718,3 +21718,12 @@ c3657a3de0c63b0e766813287156a0cc:
     - Mist
   nsfw: false
   original: false
+3e47a8f6268590ab05ae916ff905e362:
+  key: f3b969531c1342efdb570d8b49a00a0c93ba805e67dc7b8c584e8be65a8aa78a
+  source: 'Yara, 亞拉, https://www.facebook.com/capoocat/'
+  tags:
+    - Bugcat
+    - Capoo
+    - Bugcat Capoo
+  nsfw: false
+  original: false
