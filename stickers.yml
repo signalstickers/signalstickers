@@ -21698,6 +21698,26 @@ c3657a3de0c63b0e766813287156a0cc:
     - fat
   nsfw: false
   original: false
+1f46e10b1139aecd92673537d4a0285f:
+  key: 37e4839eda75936d453ad45f95b7e1d2d72e0bc5107b40f9512a4c6a3c845a87
+  source: Linus Tech Tips
+  tags:
+    - linus
+    - tech
+    - tips
+    - ltt
+    - meme
+  nsfw: false
+  original: false
+22d38ce1f53001673c004aa5e7aa9f32:
+  key: d4efdd19c7742fcc31fa0577471df58a4a6c23866baead869cd80221b3784266
+  source: 'https://telegram-store.com/catalog/stickers-en/st-berndbrot-en/'
+  tags:
+    - Berd
+    - Brot
+    - Mist
+  nsfw: false
+  original: false
 3e47a8f6268590ab05ae916ff905e362:
   key: f3b969531c1342efdb570d8b49a00a0c93ba805e67dc7b8c584e8be65a8aa78a
   source: 'Yara, 亞拉, https://www.facebook.com/capoocat/'
