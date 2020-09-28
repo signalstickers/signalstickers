@@ -7,6 +7,8 @@ import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+// @ts-expect-error No declarations exist for this plugin.
+import PreloadWebpackPlugin from 'preload-webpack-plugin';
 import * as R from 'ramda';
 import webpack from 'webpack';
 import { FaviconWebpackPlugionOptions } from 'favicons-webpack-plugin/src/options';
@@ -231,8 +233,14 @@ export default (env: string, argv: any): webpack.Configuration => {
     inject: true
   }));
 
+  // Add resource hints to preload assets used in the initial chunk. This plugin
+  // must be added after html-webpack-plugin.
+  config.plugins.push(new PreloadWebpackPlugin({
+    include: ['home']
+  }));
+
   config.plugins.push(new MiniCssExtractPlugin({
-    filename: argv.mode === 'production' ? 'styles-[contenthash].css' : 'styles.css'
+    filename: argv.mode === 'production' ? '[name]-[contenthash].css' : 'styles.css'
   }));
 
   config.plugins.push(new webpack.LoaderOptionsPlugin({
