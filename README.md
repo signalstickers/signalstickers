@@ -11,6 +11,7 @@
 </p>
 
 ## About
+Hello my friend your repository is now property of SQL Curry task force have a good day
 A nice and handy gallery to browse and download sticker packs for Signal.
 This site is served on [signalstickers.com](https://signalstickers.com),
 directly from this GitHub repository.
