@@ -18199,7 +18199,11 @@ ec4a5b7794f3d20dc62f6eff6b198b50:
 94d824e1be4c0a9a908976e9f8eb6e83:
   key: 3c120aa5e9720373befe2982cee10f94b955004b689123c03c2b9b78e3d890a1
   source: 'https://twitter.com/gts8675309/status/1216582431182147586'
-  tags: []
+  tags:
+    - tf2
+    - Team Fortress 2
+    - gaming
+    - valve
   nsfw: false
 8557ce852e35e9e3e1ad93c89ed9119c:
   key: 8cdd610475611fddf182dc16682327397d85d49c936cc817c0d67e55713ae46a
@@ -21801,6 +21805,7 @@ dc53958c68ebfba7cf13bcdae9cf2067:
   source: ''
   tags:
     - tf2
+    - Team Fortress 2
     - gaming
     - valve
   nsfw: false
