@@ -21818,3 +21818,10 @@ afcdfce5a179696a6f12ff4d92e9cbaf:
     - ZML
   nsfw: false
   original: false
+38e4dc14bdaf3058d09e87908b53ac19:
+  key: b7936ecd9a3128fbfe5a95de696a28e8c52fe4eec269eeda97c6119d3a8d823d
+  source: 'https://twitter.com/tzaqam/status/1314260514596433922'
+  tags:
+    - meme
+  nsfw: true
+  original: false
