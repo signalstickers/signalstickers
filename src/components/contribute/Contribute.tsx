@@ -132,7 +132,6 @@ SyntaxHighlighter.registerLanguage('yaml', yamlLanguage);
 const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = React.useState(false);
   const [ymlBlob, setYmlBlob] = React.useState('');
-  const [previewUrl, setPreviewUrl] = React.useState('');
   const openPrButton = React.useRef<HTMLAnchorElement>(null);
 
 
@@ -146,7 +145,6 @@ const ContributeComponent: React.FunctionComponent = () => {
   const onSubmitClick = () => {
     setHasBeenSubmitted(true);
     setYmlBlob('');
-    setPreviewUrl('');
   };
 
 
@@ -178,10 +176,6 @@ const ContributeComponent: React.FunctionComponent = () => {
     }, {
       indent: 2
     }).trim());
-
-    setPreviewUrl(
-      `https://signalstickers.com/pack/${packId}?key=${packKey}`
-    );
 
     if (openPrButton.current) {
       openPrButton.current.scrollIntoView({behavior: 'smooth'});
@@ -489,28 +483,7 @@ const ContributeComponent: React.FunctionComponent = () => {
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-12">
-              <p className="mt-4 mb-4">
-                Please also include this link in your Pull Request description, as it allows us to
-                review your pack easily:
-              </p>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <div className="card mb-5">
-                <SyntaxHighlighter
-                  language="yaml"
-                  style={syntaxTheme}
-                  customStyle={{margin: '0'}}
-                >
-                  {previewUrl}
-                </SyntaxHighlighter>
-              </div>
-            </div>
-          </div>
-          <div className="row">
+          <div className="row mt-4">
             <div className="col-12 col-md-10 offset-md-1">
               <ExternalLink
                 title="Open a Pull Request"
