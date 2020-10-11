@@ -1,6 +1,6 @@
 ---
-# This YAML file lists all packs published on signalstickers.com. 
-# 
+# This YAML file lists all packs published on signalstickers.com.
+#
 # When adding a new pack, please remember to add it AT THE END OF THE FILE,
 # and pay attention to the indentation.
 
@@ -21825,6 +21825,18 @@ afcdfce5a179696a6f12ff4d92e9cbaf:
     - meme
   nsfw: true
   original: false
+2520d4fae4bca618798f4780528633c3:
+  key: f6e6e36736eb52bdeef2f12f73de73288a02596a5c510be266d6a62f81b62276
+  source: 'Anonymous.  Source https://www.hko.gov.hk/en/wservice/warning/details.htm'
+  tags:
+    - HK
+    - Hong Kong
+    - HK Observatory
+    - weather
+    - 香港
+    - 香港天文台
+  nsfw: false
+  original: true
 232581dddbfa4c1f65d99214db19fc3f:
   key: a5715f2d4974f3b42d64533b05f786c4426201a6664decaa3f600cda6755f8bd
   source: 'https://github.com/Moniet'
