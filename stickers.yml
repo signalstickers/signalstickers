@@ -21933,3 +21933,10 @@ c938f3046e82c8ac9b1f3d57804fd196:
     - anime
   nsfw: false
   original: false
+b2e52b07dfb0af614436508c51aa24eb:
+  key: 66224990b3e956ad4a735830df8cd071275afeae79db9797e57d99314daffc77
+  source: 'https://t.me/addstickers/foobar/'
+  tags: []
+  nsfw: true
+  original: true
+  animated: false
