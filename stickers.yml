@@ -21902,3 +21902,28 @@ c938f3046e82c8ac9b1f3d57804fd196:
     - cute
   nsfw: false
   original: false
+4fe8836b14d499c7640a68d1e9adcdf6:
+  key: 3fb51b9e2ac163fad79708cbf0dadc084f43589b3c4dc64657acb1783f68ad4a
+  source: 'https://t.me/addstickers/aaaaanime'
+  tags:
+    - anime
+    - angry
+  nsfw: false
+  original: false
+204aea5d813dae52654407f9d9e84478:
+  key: d4daf09755a615871a18f7e45eba2025e9b6c8ab42cb872e22165199b2daa37a
+  source: 'https://t.me/addstickers/Caticker'
+  tags:
+    - cats
+624b2d211d202436499f371b7a5e45a2:
+  key: 9e8af23cf8e0cfbae4a1c1810a07d649484bcf70e4176180c388249c07394000
+  source: 'https://t.me/addstickers/webcomicname'
+  tags:
+    - comic
+    - meme
+7b62ed2c91749285131e7b42e2adade9:
+  key: cc927c48a9f0367ad370906b71cb3b9373fb940d93ab5ef31d1cd40aa50871a1
+  source: 'https://t.me/addstickers/Hugsv9'
+  tags:
+    - hugs
+    - anime
