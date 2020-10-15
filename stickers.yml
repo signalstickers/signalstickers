@@ -21915,15 +21915,21 @@ c938f3046e82c8ac9b1f3d57804fd196:
   source: 'https://t.me/addstickers/Caticker'
   tags:
     - cats
+  nsfw: false
+  original: false
 624b2d211d202436499f371b7a5e45a2:
   key: 9e8af23cf8e0cfbae4a1c1810a07d649484bcf70e4176180c388249c07394000
   source: 'https://t.me/addstickers/webcomicname'
   tags:
     - comic
     - meme
+  nsfw: false
+  original: false
 7b62ed2c91749285131e7b42e2adade9:
   key: cc927c48a9f0367ad370906b71cb3b9373fb940d93ab5ef31d1cd40aa50871a1
   source: 'https://t.me/addstickers/Hugsv9'
   tags:
     - hugs
     - anime
+  nsfw: false
+  original: false
