@@ -1,4 +1,6 @@
 import bytes from 'bytes';
+import * as R from 'ramda';
+
 import {BOOTSTRAP_BREAKPOINTS} from 'etc/constants';
 
 
@@ -62,4 +64,22 @@ export function sendBeacon() {
       console.log(`${err}. No worries, it's okay!`);
     }
   }
+}
+
+
+/**
+ * Returns true if the provided error was thrown because the browser is blocking
+ * use of local storage and/or other storage back-ends.
+ */
+export function isStorageUnavailableError(err: any) {
+  const patterns = [
+    // Firefox in private mode.
+    /the quota has been exceeded/gi
+  ];
+
+  if (err?.message) {
+    return Boolean(R.find(curPattern => R.test(curPattern, err.message), patterns));
+  }
+
+  return false;
 }

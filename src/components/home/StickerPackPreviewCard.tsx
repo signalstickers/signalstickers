@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
 import {styled} from 'linaria/react';
+import {rgba} from 'polished';
+import React from 'react';
 import useAsyncEffect from 'use-async-effect';
 
+import {GRAY_DARKER_2, GRAY_DARKER} from 'etc/colors';
 import {StickerPackPartial} from 'etc/types';
 import {getConvertedStickerInPack} from 'lib/stickers';
 
@@ -12,67 +14,78 @@ export interface Props {
   stickerPack: StickerPackPartial;
 }
 
+interface StickerPackPreviewCardProps extends React.ComponentProps<'div'> {
+  nsfw?: boolean;
+  original?: boolean;
+  animated?: boolean;
+}
+
 
 // ----- Styles ----------------------------------------------------------------
 
-const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: boolean} & {original?: boolean} & {animated?: boolean} >`
+const StickerPackPreviewCard = styled.div<StickerPackPreviewCardProps>`
+  background-color: transparent;
   text-align: center;
   transition: box-shadow 0.15s ease-in-out;
   overflow: hidden;
 
-  &::before, &::after{
-    top: 13px;
-    position: absolute;
-    padding: 3px 6px 3px 3px;
-    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.2);
+  &::before, &::after {
     color: white;
     font-size: 12px;
+    padding: 3px 6px 3px 3px;
+    position: absolute;
+    top: 13px;
   }
 
-  &::before{
+  &::before {
     content: 'Original';
-    left: 0;
-    display: ${props => (props.original ? 'block' : 'none')};
-    background-color: #3a76f0;
+    background-color: var(--primary);
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
+    color: var(--white);
+    display: ${props => props.original ? 'block' : 'none'};
+    font-size: 12px;
+    left: 0;
+    left: O;
+    padding: 3px 6px;
+    position: absolute;
+    top: 13px;
   }
 
-  &::after{
+  &::after {
     content: 'Animated';
-    right: 0;
-    display: ${props => (props.animated ? 'block' : 'none')};
-    background-color: #f57f17;
+    background-color: var(--orange);
     border-bottom-left-radius: 4px;
     border-top-left-radius: 4px;
+    display: ${props => props.animated ? 'block' : 'none'};
+    padding: 3px 6px;
+    right: 0;
   }
 
   & .card-img-top {
+    filter: ${props => props.nsfw ? 'blur(4px)' : 'none'};
     height: 72px;
-    width: 72px;
-    object-fit: contain;
-    margin-top: 24px;
     margin-bottom: 24px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 24px;
+    object-fit: contain;
     transition: transform 0.15s ease-in;
-    filter: ${props => (props.nsfw ? 'blur(4px)' : 'none')};
+    width: 72px;
   }
 
   & .card-header {
     border-bottom: none;
     border-top: 1px solid rgba(0, 0, 0, 0.125);
-    color: black;
     font-size: 14px;
-    white-space: nowrap;
     overflow: hidden;
     position: relative;
+    white-space: nowrap;
 
     &::after {
-      background: linear-gradient(90deg, rgba(247, 247, 247, 0) 0%, rgba(247, 247, 247, 1) 50%);
+      content: ' ';
       border-bottom-right-radius: 4px;
       bottom: 0;
-      content: ' ';
       display: block;
       pointer-events: none;
       position: absolute;
@@ -93,13 +106,49 @@ const StickerPackPreviewCard = styled.div<React.ComponentProps<'div'> & {nsfw?: 
 
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
   }
+
+  .theme-light & {
+    &::before, &::after {
+      box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    & .card-header {
+      color: var(--dark);
+
+      &::after {
+        /* This color is a one-off (even in Bootstrap) used for card headers. */
+        background: linear-gradient(90deg, rgba(247, 247, 247, 0) 0%, rgba(247, 247, 247, 1) 50%);
+      }
+    }
+  }
+
+  .theme-dark & {
+    background-color: var(--gray-dark);
+    border-color: ${GRAY_DARKER};
+    color: var(--light);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+      box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    & .card-header {
+      background-color: ${GRAY_DARKER_2};
+      border-color: ${GRAY_DARKER};
+      color: var(--light);
+
+      &::after {
+        background: linear-gradient(90deg, ${rgba(GRAY_DARKER_2, 0)} 0%, ${rgba(GRAY_DARKER_2, 1)} 50%);
+      }
+    }
+  }
 `;
 
 
 // ----- Component -------------------------------------------------------------
 
 const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props => {
-  const [cover, setCover] = useState<string | undefined>();
+  const [cover, setCover] = React.useState<string | undefined>();
   const {meta, manifest} = props.stickerPack;
 
 
@@ -134,11 +183,13 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
       nsfw={meta.nsfw}
       aria-label={title}
     >
-      {cover
-        ? <img className="card-img-top" src={cover} alt="Cover" />
-        : <div className="card-img-top">{' '}</div>
+      {cover ?
+        <img className="card-img-top" src={cover} alt="Cover" /> :
+        <div className="card-img-top">{' '}</div>
       }
-      <div className="card-header">{title}</div>
+      <div className="card-header">
+        {title}
+      </div>
     </StickerPackPreviewCard>
   );
 };

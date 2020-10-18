@@ -22,8 +22,6 @@ import {getStickerPackDirectory, getStickerPack} from 'lib/stickers';
 // ----- Styles ----------------------------------------------------------------
 
 const Contribute = styled.div`
-  background-color: white;
-
   /**
    * Ensures error feedback containers are always visible (even if empty) so
    * that controls do not jump around as they move between valid and invalid
@@ -134,7 +132,6 @@ SyntaxHighlighter.registerLanguage('yaml', yamlLanguage);
 const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = React.useState(false);
   const [ymlBlob, setYmlBlob] = React.useState('');
-  const [previewUrl, setPreviewUrl] = React.useState('');
   const openPrButton = React.useRef<HTMLAnchorElement>(null);
 
 
@@ -148,7 +145,6 @@ const ContributeComponent: React.FunctionComponent = () => {
   const onSubmitClick = () => {
     setHasBeenSubmitted(true);
     setYmlBlob('');
-    setPreviewUrl('');
   };
 
 
@@ -180,10 +176,6 @@ const ContributeComponent: React.FunctionComponent = () => {
     }, {
       indent: 2
     }).trim());
-
-    setPreviewUrl(
-      `https://signalstickers.com/pack/${packId}?key=${packKey}`
-    );
 
     if (openPrButton.current) {
       openPrButton.current.scrollIntoView({behavior: 'smooth'});
@@ -239,7 +231,7 @@ const ContributeComponent: React.FunctionComponent = () => {
       Signal Stickers repository
     </ExternalLink>
   ), []);
-  
+
   const twitterLink = React.useMemo(() => (
     <ExternalLink
       href="https://twitter.com/signalstickers"
@@ -306,7 +298,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       id="signal-art-url"
                       name="signalArtUrl"
                       validate={validators.signalArtUrl}
-                      className={cx('form-control', errors.signalArtUrl && 'is-invalid')}
+                      className={cx('form-control', 'mt-2', errors.signalArtUrl && 'is-invalid')}
                       placeholder="https://signal.art/addstickers/#pack_id=<your pack id>&pack_key=<your pack key>"
                     />
                     <div className="invalid-feedback">
@@ -326,7 +318,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       id="source"
                       name="source"
                       validate={validators.source}
-                      className={cx('form-control', errors.source && 'is-invalid')}
+                      className={cx('form-control', 'mt-2', errors.source && 'is-invalid')}
                     />
                     <small className="form-text text-muted">Original author, website, company, etc.</small>
                     <div className="invalid-feedback">
@@ -346,7 +338,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       id="tags"
                       name="tags"
                       validate={validators.tags}
-                      className={cx('form-control', errors.tags && 'is-invalid')}
+                      className={cx('form-control', 'mt-2', errors.tags && 'is-invalid')}
                     />
                     <small className="form-text text-muted">Comma-separated list of words.</small>
                     <div className="invalid-feedback">
@@ -491,28 +483,7 @@ const ContributeComponent: React.FunctionComponent = () => {
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-12">
-              <p className="mt-4 mb-4">
-                Please also include this link in your Pull Request description, as it allows us to
-                review your pack easily:
-              </p>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <div className="card mb-5">
-                <SyntaxHighlighter
-                  language="yaml"
-                  style={syntaxTheme}
-                  customStyle={{margin: '0'}}
-                >
-                  {previewUrl}
-                </SyntaxHighlighter>
-              </div>
-            </div>
-          </div>
-          <div className="row">
+          <div className="row mt-4">
             <div className="col-12 col-md-10 offset-md-1">
               <ExternalLink
                 title="Open a Pull Request"

@@ -22,13 +22,21 @@ Use the tool [Contribute](https://signalstickers.com/contribute) at the top of
 > Note: adding a sticker pack requires [a Github account](https://github.com/join).
 > It's free!
 
+Alternatively, you can send us the results of the
+[Contribute](https://signalstickers.com/contribute) page via a Twitter private
+message at [@signalstickers](https://twitter.com/signalstickers). Please only
+use this if you have no way to open a PR on Github!
+
 ### Contribution guidelines
-We will accept all stickers, **except**:
+We reserve the right to moderate and refuse packs or stickers. In particular:
 + Stickers packs that call for hatred or violence against people or communities
   based on age, body size, disability, ethnicity, gender identity and
   expression, nationality, personal appearance, race, religion, or sexual
   identity and orientation;
 + Sticker packs that directly promote a brand or a company.
+
+We also reserve the right to moderate packs or stickers after their submission
+and acceptance.
 
 The idea is to keep a family atmosphere: I'd like my grandmother to be able to
 navigate sticker packs quietly.
@@ -40,7 +48,7 @@ Follow the tutorial on the [Signal support site](https://support.signal.org/hc/a
 to upload your stickers to Signal.
 
 > Note: when creating stickers, don't forget to add a white stroke to improve
-> legibility on dark themes! You can use [this script](https://gist.github.com/romainricard/d0d26015ed08387dbf89b24c92bb2bca)
+> legibility on dark themes! You can use [this script](https://github.com/signalstickers/stickers-scripts/blob/master/add_border.sh)
 > or use [this project](https://framagit.org/luc/stickerify-for-signal)
 > to automatically resize and add a white stroke on all the PNG and WEBP images
 > of a directory.
@@ -78,7 +86,7 @@ This is not the goal of this project :-)
 code.
 
 The stickers were added [by the community](https://github.com/signalstickers/signalstickers/graphs/contributors).
-The stickers from Telegram were ported by [@signal-stickers](https://github.com/signal-stickers).
+Most of stickers from Telegram were ported by [@signal-stickers](https://github.com/signal-stickers).
 
 ## License
 See [LICENSE.md](LICENSE.md).

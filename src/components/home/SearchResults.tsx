@@ -1,5 +1,5 @@
 import {styled} from 'linaria/react';
-import React, {useState, useContext} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {Waypoint} from 'react-waypoint';
 import * as R from 'ramda';
@@ -29,11 +29,11 @@ const PAGE_SIZE = 64;
 
 
 const StickerPackListComponent = () => {
-  const {searchResults} = useContext(StickersContext);
+  const {searchResults} = React.useContext(StickersContext);
   // Used by Waypoint to persist the component across re-renders.
-  const [cursor, setCursor] = useState(0);
+  const [cursor, setCursor] = React.useState(0);
   // Subset of total search results that have been rendered.
-  const [renderedSearchResults, setRenderedSearchResults] = useState<typeof searchResults>([]);
+  const [renderedSearchResults, setRenderedSearchResults] = React.useState<typeof searchResults>([]);
 
 
   /**

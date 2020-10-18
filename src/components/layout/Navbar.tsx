@@ -1,15 +1,20 @@
-import React from 'react';
-import {FaGithub, FaTwitter} from 'react-icons/fa';
-import {BsBoxArrowUpRight, BsList} from 'react-icons/bs';
-import {Link, NavLink} from 'react-router-dom';
 import {styled} from 'linaria/react';
 import {darken} from 'polished';
+import React from 'react';
+import {BsBoxArrowUpRight, BsList} from 'react-icons/bs';
+import {FaGithub, FaTwitter} from 'react-icons/fa';
+import {FiSun, FiMoon} from 'react-icons/fi';
+import {Link, NavLink} from 'react-router-dom';
 
 import signalStickersLogoUrl from 'assets/favicon.png';
 import ExternalLink from 'components/general/ExternalLink';
+import AppStateContext from 'contexts/AppStateContext';
+import {PRIMARY_DARKER} from 'etc/colors';
 import {NAVBAR_HEIGHT} from 'etc/constants';
 import {bp} from 'lib/utils';
 
+
+// ----- Types -----------------------------------------------------------------
 
 interface NavLinkDescriptor {
   title: string;
@@ -66,18 +71,16 @@ const StyledNav = styled.nav`
     }
   }
 
-  /* Creates border between the navbar and menu items when open (on mobile). */
-  & .container {
-    &:before {
-      content: '';
-      display: block;
-      position: absolute;
-      width: 200vw;
-      left: -100vw;
-      top: ${NAVBAR_HEIGHT + 1}px;
-      height: 1px;
-      background-color: rgba(255, 255, 255, 0.33);
-    }
+  /* Creates a border between the navbar and menu items when open (on mobile). */
+  & .container::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 200vw;
+    left: -100vw;
+    top: ${NAVBAR_HEIGHT + 1}px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.33);
   }
 
   & .navbar-brand {
@@ -121,12 +124,27 @@ const StyledNav = styled.nav`
     fill: ${darken(0.1, 'white')};
     transform: scale(1.2) translateY(1px);
   }
+
+  .theme-light & {
+    background-color: var(--primary);
+  }
+
+  .theme-dark & {
+    background-color: ${PRIMARY_DARKER};
+
+    & .navbar-brand img {
+      filter: brightness(0.75);
+    }
+  }
 `;
 
 
 // ----- Component -------------------------------------------------------------
 
 const NavbarComponent: React.FunctionComponent = () => {
+  const useAppState = React.useContext(AppStateContext);
+  const [darkMode, setDarkMode] = useAppState<boolean>('darkMode');
+
   const NAVBAR_TOGGLE_ID = 'navbar-toggle';
 
   const navLinks: Array<NavLinkDescriptor> = [{
@@ -159,6 +177,14 @@ const NavbarComponent: React.FunctionComponent = () => {
 
 
   /**
+   * Toggles dark mode.
+   */
+  const toggleDarkMode = React.useCallback(() => {
+    setDarkMode(!darkMode);
+  }, [darkMode]);
+
+
+  /**
    * Closes the navigation menu (on small devices) upon navigation.
    */
   const collapseNavigation = React.useCallback(() => {
@@ -167,7 +193,7 @@ const NavbarComponent: React.FunctionComponent = () => {
 
 
   return (
-    <StyledNav className="navbar navbar-expand-md navbar-dark bg-primary">
+    <StyledNav className="navbar navbar-expand-md navbar-dark">
       <div className="container">
         <Link to="/" className="navbar-brand" onClick={collapseNavigation}>
           <img src={signalStickersLogoUrl} alt="Signal Stickers Logo" /> Signal Stickers
@@ -207,6 +233,29 @@ const NavbarComponent: React.FunctionComponent = () => {
                 }
               </li>
             ))}
+            <li className="nav-item">
+              <button
+                type="button"
+                className="btn btn-link nav-link py-3 py-md-2"
+                title="Dark Mode"
+                onClick={toggleDarkMode}
+              >
+                {darkMode ?
+                  <>
+                    <span className="d-inline-block d-md-none mr-1">
+                      Light mode
+                    </span>
+                    <FiSun />
+                  </>
+                  :
+                  <>
+                    <span className="d-inline-block d-md-none mr-1">
+                      Dark mode
+                    </span>
+                    <FiMoon />
+                  </>}
+              </button>
+            </li>
           </ul>
         </div>
       </div>
