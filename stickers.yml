@@ -21933,6 +21933,24 @@ c938f3046e82c8ac9b1f3d57804fd196:
     - anime
   nsfw: false
   original: false
+28dbcfe61c501b279923bf9379b85f20:
+  key: a43cba6890b50047ef75f6c529739715350a8613396e00090d8090bb49bc56d9
+  source: ''
+  tags:
+    - bruce
+    - lee
+    - martial
+    - arts
+    - telegram
+  nsfw: false
+  original: false
+0ba1bac9ba1ce11a0b796d6961114573:
+  key: 6cddace1db4d6075d42f79fe523c66aa4c5a3c0eb33823556744b042df46bfb1
+  source: ''
+  tags:
+    - telegram
+  nsfw: true
+  original: false
 2aa517ac39319c4d67736eeb6b9803ea:
   key: b1f3b92ad062c57c20dbdc217becce091cee7535ca42ebce9acd40d403ad529b
   source: 'https://t.me/addstickers/K5fca99540abb6d239cf0_by_StickerStealRobot'
@@ -21948,14 +21966,6 @@ c4d4ebbb05fa8ce1eec9e279a3ab0710:
     - reactions
     - airplane
   nsfw: false
-  original: false
-63f004e1785c9719e72a4f1c11b4a5db:
-  key: d010eacec119825d834323a5d2f6bbbc329d8d55faa4ec6e4c2942402fbf8be6
-  source: 'https://t.me/addstickers/verylewdgrid'
-  tags:
-    - lewd
-    - anime
-  nsfw: true
   original: false
 7886cf1858200985353bfc5d1220cd19:
   key: 9611daaf0f654bc48ad82d10e3bdcc75685ceeb412da2f69c8e5cf73e17581eb
