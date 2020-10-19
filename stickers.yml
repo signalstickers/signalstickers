@@ -22023,3 +22023,13 @@ f56a5ed1c7ddeed4d19d17cf03622ee5:
     - homem do bussaco
   nsfw: false
   original: false
+8df43cce84a815eaebe0f195511821b0:
+  key: 6bd794cd109d67de63c6191769f49f7073fbda7a9d9c5d007953adeec1861704
+  source: 'https://telegram.dog/addstickers/dbaa2a7301'
+  tags: 
+    - 'a'
+    - 'b'
+    - 'c'
+  nsfw: true
+  original: false
+  animated: false
