@@ -22086,3 +22086,12 @@ dcba9f4c40858b71e10450c9658a0d3a:
     - CZ
   nsfw: false
   original: false
+b0a021d0207a0b4ce94cab8a32aa1fcf:
+  key: 145a50491cf03d533d7344381a67729dc7d231d353b5cdec4c71740a13c021b2
+  source: 'https://signalstickers.com/foobbar?wow'
+  tags: 
+    - 'a'
+    - 'b'
+  nsfw: True
+  original: False
+  animated: True
