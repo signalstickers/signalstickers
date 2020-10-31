@@ -21361,6 +21361,7 @@ f6f4e0491082707d5a1c8812853d79cc:
     - espanol
     - spanish
     - español
+    - conexionsegura
   nsfw: false
   original: true
 9778603c0c0c220da6dbc92a85007373:
@@ -21370,6 +21371,7 @@ f6f4e0491082707d5a1c8812853d79cc:
     - espanol
     - spanish
     - español
+    - conexionsegura
   nsfw: false
   original: true
 dcaea672ee5be0bc7662314edca5de1b:
@@ -21379,6 +21381,7 @@ dcaea672ee5be0bc7662314edca5de1b:
     - espanol
     - spanish
     - español
+    - conexionsegura
   nsfw: false
   original: true
 868cdefedba1cb415fd5e99ef7e1a577:
@@ -22116,6 +22119,10 @@ e785f1916214d9d59a3d609e98d14e76:
   source: 'https://conexionsegura.org/signal'
   tags:
     - meme
+    - conexionsegura
+    - espanol
+    - spanish
+    - español
   nsfw: false
   original: false
 4ca3b73e91c5a5102d8e6e6a94b15209:
@@ -22130,3 +22137,15 @@ e785f1916214d9d59a3d609e98d14e76:
     - vote
   nsfw: false
   original: false
+28aac66d4f5ec3674a51901cfe165038:
+  key: 2532234e5b7c2b80b54e7fb0f433a25de81f73137530d73e6e719241d101b2ae
+  source: 'https://conexionsegura.org/signal'
+  tags:
+    - Venezuela
+    - privacy
+    - conexionsegura
+    - espanol
+    - spanish
+    - español
+  nsfw: false
+  original: true
