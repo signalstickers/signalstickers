@@ -30,11 +30,16 @@ export default (env: string, argv: any): webpack.Configuration => {
 
   config.entry = {
     app: [
+      // As of Babel 7.4.0, @babel/polyfill has been deprecated in favor of
+      // directly including core-js/stable (to polyfill ECMAScript features) and
+      // regenerator-runtime/runtime (needed to use transpiled generator
+      // functions).
       'core-js/stable',
       'regenerator-runtime/runtime',
-      'react-hot-loader/patch',
+      // Required in development to support hot-reloading.
+      argv.mode === 'development' ? 'react-hot-loader/patch' : '',
       path.resolve(PKG_ROOT, 'src', 'index.tsx')
-    ]
+    ].filter(Boolean)
   };
 
   config.output = {
@@ -82,10 +87,7 @@ export default (env: string, argv: any): webpack.Configuration => {
   config.module.rules.push({
     test: /\.css$/,
     use: [{
-      loader: MiniCssExtractPlugin.loader,
-      options: {
-        hmr: true
-      }
+      loader: MiniCssExtractPlugin.loader
     }, {
       loader: 'css-loader',
       options: {

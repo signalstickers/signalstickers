@@ -35,7 +35,10 @@ module.exports = require('@darkobits/ts-unified/dist/config/package-scripts')(({
   };
 
   scripts.prepare = {
-    script: npsUtils.series(scripts.build.script, scripts.test.script)
+    script: npsUtils.series(
+      scripts.build.script,
+      scripts.test.script
+    )
   };
 
   return {scripts};
