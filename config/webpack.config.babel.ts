@@ -9,6 +9,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import { FaviconWebpackPlugionOptions } from 'favicons-webpack-plugin/src/options';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -53,21 +54,6 @@ export default (env: string, argv: any): webpack.Configuration => {
 
 
   // ----- Loaders -------------------------------------------------------------
-
-  // ESLint
-  config.module.rules.push({
-    test: /\.(ts|tsx)$/,
-    exclude: /node_modules/,
-    enforce: 'pre',
-    use: [{
-      loader: 'eslint-loader',
-      options: {
-        emitErrors: true,
-        emitWarning: true,
-        failOnError: argv.mode === 'production'
-      }
-    }]
-  });
 
   // TypeScript & JavaScript files.
   config.module.rules.push({
@@ -168,7 +154,7 @@ export default (env: string, argv: any): webpack.Configuration => {
   };
 
 
-  // ----- Plugins -------------------------------------------------------------
+  // ----- Icons ---------------------------------------------------------------
 
   const iconsBaseConfig: Partial<FaviconWebpackPlugionOptions> = {
     mode: 'webapp',
@@ -230,7 +216,8 @@ export default (env: string, argv: any): webpack.Configuration => {
     }
   })));
 
-  config.plugins.push(new webpack.NamedModulesPlugin());
+
+  // ----- Plugins -------------------------------------------------------------
 
   config.plugins.push(new HtmlWebpackPlugin({
     filename: 'index.html',
@@ -276,6 +263,22 @@ export default (env: string, argv: any): webpack.Configuration => {
         from: path.resolve(PKG_ROOT, 'static'),
         to: path.resolve(PKG_ROOT, 'dist')
       }]
+    }));
+
+    // This runs ESLint and TypeScript as separate processes, dramatically
+    // speeding-up build times.
+    config.plugins.push(new ForkTsCheckerWebpackPlugin({
+      eslint: {
+        enabled: true,
+        files: './src/**/*.{ts,tsx,js,jsx}'
+      },
+      typescript: {
+        enabled: true,
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true
+        }
+      }
     }));
 
     if (argv.analyze) {
