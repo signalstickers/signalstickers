@@ -1,17 +1,20 @@
 import path from 'path';
 
+import * as R from 'ramda';
+import webpack from 'webpack';
+
+// Plugins.
 import FetchStickerDataPlugin from '@signalstickers/fetch-sticker-data-webpack-plugin';
-import {CleanWebpackPlugin} from 'clean-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
+import { FaviconWebpackPlugionOptions } from 'favicons-webpack-plugin/src/options';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 // @ts-expect-error No declarations exist for this plugin.
 import PreloadWebpackPlugin from 'preload-webpack-plugin';
-import * as R from 'ramda';
-import webpack from 'webpack';
-import { FaviconWebpackPlugionOptions } from 'favicons-webpack-plugin/src/options';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 
 /**
@@ -274,6 +277,16 @@ export default (env: string, argv: any): webpack.Configuration => {
         to: path.resolve(PKG_ROOT, 'dist')
       }]
     }));
+
+    if (argv.analyze) {
+      console.log('Performing bundle analysis. Bundle report will be opened in your default browser.');
+      config.plugins.push(new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        // Use gzipped sizes in the report, because this is the amount of data
+        // we will actually be sending to the user.
+        defaultSizes: 'gzip'
+      }));
+    }
   }
 
 
