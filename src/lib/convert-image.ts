@@ -9,36 +9,60 @@
 import imageType from 'image-type';
 import pQueue from 'p-queue';
 import pWaitFor from 'p-wait-for';
-import {
-  WebpMachine,
-  detectWebpSupport,
-  defaultDetectWebpImage
-} from 'webp-hero';
-import {Webp} from 'webp-hero/libwebp/dist/webp.js';
+import {detectWebpSupport} from 'webp-hero/dist/detect-webp-support';
+import type { WebpMachine } from 'webp-hero/dist/webp-machine';
 
-
-// ----- Fixed Webp Instance ---------------------------------------------------
 
 /**
- * One of Webp Hero's dependencies seems to block user input when a conversion
- * is run. This fix can be found here:
- *
- * https://github.com/chase-moskal/webp-hero/issues/18#issuecomment-560188272
+ * Caches our WebP converter instance so we only import/instantiate it once.
  */
-const webp = new Webp();
-webp.Module.doNotCaptureKeyboard = true;
+let converter: Promise<WebpMachine> | undefined;
+
+
+/**
+ * Dynamically imports web-hero, creates a converter instance, and returns a
+ * Promise that resolves with the instance. This allows us to load this module
+ * (which is rather large) only when we need to use it, and also ensures we only
+ * import/instantiate it once.
+ */
+async function importWebpHero() {
+  if (!converter) {
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    converter = new Promise(async resolve => {
+      console.debug('IMPORT WEBP HERO');
+      const modules = await Promise.all([
+        import(
+          /* webpackChunkName: "webp-hero" */
+          'webp-hero/libwebp/dist/webp.js'
+        ),
+        import(
+          /* webpackChunkName: "webp-hero-machine" */
+          'webp-hero/dist/webp-machine'
+        )
+      ]);
+
+      const {Webp} = modules[0];
+      const {WebpMachine, defaultDetectWebpImage} = modules[1];
+
+      // One of Webp Hero's dependencies seems to block user input when a
+      // conversion is run. This fix can be found here:
+      // See: https://github.com/chase-moskal/webp-hero/issues/18#issuecomment-560188272
+      const webp = new Webp();
+      webp.Module.doNotCaptureKeyboard = true;
+
+      resolve(new WebpMachine({
+        webp,
+        webpSupport: detectWebpSupport(),
+        detectWebpImage: defaultDetectWebpImage
+      }));
+    });
+  }
+
+  return converter;
+}
 
 
 // ----- Locals ----------------------------------------------------------------
-
-/**
- * Module-local WepP to PNG converter.
- */
-const webpConverter = new WebpMachine({
-  webp,
-  webpSupport: detectWebpSupport(),
-  detectWebpImage: defaultDetectWebpImage
-});
 
 /**
  * Ensures we check for WebP support only once.
@@ -100,10 +124,10 @@ export async function convertImage(rawImageData: Uint8Array) {
   if (mimeType === 'image/webp' && !hasWebpSupport) {
     return imageConversionQueue.add(async () => {
       try {
-        // @ts-ignore (`busy` is not an exposed member of WebpMachine.)
-        await pWaitFor(() => webpConverter.busy === false);
-
-        return await webpConverter.decode(rawImageData);
+        const converter = await importWebpHero();
+        // @ts-expect-error (`busy` is not an exposed member of WebpMachine.)
+        await pWaitFor(() => converter.busy === false);
+        return await converter.decode(rawImageData);
       } catch (err) {
         console.error(`[convertImage] Image conversion failed: ${err.message}`);
         throw err;
