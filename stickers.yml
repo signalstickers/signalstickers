@@ -22322,3 +22322,13 @@ e4e746a8f1d85eaceaa3fbfe869fab81:
     - animals
   nsfw: false
   original: true
+a5116eb634fcee0cd6b3c43f04ebcd5c:
+  key: 2630e5cd20b97dd96353983614a5c2e9f6763920eee3bbb3b953e9a3ee5913ba
+  source: 'https://t.me/addstickers/AceAttorneyMome'
+  tags: 
+    - 'Ace Attorney'
+    - 'Reactions'
+    - 'Faces'
+  nsfw: False
+  original: False
+  animated: False
