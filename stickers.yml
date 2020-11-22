@@ -22282,6 +22282,46 @@ e4e746a8f1d85eaceaa3fbfe869fab81:
   nsfw: false
   original: false
   animated: true
+1a938bf6b30dcf78b580cad225f66a20:
+  key: 86600671aadd68413ecdb108f384f685e923378000a0742ca95ba8729909ebf9
+  source: ''
+  tags:
+    - HANKY2
+    - Hanky codes
+    - poppers
+    - gay
+  nsfw: true
+  original: false
+2e18e1cb13453db30832ba27a5bd2f27:
+  key: 8994f7db6b331dfbf92ce60783db561ac134187b2bfb91e65905e3859d4a5d71
+  source: 'https://twitter.com/mjk067/status/1328937310495367170'
+  tags: []
+  nsfw: false
+  original: false
+59fa216a3f317c21b64b2519687bf1a2:
+  key: 83db23c4f3232746f3aceac852a7d82fb2a0ee76474210543d4f92c41ecdad86
+  source: 'https://twitter.com/cattsmall/status/1327761671822118915'
+  tags:
+    - reaction
+  nsfw: false
+  original: true
+51aacb4108bb65355462a414f58a8cf9:
+  key: 9d26c8dbfa8ecce78fe1392455e3fabfeeaed8c1eab021b2ca27f92835da47bd
+  source: 'https://twitter.com/AbortionStories/status/1329471021968080901'
+  tags:
+    - abortion
+    - support
+  nsfw: false
+  original: true
+99352183d0b5f2c4d32e0d0eec2796d7:
+  key: b095df72132d031a5340809a6470c918c662055dbb6f1e9493ab0d03ad1ba6f8
+  source: 'https://twitter.com/StefLSchultz/status/1329659475481989121'
+  tags:
+    - bee
+    - reaction
+    - animals
+  nsfw: false
+  original: true
 e817ad4c902961e186bdc71c4f30833e:
   key: 502fdb851e392171f0815944d7a9167cc97123d439c835ead39a60cefc60c7ba
   source: 'https://telegram.dog/addstickers/sp13bdb'

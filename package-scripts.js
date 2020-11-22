@@ -26,7 +26,11 @@ module.exports = require('@darkobits/ts-unified/dist/config/package-scripts')(({
 
   scripts.build = {
     description: 'Type-check the project, then compile it with Webpack.',
-    script: 'NODE_ENV=production nps typeCheck && webpack --mode=production --config=config/webpack.config.babel.ts'
+    script: 'NODE_ENV=production nps typeCheck && webpack --mode=production --config=config/webpack.config.babel.ts',
+    analyze: {
+      description: 'Build the project, then open a bundle analysis in the default browser.',
+      script: 'webpack --analyze --mode=production --config=config/webpack.config.babel.ts'
+    }
   };
 
   scripts.start = {
@@ -35,7 +39,10 @@ module.exports = require('@darkobits/ts-unified/dist/config/package-scripts')(({
   };
 
   scripts.prepare = {
-    script: npsUtils.series(scripts.build.script, scripts.test.script)
+    script: npsUtils.series(
+      scripts.build.script,
+      scripts.test.script
+    )
   };
 
   return {scripts};
