@@ -89,7 +89,7 @@ const PrivacyPolicy = () => (
       <p>
         We count the number of visitors on <code>signalstickers.com</code> <ExternalLink href="https://gist.github.com/romainricard/3e15e1b7a983722f9e35be9bc4a3e199">
           in a way that does <b>not</b> log your IP address
-        </ExternalLink>, so our visitors count is anonymous.
+        </ExternalLink>, so our visitors count is anonymous. <ExternalLink href="https://ping.signalstickers.com/">Statistics are available here.</ExternalLink>
       </p>
       <p>
         <code>signalstickers.com</code> is hosted on <ExternalLink href="https://pages.github.com/">GitHub Pages</ExternalLink>,
