@@ -22282,7 +22282,6 @@ e4e746a8f1d85eaceaa3fbfe869fab81:
   nsfw: false
   original: false
   animated: true
-
 1a938bf6b30dcf78b580cad225f66a20:
   key: 86600671aadd68413ecdb108f384f685e923378000a0742ca95ba8729909ebf9
   source: ''
@@ -22396,7 +22395,17 @@ cc519668da8f04dad0dde5d60c88a211:
   tags:
     - BG
     - Cylons
-
+  nsfw: false
+  original: false
+ebd7e8e5af6a296c7eae3e773f7c38fe:
+  key: d868aae1e76e10d9f58dd440a0a98dc6e0815fa301791b17e6259ac020df5e0a
+  source: 'https://t.me/addstickers/FunkyGoose'
+  tags:
+    - animated
+    - duck
+  nsfw: true
+  original: false
+  animated: true
 1c98c44cd54f3cfe017a12f79c56a4fe:
   key: 976b3da9738f411b4a0f9e26498335f54a13ce5452eb201d5d16913028731913
   source: 'https://t.me/addstickers/HotCherry'
