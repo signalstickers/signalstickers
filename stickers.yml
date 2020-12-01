@@ -22468,7 +22468,7 @@ d511843bf15edcc2ed58354432dcaf56:
   nsfw: false
   original: false
   animated: true
-  4d14ed77727bb3a53f379064c12a3ec5:
+4d14ed77727bb3a53f379064c12a3ec5:
   key: a69794346f71ecfc533a4c86efda25167e433547a48f40112e091b48874e0a60
   source: Telegram
   tags:
@@ -22489,7 +22489,7 @@ d511843bf15edcc2ed58354432dcaf56:
   nsfw: false
   original: false
   animated: true
-  82bbb0e722f3cfbfa73c981567c8f52b:
+82bbb0e722f3cfbfa73c981567c8f52b:
   key: ff01047867757bebef2d6b3eea0cdca5da294013dc38433bf6d4e65064e11d24
   source: Telegram
   tags:
@@ -22500,10 +22500,13 @@ d511843bf15edcc2ed58354432dcaf56:
   nsfw: false
   original: false
   animated: true
-  293f5ffc19efa5ec5e777c5de95929d2:
+293f5ffc19efa5ec5e777c5de95929d2:
   key: ea0f54e119172bddd959469f4d725c9ee37a43edfc310c49a28067de656bc800
   source: Telegram
   tags:
     - duck
     - cute
     - animated
+  nsfw: false
+  original: false
+  animated: true
