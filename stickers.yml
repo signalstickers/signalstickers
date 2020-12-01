@@ -22416,6 +22416,15 @@ ebd7e8e5af6a296c7eae3e773f7c38fe:
   nsfw: false
   original: false
   animated: true
+a92ed43943b90b6bed0f014a3d0a987d:
+  key: e140abc992215c45c0119e6cb16435aab536a3c703f4ace422f9ec09c2ee4edc
+  source: Telegram
+  tags:
+    - animated
+    - monkey
+  nsfw: false
+  original: false
+  animated: true
 d511843bf15edcc2ed58354432dcaf56:
   key: 71e7d65cccc31ac6f6ca68f8ee0942e9f668ae4f62ce156e1fa6fdfe3a7c825f
   source: Telegram
@@ -22498,6 +22507,3 @@ d511843bf15edcc2ed58354432dcaf56:
     - duck
     - cute
     - animated
-  nsfw: false
-  original: false
-  animated: true
