@@ -50,9 +50,9 @@ const HomeComponent: React.FunctionComponent = () => {
   React.useEffect(() => {
     updateUrl({
       query: {
-        // Coerce empty strings to undefined to cause the query param to be
+        // Coerce empty strings to null to cause the query param to be
         // removed from the URL when the search query is cleared.
-        [SEARCH_QUERY_PARAM]: searchQuery || undefined
+        [SEARCH_QUERY_PARAM]: searchQuery || null
       }
     });
   }, [searchQuery]);
