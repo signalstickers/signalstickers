@@ -22381,11 +22381,28 @@ cc519668da8f04dad0dde5d60c88a211:
     - Deutschland
   nsfw: false
   original: false
+
+895c6541f72d4919951f4e34cfbc829d:
+  key: f77c63f20076987aabb5814c44a2dd6e868ba0dc92abe57184ee0b6fc4a37c0c
+  source: 'https://twitter.com/KlangHerman/status/1332458454695374849'
+  tags:
+    - russia
+    - USSR
+  nsfw: false
+  original: false
+49d6dc0910ce7f3e968aebde67b0bb9d:
+  key: 54f58601abe0b27d320c76643548828c12b5e616c072ef3441d205feb01a416e
+  source: ''
+  tags:
+    - BG
+    - Cylons
+nsfw: false
+original: false
 a92ed43943b90b6bed0f014a3d0a987d:
   key: e140abc992215c45c0119e6cb16435aab536a3c703f4ace422f9ec09c2ee4edc
   source: Telegram
   tags:
     - animated
     - monkey
-  nsfw: false
-  original: false
+nsfw: false
+original: false
