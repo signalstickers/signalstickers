@@ -53,6 +53,14 @@ to upload your stickers to Signal.
 > to automatically resize and add a white stroke on all the PNG and WEBP images
 > of a directory.
 
+### How can I create animated stickers?
+You can use our lib to create animated stickers from GIF/APNG. You can also use
+the Signal Desktop app to create animated stickers from APNG files.
+
+You can also use [some tools we provide to assist you with animated stickers creation](https://github.com/signalstickers/stickers-scripts).
+
+> Note that support for some APNG files is [not perfect on Signal for iOS at the moment.](https://github.com/signalapp/Signal-iOS/issues/4611)
+
 ### Am I required to add my sticker pack to this site to share it with my friends?
 **No**. You can just send any sticker to your friends and they will be able to
 install the pack, or you can share your sticker pack using the `signal.art` link
