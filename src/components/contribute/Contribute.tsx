@@ -179,7 +179,7 @@ const ContributeComponent: React.FunctionComponent = () => {
         tags,
         nsfw: values.isNsfw === 'true' ? true : false,
         original: values.isOriginal === 'true' ? true : false,
-        animated: values.isAnimated === 'true' ? true : false,
+        animated: values.isAnimated === 'true' ? true : false
       }
     }, {
       indent: 2
