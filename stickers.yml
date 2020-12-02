@@ -22425,3 +22425,22 @@ a92ed43943b90b6bed0f014a3d0a987d:
   nsfw: false
   original: false
   animated: true
+0876b357a5a8b06a192506aee2f2e09e:
+  key: e6fa8c3db15d29c3a42e78e2f246bfedb39c8bf0034b067fd6bf5c2289f3e6b1
+  source: Telegram
+  tags:
+    - Greenleaf
+    - cute
+    - animated
+  nsfw: false
+  original: false
+  animated: true
+249818aaf61019027e67397e6af41c4f:
+  key: 1f42ecfc4162e5b90a176911967ce6aa30e00d996b6babe72b2172122df25e02
+  source: Telegram
+  tags:
+    - lizard
+    - animated
+  nsfw: false
+  original: false
+  animated: true
