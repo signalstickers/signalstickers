@@ -213,8 +213,10 @@ bd63b12e10739970d03d84ef08ecd235:
   nsfw: false
 c3995d79cc93b61a24fcfe1195454091:
   key: a2b8c6444fe4635bc7838f607772fe9b8a3fe24dd24a19ecc5895e2dafd11368
-  source: ''
-  tags: []
+  source: Imported from LINE
+  tags:
+    - anime
+    - one punch man
   nsfw: false
 c67dae1c6ca19cc2f3c7525ad68aad3f:
   key: e1593d6d75612b0cc1a3165d446a6722c1dbd706ad21d7fd99b75453d29eb205
