@@ -1,16 +1,16 @@
-import {Formik, Form, Field, ErrorMessage, FieldValidator} from 'formik';
-import {cx} from 'linaria';
-import {styled} from 'linaria/react';
+import { Formik, Form, Field, ErrorMessage, FieldValidator } from 'formik';
+import { cx } from 'linaria';
+import { styled } from 'linaria/react';
 import * as R from 'ramda';
 import React from 'react';
-import {BsBoxArrowUpRight} from 'react-icons/bs';
+import { BsBoxArrowUpRight } from 'react-icons/bs';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism-light';
 import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
 import syntaxTheme from 'react-syntax-highlighter/dist/esm/styles/prism/base16-ateliersulphurpool.light';
 import yaml from 'js-yaml';
 
 import ExternalLink from 'components/general/ExternalLink';
-import {getStickerPackDirectory, getStickerPack} from 'lib/stickers';
+import { getStickerPackDirectory, getStickerPack } from 'lib/stickers';
 
 
 /**
@@ -49,6 +49,7 @@ export interface FormValues {
   tags: string;
   isNsfw?: 'true' | 'false';
   isOriginal?: 'true' | 'false';
+  isAnimated?: 'true' | 'false';
 }
 
 
@@ -72,7 +73,8 @@ const initialValues: FormValues = {
   source: '',
   tags: '',
   isNsfw: undefined,
-  isOriginal: undefined
+  isOriginal: undefined,
+  isAnimated: undefined
 };
 
 /**
@@ -119,6 +121,11 @@ const validators: Record<string, FieldValidator> = {
   },
   isOriginal: (isOriginal?: boolean) => {
     if (isOriginal === undefined) {
+      return 'This field is required.';
+    }
+  },
+  isAnimated: (isAnimated?: boolean) => {
+    if (isAnimated === undefined) {
       return 'This field is required.';
     }
   }
@@ -171,14 +178,15 @@ const ContributeComponent: React.FunctionComponent = () => {
         source: values.source,
         tags,
         nsfw: values.isNsfw === 'true' ? true : false,
-        original: values.isOriginal === 'true' ? true : false
+        original: values.isOriginal === 'true' ? true : false,
+        animated: values.isAnimated === 'true' ? true : false,
       }
     }, {
       indent: 2
     }).trim());
 
     if (openPrButton.current) {
-      openPrButton.current.scrollIntoView({behavior: 'smooth'});
+      openPrButton.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     return true;
@@ -285,7 +293,7 @@ const ContributeComponent: React.FunctionComponent = () => {
             onSubmit={onSubmit}
             validateOnChange={hasBeenSubmitted}
             validateOnBlur={hasBeenSubmitted}
-          >{({values, errors, isValidating, isSubmitting}) => (
+          >{({ values, errors, isValidating, isSubmitting }) => (
             <Form noValidate>
 
               {/* [Field] Signal.art Url */}
@@ -436,6 +444,50 @@ const ContributeComponent: React.FunctionComponent = () => {
                 </div>
               </div>
 
+              {/* [Field] Animated */}
+              <div className="form-group">
+                <div className="form-row">
+                  <legend className={cx('col-12', 'mb-2', errors.isAnimated && 'text-danger')}>
+                    Is your pack animated?
+                  </legend>
+                </div>
+                <div className="form-row">
+                  <div className="col-12 mb-1">
+                    <div className="custom-control custom-radio">
+                      <Field
+                        type="radio"
+                        id="is-animated-true"
+                        name="isAnimated"
+                        validate={validators.isAnimated}
+                        className={cx('custom-control-input', errors.isAnimated && 'is-invalid')}
+                        value="true"
+                        checked={values.isAnimated === 'true'}
+                      />
+                      <label className="custom-control-label" htmlFor="is-animated-true">
+                        Yes
+                      </label>
+                    </div>
+                  </div>
+                  <div className="col-12 mb-1">
+                    <div className="custom-control custom-radio">
+                      <Field
+                        type="radio"
+                        id="is-animated-false"
+                        name="isAnimated"
+                        validate={validators.isAnimated}
+                        className={cx('custom-control-input', errors.isAnimated && 'is-invalid')}
+                        value="false"
+                        checked={values.isAnimated === 'false'}
+                      />
+                      <label className="custom-control-label" htmlFor="is-animated-false">No</label>
+                    </div>
+                    <div className="invalid-feedback">
+                      <ErrorMessage name="isAnimated" />&nbsp;
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* [Control] Submit */}
               <div className="form-group">
                 <div className="form-row">
@@ -476,7 +528,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                 <SyntaxHighlighter
                   language="yaml"
                   style={syntaxTheme}
-                  customStyle={{margin: '0'}}
+                  customStyle={{ margin: '0' }}
                 >
                   {ymlBlob}
                 </SyntaxHighlighter>
