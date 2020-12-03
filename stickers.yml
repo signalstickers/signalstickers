@@ -22854,3 +22854,48 @@ b93f2a708776ba503957199e35750452:
   nsfw: false
   original: false
   animated: true
+f679a710be51d240fc75e64ac10aef6b:
+  key: ae18be70c80e2fdedef90e95d5007ba9fa8fb86ec4f1cc1913053578d16888cf
+  source: Telegram
+  tags:
+    - bear
+    - animal
+  nsfw: false
+  original: false
+  animated: true
+9f85a3a9265faf61c08a69d948a3556a:
+  key: 35226f041c08fa7169566ab736acab371873cb3bddf950b3dc770a1a8f8964ea
+  source: Telegram
+  tags:
+    - pumpkin
+    - fruit
+    - scary
+    - halloween
+    - spooky
+  nsfw: false
+  original: false
+  animated: true
+c3418a1c15c96da1be3271c154f82177:
+  key: 26a268510c5ff1858d50a1ddf80dea862c45d00797c77e86be315f488fad3da2
+  source: Telegram
+  tags:
+    - robot
+    - rabbit
+    - animal
+    - tech
+  nsfw: false
+  original: false
+  animated: true
+81d97fe0d2c67b00ef47bfe134f1055d:
+  key: c90e22289e48760843552c48146abd57ecc3851474396207ecad9562cfe7c9ca
+  source: Telegram
+  tags:
+    - mashup
+    - dog
+    - pumpkin
+    - halloween
+    - scary
+    - cute
+  nsfw: false
+  original: false
+  animated: true
