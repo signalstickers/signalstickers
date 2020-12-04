@@ -22782,6 +22782,14 @@ e245c4a3c57afed5b182c3b272168466:
   nsfw: false
   original: false
   animated: true
+355fedb441e2547365ab0c643e638f2e:
+  key: 5ff100e1fed8c9b7e03a46f3a8c386873581ede5212a2a5d20f02edc919c0549
+  source: Telegram
+  tags:
+    - avatar
+  nsfw: false
+  original: false
+  animated: false
 64b2d9e14c0761d49c41b235c528a0be:
   key: e29b28e7fe2d70341f93bed8b7b7b2606c7e771ae5084f71c3674303627e6200
   source: Telegram
