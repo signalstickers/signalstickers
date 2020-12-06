@@ -22996,3 +22996,14 @@ c3418a1c15c96da1be3271c154f82177:
   nsfw: true
   original: false
   animated: false
+abef89b4590f25ad1332c99e8ae0dd7e:
+  key: 838f36515669f47f7099881cd30430c983998ae153a1532e9338acbf3d7cb8a4
+  source: Telegram
+  tags:
+    - duck
+    - animal
+    - funny
+    - water
+  nsfw: false
+  original: false
+  animated: true
