@@ -22996,3 +22996,13 @@ c3418a1c15c96da1be3271c154f82177:
   nsfw: true
   original: false
   animated: false
+07269daf128ad7436513475197a1e99f:
+  key: 4bd8ee0fabd16eaca074686131ca2b960da99e698d4dff63e163c9b6c37685d9
+  source: Telegram
+  tags:
+    - food
+    - egg
+    - omelette
+  nsfw: false
+  original: false
+  animated: true
