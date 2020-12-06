@@ -22996,3 +22996,16 @@ c3418a1c15c96da1be3271c154f82177:
   nsfw: true
   original: false
   animated: false
+f95f854348bc08de3841347e84d76a0e:
+  key: 87e12edb3c90f3b2bee54c4167c52c412f5fc5e564e009066882491f80c582b6
+  source: Telegram
+  tags:
+    - cat
+    - cute
+    - neon
+    - kitty
+    - animal
+    - naughty
+  nsfw: false
+  original: false
+  animated: true
