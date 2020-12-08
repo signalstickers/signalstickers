@@ -71,7 +71,7 @@ Do not hesitate to post your pack on social networks using the hashtag
 `#makeprivacystick` as well!
 
 ### Can you create a sticker pack for me?
-This is not the goal of this project :-)
+Ask on [Discussions](https://github.com/signalstickers/signalstickers/discussions), and a fellow user might help you!
 
 ### Where can I find more stickers?
 - Head to the [Sticker pack collection
