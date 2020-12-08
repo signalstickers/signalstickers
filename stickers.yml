@@ -22637,13 +22637,11 @@ b94f064a0370cc90c26b1fca73fd3eee:
   nsfw: false
   original: false
   animated: true
-70ce21c56d10da385a2d4cbd01b0a598:
-  key: a6720ed69612df5ddf7743c070d99916a34679039701eacb82d28f9587a208ae
+8615d67d83a3ca56c14101900fbfc378:
+  key: 54e8ab0f87b83b55bbd26f1e177b77b855f3420a8d24f67e34b74b28d4a5769c
   source: Telegram
   tags:
-    - cow
-    - mooo
-    - animal
+    - Mumintroll
   nsfw: false
   original: false
   animated: true
@@ -22782,6 +22780,14 @@ e245c4a3c57afed5b182c3b272168466:
   nsfw: false
   original: false
   animated: true
+355fedb441e2547365ab0c643e638f2e:
+  key: 5ff100e1fed8c9b7e03a46f3a8c386873581ede5212a2a5d20f02edc919c0549
+  source: Telegram
+  tags:
+    - avatar
+  nsfw: false
+  original: false
+  animated: false
 64b2d9e14c0761d49c41b235c528a0be:
   key: e29b28e7fe2d70341f93bed8b7b7b2606c7e771ae5084f71c3674303627e6200
   source: Telegram
@@ -22837,11 +22843,172 @@ c81fe9684eb03f55f81512414ca8491d:
   nsfw: false
   original: false
   animated: false
+3f9f358d2cdbed1fd1d54d8470def092:
+  key: 022ad28fc451b24f2f83411760b934c1db70c7c6871d031d62962b13427a2008
+  source: ''
+  tags: []
+  nsfw: true
+  original: false
+  animated: false
+d9972b04ad521cf093a92b4a5287a93e:
+  key: 5f082cd8ed158672001c16fcb7e0e0f3df67f15220c9c82fce2a6f4646674b62
+  source: Telegram
+  tags:
+    - Rick
+    - Morty
+    - cartoon
+    - fox
+  nsfw: false
+  original: false
+  animated: true
+c922b1a77f750817e0ff84c8d2de8f36:
+  key: 558a7c30519c469a84deddefedbc2a890750092a878816539255587106ae41af
+  source: Telegram
+  tags:
+    - flower
+    - funny
+  nsfw: false
+  original: false
+  animated: true
+6e38b26e1dd6f2cc28b25e7c70716326:
+  key: 65c293f7c55d89be69da419f454a2eabf08a40f4e8e17816be9cca101e062e10
+  source: Telegram
+  tags:
+    - shinobi
+    - assassin
+    - japanese
+    - katana
+  nsfw: false
+  original: false
+  animated: true
+fece39722eba4ddd1460ee34a79a7bd9:
+  key: 28e0c190f5c59e9546ba3873e139a55cef650a98ee73c62b16515cff84e328e6
+  source: Telegram
+  tags:
+    - skull
+    - spooky
+    - scary
+    - funny
+  nsfw: false
+  original: false
+  animated: true
+7782f672451c6701238a2cf9d0c64fcf:
+  key: 37a2b8941f0a3b64fa364eea4ebf4a04d71794aed33cd03040acf4db2751f94f
+  source: Telegram
+  tags:
+    - animated
+    - text
+  nsfw: false
+  original: false
+  animated: true
+b93f2a708776ba503957199e35750452:
+  key: 457fc7c2e13b76dcca8458dc985e699bf9bf0a33e4ce4b668288b49dca9f09a5
+  source: Telegram
+  tags:
+    - crocodile
+    - animal
+    - water
+    - funny
+  nsfw: false
+  original: false
+  animated: true
+2c117ca27e01ca6ebb53d763c1ccbc2c:
+  key: 6cddfcf981b1600bf352daedace2e086dccdd1ed486ccddfac1dd9feabd9bdf7
+  source: Telegram
+  tags:
+    - lemur
+    - loris
+    - animal
+  nsfw: false
+  original: false
+  animated: true
+f679a710be51d240fc75e64ac10aef6b:
+  key: ae18be70c80e2fdedef90e95d5007ba9fa8fb86ec4f1cc1913053578d16888cf
+  source: Telegram
+  tags:
+    - bear
+    - animal
+  nsfw: false
+  original: false
+  animated: true
+9f85a3a9265faf61c08a69d948a3556a:
+  key: 35226f041c08fa7169566ab736acab371873cb3bddf950b3dc770a1a8f8964ea
+  source: Telegram
+  tags:
+    - pumpkin
+    - fruit
+    - scary
+    - halloween
+    - spooky
+  nsfw: false
+  original: false
+  animated: true
+c3418a1c15c96da1be3271c154f82177:
+  key: 26a268510c5ff1858d50a1ddf80dea862c45d00797c77e86be315f488fad3da2
+  source: Telegram
+  tags:
+    - robot
+    - rabbit
+    - animal
+    - tech
+  nsfw: false
+  original: false
+  animated: true
+81d97fe0d2c67b00ef47bfe134f1055d:
+  key: c90e22289e48760843552c48146abd57ecc3851474396207ecad9562cfe7c9ca
+  source: Telegram
+  tags:
+    - mashup
+    - dog
+    - pumpkin
+    - halloween
+    - scary
+    - cute
+  nsfw: false
+  original: false
+  animated: true
+855854bc4350867eb7c797834ce8d2ae:
+  key: 60e1cbd88c39758035fd72bee0b368b74cb69fae96eef3d45f3e7c1c34e8322d
+  source: ''
+  tags:
+    - 'Flying Circus'
+    - 'Holy Grail'
+    - 'Life of Brian'
+    - 'The Meaning of Life'
+    - 'comedy'
+    - 'Graham Chapman'
+    - 'John Cleese'
+    - 'Eric Idle'
+    - 'Michael Palin'
+    - 'Terry Jones'
+    - 'Terry Gilliam'
+  nsfw: false
+  original: false
+  animated: false
+84642bdb64fd883bd1c86cb814d2a41b:
+  key: e716da9c8cbca71a6ce481c9031dcc8af08fde2526875e93aca091da7aa4596e
+  source: 'unknown artist, feminaziseverywhere, https://tlgrm.eu/stickers/WomensWorld'
+  tags:
+    - feminism
+    - feminist
+    - antifa
+    - fantifa
+    - gender
+    - patriarchy
+    - antifascist
+    - feminista
+    - defundthepolice
+    - police
+    - catcalling
+  nsfw: true
+  original: false
+  animated: false
 6ac432350c856f3d74d3eda5310df5b5:
   key: c0695a57f03cc5999de435399b158b83933c1135ece6931ab73b8293f8da4460
   source: 'https://t.me/addstickers/pokemememes'
   tags: 
     - 'Pokémon'
+    - 'Pokemon'
   nsfw: False
   original: False
   animated: False
