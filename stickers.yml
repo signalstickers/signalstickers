@@ -22843,6 +22843,13 @@ c81fe9684eb03f55f81512414ca8491d:
   nsfw: false
   original: false
   animated: false
+3f9f358d2cdbed1fd1d54d8470def092:
+  key: 022ad28fc451b24f2f83411760b934c1db70c7c6871d031d62962b13427a2008
+  source: ''
+  tags: []
+  nsfw: true
+  original: false
+  animated: false
 d9972b04ad521cf093a92b4a5287a93e:
   key: 5f082cd8ed158672001c16fcb7e0e0f3df67f15220c9c82fce2a6f4646674b62
   source: Telegram
@@ -22996,6 +23003,70 @@ c3418a1c15c96da1be3271c154f82177:
   nsfw: true
   original: false
   animated: false
+6ac432350c856f3d74d3eda5310df5b5:
+  key: c0695a57f03cc5999de435399b158b83933c1135ece6931ab73b8293f8da4460
+  source: 'https://t.me/addstickers/pokemememes'
+  tags: 
+    - 'Pokémon'
+    - 'Pokemon'
+  nsfw: False
+  original: False
+  animated: False
+0a61962fa9acbf293bc03b30840b751d:
+  key: e251f0284dfec993ce959ff4af227039028636fb1c60b3d73be63d3786a64c09
+  source: 'https://t.me/addstickers/Pusheendue'
+  tags: 
+    - 'Pusheen'
+  nsfw: False
+  original: False
+  animated: False
+abef89b4590f25ad1332c99e8ae0dd7e:
+  key: 838f36515669f47f7099881cd30430c983998ae153a1532e9338acbf3d7cb8a4
+  source: Telegram
+  tags:
+    - duck
+    - animal
+    - funny
+    - water
+  nsfw: false
+  original: false
+  animated: true
+991c08fe3ed17e1cae961b6bca21ab55:
+  key: 50ec5db5a92d6dc92ab9eaa632c4f2cc1b4fb8f6de85fb56ef83b7f98652c164
+  source: Telegram
+  tags:
+    - 'Sacha Baron Cohen'
+    - Borat
+    - Bruno
+    - Aladeen
+    - 'Ali G'
+  nsfw: false
+  original: false
+  animated: false
+f95f854348bc08de3841347e84d76a0e:
+  key: 87e12edb3c90f3b2bee54c4167c52c412f5fc5e564e009066882491f80c582b6
+  source: Telegram
+  tags:
+    - cat
+    - cute
+    - neon
+    - kitty
+    - animal
+  nsfw: false
+  original: false
+  animated: true
+c9a9972b40c4b23a75b20c3a95f3fd63:
+  key: 38ea8dc21ef0a8f0fbe507d0da9af694640e7aa00845df758cd97bcb4a035f12
+  source: Telegram
+  tags:
+    - doggo
+    - dog
+    - animal
+    - cute
+    - naughty
+  nsfw: false
+  original: false
+  animated: true
 07269daf128ad7436513475197a1e99f:
   key: 4bd8ee0fabd16eaca074686131ca2b960da99e698d4dff63e163c9b6c37685d9
   source: Telegram
