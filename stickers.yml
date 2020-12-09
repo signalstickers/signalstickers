@@ -23052,6 +23052,17 @@ f95f854348bc08de3841347e84d76a0e:
     - neon
     - kitty
     - animal
+  nsfw: false
+  original: false
+  animated: true
+c9a9972b40c4b23a75b20c3a95f3fd63:
+  key: 38ea8dc21ef0a8f0fbe507d0da9af694640e7aa00845df758cd97bcb4a035f12
+  source: Telegram
+  tags:
+    - doggo
+    - dog
+    - animal
+    - cute
     - naughty
   nsfw: false
   original: false
