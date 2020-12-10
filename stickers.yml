@@ -23111,3 +23111,36 @@ cc9d42d7effd214d2a9a36280fb18583:
   nsfw: false
   original: true
   animated: false
+a1c5cb861e12005b3371ae461f4d43b4:
+  key: a2adf5181b5676aae3f3ac2c376f7650d7eebbeab475eb25c3ee9cea9eaa4aac
+  source: Telegram
+  tags:
+    - santa
+    - Christmas
+    - bad
+  nsfw: true
+  original: false
+  animated: true
+e0be187724e258c2236f493ac1744f04:
+  key: 6ba0dcee8281f30de65885d5a2ae5ac6b9e564c8ba819dd76e690cd7f25f1352
+  source: Telegram
+  tags:
+    - animated
+    - text
+    - holiday
+    - christmas
+    - new year
+  nsfw: false
+  original: false
+  animated: true
+77cc8f2b489e0f70ddd7466326d78251:
+  key: 85c6c6e0b429b0ddb1f01a479dc97b9bda046f6f724137c4d64a3e836c53f9ff
+  source: Telegram
+  tags:
+    - elf
+    - christmas
+    - holiday
+    - celebration
+  nsfw: false
+  original: false
+  animated: true
