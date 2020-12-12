@@ -23063,6 +23063,16 @@ aa0036a7bba60d47a3292a603da3486d:
   nsfw: True
   original: False
   animated: False
+5e7b27f0adcc116ca3a4ae6b3423041e:
+  key: 8566db3cf1d7681e5f7435a78e4d80ad9b53759a64370ac034996f5e0ac2eeb8
+  source: 'https://t.me/addstickers/PetNala'
+  tags: 
+    - 'NSFW'
+    - 'Furry'
+    - 'Reactions'
+  nsfw: True
+  original: False
+  animated: False
 cb26df8e71d2be2b2b753e30bfc92e42:
   key: 698eeee5851991922a756ef99bd569bf08d24a0c79cfbf37decf321bafc739ff
   source: 'https://t.me/addstickers/Hafengeburtstag'
