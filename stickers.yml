@@ -23003,6 +23003,15 @@ c3418a1c15c96da1be3271c154f82177:
   nsfw: true
   original: false
   animated: false
+6873444f3c034c0bd9da4b152658a629:
+  key: a0f1b7010d17a065f155fc41ec053b705c3e02c2dbc70d355a394d8d73bab9fe
+  source: 'https://telegram.dog/addstickers/spe9ad2'
+  tags: 
+    - 'Anime'
+    - 'Cute'
+  nsfw: False
+  original: False
+  animated: False
 6ac432350c856f3d74d3eda5310df5b5:
   key: c0695a57f03cc5999de435399b158b83933c1135ece6931ab73b8293f8da4460
   source: 'https://t.me/addstickers/pokemememes'
@@ -23046,6 +23055,75 @@ abef89b4590f25ad1332c99e8ae0dd7e:
 983a07e166c300cf0f1cdf961e25d877:
   key: 71b0174a4cf5a2b08bfc9a4a20fd52aded49b397b8913f570b4cc79e71b38b78
   source: 'https://t.me/addstickers/ThetaStuff'
+  tags:
+    - Germany
+    - DE
+    - meme
+  nsfw: False
+  original: False
+  animated: False
+f95f854348bc08de3841347e84d76a0e:
+  key: 87e12edb3c90f3b2bee54c4167c52c412f5fc5e564e009066882491f80c582b6
+  source: Telegram
+  tags:
+    - cat
+    - cute
+    - neon
+    - kitty
+    - animal
+  nsfw: false
+  original: false
+  animated: true
+c9a9972b40c4b23a75b20c3a95f3fd63:
+  key: 38ea8dc21ef0a8f0fbe507d0da9af694640e7aa00845df758cd97bcb4a035f12
+  source: Telegram
+  tags:
+    - doggo
+    - dog
+    - animal
+    - cute
+    - naughty
+  nsfw: false
+  original: false
+  animated: true
+07269daf128ad7436513475197a1e99f:
+  key: 4bd8ee0fabd16eaca074686131ca2b960da99e698d4dff63e163c9b6c37685d9
+  source: Telegram
+  tags:
+    - food
+    - eggs
+    - omelette
+  nsfw: false
+  original: false
+  animated: true
+cc9d42d7effd214d2a9a36280fb18583:
+  key: f6c6e8aaf2592d411352810d2262088e58acf8f0dd92eabb100a35f729a32f64
+  source: 'https://bindlewood.com/'
+  tags:
+    - Scribbles
+    - Morning
+    - Morning Scribbles
+    - Chris Ryniak
+  nsfw: false
+  original: false
+  animated: false
+654458a334bed95c589b398dd1f0a526:
+  key: ffb900c090bdc988c8497b03b62f609b932d9815912f08a97771e8f36b4e9161
+  source: mini_b 202
+  tags:
+    - cute
+    - rabbit
+    - bunny
+    - purple
+    - emoji
+    - animals
+    - kawaii
+  nsfw: false
+  original: true
+  animated: false
+06e1e59036f0d80dad4cfe03d2d64bad:
+  key: 0bfc8401ee6a67e55b0e8c3ea3b008513c3c0ced93018433ac9cb3879ee4a958
+  source: 'https://t.me/addstickers/pontifex'
   tags: []
   nsfw: False
   original: False
