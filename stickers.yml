@@ -23052,6 +23052,26 @@ abef89b4590f25ad1332c99e8ae0dd7e:
   nsfw: false
   original: false
   animated: false
+cb26df8e71d2be2b2b753e30bfc92e42:
+  key: 698eeee5851991922a756ef99bd569bf08d24a0c79cfbf37decf321bafc739ff
+  source: 'https://t.me/addstickers/Hafengeburtstag'
+  tags:
+    - Germany
+    - DE
+    - protests
+  nsfw: False
+  original: False
+  animated: False
+983a07e166c300cf0f1cdf961e25d877:
+  key: 71b0174a4cf5a2b08bfc9a4a20fd52aded49b397b8913f570b4cc79e71b38b78
+  source: 'https://t.me/addstickers/ThetaStuff'
+  tags:
+    - Germany
+    - DE
+    - meme
+  nsfw: False
+  original: False
+  animated: False
 f95f854348bc08de3841347e84d76a0e:
   key: 87e12edb3c90f3b2bee54c4167c52c412f5fc5e564e009066882491f80c582b6
   source: Telegram
@@ -23111,6 +23131,13 @@ cc9d42d7effd214d2a9a36280fb18583:
   nsfw: false
   original: true
   animated: false
+06e1e59036f0d80dad4cfe03d2d64bad:
+  key: 0bfc8401ee6a67e55b0e8c3ea3b008513c3c0ced93018433ac9cb3879ee4a958
+  source: 'https://t.me/addstickers/pontifex'
+  tags: []
+  nsfw: False
+  original: False
+  animated: False
 a1c5cb861e12005b3371ae461f4d43b4:
   key: a2adf5181b5676aae3f3ac2c376f7650d7eebbeab475eb25c3ee9cea9eaa4aac
   source: Telegram
