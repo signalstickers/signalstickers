@@ -139,6 +139,10 @@ const MiniTag = styled.button`
   }
 `;
 
+const MiniAnimated = styled(MiniTag)`
+  border: 1px solid var(--orange);
+  color: var(--orange);
+`;
 
 // ----- Component -------------------------------------------------------------
 
@@ -194,15 +198,24 @@ const SearchInputComponent: React.FunctionComponent = () => {
 
 
   /**
-   * [Event Handler] Sets the search query when a tag is clicked.
+   * [Event Handler] Sets the search query when a tag or the 'animated'
+   * suggestion is clicked.
    */
-  const onTagClick = React.useCallback((event: React.SyntheticEvent) => {
+  const onSuggestionClick = React.useCallback((event: React.SyntheticEvent) => {
     if (searcher && event.currentTarget.textContent) {
-      setSearchQuery(searcher.buildQueryString({
-        attributeQueries: [{
-          tag: event.currentTarget.textContent
-        }]
-      }));
+      if (event.currentTarget.getAttribute('data-suggestion-type') === 'tag') {
+        setSearchQuery(searcher.buildQueryString({
+          attributeQueries: [{
+            tag: event.currentTarget.textContent
+          }]
+        }));
+      } else if (event.currentTarget.getAttribute('data-suggestion-type') === 'animated') {
+        setSearchQuery(searcher.buildQueryString({
+          attributeQueries: [{
+            animated: 'true'
+          }]
+        }));
+      }
     }
   }, [
     searcher,
@@ -301,7 +314,8 @@ const SearchInputComponent: React.FunctionComponent = () => {
       type="button"
       key={tag}
       className="btn mr-1"
-      onClick={onTagClick}
+      onClick={onSuggestionClick}
+      data-suggestion-type="tag"
     >
       {tag}
     </MiniTag>
@@ -350,9 +364,17 @@ const SearchInputComponent: React.FunctionComponent = () => {
       <div className="d-flex justify-content-between">
         <div>
           <small>
-            Lost? Why not start with these tags?{' '}
+            Lost? Why not start with...{' '}
           </small>
           <br className="d-inline d-md-none" />
+          <MiniAnimated
+            type="button"
+            className="btn mr-1"
+            onClick={onSuggestionClick}
+            data-suggestion-type="animated"
+          >
+            animated
+          </MiniAnimated>
           {tagsFragment}
         </div>
         <div className="text-muted">
