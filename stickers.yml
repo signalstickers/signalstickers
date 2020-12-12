@@ -23052,6 +23052,16 @@ abef89b4590f25ad1332c99e8ae0dd7e:
   nsfw: false
   original: false
   animated: false
+983a07e166c300cf0f1cdf961e25d877:
+  key: 71b0174a4cf5a2b08bfc9a4a20fd52aded49b397b8913f570b4cc79e71b38b78
+  source: 'https://t.me/addstickers/ThetaStuff'
+  tags:
+    - Germany
+    - DE
+    - meme
+  nsfw: False
+  original: False
+  animated: False
 f95f854348bc08de3841347e84d76a0e:
   key: 87e12edb3c90f3b2bee54c4167c52c412f5fc5e564e009066882491f80c582b6
   source: Telegram
