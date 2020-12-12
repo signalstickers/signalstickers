@@ -23111,3 +23111,13 @@ cc9d42d7effd214d2a9a36280fb18583:
   nsfw: false
   original: true
   animated: false
+5e7b27f0adcc116ca3a4ae6b3423041e:
+  key: 8566db3cf1d7681e5f7435a78e4d80ad9b53759a64370ac034996f5e0ac2eeb8
+  source: 'https://t.me/addstickers/PetNala'
+  tags: 
+    - 'NSFW'
+    - 'Furry'
+    - 'Reactions'
+  nsfw: True
+  original: False
+  animated: False
