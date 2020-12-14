@@ -23220,3 +23220,16 @@ eacb9f0ad7a7c0e92a1216f459482a5d:
   nsfw: false
   original: false
   animated: false
+ae92144546c0eb35011cacde9e6673c8:
+  key: 513d43d02ed55cbc914f5d8b3e950bf8c98b86a374f046f49e51d7e2af9bd2b3
+  source: Telegram
+  tags:
+    - cat
+    - robot
+    - robocat
+    - cute
+    - animal
+    - tech
+  nsfw: false
+  original: false
+  animated: true
