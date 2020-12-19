@@ -23253,3 +23253,16 @@ d09482ba164e5f0aeb5034d591c06e90:
   nsfw: false
   original: false
   animated: false
+0deec1cf600cb81d5496dc9bf3acb614:
+  key: cab12383606fb561a5a881aa82b45e76625d187738fed18347100709ed4b9fae
+  source: 'https://telegram.dog/addstickers/AntifaA'
+  tags: 
+    - 'anarchy'
+    - 'anarchism'
+    - 'antifa'
+    - 'antifascism'
+    - 'leftist'
+    - 'activism'
+  nsfw: True
+  original: False
+  animated: False
