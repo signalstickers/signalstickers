@@ -438,11 +438,6 @@ a43c0cf2bd0c7dc7320851f3078f4822:
   source: ''
   tags: []
   nsfw: false
-824917cf42b31b6028269a3ccf2f0316:
-  key: 2960f48af41080f14c578c1f63ac469dd8443d71278d65e77e34cdddb2969127
-  source: ''
-  tags: []
-  nsfw: false
 9a08a829927b4a24702ee8e5e99974f1:
   key: 1dc370526ca19ad7aa7a4256271e4f49e9f7c195573435a5e5178761d730a6f6
   source: ''
@@ -20051,15 +20046,6 @@ fdfb68300f9370caf20d192e121abc82:
     - Cute
   nsfw: false
   original: false
-d61a5dec78bab59cdc38d964c8a9b461:
-  key: dbb6c5939df09d71c717e876a15ec364d4746f702cb2744520f9d39d397c7500
-  source: Imported from Line
-  tags:
-    - Baby Yoda
-    - Cute
-    - Children
-  nsfw: false
-  original: false
 4c313cd1d10852ef5226e8ff3696e821:
   key: 2b3f7ca3300001eab03d8d95c0e3773bbf4da58651b3dc1b44d26b77a237c0e7
   source: Imported from Line
@@ -23253,6 +23239,158 @@ d09482ba164e5f0aeb5034d591c06e90:
   nsfw: false
   original: false
   animated: false
+9165981572d47a6d6e408569631c2118:
+  key: bc21dc8b9319557257b7faffba5ccc11b14b49617eb6440d37553babe8ebf825
+  source: LINE
+  tags:
+    - kaguya
+    - anime
+    - japanese
+    - jp
+    - line
+  nsfw: false
+  original: false
+  animated: false
+bc593c890809a5374f42448acb1bbbd2:
+  key: 6a0947cada9d0450ae3bb6e94c5d16c09cf5ad01ffefc0ac2024940d0cae509a
+  source: LINE
+  tags:
+    - mandalorian
+    - line
+    - star wars
+    - cute
+    - for children
+    - baby yoda
+    - grogu
+  nsfw: false
+  original: false
+  animated: true
+280589b92cb1d6f768fe752bc22e8595:
+  key: dedbf515860b4ecb6bd50b75562df95802fc9e20ef8d61913045808a95fa90ca
+  source: LINE
+  tags:
+    - line
+    - anime
+    - rent-a-girlfriend
+    - kanojo okarishimasu
+    - japanese
+    - jp
+  nsfw: false
+  original: false
+  animated: false
+d0678a2671c20c9908f2bc69408ef662:
+  key: bbd42ade696d575a60fb682c2e949b7525a1b095d5c269cc234f5684c3a42522
+  source: LINE
+  tags:
+    - line
+    - raccoon
+    - cute
+    - for children
+    - rascal
+  nsfw: false
+  original: false
+  animated: false
+6164c31605a707d5a60c250af0e2d361:
+  key: 554be9c984bb379b947d1b502f1134e5a06986c4f4021686ed15eb0e00b8671f
+  source: 'https://t.me/addstickers/IA_ONE'
+  tags: 
+    - 'anime'
+    - 'cute'
+    - 'IA'
+    - 'Vocaloid'
+  nsfw: False
+  original: False
+  animated: False
+91bd813221eb3ade9cf8ded1bb157d3a:
+  key: da71d0eb0d8bbf003896861a9edbaa3b6f29abfd1ed840a0f47b90b51f0adc42
+  source: 'https://telegram.dog/addstickers/TenshiN'
+  tags: 
+    - 'Tenshi'
+    - 'GiStickers'
+    - 'neropaso'
+    - 'Touhou'
+    - 'Anime'
+  nsfw: False
+  original: False
+  animated: False
+d283487504dc92bb84df4f9706dd7bdf:
+  key: 572ee8b59d84b97837f7afff8afc40ef3d6fcd7c7e6d959b2430475d1cb3b628
+  source: 'https://telegram.dog/addstickers/LosSimp'
+  tags:
+    - bart
+    - homer
+    - lisa
+    - marge
+  nsfw: False
+  original: False
+  animated: False
+04ed4156f90ebdcab8084bba260d7f63:
+  key: 25334fac4746902ad82cc5d35c234fd82193b449479378b94c07957f1e959661
+  source: 'https://t.me/addstickers/RealCommies'
+  tags: 
+    - 'communists'
+    - communism
+    - 'Lenin'
+    - 'Stalin'
+    - 'Mao'
+    - 'Che'
+  nsfw: False
+  original: False
+  animated: False
+afd4af124cfd051deee8f60319c2273d:
+  key: 8d183e34b27b9652b8c2d20f88bdef71760dd851fecce4496da44ecbfd5f3efe
+  source: 'https://t.me/addstickers/ChairmanMao'
+  tags: 
+    - 'Mao'
+    - communism
+  nsfw: False
+  original: False
+  animated: False
+53fc2db6ffa3fca1651e73d0bef91005:
+  key: 0783698a42fb6b165f0d98e652a4b948390afc1d26b3b481cf7a4aabed1b4a7d
+  source: 'https://t.me/addstickers/IMG_ultrabrutal'
+  tags: 
+    - 'drugs'
+    - 'politicians'
+    - 'celebrities'
+    - 'memes'
+  nsfw: True
+  original: False
+  animated: False
+3abc506a14d46e171f2616e39de44490:
+  key: 4beb2f303375da30e47092e2eb19190866c23a10174f430f01bdca0449fd4a89
+  source: 'https://t.me/addstickers/Cisforcookie'
+  tags: 
+    - 'cookie'
+    - 'monster'
+    - 'cookie monster'
+  nsfw: False
+  original: False
+  animated: False
+462fa500c9d8ebc7d618ac1ef2274044:
+  key: 27ff718e8e58ec0901ecd34eb236061dcc63855444a0c0501cba49359960a134
+  source: 'https://t.me/addstickers/cuteAmthor'
+  tags: 
+    - 'Philipp Amthor'
+    - 'Amthor'
+    - 'politician'
+    - 'funny'
+  nsfw: False
+  original: False
+  animated: False
+0deec1cf600cb81d5496dc9bf3acb614:
+  key: cab12383606fb561a5a881aa82b45e76625d187738fed18347100709ed4b9fae
+  source: 'https://telegram.dog/addstickers/AntifaA'
+  tags: 
+    - 'anarchy'
+    - 'anarchism'
+    - 'antifa'
+    - 'antifascism'
+    - 'leftist'
+    - 'activism'
+  nsfw: True
+  original: False
+  animated: False
 a78c59f14264aa586559c7a9b19832f3:
   key: fa68ce0b69279d4335f31ba80f08026e59fcd87427be0564de7d8ebcf2ba0173
   source: 'https://t.me/addstickers/Punktheriot'
@@ -23260,6 +23398,6 @@ a78c59f14264aa586559c7a9b19832f3:
     - 'punk'
     - 'anarchy'
     - 'angry'
-  nsfw: True
+  nsfw: False
   original: False
   animated: False
