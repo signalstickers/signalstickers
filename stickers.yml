@@ -23334,10 +23334,20 @@ d283487504dc92bb84df4f9706dd7bdf:
   source: 'https://t.me/addstickers/RealCommies'
   tags: 
     - 'communists'
+    - communism
     - 'Lenin'
     - 'Stalin'
     - 'Mao'
     - 'Che'
+  nsfw: False
+  original: False
+  animated: False
+afd4af124cfd051deee8f60319c2273d:
+  key: 8d183e34b27b9652b8c2d20f88bdef71760dd851fecce4496da44ecbfd5f3efe
+  source: 'https://t.me/addstickers/ChairmanMao'
+  tags: 
+    - 'Mao'
+    - communism
   nsfw: False
   original: False
   animated: False
