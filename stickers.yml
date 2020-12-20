@@ -20051,15 +20051,6 @@ fdfb68300f9370caf20d192e121abc82:
     - Cute
   nsfw: false
   original: false
-d61a5dec78bab59cdc38d964c8a9b461:
-  key: dbb6c5939df09d71c717e876a15ec364d4746f702cb2744520f9d39d397c7500
-  source: Imported from Line
-  tags:
-    - Baby Yoda
-    - Cute
-    - Children
-  nsfw: false
-  original: false
 4c313cd1d10852ef5226e8ff3696e821:
   key: 2b3f7ca3300001eab03d8d95c0e3773bbf4da58651b3dc1b44d26b77a237c0e7
   source: Imported from Line
@@ -23250,6 +23241,57 @@ d09482ba164e5f0aeb5034d591c06e90:
     - 'omae wa mou shindeiru'
     - japan
     - react
+  nsfw: false
+  original: false
+  animated: false
+9165981572d47a6d6e408569631c2118:
+  key: bc21dc8b9319557257b7faffba5ccc11b14b49617eb6440d37553babe8ebf825
+  source: LINE
+  tags:
+    - kaguya
+    - anime
+    - japanese
+    - jp
+    - line
+  nsfw: false
+  original: false
+  animated: false
+bc593c890809a5374f42448acb1bbbd2:
+  key: 6a0947cada9d0450ae3bb6e94c5d16c09cf5ad01ffefc0ac2024940d0cae509a
+  source: LINE
+  tags:
+    - mandalorian
+    - line
+    - star wars
+    - cute
+    - for children
+    - baby yoda
+    - grogu
+  nsfw: false
+  original: false
+  animated: true
+280589b92cb1d6f768fe752bc22e8595:
+  key: dedbf515860b4ecb6bd50b75562df95802fc9e20ef8d61913045808a95fa90ca
+  source: LINE
+  tags:
+    - line
+    - anime
+    - rent-a-girlfriend
+    - kanojo okarishimasu
+    - japanese
+    - jp
+  nsfw: false
+  original: false
+  animated: false
+d0678a2671c20c9908f2bc69408ef662:
+  key: bbd42ade696d575a60fb682c2e949b7525a1b095d5c269cc234f5684c3a42522
+  source: LINE
+  tags:
+    - line
+    - raccoon
+    - cute
+    - for children
+    - rascal
   nsfw: false
   original: false
   animated: false
