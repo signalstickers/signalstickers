@@ -23545,3 +23545,45 @@ d4d77a6ba7f7ef687898a6cadd48134d:
   nsfw: False
   original: False
   animated: False
+b9d090f15d661869b8ac7839f9dcff9f:
+  key: e26c3a63b27f7800c0519c294b25351e662b6ee34b43d1d706397f173b16f379
+  source: 'https://t.me/addstickers/Fel1x_Argyle'
+  tags: []
+  nsfw: True
+  original: False
+  animated: False
+f88d558918d3b301f2254b5c36c3bca7:
+  key: cc613b20431f4b9efdc711eae071a7027512c30731cadc986d31d1abbc88de62
+  source: 'https://telegram.dog/addstickers/Erixalu'
+  tags:
+    - furry
+  nsfw: True
+  original: False
+  animated: False
+bfe87040b05482afb15968436e50b809:
+  key: fa837fc9fd714397e60bece0de18d3a40712d2568f73edcb9c976f171d9442d8
+  source: 'https://telegram.dog/addstickers/sp417e9'
+  tags:
+    - furry
+  nsfw: True
+  original: False
+  animated: False
+31e338f7306bf91e75e2222232732b4c:
+  key: 6b087407ddf935cd280983c40312a0af7333de8dc740392e830df0b8fc914d81
+  source: ''
+  tags:
+    - gachimuchi
+    - Van Darkholme
+    - Billy Herrington
+  nsfw: false
+  original: false
+  animated: false
+52588a77237e597854a0b5562ad6a7a0:
+  key: 86f147a67a6808dab463e13daaae4a488f43d80f4c6d619fcdf14b677649bb48
+  source: 'https://t.me/addstickers/patrickbbateman'
+  tags: 
+    - 'American Psycho'
+    - 'Faces'
+  nsfw: True
+  original: False
+  animated: False
