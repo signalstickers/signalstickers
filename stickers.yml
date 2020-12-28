@@ -23735,9 +23735,9 @@ f053e52ae6ed4ae5a8b3bbe85d08e6f1:
     - animated
     - dog
     - animal
-  nsfw: false
-  original: false
-  animated: true
+  nsfw: False
+  original: False
+  animated: True
 01d103ed6871eb7ee04dde610d7ed5c9:
   key: 7242e309cb0d4f75cc393b4197de2071a23012f4a9396204c82c273655328721
   source: ''
