@@ -23693,3 +23693,12 @@ bfe87040b05482afb15968436e50b809:
   nsfw: True
   original: False
   animated: False
+72df4a14ef9644db1b0883ed31e0bf88:
+  key: 843f6e914fd4473cd8e5ede261ef986334825cc0692ed729afabaa39c3c791a1
+  source: 'https://telegram.dog/addstickers/Samoyed'
+  tags: 
+    - 'dog'
+    - 'cute'
+  nsfw: False
+  original: False
+  animated: False
