@@ -23538,6 +23538,13 @@ d4d77a6ba7f7ef687898a6cadd48134d:
   nsfw: False
   original: False
   animated: False
+b39c17d172aa7cf440d110d431b368e0:
+  key: 4fd9b6c46a35b3d02eae441a9621d5b18428e00492999fc4386ed806852814dc
+  source: 'https://t.me/addstickers/GayOKeng'
+  tags: []
+  nsfw: True
+  original: False
+  animated: False
 08c2a0910da8a5ce969c2eed5d6f749e:
   key: 6408fa33ad0ee5db099ffe137f2c498bce854ba424e1be18794b13bf3abfba3c
   source: 'https://t.me/addstickers/nichijouanime'
