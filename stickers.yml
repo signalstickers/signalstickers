@@ -23538,12 +23538,17 @@ d4d77a6ba7f7ef687898a6cadd48134d:
   nsfw: False
   original: False
   animated: False
+f5cc36f1f2f021ee39cd250dee10ae2e:
+  key: 8ac00af85d868cef27de99ae9c23712a75e11137c1b6d6179d1dbd2beb954d83
+  source: 'https://t.me/addstickers/MashiroShiina'
+  tags: []
+  nsfw: True
+  original: False
+  animated: False
 c2e50db47f32ca86d084a1e028a0ae5e:
   key: 24209ad902e0f4fc9fbb83369c098f8002ddb2be7b5240e749ad8f015f8d7fb0
   source: 'https://t.me/addstickers/DeaNo'
-  tags:
-    - 'Kim Jung Un'
-    - North Korea
+  tags: []
   nsfw: False
   original: False
   animated: False
