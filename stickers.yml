@@ -23871,3 +23871,18 @@ d834c9759667cbacdf1f399a5d23eca7:
   nsfw: False
   original: False
   animated: True
+ace697c0b4ba665c19ace3699972e83f:
+  key: bf81a32788bbadb8dca92da3a8102f808552ce18ba16fe9a16e377a10aac2f71
+  source: WhatsApp
+  tags:
+    - memes
+    - meme
+    - spanish
+    - espanol
+    - funny
+    - risas
+    - chistoso
+    - gracioso
+  nsfw: true
+  original: false
+  animated: false
