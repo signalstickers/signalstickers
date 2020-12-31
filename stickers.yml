@@ -5539,23 +5539,6 @@ f028f6a1e3353e2305bcdfd303238e41:
     - '"Hands" by Oybek'
     - telegram
   nsfw: false
-026bc96269dc17002b770661b591fcae:
-  key: 40c280e35e32a0cf505ce188d1bdc4928df2f38e1064efe465fe20c0982ba64c
-  source: 'https://tlgrm.eu/stickers'
-  tags:
-    - Hangouts_Penguins
-    - животные
-    - милота
-    - любовь
-    - дружба
-    - penguins
-    - love
-    - friendship
-    - holiday
-    - winter
-    - Penguins
-    - telegram
-  nsfw: false
 e4a5bb469a35d228b93231239be1c3c9:
   key: 811d137e28390ae86dda6677a73a04c9e3e2cff7feec379fd42617aa15c927c6
   source: 'https://tlgrm.eu/stickers'
@@ -23878,3 +23861,174 @@ d834c9759667cbacdf1f399a5d23eca7:
   nsfw: False
   original: False
   animated: False
+4e4bde0b1377f738ca940456f7ef7d59:
+  key: 27e5908ed60a0180115bfde6515cb8f1557a50484179c98d808b4c50262b2487
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Alien
+  nsfw: false
+  original: false
+  animated: false
+ea0ecc007d44fb043ee99f5c674eb9d8:
+  key: 5032cec931c3c6ad44b782e87d7963dac3b61e9e8392aa55668ca348c4b08d9d
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Bunny
+    - Cute
+    - Easter
+    - Animals
+    - Pets
+  nsfw: false
+  original: false
+  animated: false
+1bb451216b0c6d29050297bae843fc30:
+  key: f15cf9d70402cfab836ccefd5282781abf9db1158f3613c28e163ba817b0851d
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Cat
+    - Pets
+    - Animals
+  nsfw: false
+  original: false
+  animated: false
+f81a4cacd649596ed2248e06459e78f9:
+  key: 4570bdcde32fe8911a11bb5fd99d48140a0c69942561e5d4c57e48dd71e19b67
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Cat
+    - Fat Cat
+    - Pets
+    - Animals
+  nsfw: false
+  original: false
+  animated: false
+ea61d59da6302a5e6b1895eafad6a18f:
+  key: ee041ba3f9cdee4955106a91da9d6a870e90b5575dfa4c9f84d2b6667a6924f9
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Koala
+    - Australia
+    - Animals
+  nsfw: false
+  original: false
+  animated: false
+430c18be8030c6ea5f1ceb7e09020b94:
+  key: 3554ef5048de67c9dbfb8f68025a38e52e2c71c65a9b0fa6e11397d261bb8665
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Monstro
+    - Monster
+  nsfw: false
+  original: false
+  animated: false
+8f9c363a64cf157ae2a92c9580402be7:
+  key: 8aa04f612b2fe359b2f9c794d6dd55c9851ef15a412e7dd47311b7a985c70c8c
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Pirate
+  nsfw: false
+  original: false
+  animated: false
+cbd6939e57ebd244dcdf3d67d0969167:
+  key: 47a9230e1a82456d59a7efa4e00a2d6b93da9d346efda1fc500c7dcca4ff3648
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Penguins
+    - Penguin
+    - Animals
+  nsfw: false
+  original: false
+  animated: false
+8b7ad42774ec8412373aebd425f0b41a:
+  key: b0f5129203f7575e39ff90e67824345986ab93530a6ce7ab8376b8edd711a9ba
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Queen Cranky
+    - Queen
+    - Cranky
+  nsfw: false
+  original: false
+  animated: false
+302668e6bfaa8685eac8863b05230f86:
+  key: 26d1989f09430f08b95f6f59873087a36f5b867f8f2938308fdf6f39f39502ec
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Santa
+    - Holidays
+    - Christmas
+    - Winter
+  nsfw: false
+  original: false
+  animated: false
+384e1eb7402efdf162eb1179f72fdeb7:
+  key: a93d7502b8b0af11b5abec1a9ebc3546af9f98886d4e04f7d8d34f854e7970ac
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Skeleton
+    - Work
+    - Business
+    - Office
+  nsfw: false
+  original: false
+  animated: false
+82c6fcc1d9a074bd2f441666edf84ab0:
+  key: 08d7822ce610a8ad5b6caa3fc933a8f2574cb37ceb4a8644f38a34aa837cda6a
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Tiny Astronaut
+    - Tiny
+    - Astronaut
+  nsfw: false
+  original: false
+  animated: false
+7e091aa986680e5729bc6a3a7afb073e:
+  key: 6f657f1096ba3b36f8003715288a54dbf291fa37da41067f8abf3ad6315908b0
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Turtle
+    - Animals
+  nsfw: false
+  original: false
+  animated: false
+df324ff72c198c49dbb992a5a7e708e2:
+  key: 32cd940513cb918ab7b67f5422271affa97ff6853a23bc594ac03e7541d35bbb
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Viking
+  nsfw: false
+  original: false
+  animated: false
+4120306fa95cb0638482883a7ee0a7bb:
+  key: df1d0055c5360c98cb2f18fe46cbac315900fbdc4291494872c20cf702827707
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Callouts
+    - Text
+  nsfw: false
+  original: false
+  animated: false
+aa6793bb0ce236433382abbb1e2df72f:
+  key: 5197e9b367fffc7f7ff4025c41ee6ffd21104a5c846664a06a2ac206ff1108ad
+  source: Google Hangouts
+  tags:
+    - Hangouts
+    - Callouts
+    - Text
+  nsfw: false
+  original: false
+  animated: false
