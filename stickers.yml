@@ -23841,6 +23841,21 @@ bfeeb0d29555897d2829fa716b89eef3:
   nsfw: true
   original: false
   animated: false
+ace697c0b4ba665c19ace3699972e83f:
+  key: bf81a32788bbadb8dca92da3a8102f808552ce18ba16fe9a16e377a10aac2f71
+  source: WhatsApp
+  tags:
+    - memes
+    - meme
+    - spanish
+    - espanol
+    - funny
+    - risas
+    - chistoso
+    - gracioso
+  nsfw: true
+  original: false
+  animated: false
 40a65ffa1b0b3bdd6be51cee766f9d41:
   key: 55297ece390ec8bdcef8c04faaddbfba36033508ab65f11037b2e3bfbeb0552f
   source: ''
@@ -23871,18 +23886,10 @@ d834c9759667cbacdf1f399a5d23eca7:
   nsfw: False
   original: False
   animated: True
-ace697c0b4ba665c19ace3699972e83f:
-  key: bf81a32788bbadb8dca92da3a8102f808552ce18ba16fe9a16e377a10aac2f71
-  source: WhatsApp
-  tags:
-    - memes
-    - meme
-    - spanish
-    - espanol
-    - funny
-    - risas
-    - chistoso
-    - gracioso
-  nsfw: true
-  original: false
-  animated: false
+9f920f74008ea4c9c59323ac4a838c73:
+  key: c041a9d7bd90835e7f224f002f97bd893ee91eb6aface01964603f06d07d8ad6
+  source: 'https://t.me/addstickers/PenguinandCatDa'
+  tags: []
+  nsfw: False
+  original: False
+  animated: False
