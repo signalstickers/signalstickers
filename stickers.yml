@@ -311,8 +311,16 @@ ef866b16e6013297cb94d1911a3e9630:
 fb535407d2f6497ec074df8b9c51dd1d:
   key: 17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd
   source: ''
-  tags: []
+  tags:
+  - Signal artist series
+  - Signal
+  - Dog
+  - Bulldog
+  - Pets
+  - Animals
+  - Zozo
   nsfw: false
+  original: true
 fe486a1edeb265cde15accf9a090095e:
   key: 7aba7caea1d316b2c8279f02ebf4028b0896dce4813cd50e5d372e7be9658032
   source: ''
@@ -797,15 +805,22 @@ c5a9ef5d12ab1cd22f66fc858a71bc41:
 78ebbfc009932a82e73f18d14698259c:
   key: 1b349b6a9bf9d9ca46b54448d7bc39abd4a423ee5982c51f450ca1ff18645007
   source: ''
-  tags: []
+  tags:
+  - Ninja
   nsfw: false
+  original: true
 9acc9e8aba563d26a4994e69263e3b25:
   key: 5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12
   source: ''
   tags:
     - signal artist series
     - bandit the cat
+    - Animals
+    - Signal
+    - Cat
+    - Pets
   nsfw: false
+  original: true
 bd1cff2edee290f32bf8a8f94a790483:
   key: 824f4ead5c3290d8fdbf6f07255c6fbf4650a9050db119d3669637e55f4ebcfe
   source: ''
@@ -18544,14 +18559,20 @@ cca32f5b905208b7d0f1e17f23fdc185:
   key: 8bf8e95f7a45bdeafe0c8f5b002ef01ab95b8f1b5baac4019ccd6b6be0b1837a
   source: 'https://signal.org/blog/swoon/'
   tags:
+    - Signal artist series
     - Signal
+    - Swoon
+    - Faces
   nsfw: false
   original: true
 e61fa0867031597467ccc036cc65d403:
   key: 13ae7b1a7407318280e9b38c1261ded38e0e7138b9f964a6ccbb73e40f737a9b
   source: 'https://signal.org/blog/swoon/'
   tags:
+    - Signal artist series
     - Signal
+    - Swoon
+    - Hands
   nsfw: false
   original: true
 cbc5510880d023fdbb773649d41ba6ce:
