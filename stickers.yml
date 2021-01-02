@@ -1,3 +1,4 @@
+
 ---
 # This YAML file lists all packs published on signalstickers.com.
 #
@@ -23893,3 +23894,11 @@ d834c9759667cbacdf1f399a5d23eca7:
   nsfw: False
   original: False
   animated: False
+7b3d3aa0fa7f42605be5cde9bc7ca30e:
+  key: 84da12c389336be503eb2d86918c87724675b44a036ef86ab5df3680fa56fd80
+  source: ''
+  tags:
+    - goodboy
+  nsfw: false
+  original: false
+  animated: true
