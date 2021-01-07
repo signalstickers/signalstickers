@@ -1,3 +1,4 @@
+
 ---
 # This YAML file lists all packs published on signalstickers.com.
 #
@@ -311,8 +312,16 @@ ef866b16e6013297cb94d1911a3e9630:
 fb535407d2f6497ec074df8b9c51dd1d:
   key: 17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd
   source: ''
-  tags: []
+  tags:
+  - Signal artist series
+  - Signal
+  - Dog
+  - Bulldog
+  - Pets
+  - Animals
+  - Zozo
   nsfw: false
+  original: true
 fe486a1edeb265cde15accf9a090095e:
   key: 7aba7caea1d316b2c8279f02ebf4028b0896dce4813cd50e5d372e7be9658032
   source: ''
@@ -797,15 +806,22 @@ c5a9ef5d12ab1cd22f66fc858a71bc41:
 78ebbfc009932a82e73f18d14698259c:
   key: 1b349b6a9bf9d9ca46b54448d7bc39abd4a423ee5982c51f450ca1ff18645007
   source: ''
-  tags: []
+  tags:
+  - Ninja
   nsfw: false
+  original: true
 9acc9e8aba563d26a4994e69263e3b25:
   key: 5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12
   source: ''
   tags:
     - signal artist series
     - bandit the cat
+    - Animals
+    - Signal
+    - Cat
+    - Pets
   nsfw: false
+  original: true
 bd1cff2edee290f32bf8a8f94a790483:
   key: 824f4ead5c3290d8fdbf6f07255c6fbf4650a9050db119d3669637e55f4ebcfe
   source: ''
@@ -18544,14 +18560,20 @@ cca32f5b905208b7d0f1e17f23fdc185:
   key: 8bf8e95f7a45bdeafe0c8f5b002ef01ab95b8f1b5baac4019ccd6b6be0b1837a
   source: 'https://signal.org/blog/swoon/'
   tags:
+    - Signal artist series
     - Signal
+    - Swoon
+    - Faces
   nsfw: false
   original: true
 e61fa0867031597467ccc036cc65d403:
   key: 13ae7b1a7407318280e9b38c1261ded38e0e7138b9f964a6ccbb73e40f737a9b
   source: 'https://signal.org/blog/swoon/'
   tags:
+    - Signal artist series
     - Signal
+    - Swoon
+    - Hands
   nsfw: false
   original: true
 cbc5510880d023fdbb773649d41ba6ce:
@@ -23893,7 +23915,7 @@ d834c9759667cbacdf1f399a5d23eca7:
   nsfw: False
   original: False
   animated: False
-  c0db6990f1262786f19c7899ad8683c8:
+c0db6990f1262786f19c7899ad8683c8:
   key: 7690afabb5870875e9790a8e5ffdddc90e37efa109a52998d0f968a594b4e2f9
   source: Supergiant
   tags:
@@ -23926,3 +23948,54 @@ d834c9759667cbacdf1f399a5d23eca7:
   nsfw: false
   original: false
   animated: false
+7b3d3aa0fa7f42605be5cde9bc7ca30e:
+  key: 84da12c389336be503eb2d86918c87724675b44a036ef86ab5df3680fa56fd80
+  source: ''
+  tags:
+    - goodboy
+  nsfw: false
+  original: false
+  animated: true
+73eb6d5165d3fac38fb6e4820ee6291f:
+  key: 0cefa466cca463ef46b1cb4d785f2209bcc7f00e594e0ac1e19d7906824f5c30
+  source: Netflix Series Bojack Horseman
+  tags:
+    - Bojack Horseman
+    - Bojack
+    - bojack
+    - horseman
+    - Horseman
+    - Netflix
+    - netflix
+  nsfw: false
+  original: false
+  animated: false
+57f4407e411b244dc5e5cc2a58044846:
+  key: 44330e0eefe6f383c1672de08f3e64ca5a9c266020d4a0bac4263dbbdbc478c9
+  source: 'https://redd.it/k1ytvx'
+  tags:
+  - CS:GO
+  - Gaming
+  nsfw: False
+  original: False
+  animated: True
+a0401a381f5eeed52f6fbff4116fb2e4:
+  key: e4765fcc08bbcd62209aec5b88a2075c6c37bbde82c3573ea99eb5b992bdcb6b
+  source: 'https://commons.wikimedia.org/wiki/Category:Chicas_en_Tecnolog%C3%ADa'
+  tags:
+    - women
+    - mint
+    - science
+  nsfw: true
+  original: false
+  animated: false
+75119824b2ebd9258ddd8a2eacd9e67e:
+  key: 91ab9df9ddc39c0a3b60da6bfe09b6293ee286df6338fe4e59f64d1e4f6b92af
+  source: 'https://telegram.dog/addstickers/CR7_Juv'
+  tags: 
+    - 'Ronaldo'
+    - 'Cristiano ronaldo'
+    - 'Cr7'
+  nsfw: False
+  original: False
+  animated: False
