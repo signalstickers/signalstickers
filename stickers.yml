@@ -23915,6 +23915,39 @@ d834c9759667cbacdf1f399a5d23eca7:
   nsfw: False
   original: False
   animated: False
+c0db6990f1262786f19c7899ad8683c8:
+  key: 7690afabb5870875e9790a8e5ffdddc90e37efa109a52998d0f968a594b4e2f9
+  source: Supergiant
+  tags:
+    - hades
+    - zagreus
+    - supergiant
+    - persephone
+    - thanatos
+    - hermes
+    - zeus
+    - athena
+    - cerberus
+    - poseidon
+    - demeter
+    - aphrodite
+    - hypnos
+    - nyx
+    - orpheus
+    - skelly
+    - ares
+    - artemis
+    - dionysus
+    - charon
+    - achilles
+    - sisyphus
+    - bouldy
+    - alecto
+    - megaera
+    - tisiphone
+  nsfw: false
+  original: false
+  animated: false
 7b3d3aa0fa7f42605be5cde9bc7ca30e:
   key: 84da12c389336be503eb2d86918c87724675b44a036ef86ab5df3680fa56fd80
   source: ''
