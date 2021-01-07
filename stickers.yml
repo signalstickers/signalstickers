@@ -24048,3 +24048,20 @@ dfdf3a5d7d28472541e72f644d0c6723:
   nsfw: false
   original: true
   animated: false
+4dea57be695456fb849bf7e84b07666f:
+  key: 98f66bac7fd2303430c3a7f68076cc4ce0d40a099234f3c97e436e378e292e04
+  source: 'https://twitter.com/simple_freem/status/1345519114979336195'
+  tags:
+    - for children
+  nsfw: false
+  original: false
+  animated: false
+16f7337fd00267d2484bcba0c040255e:
+  key: 5b82ed054e0dce37250b037b9906bf428c08bed44f551d1a8a122e9868510516
+  source: 'http://abramek.art/ (@miyotsu_)'
+  tags:
+    - cute
+    - cats
+  nsfw: false
+  original: true
+  animated: false
