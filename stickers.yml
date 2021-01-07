@@ -23908,6 +23908,16 @@ d834c9759667cbacdf1f399a5d23eca7:
   nsfw: False
   original: False
   animated: True
+411f65aa2fab2433cd31060dd7f697e4:
+  key: d990e30de6fa052285c9653a2d3bbfa097d5d7e2664fea6816da336a10a35d54
+  source: 'https://t.me/addstickers/konosubarashi'
+  tags: 
+    - 'Anime'
+    - 'Comedy'
+    - 'Reactions'
+  nsfw: False
+  original: False
+  animated: False
 3fe075d7ef97b7591bab02c82d101683:
   key: 6ea200c6e69d91fc3be8918c6186e26a8d3370aa1ab99bf3de8bf33c78d613e7
   source: 'https://t.me/addstickers/buongiornissimo'
