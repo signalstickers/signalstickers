@@ -24018,7 +24018,7 @@ a0401a381f5eeed52f6fbff4116fb2e4:
     - women
     - mint
     - science
-  nsfw: true
+  nsfw: false
   original: false
   animated: false
 75119824b2ebd9258ddd8a2eacd9e67e:
@@ -24260,3 +24260,21 @@ e312d3692dc4ac805a31fd3581125276:
   nsfw: false
   original: false
   animated: true
+7af85c23c08ef9721d56dddbbadcfbbe:
+  key: 7c5d6ce79ce01a7f36a4437757bacb078aba980643b4e6bb2a225119518e3650
+  source: 'https://twitter.com/Jeroen_vd_Broek/status/1347909046368673794'
+  tags:
+    - bitcoin
+    - blockchain
+    - cryptomoney
+  nsfw: false
+  original: false
+  animated: false
+a55f56b74731a4f8fd31ddb69a716689:
+  key: 7afb8d74db43bfc962e557b6ae395ec30f8a8d72b3ec13d9bc83e6fb03fb0d81
+  source: 'http://dull.fr'
+  tags:
+    - reaction
+  nsfw: false
+  original: true
+  animated: false
