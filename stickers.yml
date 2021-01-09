@@ -24065,6 +24065,42 @@ dfdf3a5d7d28472541e72f644d0c6723:
   nsfw: false
   original: true
   animated: false
+8b22bc68bcbf1e4d87379139570b407b:
+  key: d466343abe99ea2a53b849191b11b402e65c314c92d1501b754a290b526f9fad
+  source: 'https://telegram.dog/addstickers/Planeme'
+  tags: 
+    - 'Malayalam'
+    - India
+  nsfw: False
+  original: False
+  animated: False
+c14f444dadb88d1e65539a3116297f1b:
+  key: 633e64169ea07c13ad0b99454e3146dbd079500519bc4712a35881149868ab11
+  source: 'https://t.me/addstickers/TedFrosty'
+  tags: []
+  nsfw: False
+  original: False
+  animated: False
+f07d5543980d1e9d449d71e9646ca1f8:
+  key: 0bbcd50bdb26a969677987cae3e93a168cac943aab323b4a2a30bda3ceb99675
+  source: 'https://t.me/addstickers/Damn_SouthPark'
+  tags: []
+  nsfw: True
+  original: False
+  animated: False
+9e48fa4e63477d21a9dcea0c3f7d008e:
+  key: 4aa9e96b3f9ae4dbbf0d4296998dd016085c8267c6e1e6eeed8a840195f43d1e
+  source: Kerala
+  tags:
+    - Kerala
+    - Malayalam
+    - Mollywood
+    - Mohanlal
+    - Mammootty
+    - Karikku
+  nsfw: false
+  original: false
+  animated: false
 1a8c8563806648e8f0402f628227470a:
   key: 7cce0a933dd6d1c763f5bcb2c1f8bd347fca5df58dde6a06f227abd472c6f85f
   source: 'https://twitter.com/T2E5KTT5YB89K4J/status/1347499527893254146'
@@ -24087,6 +24123,67 @@ dfdf3a5d7d28472541e72f644d0c6723:
   nsfw: false
   original: false
   animated: false
+45719132498ef087b9eef624d8a8450e:
+  key: 8d7b08956ba38b664ffc8e59db12af6b2f2d16bd270693040c57ee2a09dd5d4f
+  source: 'LINE'
+  tags:
+    - gudetama egg
+    - gudetama
+    - space
+    - gudetama in space
+  nsfw: false
+  original: false
+  animated: false
+bb8d447dc853167b099ffccefcace767:
+  key: 6a5299659ef376603e7e495c2f3bb04bf7185ff5e7edf3b0c3d7020c92da8626
+  source: 'LINE'
+  tags:
+    - gudetama Emoji
+    - gudetama
+    - Emoji
+  nsfw: false
+  original: false
+  animated: false
+dac48e3fcb0f21a838a84e3c936e8181:
+  key: 08f14fc30cd2c83fe9c40bfec4716d6e8bf167a6d4a1f50796fd5c4ef6f6ff40
+  source: ''
+  tags:
+    - ugly
+    - funny
+    - roto2
+  nsfw: true
+  original: false
+  animated: true
+114f003bc4f39dbfba948be928eb25a3:
+  key: 05a32a1d91324f3f042a290b9bb15b450a61834e478b46f6cd58c68d75009c38
+  source: 'https://twitter.com/benjamiin_r/status/1347691057778143242'
+  tags:
+    - Cat
+    - Chat
+    - Cats
+    - Kiri
+    - Meme
+  nsfw: false
+  original: false
+  animated: false
+7ac9e9c6a8dea6888ba0d14d67ce135e:
+  key: 1a4c4aab5b5492326f984b9a82fcadd90680fde72cddd62e4019a132e74763dd
+  source: ''
+  tags: []
+  nsfw: false
+  original: false
+  animated: true
+1c3d4c932124f7ff394e8cbc3ab81084:
+  key: 7817eee722a81daa74537467fa85e324b4d38ca2db28ea7a4caed1a557a83c5d
+  source: Imported from Line
+  tags:
+    - Shinchan
+    - Shinnosuke Nohara
+    - for children
+    - cartoon
+  nsfw: false
+  original: false
+  animated: true
 e312d3692dc4ac805a31fd3581125276:
   key: cee4cd4f549ff1a14dbafecbe18ab32360df1b6098c7ce8db3ecb0875d353bac
   source: Imported from Line
