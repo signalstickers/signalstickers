@@ -24114,9 +24114,20 @@ f07d5543980d1e9d449d71e9646ca1f8:
   nsfw: false
   original: false
   animated: false
+45719132498ef087b9eef624d8a8450e:
+  key: 8d7b08956ba38b664ffc8e59db12af6b2f2d16bd270693040c57ee2a09dd5d4f
+  source: 'LINE'
+  tags:
+    - gudetama egg
+    - gudetama
+    - space
+    - gudetama in space
+  nsfw: false
+  original: false
+  animated: false
 bb8d447dc853167b099ffccefcace767:
   key: 6a5299659ef376603e7e495c2f3bb04bf7185ff5e7edf3b0c3d7020c92da8626
-  source: ''
+  source: 'LINE'
   tags:
     - gudetama Emoji
     - gudetama
