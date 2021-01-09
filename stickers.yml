@@ -24065,6 +24065,15 @@ dfdf3a5d7d28472541e72f644d0c6723:
   nsfw: false
   original: true
   animated: false
+2c2603e9c212626b2492c13a6fdde78e:
+  key: cfe9b7fac280670dfbab805ef6d3514d29898dbe3d7b04830140a6f22e7f990d
+  source: 'https://t.me/addstickers/BronnMemes'
+  tags: 
+    - 'Bronn'
+    - meme
+  nsfw: True
+  original: False
+  animated: False
 8b22bc68bcbf1e4d87379139570b407b:
   key: d466343abe99ea2a53b849191b11b402e65c314c92d1501b754a290b526f9fad
   source: 'https://telegram.dog/addstickers/Planeme'
@@ -24120,6 +24129,44 @@ f07d5543980d1e9d449d71e9646ca1f8:
     - TWICE
     - Korea
     - 'k pop'
+  nsfw: false
+  original: false
+  animated: false
+6c422cd11843247a9af7e1d9aeb2693d:
+  key: d212979001883c626b10185f4d3df49b6712773ca17d5d9577597ab558ed7d1b
+  source: Apple Inc.
+  tags:
+    - Apple
+    - Alien
+    - Funny
+  nsfw: false
+  original: false
+  animated: false
+4298f31b17b78852f85555c8ad4e01e0:
+  key: 858a9dedf24789355dbfce9d5ed09ebcc613a6ef2d7f12b314bb970bb7e15a6f
+  source: 'https://play.google.com/store/apps/details?id=com.evolutiontech.goanstickers&hl=en&gl=US'
+  tags:
+    - Goa
+    - India
+    - Konakani
+    - Ami Goenkar
+    - Goan
+    - Goan Stickers
+    - Goenkar
+  nsfw: false
+  original: false
+  animated: false
+788e720d531d0032a42db31b44a7681e:
+  key: 041958f4ede5b73f1a2b00b2cd4bd2be3e9992ac89b3ff4b7868195fc69cfff8
+  source: 'https://play.google.com/store/apps/details?id=com.evolutiontech.goanstickers&hl=en&gl=US'
+  tags:
+    - Goa
+    - India
+    - Konakani
+    - Ami Goenkar
+    - Goan
+    - Goan Stickers
+    - Goenkar
   nsfw: false
   original: false
   animated: false
@@ -24186,3 +24233,29 @@ dac48e3fcb0f21a838a84e3c936e8181:
   nsfw: false
   original: false
   animated: false
+1c3d4c932124f7ff394e8cbc3ab81084:
+  key: 7817eee722a81daa74537467fa85e324b4d38ca2db28ea7a4caed1a557a83c5d
+  source: Imported from Line
+  tags:
+    - Shinchan
+    - Shinnosuke Nohara
+    - for children
+    - cartoon
+  nsfw: false
+  original: false
+  animated: true
+e312d3692dc4ac805a31fd3581125276:
+  key: cee4cd4f549ff1a14dbafecbe18ab32360df1b6098c7ce8db3ecb0875d353bac
+  source: Imported from Line
+  tags:
+    - for children
+    - cartoon
+    - Smurfs
+    - Schluempfe
+    - Pitufos
+    - Schtroumpfs
+    - Puffi
+    - Smurfen
+  nsfw: false
+  original: false
+  animated: true
