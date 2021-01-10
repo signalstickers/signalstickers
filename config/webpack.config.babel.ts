@@ -26,7 +26,7 @@ const PKG_ROOT = path.resolve(__dirname, '..');
 
 export default (env: string, argv: any): webpack.Configuration => {
   const config: webpack.Configuration = {};
-  config.module = {rules: []};
+  config.module = { rules: [] };
   config.plugins = [];
 
 
@@ -301,7 +301,7 @@ export default (env: string, argv: any): webpack.Configuration => {
       compress: true,
       historyApiFallback: true,
       disableHostCheck: true,
-      host: '0.0.0.0',
+      host: 'localhost',
       hot: true,
       inline: true,
       overlay: true,
