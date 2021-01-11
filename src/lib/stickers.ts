@@ -23,9 +23,9 @@ import {
   StickerPackPartial,
   StickerPackMetadata
 } from 'etc/types';
-import {convertImage} from 'lib/convert-image';
+import { convertImage } from 'lib/convert-image';
 import ErrorWithCode from 'lib/error';
-import {isStorageUnavailableError} from 'lib/utils';
+import { isStorageUnavailableError } from 'lib/utils';
 
 
 // ----- Locals ----------------------------------------------------------------
@@ -102,10 +102,10 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
         ...partial.meta,
         unlisted: false
       } : {
-        id,
-        key: finalKey,
-        unlisted: true
-      };
+          id,
+          key: finalKey,
+          unlisted: true
+        };
 
       const manifest = await getStickerPackManifest(id, finalKey);
 
