@@ -165,7 +165,7 @@ const validators: Record<string, FieldValidator> = {
     }
   },
   secAnswer: (secAnswer: string) => {
-    if (secAnswer === undefined) {
+    if (secAnswer === '') {
       return 'This field is required.';
     }
   },
@@ -241,7 +241,7 @@ const ContributeComponent: React.FunctionComponent = () => {
       },
       contribution_id: contributionRequestToken,
       contribution_answer: values.secAnswer,
-      submitter_comments: null
+      submitter_comments: ''
     }
 
     // TODO use the proper way to do this
