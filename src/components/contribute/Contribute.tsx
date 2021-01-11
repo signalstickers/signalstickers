@@ -168,7 +168,7 @@ const validators: Record<string, FieldValidator> = {
     if (secAnswer === '') {
       return 'This field is required.';
     }
-  },
+  }
 };
 
 
@@ -179,27 +179,25 @@ SyntaxHighlighter.registerLanguage('yaml', yamlLanguage);
 const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = React.useState(false);
   const [requestSent, setRequestSent] = React.useState(false);
-  const [contributionRequestToken, setContributionRequestToken] = React.useState('')
-  const [contributionRequestQuestion, setContributionRequestQuestion] = React.useState('')
+  const [contributionRequestToken, setContributionRequestToken] = React.useState('');
+  const [contributionRequestQuestion, setContributionRequestQuestion] = React.useState('');
 
 
   /**
    * Get a ContributionRequest token and question
    */
   React.useEffect(() => {
-    fetch("https://prod-scw-1.api.signalstickers.com/contributionrequest/", {
-      method: "POST",
+    void fetch('https://prod-scw-1.api.signalstickers.com/contributionrequest/', {
+      method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       }
-    }).then(x => x.json()).then(x => {
+    }).then(async x => x.json()).then(x => {
       setContributionRequestQuestion(x.contribution_question);
       setContributionRequestToken(x.contribution_id);
-    })
+    });
   }, []);
-
-
 
   /**
    * Sets 'hasBeenSubmitted' when the Submit button is clicked. We need this
@@ -242,19 +240,19 @@ const ContributeComponent: React.FunctionComponent = () => {
       contribution_id: contributionRequestToken,
       contribution_answer: values.secAnswer,
       submitter_comments: ''
-    }
+    };
 
     // TODO use the proper way to do this
     // TODO handle errors
 
-    fetch("https://prod-scw-1.api.signalstickers.com/packs/", {
-      method: "PUT",
+    void fetch('https://prod-scw-1.api.signalstickers.com/packs/', {
+      method: 'PUT',
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(propositionData)
-    })
+    });
     setRequestSent(true);
     return true;
   };
@@ -495,7 +493,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                   <div className="col-12">
                     <button
                       type="submit"
-                      className={'btn btn-block btn-lg ' + (requestSent ? 'btn-success' : 'btn-primary ')}
+                      className={`btn btn-block btn-lg ${requestSent ? 'btn-success' : 'btn-primary '}`}
                       disabled={isSubmitting || isValidating || requestSent}
                       onClick={onSubmitClick}
                     >

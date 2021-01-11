@@ -102,10 +102,10 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
         ...partial.meta,
         unlisted: false
       } : {
-          id,
-          key: finalKey,
-          unlisted: true
-        };
+        id,
+        key: finalKey,
+        unlisted: true
+      };
 
       const manifest = await getStickerPackManifest(id, finalKey);
 
