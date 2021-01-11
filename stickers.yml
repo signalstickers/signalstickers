@@ -10,7 +10,7 @@ ae1d343accdec586fe19954a6be7aee9:
   source: ''
   tags:
     - cat
-  nsfw: false
+  nsfw: true
 4830e258138fca961ab2151d9596755c:
   key: 87078ee421bad8bf44092ca72166b67ae5397e943452e4300ced9367b7f6a1a1
   source: 'https://twitter.com/bitsoffreedom/status/1209384967593222145'
@@ -18,7 +18,7 @@ ae1d343accdec586fe19954a6be7aee9:
     - privacy
     - internet
     - freedom
-  nsfw: false
+  nsfw: true
   original: true
 123f678abcef7a39c0e710c051c68ae8:
   key: 84e89503556fa3568485a89d113b70ff73a8822a6c9c5c524ba2c7428007551d
