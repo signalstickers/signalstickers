@@ -5,6 +5,14 @@
 # When adding a new pack, please remember to add it AT THE END OF THE FILE,
 # and pay attention to the indentation.
 
+58cdac1fa108273b3469a4f200581bd9:
+  key: ae2e6e46502f4e5a12843fdf1a2fa9795636144145c64d1a6c72be2e3b4aca57
+  source: ''
+  tags: []
+  nsfw: false
+  original: true
+  animated: false
+  
 ae1d343accdec586fe19954a6be7aee9:
   key: ffea9831b6af7617e4ab1b3868ce6f26f5c7c8ab3f05fb8d68b436f9253232ab
   source: ''
