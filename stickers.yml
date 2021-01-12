@@ -25173,10 +25173,18 @@ ff951a0949009c4add4cb712895491d4:
     - chistoso
     - lustig
     - random
+ecc8c08b4f8ed6817a3c5d83e533acc8:
+  key: 5589fd0596e84271eeb29f87459a8df9b00b804ec03a3796ca5f4e9a7b1c0c80
+  tags:
+    - mexican
+    - mexico
+    - divertido
+    - gracioso
+    - funny
+    - chistoso
+    - lustig
+    - mexiko    
 0ab84cdd408ab057bb918c8e3f0cf4dc:
   key: 7525f0c443382d46a7d7a43a48eb677c3bc4c0b4d9bfa8c2f64b71a6cfb2e02a
   source: 'https://t.me/addstickers/Ffc123'
-  tags: []
-  nsfw: False
-  original: False
-  animated: False
+  
