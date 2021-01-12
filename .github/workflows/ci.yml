@@ -42,6 +42,8 @@ jobs:
         with:
           key: sticker-packs-${{ hashFiles('stickers.yml') }}
           path: node_modules
+          restore-keys: |
+            sticker-packs-
 
       # If no cache was found, install dependencies manually.
       - name: Install Dependencies
