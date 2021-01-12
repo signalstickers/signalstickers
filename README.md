@@ -3,7 +3,7 @@
 </a>
 
 <p align="center">
-  <a href="https://travis-ci.com/signalstickers/signalstickers"><img src="https://travis-ci.com/signalstickers/signalstickers.svg?branch=master"></a>
+  <a href="https://github.com/signalstickers/signalstickers/actions?query=workflow%3A%22Continuous+Integration%22"><img src="https://img.shields.io/github/workflow/status/signalstickers/signalstickers/Continuous%20Integration/master"></a>
   <a href="https://github.com/signalstickers/signalstickers/graphs/contributors"><img src="https://img.shields.io/github/contributors/signalstickers/signalstickers"></a>
   <a href="README.de.md"><img src="http://bit.ly/3bljOI0" alt="Deutsch"></a>
   <a href="README.fr.md"><img src="https://bit.ly/31xkO7h" alt="Français"></a>
