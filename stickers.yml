@@ -24269,6 +24269,13 @@ a55f56b74731a4f8fd31ddb69a716689:
   nsfw: false
   original: true
   animated: false
+0c3e346e8d3143d86a026be5eb56fa1f:
+  key: a4763eca6e87c68983d300514b4a692d67dea4ee4b438a07ea2ad76cb23ea3d8
+  source: 'https://telegram.dog/addstickers/ScreamQ'
+  tags: []
+  nsfw: False
+  original: False
+  animated: False
 318c2154f383330a8558ea94bd50038d:
   key: 53bd93bf61926ef37ed8c0cae15299c1c3bfaa9ee163d972a18cade6f1e3db06
   source: 'League of Legends, Riot Games'
