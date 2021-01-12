@@ -18596,11 +18596,6 @@ abc15d7e9e7be626009b3234f61cc9ff:
   source: 'https://www.reddit.com/r/signal/comments/eqxjei/bitcoin_stickers_for_signal/'
   tags: []
   nsfw: false
-9da172a7a5d078818a653f7bef3ec980:
-  key: 6592f3fb2a20664037eb2ed5790fa2df03627bfab05ab9b63c852cfd6aaa3e1c
-  source: 'https://www.reddit.com/r/signal/comments/ephw8m/tamil_memes_%E0%AE%A4%E0%AE%AE%E0%AE%B4_%E0%AE%AE%E0%AE%AE%E0%AE%B8/'
-  tags: []
-  nsfw: false
 eef9b8f7ce3f68efbacc346796a219b1:
   key: 8d58c75e6187a488f1afe78d5a4320613dc1a3b0181cd98976271c7daf6c4183
   source: 'https://www.reddit.com/r/signal/comments/ekbex0/ren_stimpy_sticker_pack/'
@@ -24274,6 +24269,24 @@ a55f56b74731a4f8fd31ddb69a716689:
   nsfw: false
   original: true
   animated: false
+0c3e346e8d3143d86a026be5eb56fa1f:
+  key: a4763eca6e87c68983d300514b4a692d67dea4ee4b438a07ea2ad76cb23ea3d8
+  source: 'https://telegram.dog/addstickers/ScreamQ'
+  tags: []
+  nsfw: False
+  original: False
+  animated: False
+318c2154f383330a8558ea94bd50038d:
+  key: 53bd93bf61926ef37ed8c0cae15299c1c3bfaa9ee163d972a18cade6f1e3db06
+  source: 'League of Legends, Riot Games'
+  tags:
+    - League of Legends
+    - lol
+    - league
+    - pengu
+  nsfw: false
+  original: false
+  animated: false
 7ee368d41697e6a0b7bd2781eef89d84:
   key: c7905645587d320d3091f3bef8d8b3b9aa9c7961f0089f10efc89f217327135c
   source: ''
@@ -24294,3 +24307,149 @@ bac0fdc944d71c3d210169f3ff3a3adf:
   original: false
   animated: false
   
+7ef72cbe43cbe6f9c4cd4464049eb9a8:
+  key: 06c53ccaff6d5bbf28befcda37e734515ae1179f5dcae6fb929464141de5ff47
+  source: ''
+  tags:
+    - Malayalam
+    - funny
+    - mallu
+    - ffc
+  nsfw: true
+57edaeca93a3cf650a5937fead2c9a89:
+  key: 97a2e99f167afeee06d5956a1c81a4ce82de53d624a461237ed6e14f5a6ac7bd
+  source: Apple Inc.
+  tags:
+    - Apple
+    - Funny
+    - Animal
+    - Octopus
+    - Squid
+  nsfw: false
+  original: false
+  animated: false
+f6a573286b108673e5c1d35b7c009583:
+  key: 133f4abfeb28ee15868daa8d85d6725b9b47f542fedd799802247db778ea209a
+  source: Apple Inc.
+  tags:
+    - Apple
+    - Funny
+    - Animal
+    - Bird
+    - Chicken
+  nsfw: false
+  original: false
+  animated: false
+84b11d0112fe5fcf5b07e46d45489e25:
+  key: 9f4d98bceef4d78d2238371030c3011b84880f6808d2e788f63b19e5915d0d3c
+  source: Apple Inc.
+  tags:
+    - Apple
+    - Funny
+    - Animal
+    - Cute
+    - Bunny
+    - Rabbit
+  nsfw: false
+  original: false
+  animated: false
+d3bcc372de2f661c2659a884735df6b2:
+  key: c9cd79923427bf21e84afb54b36dc53b3f452cf5b663009f6533d44b853417f0
+  source: 'https://telegram.dog/addstickers/Uni_Bor'
+  tags: 
+    - 'Telegram'
+    - 'Malayalam'
+    - 'Random meme'
+    - 'Meme'
+    - 'Troll'
+bb76fade43826ccaa1f7ce484b58127d:
+  key: bae46da294a69223164a23a802827b670707d28eb29d188a696e4e8442ef41cd
+  source: ''
+  tags:
+    - mkbhd
+    - youtuber
+  nsfw: false
+  original: false
+  animated: false
+f2861bcc06382dbdfe0d4adf96fb9430:
+  key: f876cef7d8a6620f3591ac3a7e8d71103a8c43900860fc10ad15ff936ddd75fe
+  source: 'https://t.me/addstickers/MalayalamFaces'
+  tags: 
+    - 'Telegram'
+    - 'Malayalam'
+    - 'Meme'
+    - 'Mallu'
+    - 'Comedy'
+7799989a8f80c08f53e5f92bd79e0e4f:
+  key: 5d60d25c8dd1455a6b464cd247012a1d734dc16707d3caf7774af7b2731e7c5f
+  source: 'https://t.me/addstickers/CartnMems'
+  tags: 
+    - 'Telegram'
+    - 'Malayalam'
+    - 'Random meme'
+1f046cd59f5979f627f6faf9c1defd0f:
+  key: 45367412e9bce357a268102712519462e7b62cd3226adb0eaa4a7e9fee8ac4b1
+  source: >-
+    All credit goes to Shamil Chaliyam,Kozhikode Kerala
+    https://www.malayaliscorner.ml
+8f757c0878fba9874074ece119320326:
+  key: 8c67e727f9544af5863a14a4cbf361ef744b61d15a685071f7b76d9bcd409cfd
+  source: 'https://t.me/addstickers/MrZen'
+  tags: []
+f6f8fcb59b6992324f8955ec8b09658e:
+  key: 57373c5b327189a6048c4e121007a7caddf475bdfe8582c70a9c43fe2db978d2
+  source: 'https://store.line.me/stickershop/product/13505512/en'
+  tags:
+    - Deltarune
+  nsfw: false
+  original: false
+  animated: false
+f33307be0e9d26d7df59e93b98f318a5:
+  key: 2b556f2dc2bc632f0e5e0c3f6365309643dbdb8319065c79718c4f5f10564113
+  source: >-
+    All credit goes to Shamil Chaliyam,Kozhikode Kerala
+    https://www.malayaliscorner.ml/
+  tags:
+    - India 
+    - malayalam
+    - malayalamstickers
+    - mallu 
+    - admin 
+    - reaction 
+    - dialogues 
+    - funny
+  nsfw: false
+  original: false
+  animated: false
+fb9714f8342b0447b44e288ac4035f70:
+  key: e780a2f23b01e2152c5f99c68eed12a21a0df12d4e169c04c1510e7d9c332731
+  source: 'https://www.instagram.com/_m.e.m.e.g.o.d_/'
+  tags:
+    - memes
+    - marathi
+  nsfw: false
+  original: false
+  animated: false
+51ef1f053197a8f4606ddb09bf72ac14:
+  key: d1ce1381a8ed26bc6209d04adff079c3e5d3b817d90c3db352940b12caa2902e
+  source: 'https://t.me/addstickers/BobbyHillBymarrysunset'
+  tags:
+    - bobby hill
+    - bobby
+  nsfw: false
+  original: false
+  animated: false
+4c166cbe7f26316ae2a19a05b4800d3b:
+  key: f77aa097a5f67a0897994b936c7464458f975a536b87a610397b788d137ae145
+  source: 'https://t.me/addstickers/Ramelow'
+  tags: 
+    - 'Bodo'
+    - 'Ramelow'
+b393ac489077525219775cf4b6588925:
+  key: b629e442ea519f8107cc681af5a55faa6bbbcb9cbf859b2a164c67fad838d9fd
+  source: 'https://t.me/addstickers/gawrguraa'
+  tags: 
+    - 'Hololive'
+  nsfw: False
+  original: False
+  animated: False
