@@ -12044,19 +12044,6 @@ e6f0f2a46d160285fb50259e17ac1b5f:
     - Blobby
     - Blob
     - telegram
-2b75fc1d8346e802a5fbf46f9b46c8f6:
-  key: e84bebb7217413bd7144115e1a5936c70afe36dd8aba3adf7945b6c850da87e8
-  source: 'https://tlgrm.eu/stickers'
-  tags:
-    - blobbyyyy
-    - абстракция
-    - розовый монстрик
-    - Abstraction
-    - pink
-    - monster
-    - кетнипс
-    - Blobby
-    - telegram
 39d894415f6df98312a0c4d96ef4c135:
   key: 38cd8b5558e5d5fd85016bca3f4eb7e1ed80c7413097eaf258a250fcd1f7dd32
   source: 'https://tlgrm.eu/stickers'
@@ -25111,14 +25098,6 @@ da8e59ece4afbed0474269448c1fa8a6:
     - Emilia
     - Puck
     - Subaru
-fca0706491d12d7e18c6856baccf3242:
-  key: 5233588420af5071bf3352daedd13ecf16701b663cc7a22583184a270227342e
-  source: 'https://t.me/addstickers/blobbyyyy'
-  tags: 
-    - 'webcomic name'
-    - 'comic'
-    - 'meme'
-    - 'cute'
 166f7d7bec42ab3c6a1c757fa205a012:
   key: c0042b26dacf427c7add0cb60b1de1e793683a658fdb2a05a81e20d0ec3904a8
   source: 'https://twitter.com/MEME_G_O_D'
@@ -25187,4 +25166,113 @@ ecc8c08b4f8ed6817a3c5d83e533acc8:
 0ab84cdd408ab057bb918c8e3f0cf4dc:
   key: 7525f0c443382d46a7d7a43a48eb677c3bc4c0b4d9bfa8c2f64b71a6cfb2e02a
   source: 'https://t.me/addstickers/Ffc123'
-  
+12106193deb4a1614f30c51a168ceaad:
+  key: 901664507872a5a37de4f0f0e93ca47e3d940b71db139eb34187828b8cce8e8a
+  tags:
+    - cat
+4e4d0dc4df22be077d1107b441b41006:
+  key: 91bbba48c536deca2b60c1651551b36415603d733c4fa076449568f34001ad33
+  tags:
+    - cat
+e976a6551a453aad4e0c54a1a0f5e90b:
+  key: 140f5c8e065363205d578650802e294d334329b190da7fdbf4825d7ff4313ccf
+  source: 'https://twitter.com/Ploppypop2'
+  tags:
+    - cute
+121d4e45933a9a6a1ee85c390fd1e4ee:
+  key: a942ab355c23a54abe40eca3dfadffc3b0dfda3d28f7a32f30c60fc6af79c8b9
+3b0f20301aed0d5f1e5bd9642d8af6d9:
+  key: 112caf6d9a7659bf7392b4f28572d80c01cff8a5ea4e7166e1041b110a55e0be
+cf04c2e11b9a74df78a9722262c33246:
+  key: 80fb0c91b8d5640a93f4f7f9ff3a180bf9e6f4c32b772c0c21bf167f4babc782
+8e7b00e6aff4e36451a6c73ee2f634b0:
+  key: b8d1c5cb422d658d59c38707baa452437ada33c347af0b9d3ee84cc666973d9f
+  source: 'github.com/sethrollyns'
+  tags:
+    - jennie
+  original: true
+3940a6f9f72b9660a2e9b51df5ea1781:
+  key: 30fde33de57e7463e2236ceda60a9d26c38a2572b84812f6ddff623cee3bcebc
+  source: 'https://twitter.com/cinnawh/status/1349045340591190016'
+596ecaf3f77e459843f627e5e5ffe3bb:
+  key: bf99638525ce2637fd91d13ed1bb73db52dfe5c7250e01b9a8b9a2725c28a073
+  source: 'https://twitter.com/cinnawh/status/1349045340591190016'
+79d24e1b92ac48b55d2467382c1a32bb:
+  key: 2ed5d22050a31b7704a8ea299e306c3b012c8e4eb1ef2b6b7f87ddf768906dac
+  source: 'https://twitter.com/1128_ace/status/1349013511544909824'
+701f6465230fd5b9accb402b399af6b2:
+  key: 3bf7370ba0f0a9ad502d0d6b286e7814dfcdd6a28050e48ed0b7c1f81f4d83f3
+  source: 'https://twitter.com/Mzcca016/status/1348922296581255170'
+13a7356f209ac7678b0d79cc8bb5e7b3:
+  key: ad3430b0cf3ffd33795de9ea443312c3f23cf4ee78592792864fd0bdcf6fa649
+  source: 'https://twitter.com/Mzcca016/status/1348911219474763777'
+a44b4ff711fd90acb5d56bf0382737a4:
+  key: 632fffbf9f75b399a79bfd48cd7371099eca19a5cff94b8c38472870f8d671b8
+  source: 'https://twitter.com/octomahk/status/1348876483767410688'
+48b9b62aaf8d2beed2d8cf61010ae94d:
+  key: 92606e0c38b50e39fc32d09065e82027eaf30790d61c837700d54f6730a54175
+  source: 'https://twitter.com/octomahk/status/1348876483767410688'
+ae7d276337b4895234bb0f123ccdb686:
+  key: e13c58705acb0141e413253412035df84f569e6c8440d25d218bbee086ae9286
+  source: 'https://twitter.com/octomahk/status/1348876483767410688'
+93e83d0fb7a4bdd9454af44ddaf9c369:
+  key: f87b2086ba9e09764ebb1002b2bbbbf4c6d62fabe879e2993775e94e0d08c17a
+  source: 'https://twitter.com/octomahk/status/1348876483767410688'
+703528bd0b966002075be491bcfb0eba:
+  key: 055772cf86a897f5a33805013e81b87507059753b5534380685aee547be3ba35
+  source: 'https://twitter.com/gusguslai/status/1348890690936205330'
+efccdc11ef06bd320fba574bff9b7bec:
+  key: 0ada110ce18c398609ab75225a3068a520939308fba95ec81df3aa3f806332fc
+  source: 'https://twitter.com/Charvalton/status/1348656087365341184'
+  original: true
+0c319103ecf323e230819fb891e35cec:
+  key: d9ad1202d23a773d92235668f390364c25f9b03ae14caa6ead6abc0653d1cee8
+  source: 'https://twitter.com/C_8964/status/1348647516305195010'
+  tags:
+    - HK
+    - Hong Kong
+f82475935048edf4f6736e44e3f9711a:
+  key: 9577a54afa0450bc170815a9c170c56caacb21defdc63876d06c49e2a0124a29
+  tags:
+    - BTS
+    - Kpop
+    - Korea
+7a28221808b928eb9a69c86d6e3f8047:
+  key: 537272394337aec1991016a909c41fc74177e2992090cea634da6f65c1fc0ffe
+  tags:
+    - BTS
+    - Kpop
+    - Korea
+4a61a0574dd147448a895e2aa47cc31b:
+  key: f6de7b1ccb4b1d9669cc0baaa139140d7a0da8c75764ad029f78f7bcdbe95659
+  tags:
+    - BTS
+    - Kpop
+    - Korea
+87b5a793f4b3194bf4b5e01777e1fb5b:
+  key: 6e1af8aa65c888daa59eb693d01406a415850b4836993341758d2210cb05786b
+  source: 'https://twitter.com/littlefoxdoodle/status/1348284638616117248'
+  original: true
+5df3e503434f9f5119d884b0977c8bad:
+  key: 9dafdb6b50c8a71d068fa6b427837518afa36e0518099c98549519877b728d8e
+  source: 'https://twitter.com/robotisch/status/1348230451228499970'
+  original: true
+9133e3391aa84fb3a3d23e38e2be786c:
+  key: 8a35ebc19f781b3ca5178b9fffff2acac052a4763452ca4532f2312520e04aaf
+  source: 'https://twitter.com/Bebesitoprrr/status/1348133995272433665'
+c962db4c689fbfca255389b16f13140a:
+  key: 6c87490f9f62ba8aa70a33dc63b9a347d6feb031e77e51feef65432fdd34bfca
+  source: 'https://twitter.com/pouyasnap/status/1347980620425785347'
+  original: true
+dd5f49029ca11588db7e7cf5f92c12f9:
+  key: 1e8f47073b562ccb9577c18985af923a50ae4cf6e5df8b3480423efe4c1126e1
+  source: 'https://twitter.com/nielsboey/status/1348349734797406216'
+  original: true
+6ef70f16d10dd93bafaa4b25b82064a2:
+  key: 3b408999854430649d7f7e01505d96e55784f57bf2417aa7e2846704678c2f4d
+  source: 'https://twitter.com/AussiEmoji/status/1348986136312438786'
+  tags:
+    - Australia
+    - kangaroo
+    - down under
+  original: true
