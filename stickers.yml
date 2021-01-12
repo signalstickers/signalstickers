@@ -24307,8 +24307,7 @@ a55f56b74731a4f8fd31ddb69a716689:
     - nsfw
   nsfw: true
   original: false
-  animated: false 
- 
+  animated: false
 97fcc2bce55e7624efdb28e7a3726b89:
   key: ea23cf72e8209ef1032906887ff22f64190f3ae39af6ef668bb626f683f85a3d
   source: whatsapp
@@ -24553,6 +24552,13 @@ aecf0661821ba68e29e9996b7289e81a:
     - meme
     - cat meme
     - telegram
+  nsfw: false
+  original: false
+  animated: false
+6c5cf81312187f208814c508ebf1933c:
+  key: f81356dd1f141302d79e71e0aed5c13ad129610368f1396849d31d8cf9518bba
+  source: 'https://t.me/addstickers/FRIDAY_57373890'
+  tags: []
   nsfw: false
   original: false
   animated: false
