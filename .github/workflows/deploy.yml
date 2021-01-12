@@ -8,11 +8,19 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
+      # Cancel any queued or in-progress runs of this workflow for the current
+      # branch.
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: ${{ github.token }}
+
       - name: Clone Repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
+      # Install Node 14.
       - name: Set Up Node
         uses: actions/setup-node@v1
         with:
