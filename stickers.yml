@@ -19933,7 +19933,6 @@ f7dc8862d72c6df9557d14e71261ba1c:
   tags:
     - 'Halloween'
     - 'Pumpkin'
-  animated: False
 633409c0296aa57db9f477d758e997b8:
   key: 008429dc1a5186ff4c247bfdbafd0bb3428bde2fdbc5728b655be81b399cba0f
   source: Tobias Pfandzelter
@@ -20112,7 +20111,6 @@ e817ad4c902961e186bdc71c4f30833e:
   tags:
     - 'Egg'
     - 'Meme'
-  animated: False
 a5116eb634fcee0cd6b3c43f04ebcd5c:
   key: 2630e5cd20b97dd96353983614a5c2e9f6763920eee3bbb3b953e9a3ee5913ba
   source: 'https://t.me/addstickers/AceAttorneyMome'
@@ -20121,7 +20119,6 @@ a5116eb634fcee0cd6b3c43f04ebcd5c:
     - 'Reactions'
     - 'Faces'
     - 'Phoenix Wright'
-  animated: False
 2fa1536938a9be10a109f95bcfa0d3f9:
   key: 8aad94f2a4b55fbd1b3a63449b353913ad4f8fd3be1ccb9e557729434ac371db
   source: 'https://twitter.com/frkula/status/1330166562800734214'
@@ -20466,7 +20463,6 @@ e245c4a3c57afed5b182c3b272168466:
   source: Telegram
   tags:
     - avatar
-  animated: false
 64b2d9e14c0761d49c41b235c528a0be:
   key: e29b28e7fe2d70341f93bed8b7b7b2606c7e771ae5084f71c3674303627e6200
   source: Telegram
@@ -20491,7 +20487,6 @@ ca20cbf581f00d3f88437896bc6ba6c4:
     - love
     - biscuit
     - cute
-  animated: false
 e76a010259fc6011059fee999946387f:
   key: a517923068c864f320c4c3fff07f157562050518a92c8c0bab0b4b58a1d6ad42
   source: 'https://twitter.com/lttrspc/status/1334412256692547588'
@@ -20511,11 +20506,9 @@ c81fe9684eb03f55f81512414ca8491d:
   tags:
     - cute
     - reaction
-  animated: false
 3f9f358d2cdbed1fd1d54d8470def092:
   key: 022ad28fc451b24f2f83411760b934c1db70c7c6871d031d62962b13427a2008
   nsfw: true
-  animated: false
 d9972b04ad521cf093a92b4a5287a93e:
   key: 5f082cd8ed158672001c16fcb7e0e0f3df67f15220c9c82fce2a6f4646674b62
   source: Telegram
@@ -20625,7 +20618,6 @@ c3418a1c15c96da1be3271c154f82177:
     - 'Michael Palin'
     - 'Terry Jones'
     - 'Terry Gilliam'
-  animated: false
 84642bdb64fd883bd1c86cb814d2a41b:
   key: e716da9c8cbca71a6ce481c9031dcc8af08fde2526875e93aca091da7aa4596e
   source: 'unknown artist, feminaziseverywhere, https://tlgrm.eu/stickers/WomensWorld'
@@ -20642,27 +20634,23 @@ c3418a1c15c96da1be3271c154f82177:
     - police
     - catcalling
   nsfw: true
-  animated: false
 6873444f3c034c0bd9da4b152658a629:
   key: a0f1b7010d17a065f155fc41ec053b705c3e02c2dbc70d355a394d8d73bab9fe
   source: 'https://telegram.dog/addstickers/spe9ad2'
   tags:
     - 'Anime'
     - 'Cute'
-  animated: False
 6ac432350c856f3d74d3eda5310df5b5:
   key: c0695a57f03cc5999de435399b158b83933c1135ece6931ab73b8293f8da4460
   source: 'https://t.me/addstickers/pokemememes'
   tags:
     - 'Pokémon'
     - 'Pokemon'
-  animated: False
 0a61962fa9acbf293bc03b30840b751d:
   key: e251f0284dfec993ce959ff4af227039028636fb1c60b3d73be63d3786a64c09
   source: 'https://t.me/addstickers/Pusheendue'
   tags:
     - 'Pusheen'
-  animated: False
 abef89b4590f25ad1332c99e8ae0dd7e:
   key: 838f36515669f47f7099881cd30430c983998ae153a1532e9338acbf3d7cb8a4
   source: Telegram
@@ -20681,7 +20669,6 @@ abef89b4590f25ad1332c99e8ae0dd7e:
     - Bruno
     - Aladeen
     - 'Ali G'
-  animated: false
 aa0036a7bba60d47a3292a603da3486d:
   key: 52e6364bec09453892fa703d874848484135ce40efac8995f68587cf31a29730
   source: 'https://t.me/addstickers/SensualPack'
@@ -20691,7 +20678,6 @@ aa0036a7bba60d47a3292a603da3486d:
     - 'Anime'
     - 'Catgirls'
   nsfw: True
-  animated: False
 5e7b27f0adcc116ca3a4ae6b3423041e:
   key: 8566db3cf1d7681e5f7435a78e4d80ad9b53759a64370ac034996f5e0ac2eeb8
   source: 'https://t.me/addstickers/PetNala'
@@ -20700,7 +20686,6 @@ aa0036a7bba60d47a3292a603da3486d:
     - 'Furry'
     - 'Reactions'
   nsfw: True
-  animated: False
 cb26df8e71d2be2b2b753e30bfc92e42:
   key: 698eeee5851991922a756ef99bd569bf08d24a0c79cfbf37decf321bafc739ff
   source: 'https://t.me/addstickers/Hafengeburtstag'
@@ -20708,7 +20693,6 @@ cb26df8e71d2be2b2b753e30bfc92e42:
     - Germany
     - DE
     - protests
-  animated: False
 983a07e166c300cf0f1cdf961e25d877:
   key: 71b0174a4cf5a2b08bfc9a4a20fd52aded49b397b8913f570b4cc79e71b38b78
   source: 'https://t.me/addstickers/ThetaStuff'
@@ -20716,7 +20700,6 @@ cb26df8e71d2be2b2b753e30bfc92e42:
     - Germany
     - DE
     - meme
-  animated: False
 f95f854348bc08de3841347e84d76a0e:
   key: 87e12edb3c90f3b2bee54c4167c52c412f5fc5e564e009066882491f80c582b6
   source: Telegram
@@ -20753,7 +20736,6 @@ cc9d42d7effd214d2a9a36280fb18583:
     - Morning
     - Morning Scribbles
     - Chris Ryniak
-  animated: false
 654458a334bed95c589b398dd1f0a526:
   key: ffb900c090bdc988c8497b03b62f609b932d9815912f08a97771e8f36b4e9161
   source: mini_b 202
@@ -20766,11 +20748,9 @@ cc9d42d7effd214d2a9a36280fb18583:
     - animals
     - kawaii
   original: true
-  animated: false
 06e1e59036f0d80dad4cfe03d2d64bad:
   key: 0bfc8401ee6a67e55b0e8c3ea3b008513c3c0ced93018433ac9cb3879ee4a958
   source: 'https://t.me/addstickers/pontifex'
-  animated: False
 a1c5cb861e12005b3371ae461f4d43b4:
   key: a2adf5181b5676aae3f3ac2c376f7650d7eebbeab475eb25c3ee9cea9eaa4aac
   source: Telegram
@@ -20809,7 +20789,6 @@ eacb9f0ad7a7c0e92a1216f459482a5d:
     - sports
     - osu
     - nani
-  animated: false
 307d945a36b4693cf6568a6a26d9a515:
   key: ed32800e85b20103946aa96ddc4737591aacfc0e9023ea836e401224ffcc7e6c
   tags:
@@ -20820,13 +20799,11 @@ eacb9f0ad7a7c0e92a1216f459482a5d:
     - sports
     - osu
     - nani
-  animated: false
 16a7fc9ce787dbcc677259416973792a:
   key: 7ee198141e97906ebeffe9c76ea3913ff452fd730aa3003c881e47ef43011a08
   source: 'https://telegram.dog/addstickers/BrainMe'
   tags:
     - 'Meme'
-  animated: False
 ae92144546c0eb35011cacde9e6673c8:
   key: 513d43d02ed55cbc914f5d8b3e950bf8c98b86a374f046f49e51d7e2af9bd2b3
   source: Telegram
@@ -20847,7 +20824,6 @@ d09482ba164e5f0aeb5034d591c06e90:
     - 'omae wa mou shindeiru'
     - japan
     - react
-  animated: false
 9165981572d47a6d6e408569631c2118:
   key: bc21dc8b9319557257b7faffba5ccc11b14b49617eb6440d37553babe8ebf825
   source: LINE
@@ -20857,7 +20833,6 @@ d09482ba164e5f0aeb5034d591c06e90:
     - japanese
     - jp
     - line
-  animated: false
 bc593c890809a5374f42448acb1bbbd2:
   key: 6a0947cada9d0450ae3bb6e94c5d16c09cf5ad01ffefc0ac2024940d0cae509a
   source: LINE
@@ -20880,7 +20855,6 @@ bc593c890809a5374f42448acb1bbbd2:
     - kanojo okarishimasu
     - japanese
     - jp
-  animated: false
 d0678a2671c20c9908f2bc69408ef662:
   key: bbd42ade696d575a60fb682c2e949b7525a1b095d5c269cc234f5684c3a42522
   source: LINE
@@ -20890,7 +20864,6 @@ d0678a2671c20c9908f2bc69408ef662:
     - cute
     - for children
     - rascal
-  animated: false
 6164c31605a707d5a60c250af0e2d361:
   key: 554be9c984bb379b947d1b502f1134e5a06986c4f4021686ed15eb0e00b8671f
   source: 'https://t.me/addstickers/IA_ONE'
@@ -20899,7 +20872,6 @@ d0678a2671c20c9908f2bc69408ef662:
     - 'cute'
     - 'IA'
     - 'Vocaloid'
-  animated: False
 91bd813221eb3ade9cf8ded1bb157d3a:
   key: da71d0eb0d8bbf003896861a9edbaa3b6f29abfd1ed840a0f47b90b51f0adc42
   source: 'https://telegram.dog/addstickers/TenshiN'
@@ -20909,7 +20881,6 @@ d0678a2671c20c9908f2bc69408ef662:
     - 'neropaso'
     - 'Touhou'
     - 'Anime'
-  animated: False
 d283487504dc92bb84df4f9706dd7bdf:
   key: 572ee8b59d84b97837f7afff8afc40ef3d6fcd7c7e6d959b2430475d1cb3b628
   source: 'https://telegram.dog/addstickers/LosSimp'
@@ -20918,7 +20889,6 @@ d283487504dc92bb84df4f9706dd7bdf:
     - homer
     - lisa
     - marge
-  animated: False
 04ed4156f90ebdcab8084bba260d7f63:
   key: 25334fac4746902ad82cc5d35c234fd82193b449479378b94c07957f1e959661
   source: 'https://t.me/addstickers/RealCommies'
@@ -20929,14 +20899,12 @@ d283487504dc92bb84df4f9706dd7bdf:
     - 'Stalin'
     - 'Mao'
     - 'Che'
-  animated: False
 afd4af124cfd051deee8f60319c2273d:
   key: 8d183e34b27b9652b8c2d20f88bdef71760dd851fecce4496da44ecbfd5f3efe
   source: 'https://t.me/addstickers/ChairmanMao'
   tags:
     - 'Mao'
     - communism
-  animated: False
 53fc2db6ffa3fca1651e73d0bef91005:
   key: 0783698a42fb6b165f0d98e652a4b948390afc1d26b3b481cf7a4aabed1b4a7d
   source: 'https://t.me/addstickers/IMG_ultrabrutal'
@@ -20946,7 +20914,6 @@ afd4af124cfd051deee8f60319c2273d:
     - 'celebrities'
     - 'memes'
   nsfw: True
-  animated: False
 3abc506a14d46e171f2616e39de44490:
   key: 4beb2f303375da30e47092e2eb19190866c23a10174f430f01bdca0449fd4a89
   source: 'https://t.me/addstickers/Cisforcookie'
@@ -20954,7 +20921,6 @@ afd4af124cfd051deee8f60319c2273d:
     - 'cookie'
     - 'monster'
     - 'cookie monster'
-  animated: False
 462fa500c9d8ebc7d618ac1ef2274044:
   key: 27ff718e8e58ec0901ecd34eb236061dcc63855444a0c0501cba49359960a134
   source: 'https://t.me/addstickers/cuteAmthor'
@@ -20963,7 +20929,6 @@ afd4af124cfd051deee8f60319c2273d:
     - 'Amthor'
     - 'politician'
     - 'funny'
-  animated: False
 0deec1cf600cb81d5496dc9bf3acb614:
   key: cab12383606fb561a5a881aa82b45e76625d187738fed18347100709ed4b9fae
   source: 'https://telegram.dog/addstickers/AntifaA'
@@ -20975,7 +20940,6 @@ afd4af124cfd051deee8f60319c2273d:
     - 'leftist'
     - 'activism'
   nsfw: True
-  animated: False
 a78c59f14264aa586559c7a9b19832f3:
   key: fa68ce0b69279d4335f31ba80f08026e59fcd87427be0564de7d8ebcf2ba0173
   source: 'https://t.me/addstickers/Punktheriot'
@@ -20983,7 +20947,6 @@ a78c59f14264aa586559c7a9b19832f3:
     - 'punk'
     - 'anarchy'
     - 'angry'
-  animated: False
 2aaa8c165f4b6f7ee1df2d50209feac2:
   key: 8a54ae26267b986f488ea1999e685a95b2dd9c8bc94b145db46c967805237249
   source: 'https://t.me/addstickers/KermitTheMuppet'
@@ -20995,7 +20958,6 @@ a78c59f14264aa586559c7a9b19832f3:
     - 'Muppet'
     - 'TV'
   nsfw: True
-  animated: False
 d50e5cb133c1162ac92899833f26c56c:
   key: e0b397a5cacb1f336c54b4fea6bfd3545ff46fae0b32b52abd27a42da3f80f4e
   source: 'https://t.me/addstickers/Kermitdafrog'
@@ -21004,7 +20966,6 @@ d50e5cb133c1162ac92899833f26c56c:
     - 'Kermit'
     - 'frog'
     - meme
-  animated: False
 2edcb8ee72c2edfff55ebc0ce7a19fda:
   key: 1bec24f86758be6e882d7a4f4a8dfbcdf785b0e05320b3f2f117f296a8ac6c0c
   source: 'https://store.line.me/stickershop/product/2628/en'
@@ -21015,46 +20976,37 @@ d50e5cb133c1162ac92899833f26c56c:
     - hello kitty
     - cute
     - animals
-  animated: false
 750da2f86234d7ec45f3ea986e4da609:
   key: cddc6b627d975d0c8332f678c420bd0d13e8afda7e84b080ffadc9c4747988de
   tags:
     - reaction
-  animated: false
 9e9d9eef4e979e0ee0d54b74d4be5d5c:
   key: d845b317139a0df7032d68bf40ab034d118b0e5a2f9b69708f8e9b9ec5a41db8
   tags:
     - reaction
-  animated: false
 cb7dc46fac25ea5fb9c6b8f29e52ddcc:
   key: 6aacd720c879d1a5c910c63e7086bd1ab91efe2477f3d1813cb7f8e187a57be7
   tags:
     - reaction
-  animated: false
 08f6adf3d4aca2b4df04af8a1b5c9403:
   key: 444ca57505e3c29a2412724f718f2bbfe414fd121850c9490b3081e75a8ee2b4
   tags:
     - reaction
     - india
-  animated: false
 e8e63f7096d16601b3ee097eefb6a7ca:
   key: b7de53f7d6b76780ca9690f4623c49a5f2150559b198b1e27db365fcf7f92937
   tags:
     - reaction
     - india
-  animated: false
 f1dcbcfab2b8276ce25c83fc2b97ed98:
   key: a9a3466d61e478c8313a07527de1e6b1f513f7c59dcca558befec4b5bf5deb62
   tags:
     - reaction
     - india
-  animated: false
 b395530d89354459b8db1e215573069a:
   key: 4a0aff3a49f861052e0215905f61887609fac9cc069d4f8c03e4059f80b2f206
-  animated: false
 c78e077b945f5dc79efd185f28c6a22b:
   key: b94d8fc45160ef0a359b6d23d60de07d4f683afa4ee395a91a64fbad9d6635d3
-  animated: false
 d4d77a6ba7f7ef687898a6cadd48134d:
   key: 96a44991d3c92223d94ca4c8dc4f93e886b349caa743845f2b6f3cad9b814b34
   tags:
@@ -21066,7 +21018,6 @@ d4d77a6ba7f7ef687898a6cadd48134d:
     - Castaner
     - 'La République en Marche Arrière'
   original: true
-  animated: false
 9c569745bdcde7618efdde029bed6d03:
   key: 417084eb2f718b50542315ab0803b897d01f9501022944d104cff17acaa38419
   source: 'https://t.me/addstickers/Gunt3r'
@@ -21075,7 +21026,6 @@ d4d77a6ba7f7ef687898a6cadd48134d:
     - 'Telegram'
     - 'Cartoon'
     - 'Penguin'
-  animated: False
 590ee200412228009061ae29f3e1c60c:
   key: 8f58167378ca6fdc814ecbf8ee982584b2e1955057261e56150fe6d53d626e12
   source: 'https://t.me/addstickers/thonkang'
@@ -21083,7 +21033,6 @@ d4d77a6ba7f7ef687898a6cadd48134d:
     - 'Thinking'
     - 'Emoji'
     - 'Telegram'
-  animated: False
 0fb4eee19acdc7d027c870643c82b9b4:
   key: cfc6af305d0588c39b9ff4fad76f3cb256c5300f9a6fa7e3da7a9e1c795ffc7f
   source: 'https://t.me/addstickers/Kplxxx'
@@ -21096,94 +21045,75 @@ d4d77a6ba7f7ef687898a6cadd48134d:
     - 'Gerd'
     - 'Heiopeis'
   nsfw: True
-  animated: False
 b39c17d172aa7cf440d110d431b368e0:
   key: 4fd9b6c46a35b3d02eae441a9621d5b18428e00492999fc4386ed806852814dc
   source: 'https://t.me/addstickers/GayOKeng'
   nsfw: True
-  animated: False
 08c2a0910da8a5ce969c2eed5d6f749e:
   key: 6408fa33ad0ee5db099ffe137f2c498bce854ba424e1be18794b13bf3abfba3c
   source: 'https://t.me/addstickers/nichijouanime'
-  animated: False
 2fa00f2baf7f232e9006b350c28d6969:
   key: 9afeba3d4f453f110fcb6a0e81eb8c5ca1754637aefe5cae8ced7cdced19edaa
   source: 'https://telegram.dog/addstickers/AnimeZa'
   nsfw: True
-  animated: False
 3dca312b3733124bb25a8ef931e8102d:
   key: 198d06dedbac47a39f73d2fd82f758f338fdd86eb10efeedbe4f13a2d0acb4e3
   source: 'https://telegram.dog/addstickers/Rukako_'
-  animated: False
 97826be8cf51c1d18bda28252e685855:
   key: b0a7a66cfe32ce451ddbe23ee830e256319ae418d50b5d477b7c5d68590b418e
   source: 'https://t.me/addstickers/wannyan'
-  animated: False
 7abe230703fd658a0318e7d9f8152189:
   key: f9cf4aef3983b53c6c0279a2170237c134ef5378eb44237c274b572a247acddc
   source: 'https://telegram.dog/addstickers/KShojo'
-  animated: False
 17ffa1fcd881757af2ac0e56fb464991:
   key: 0bec64d9241c8ad97753450702a417d7371c628db91f0703b21040c05234677b
   source: 'https://t.me/addstickers/WatashigaMotete'
-  animated: False
 39776c037b838ccf3d3ae2366614bd05:
   key: 2df98abf0e9c3aa6b4c4bfcd2f23e5b0bf7e2f5f0764e29ee67298b62b8bceb6
   source: 'https://t.me/addstickers/supremeleader'
   tags:
     - 'North Korea'
-  animated: False
 3946d4ee41efc39c56d6ed17effaed4f:
   key: 1ef9e9703ab9a27081f4d64e67b795ceffdfecde16ed69b1d37149d9aa966ff8
   source: 'https://t.me/addstickers/anime_collectio'
-  animated: False
 f5cc36f1f2f021ee39cd250dee10ae2e:
   key: 8ac00af85d868cef27de99ae9c23712a75e11137c1b6d6179d1dbd2beb954d83
   source: 'https://t.me/addstickers/MashiroShiina'
   nsfw: True
-  animated: False
 c2e50db47f32ca86d084a1e028a0ae5e:
   key: 24209ad902e0f4fc9fbb83369c098f8002ddb2be7b5240e749ad8f015f8d7fb0
   source: 'https://t.me/addstickers/DeaNo'
-  animated: False
 01b0f20489c7ef10786ddef03fdca50b:
   key: 4e4db29c134cea90825ab43c1b834932fb4109dedb7e01bfb06870533a08d0e0
   source: 'https://t.me/addstickers/LINE_NEKOMIMI_M'
-  animated: False
 6378b7131695a09c67567efe293b2777:
   key: ed9db44b8c95fcbf410dec3443408011e3f3e0890dd907565c81112db0c6b656
   source: 'https://t.me/addstickers/SakuraTrick_201'
-  animated: False
 441d86a1a2034875660acb4042107eb5:
   key: 5f0a62a478acc2f4f7a407ed754fa3acaca751b6fc5cc83449cf59ba00681566
   source: 'https://telegram.dog/addstickers/violetn'
-  animated: False
 b9d090f15d661869b8ac7839f9dcff9f:
   key: e26c3a63b27f7800c0519c294b25351e662b6ee34b43d1d706397f173b16f379
   source: 'https://t.me/addstickers/Fel1x_Argyle'
   nsfw: True
-  animated: False
 f88d558918d3b301f2254b5c36c3bca7:
   key: cc613b20431f4b9efdc711eae071a7027512c30731cadc986d31d1abbc88de62
   source: 'https://telegram.dog/addstickers/Erixalu'
   tags:
     - furry
   nsfw: True
-  animated: False
 bfe87040b05482afb15968436e50b809:
   key: fa837fc9fd714397e60bece0de18d3a40712d2568f73edcb9c976f171d9442d8
   source: 'https://telegram.dog/addstickers/sp417e9'
   tags:
     - furry
   nsfw: True
-  animated: False
 31e338f7306bf91e75e2222232732b4c:
   key: 6b087407ddf935cd280983c40312a0af7333de8dc740392e830df0b8fc914d81
   tags:
     - gachimuchi
     - Van Darkholme
     - Billy Herrington
-  animated: false
 52588a77237e597854a0b5562ad6a7a0:
   key: 86f147a67a6808dab463e13daaae4a488f43d80f4c6d619fcdf14b677649bb48
   source: 'https://t.me/addstickers/patrickbbateman'
@@ -21191,14 +21121,12 @@ bfe87040b05482afb15968436e50b809:
     - 'American Psycho'
     - 'Faces'
   nsfw: True
-  animated: False
 72df4a14ef9644db1b0883ed31e0bf88:
   key: 843f6e914fd4473cd8e5ede261ef986334825cc0692ed729afabaa39c3c791a1
   source: 'https://telegram.dog/addstickers/Samoyed'
   tags:
     - 'dog'
     - 'cute'
-  animated: False
 b3f1266f74a60fe56b524bfa1144db25:
   key: 86c86bed5cca11d0861ad681ad36106d68ab2b269aa518b19407b84a99275194
   source: 'https://telegram.dog/addstickers/JollyAl'
@@ -21206,7 +21134,6 @@ b3f1266f74a60fe56b524bfa1144db25:
     - 'Letters'
     - 'Numbers'
     - 'Alphabet'
-  animated: False
 16440753fb0f9788afc83532a99975e9:
   key: d4c640eb6e740479068ba790d688738cd034df85d191e19f1cbe1b4a5af24a21
   source: 'https://t.me/addstickers/Katzz'
@@ -21217,7 +21144,6 @@ b3f1266f74a60fe56b524bfa1144db25:
     - 'Skate'
     - 'Butt'
   nsfw: True
-  animated: False
 f053e52ae6ed4ae5a8b3bbe85d08e6f1:
   key: 9a98547338c1e76a6d7e96278184e36f332cb0008d652c02fb55325d1a111c0d
   tags:
@@ -21312,7 +21238,6 @@ bfeeb0d29555897d2829fa716b89eef3:
     - drugs
     - funny
   nsfw: true
-  animated: false
 ace697c0b4ba665c19ace3699972e83f:
   key: bf81a32788bbadb8dca92da3a8102f808552ce18ba16fe9a16e377a10aac2f71
   source: WhatsApp
@@ -21326,7 +21251,6 @@ ace697c0b4ba665c19ace3699972e83f:
     - chistoso
     - gracioso
   nsfw: true
-  animated: false
 40a65ffa1b0b3bdd6be51cee766f9d41:
   key: 55297ece390ec8bdcef8c04faaddbfba36033508ab65f11037b2e3bfbeb0552f
   tags:
@@ -21357,7 +21281,6 @@ d834c9759667cbacdf1f399a5d23eca7:
   tags:
     - Moomins
     - Mumintroll
-  animated: False
 411f65aa2fab2433cd31060dd7f697e4:
   key: d990e30de6fa052285c9653a2d3bbfa097d5d7e2664fea6816da336a10a35d54
   source: 'https://t.me/addstickers/konosubarashi'
@@ -21365,7 +21288,6 @@ d834c9759667cbacdf1f399a5d23eca7:
     - 'Anime'
     - 'Comedy'
     - 'Reactions'
-  animated: False
 3fe075d7ef97b7591bab02c82d101683:
   key: 6ea200c6e69d91fc3be8918c6186e26a8d3370aa1ab99bf3de8bf33c78d613e7
   source: 'https://t.me/addstickers/buongiornissimo'
@@ -21375,11 +21297,9 @@ d834c9759667cbacdf1f399a5d23eca7:
     - 'boomer'
     - 'ITA'
     - 'Buongiornissimo'
-  animated: False
 9f920f74008ea4c9c59323ac4a838c73:
   key: c041a9d7bd90835e7f224f002f97bd893ee91eb6aface01964603f06d07d8ad6
   source: 'https://t.me/addstickers/PenguinandCatDa'
-  animated: False
 c0db6990f1262786f19c7899ad8683c8:
   key: 7690afabb5870875e9790a8e5ffdddc90e37efa109a52998d0f968a594b4e2f9
   source: Supergiant
@@ -21410,7 +21330,6 @@ c0db6990f1262786f19c7899ad8683c8:
     - alecto
     - megaera
     - tisiphone
-  animated: false
 7b3d3aa0fa7f42605be5cde9bc7ca30e:
   key: 84da12c389336be503eb2d86918c87724675b44a036ef86ab5df3680fa56fd80
   tags:
@@ -21427,7 +21346,6 @@ c0db6990f1262786f19c7899ad8683c8:
     - Horseman
     - Netflix
     - netflix
-  animated: false
 57f4407e411b244dc5e5cc2a58044846:
   key: 44330e0eefe6f383c1672de08f3e64ca5a9c266020d4a0bac4263dbbdbc478c9
   source: 'https://redd.it/k1ytvx'
@@ -21442,7 +21360,6 @@ a0401a381f5eeed52f6fbff4116fb2e4:
     - women
     - mint
     - science
-  animated: false
 75119824b2ebd9258ddd8a2eacd9e67e:
   key: 91ab9df9ddc39c0a3b60da6bfe09b6293ee286df6338fe4e59f64d1e4f6b92af
   source: 'https://telegram.dog/addstickers/CR7_Juv'
@@ -21450,13 +21367,11 @@ a0401a381f5eeed52f6fbff4116fb2e4:
     - 'Ronaldo'
     - 'Cristiano ronaldo'
     - 'Cr7'
-  animated: False
 a41ce18b1a3473e3512efbb8cec417ff:
   key: 8babf46fbd53bde98acced39834fe3cbcf76a058e550835fb00a5e8baffc768e
   source: 'https://telegram.dog/addstickers/marcuwe'
   tags:
     - 'Känguru'
-  animated: False
 dfdf3a5d7d28472541e72f644d0c6723:
   key: f8ac1c64e4504fbf5cdec2907f8fa675e0b4d768d9c611dce54aa15cbd97c2d0
   source: 'https://stickers.bananajuice.tech/en/collection/trex/'
@@ -21465,13 +21380,11 @@ dfdf3a5d7d28472541e72f644d0c6723:
     - trex
     - dinosaur
   original: true
-  animated: false
 4dea57be695456fb849bf7e84b07666f:
   key: 98f66bac7fd2303430c3a7f68076cc4ce0d40a099234f3c97e436e378e292e04
   source: 'https://twitter.com/simple_freem/status/1345519114979336195'
   tags:
     - for children
-  animated: false
 16f7337fd00267d2484bcba0c040255e:
   key: 5b82ed054e0dce37250b037b9906bf428c08bed44f551d1a8a122e9868510516
   source: 'http://abramek.art/ (@miyotsu_)'
@@ -21479,7 +21392,6 @@ dfdf3a5d7d28472541e72f644d0c6723:
     - cute
     - cats
   original: true
-  animated: false
 2c2603e9c212626b2492c13a6fdde78e:
   key: cfe9b7fac280670dfbab805ef6d3514d29898dbe3d7b04830140a6f22e7f990d
   source: 'https://t.me/addstickers/BronnMemes'
@@ -21487,23 +21399,19 @@ dfdf3a5d7d28472541e72f644d0c6723:
     - 'Bronn'
     - meme
   nsfw: True
-  animated: False
 8b22bc68bcbf1e4d87379139570b407b:
   key: d466343abe99ea2a53b849191b11b402e65c314c92d1501b754a290b526f9fad
   source: 'https://telegram.dog/addstickers/Planeme'
   tags:
     - 'Malayalam'
     - India
-  animated: False
 c14f444dadb88d1e65539a3116297f1b:
   key: 633e64169ea07c13ad0b99454e3146dbd079500519bc4712a35881149868ab11
   source: 'https://t.me/addstickers/TedFrosty'
-  animated: False
 f07d5543980d1e9d449d71e9646ca1f8:
   key: 0bbcd50bdb26a969677987cae3e93a168cac943aab323b4a2a30bda3ceb99675
   source: 'https://t.me/addstickers/Damn_SouthPark'
   nsfw: True
-  animated: False
 9e48fa4e63477d21a9dcea0c3f7d008e:
   key: 4aa9e96b3f9ae4dbbf0d4296998dd016085c8267c6e1e6eeed8a840195f43d1e
   source: Kerala
@@ -21514,7 +21422,6 @@ f07d5543980d1e9d449d71e9646ca1f8:
     - Mohanlal
     - Mammootty
     - Karikku
-  animated: false
 1a8c8563806648e8f0402f628227470a:
   key: 7cce0a933dd6d1c763f5bcb2c1f8bd347fca5df58dde6a06f227abd472c6f85f
   source: 'https://twitter.com/T2E5KTT5YB89K4J/status/1347499527893254146'
@@ -21523,7 +21430,6 @@ f07d5543980d1e9d449d71e9646ca1f8:
     - Blackpink
     - Korea
     - 'k pop'
-  animated: false
 0486b6716b6e72503315ac6fcea911bd:
   key: 12c6072d799874f802c9ce4c3cdb44f7bb3dc83a0b490ea78a6e46d190334b2b
   source: 'https://twitter.com/T2E5KTT5YB89K4J/status/1347499527893254146'
@@ -21532,7 +21438,6 @@ f07d5543980d1e9d449d71e9646ca1f8:
     - TWICE
     - Korea
     - 'k pop'
-  animated: false
 6c422cd11843247a9af7e1d9aeb2693d:
   key: d212979001883c626b10185f4d3df49b6712773ca17d5d9577597ab558ed7d1b
   source: Apple Inc.
@@ -21540,7 +21445,6 @@ f07d5543980d1e9d449d71e9646ca1f8:
     - Apple
     - Alien
     - Funny
-  animated: false
 4298f31b17b78852f85555c8ad4e01e0:
   key: 858a9dedf24789355dbfce9d5ed09ebcc613a6ef2d7f12b314bb970bb7e15a6f
   source: 'https://play.google.com/store/apps/details?id=com.evolutiontech.goanstickers&hl=en&gl=US'
@@ -21552,7 +21456,6 @@ f07d5543980d1e9d449d71e9646ca1f8:
     - Goan
     - Goan Stickers
     - Goenkar
-  animated: false
 788e720d531d0032a42db31b44a7681e:
   key: 041958f4ede5b73f1a2b00b2cd4bd2be3e9992ac89b3ff4b7868195fc69cfff8
   source: 'https://play.google.com/store/apps/details?id=com.evolutiontech.goanstickers&hl=en&gl=US'
@@ -21564,7 +21467,6 @@ f07d5543980d1e9d449d71e9646ca1f8:
     - Goan
     - Goan Stickers
     - Goenkar
-  animated: false
 45719132498ef087b9eef624d8a8450e:
   key: 8d7b08956ba38b664ffc8e59db12af6b2f2d16bd270693040c57ee2a09dd5d4f
   source: 'LINE'
@@ -21573,7 +21475,6 @@ f07d5543980d1e9d449d71e9646ca1f8:
     - gudetama
     - space
     - gudetama in space
-  animated: false
 bb8d447dc853167b099ffccefcace767:
   key: 6a5299659ef376603e7e495c2f3bb04bf7185ff5e7edf3b0c3d7020c92da8626
   source: 'LINE'
@@ -21581,7 +21482,6 @@ bb8d447dc853167b099ffccefcace767:
     - gudetama Emoji
     - gudetama
     - Emoji
-  animated: false
 dac48e3fcb0f21a838a84e3c936e8181:
   key: 08f14fc30cd2c83fe9c40bfec4716d6e8bf167a6d4a1f50796fd5c4ef6f6ff40
   tags:
@@ -21599,7 +21499,6 @@ dac48e3fcb0f21a838a84e3c936e8181:
     - Cats
     - Kiri
     - Meme
-  animated: false
 4076f5a4d12e11d6a720fd679f4e2ae0:
   key: d764f130ae4cd4c6ca3b385c96f0c5c73173567918c4ce85bbda4ac7d25f2d65
   source: 'https://www.malayaliscorner.ml/ Shamil Chaliyam,Kozhikode Kerala'
@@ -21610,7 +21509,6 @@ dac48e3fcb0f21a838a84e3c936e8181:
     - mallu
     - reaction
     - funny
-  animated: false
 1c3d4c932124f7ff394e8cbc3ab81084:
   key: 7817eee722a81daa74537467fa85e324b4d38ca2db28ea7a4caed1a557a83c5d
   source: Imported from Line
@@ -21640,18 +21538,15 @@ e312d3692dc4ac805a31fd3581125276:
     - bitcoin
     - blockchain
     - cryptomoney
-  animated: false
 a55f56b74731a4f8fd31ddb69a716689:
   key: 7afb8d74db43bfc962e557b6ae395ec30f8a8d72b3ec13d9bc83e6fb03fb0d81
   source: 'http://dull.fr'
   tags:
     - reaction
   original: true
-  animated: false
 0c3e346e8d3143d86a026be5eb56fa1f:
   key: a4763eca6e87c68983d300514b4a692d67dea4ee4b438a07ea2ad76cb23ea3d8
   source: 'https://telegram.dog/addstickers/ScreamQ'
-  animated: False
 318c2154f383330a8558ea94bd50038d:
   key: 53bd93bf61926ef37ed8c0cae15299c1c3bfaa9ee163d972a18cade6f1e3db06
   source: 'League of Legends, Riot Games'
@@ -21660,12 +21555,10 @@ a55f56b74731a4f8fd31ddb69a716689:
     - lol
     - league
     - pengu
-  animated: false
 7ee368d41697e6a0b7bd2781eef89d84:
   key: c7905645587d320d3091f3bef8d8b3b9aa9c7961f0089f10efc89f217327135c
   tags:
     - football
-  animated: false
 5386dbf6dda8a82797fd1ba3bfb7f02b:
   key: c21a5b526c9990fcfe9e996325fa6a01b04d0a9b05f73f7920038be0c6cddf51
   source: WhatsApp collection
@@ -21677,7 +21570,6 @@ a55f56b74731a4f8fd31ddb69a716689:
     - dogs
     - nsfw
   nsfw: true
-  animated: false
 97fcc2bce55e7624efdb28e7a3726b89:
   key: ea23cf72e8209ef1032906887ff22f64190f3ae39af6ef668bb626f683f85a3d
   source: whatsapp
@@ -21693,7 +21585,6 @@ a55f56b74731a4f8fd31ddb69a716689:
   tags:
     - furry
     - telegram
-  animated: false
 7977be0a639c89d371c889f6e89af067:
   key: 6ee0c832dccb96141ac96e47dc979e501e942533d0b9a8f5518443d69d26fb3c
   source: 'https://t.me/addstickers/Berluska'
@@ -21720,7 +21611,6 @@ bac0fdc944d71c3d210169f3ff3a3adf:
     - doge
     - cheemsburger
     - dog
-  animated: false
 7ef72cbe43cbe6f9c4cd4464049eb9a8:
   key: 06c53ccaff6d5bbf28befcda37e734515ae1179f5dcae6fb929464141de5ff47
   tags:
@@ -21738,7 +21628,6 @@ bac0fdc944d71c3d210169f3ff3a3adf:
     - Animal
     - Octopus
     - Squid
-  animated: false
 f6a573286b108673e5c1d35b7c009583:
   key: 133f4abfeb28ee15868daa8d85d6725b9b47f542fedd799802247db778ea209a
   source: Apple Inc.
@@ -21748,7 +21637,6 @@ f6a573286b108673e5c1d35b7c009583:
     - Animal
     - Bird
     - Chicken
-  animated: false
 84b11d0112fe5fcf5b07e46d45489e25:
   key: 9f4d98bceef4d78d2238371030c3011b84880f6808d2e788f63b19e5915d0d3c
   source: Apple Inc.
@@ -21759,7 +21647,6 @@ f6a573286b108673e5c1d35b7c009583:
     - Cute
     - Bunny
     - Rabbit
-  animated: false
 d3bcc372de2f661c2659a884735df6b2:
   key: c9cd79923427bf21e84afb54b36dc53b3f452cf5b663009f6533d44b853417f0
   source: 'https://telegram.dog/addstickers/Uni_Bor'
@@ -21774,7 +21661,6 @@ bb76fade43826ccaa1f7ce484b58127d:
   tags:
     - mkbhd
     - youtuber
-  animated: false
 f2861bcc06382dbdfe0d4adf96fb9430:
   key: f876cef7d8a6620f3591ac3a7e8d71103a8c43900860fc10ad15ff936ddd75fe
   source: 'https://t.me/addstickers/MalayalamFaces'
@@ -21804,7 +21690,6 @@ f6f8fcb59b6992324f8955ec8b09658e:
   source: 'https://store.line.me/stickershop/product/13505512/en'
   tags:
     - Deltarune
-  animated: false
 f33307be0e9d26d7df59e93b98f318a5:
   key: 2b556f2dc2bc632f0e5e0c3f6365309643dbdb8319065c79718c4f5f10564113
   source: >-
@@ -21819,21 +21704,18 @@ f33307be0e9d26d7df59e93b98f318a5:
     - reaction
     - dialogues
     - funny
-  animated: false
 fb9714f8342b0447b44e288ac4035f70:
   key: e780a2f23b01e2152c5f99c68eed12a21a0df12d4e169c04c1510e7d9c332731
   source: 'https://www.instagram.com/_m.e.m.e.g.o.d_/'
   tags:
     - memes
     - marathi
-  animated: false
 51ef1f053197a8f4606ddb09bf72ac14:
   key: d1ce1381a8ed26bc6209d04adff079c3e5d3b817d90c3db352940b12caa2902e
   source: 'https://t.me/addstickers/BobbyHillBymarrysunset'
   tags:
     - bobby hill
     - bobby
-  animated: false
 4c166cbe7f26316ae2a19a05b4800d3b:
   key: f77aa097a5f67a0897994b936c7464458f975a536b87a610397b788d137ae145
   source: 'https://t.me/addstickers/Ramelow'
@@ -21845,7 +21727,6 @@ b393ac489077525219775cf4b6588925:
   source: 'https://t.me/addstickers/gawrguraa'
   tags:
     - 'Hololive'
-  animated: False
 aecf0661821ba68e29e9996b7289e81a:
   key: ff8220c2a5ccab1476e9cfaacc1c3b4ea43604c6558ab2d56e47b6f527cebf49
   tags:
@@ -21859,7 +21740,6 @@ aecf0661821ba68e29e9996b7289e81a:
     - home
     - hongkong
     - 香港
-  animated: false
 634dad5ed56a7fac4ffd441f0b51233b:
   key: 353d31705e4faa589b5988ab54b7f199ca796ebacd82f05ad40d358f11eb9e0f
   source: whatsapp
@@ -21867,7 +21747,6 @@ aecf0661821ba68e29e9996b7289e81a:
     - malayalam
     - stickets
     - dialogue
-  animated: false
 319b072fd44181c75e07abd7dcad51e5:
   key: 7395ee7f8ea7585abb4fb0b818707f1763e364d6e65e66762ebccd5d6e055515
   source: whatsapp
@@ -21875,7 +21754,6 @@ aecf0661821ba68e29e9996b7289e81a:
     - malayalam
     - stickets
     - dialogue
-  animated: false
 3bc77ee5ddace6200746010bcc6435c4:
   key: 5fb91b4df31f6562c366253b7416ed470ddc294a205d57a9810fba52348fc002
   source: >-
@@ -21887,15 +21765,12 @@ aecf0661821ba68e29e9996b7289e81a:
     - meme
     - cat meme
     - telegram
-  animated: false
 6c5cf81312187f208814c508ebf1933c:
   key: f81356dd1f141302d79e71e0aed5c13ad129610368f1396849d31d8cf9518bba
   source: 'https://t.me/addstickers/FRIDAY_57373890'
-  animated: false
 4ff178fbd8fdb700a07091b7dac1c620:
   key: e888701cb0e7add4960294581c5dba0d1d5179514a50a04fe4e8c9803a9acfe4
   source: 'https://t.me/addstickers/ws_pack_4066882'
-  animated: False
 f79322c20991c0d6e078d8edf51def4f:
   key: ae1937a0b4d502cff11f94531b722fd9188df0ec55412608d7ef83f56de1fc62
   source: WeMine Limited
@@ -21918,17 +21793,14 @@ f79322c20991c0d6e078d8edf51def4f:
     - 香港人
     - 返工
   original: true
-  animated: false
 2af8a75daa163dee95b38c83e1fb08a1:
   key: d89d937690ae6f737970f17d3160dc0dd5af310846f84cb4b3da7336edfc67a8
   source: 'https://t.me/addstickers/Joker2016'
-  animated: false
 ccc248b551e2c4216b4cd5729831ec9b:
   key: 22a782a57d03e9ff00279f025322a785785ada208798fc9eec57971b99ab1723
   source: 'https://t.me/addstickers/MericsHololiveP'
   tags:
     - 'Hololive'
-  animated: False
 b9cbab6b563211142c58ba310065e775:
   key: d51db01246bc598928022d1fc943b90b9d559bdbe3ee0693795d131c02aba5fe
   source: https://ig-bio.cocoacaa.work/
@@ -21943,7 +21815,6 @@ b9cbab6b563211142c58ba310065e775:
     - 是吱豆不是枝豆
     - comic
   original: true
-  animated: false
 aff993e64c2dc361d83f4b3cfcf1e36d:
   key: 391eab7f1e610da78beaa643125c712650a44cf158ba4c727bf3ee1c01fc7534
   source: Imported from Telegram
@@ -21961,7 +21832,6 @@ aff993e64c2dc361d83f4b3cfcf1e36d:
     - Pepe
     - BTTV
     - FFZ
-  animated: false
 2e6a492da4b96ec0997a2513da19785b:
   key: 6f1316ca55d94041299e761eebfbdfeffdf1778b76131edebfdec7bc5ba75e8c
   source: 'https://github.com/DoubleGremlin181/WhatsApp-Twitch-Stickers'
@@ -21971,7 +21841,6 @@ aff993e64c2dc361d83f4b3cfcf1e36d:
     - Pepe
     - BTTV
     - FFZ
-  animated: false
 429a81c70fb2083c2e7dbf1bd1796fba:
   key: 8500497316fc84d7ff25af2bc618e947aaa1475aab49f55a466a16ca68554bde
   source: 'https://github.com/DoubleGremlin181/WhatsApp-Twitch-Stickers'
@@ -21981,27 +21850,23 @@ aff993e64c2dc361d83f4b3cfcf1e36d:
     - Pepe
     - BTTV
     - FFZ
-  animated: false
 ab7a5af74a57635e17caed319bafb246:
   key: b9cb65edab0e035dff42a488969aa8da92253471f572a1399afcefb4cbf7f846
   source: Echo
   tags:
     - shiba
   original: true
-  animated: false
 f733f4c9e7bb7fe07917b99d18a1e751:
   key: dfe681cdfe85e901b28b3cab168552f835972f801bdc19218ba4fd0c370c01a4
   tags:
     - baby yoda
     - star wars
-  animated: false
 654ccfb906ebd7dba5f550d2a64d7079:
   key: 67017329a154f73b2e1a7883d8ddc58621f9c5cb57163e4b44ae42ffd2499908
   tags:
     - elon musk
     - spacex
     - tesla
-  animated: false
 99951e5c6ef352b9d54dcbeb33e75a40:
   key: ede56195421344d7c3a88ba42469facc3bfa676020d6f9e4ba1a33b9ce73942d
   tags:
@@ -22011,7 +21876,6 @@ f733f4c9e7bb7fe07917b99d18a1e751:
     - sbs
     - nederland
     - meme
-  animated: false
 71e3c86a58df17cce05417af70fd5b7c:
   key: 63a1c8c33648068a123b8f669acad192f7cd1eb2a128bd118310471623535515
   source: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQcswyRsctZtqhyCWQUcuXWNjsePFTT1AjZTHU7X0kV2MrW7h11b2Rlnx5gbUPs0hAmgYxzXKhP2nC6/pubhtml'
@@ -24960,3 +24824,12 @@ ebcb66d6e4151308bc2365a22aefc82f:
     - hkg
     - cute
     - bear
+21eb1bfdb64dd814b9d0c9815930722a:
+  key: 1485fc852937fca2a9c9ea3b335a641a8771d06359f72c84ae6fee75fdab6491
+  source: Sreehari M
+  tags:
+    - Malayalam
+    - Malayalam troll
+    - Malayalam dialogues
+    - Kerala
+    - Mollywood
