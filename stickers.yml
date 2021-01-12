@@ -24269,6 +24269,17 @@ a55f56b74731a4f8fd31ddb69a716689:
   nsfw: false
   original: true
   animated: false
+318c2154f383330a8558ea94bd50038d:
+  key: 53bd93bf61926ef37ed8c0cae15299c1c3bfaa9ee163d972a18cade6f1e3db06
+  source: 'League of Legends, Riot Games'
+  tags:
+    - League of Legends
+    - lol
+    - league
+    - pengu
+  nsfw: false
+  original: false
+  animated: false
 7ee368d41697e6a0b7bd2781eef89d84:
   key: c7905645587d320d3091f3bef8d8b3b9aa9c7961f0089f10efc89f217327135c
   source: ''
