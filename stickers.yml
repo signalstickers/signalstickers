@@ -24542,3 +24542,17 @@ aecf0661821ba68e29e9996b7289e81a:
   nsfw: false
   original: false
   animated: false
+3bc77ee5ddace6200746010bcc6435c4:
+  key: 5fb91b4df31f6562c366253b7416ed470ddc294a205d57a9810fba52348fc002
+  source: >-
+    The 'nyall' pack from telegram, imported to signal -
+    https://t.me/addstickers/nyall
+  tags:
+    - nyall
+    - cat
+    - meme
+    - cat meme
+    - telegram
+  nsfw: false
+  original: false
+  animated: false
