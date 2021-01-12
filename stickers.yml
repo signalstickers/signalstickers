@@ -18596,11 +18596,6 @@ abc15d7e9e7be626009b3234f61cc9ff:
   source: 'https://www.reddit.com/r/signal/comments/eqxjei/bitcoin_stickers_for_signal/'
   tags: []
   nsfw: false
-9da172a7a5d078818a653f7bef3ec980:
-  key: 6592f3fb2a20664037eb2ed5790fa2df03627bfab05ab9b63c852cfd6aaa3e1c
-  source: 'https://www.reddit.com/r/signal/comments/ephw8m/tamil_memes_%E0%AE%A4%E0%AE%AE%E0%AE%B4_%E0%AE%AE%E0%AE%AE%E0%AE%B8/'
-  tags: []
-  nsfw: false
 eef9b8f7ce3f68efbacc346796a219b1:
   key: 8d58c75e6187a488f1afe78d5a4320613dc1a3b0181cd98976271c7daf6c4183
   source: 'https://www.reddit.com/r/signal/comments/ekbex0/ren_stimpy_sticker_pack/'
@@ -24273,6 +24268,24 @@ a55f56b74731a4f8fd31ddb69a716689:
     - reaction
   nsfw: false
   original: true
+  animated: false
+0c3e346e8d3143d86a026be5eb56fa1f:
+  key: a4763eca6e87c68983d300514b4a692d67dea4ee4b438a07ea2ad76cb23ea3d8
+  source: 'https://telegram.dog/addstickers/ScreamQ'
+  tags: []
+  nsfw: False
+  original: False
+  animated: False
+318c2154f383330a8558ea94bd50038d:
+  key: 53bd93bf61926ef37ed8c0cae15299c1c3bfaa9ee163d972a18cade6f1e3db06
+  source: 'League of Legends, Riot Games'
+  tags:
+    - League of Legends
+    - lol
+    - league
+    - pengu
+  nsfw: false
+  original: false
   animated: false
 7ee368d41697e6a0b7bd2781eef89d84:
   key: c7905645587d320d3091f3bef8d8b3b9aa9c7961f0089f10efc89f217327135c
