@@ -24592,7 +24592,7 @@ f79322c20991c0d6e078d8edf51def4f:
     - 返工
   nsfw: false
   original: true
-  animated: true
+  animated: false
 2af8a75daa163dee95b38c83e1fb08a1:
   key: d89d937690ae6f737970f17d3160dc0dd5af310846f84cb4b3da7336edfc67a8
   source: 'https://t.me/addstickers/Joker2016'
