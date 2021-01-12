@@ -24576,3 +24576,12 @@ aecf0661821ba68e29e9996b7289e81a:
   nsfw: false
   original: false
   animated: false
+0ee70a7b88233ed95a45d97fd053310d:
+  key: 85a0d49c41605e5d85dc70bf5084d46f6e8c8ad5e1d8b0e2997ed67ebfe51e2a
+  source: BigBabyDaiBo
+  tags:
+    - PetBaby
+    - BigBabyDaiBo
+  nsfw: false
+  original: true
+  animated: false
