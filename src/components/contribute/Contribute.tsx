@@ -1,4 +1,11 @@
-import { Formik, Form, Field, ErrorMessage, FieldValidator } from 'formik';
+import {
+  Formik,
+  Form,
+  Field,
+  ErrorMessage,
+  FieldValidator,
+  FormikHelpers
+} from 'formik';
 import { cx } from 'linaria';
 import { styled } from 'linaria/react';
 import * as R from 'ramda';
@@ -10,6 +17,7 @@ import syntaxTheme from 'react-syntax-highlighter/dist/esm/styles/prism/base16-a
 import yaml from 'js-yaml';
 
 import ExternalLink from 'components/general/ExternalLink';
+import { StickerPackYaml } from 'etc/types';
 import { getStickerPackDirectory, getStickerPack } from 'lib/stickers';
 
 
@@ -149,16 +157,19 @@ const ContributeComponent: React.FunctionComponent = () => {
    * change the way validation errors are presented to the user after the first
    * submit attempt, we need to track "attempts" separately.
    */
-  const onSubmitClick = () => {
+  const onSubmitClick = React.useCallback(() => {
     setHasBeenSubmitted(true);
     setYmlBlob('');
-  };
+  }, [
+    setHasBeenSubmitted,
+    setYmlBlob
+  ]);
 
 
   /**
    * Called when the form is submitted and has passed validation.
    */
-  const onSubmit: any = (values: FormValues) => {
+  const onSubmit = React.useCallback((values: FormValues, actions: FormikHelpers<FormValues>) => {
     const matches = new RegExp(SIGNAL_ART_URL_PATTERN).exec(values.signalArtUrl);
 
     if (!matches) {
@@ -172,25 +183,40 @@ const ContributeComponent: React.FunctionComponent = () => {
       .map(tag => tag.trim())
       .filter(tag => tag.length));
 
-    setYmlBlob(yaml.safeDump({
-      [packId]: {
-        key: packKey,
-        source: values.source,
-        tags,
-        nsfw: values.isNsfw === 'true' ? true : false,
-        original: values.isOriginal === 'true' ? true : false,
-        animated: values.isAnimated === 'true' ? true : false
-      }
-    }, {
-      indent: 2
-    }).trim());
+    const packYaml: StickerPackYaml = {
+      key: packKey
+    };
+
+    if (values.source) {
+      packYaml.source = values.source;
+    }
+
+    if (tags.length > 0) {
+      packYaml.tags = tags;
+    }
+
+    if (values.isNsfw === 'true') {
+      packYaml.nsfw = true;
+    }
+
+    if (values.isOriginal === 'true') {
+      packYaml.original = true;
+    }
+
+    if (values.isAnimated === 'true') {
+      packYaml.animated = true;
+    }
+
+    setYmlBlob(yaml.safeDump({ [packId]: packYaml }, { indent: 2 }).trim());
 
     if (openPrButton.current) {
       openPrButton.current.scrollIntoView({ behavior: 'smooth' });
     }
 
-    return true;
-  };
+    actions.setSubmitting(false);
+  }, [
+    setYmlBlob
+  ]);
 
 
   // ----- Render --------------------------------------------------------------
