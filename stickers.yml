@@ -25276,6 +25276,15 @@ dd5f49029ca11588db7e7cf5f92c12f9:
     - kangaroo
     - down under
   original: true
+225dac8a4cd29d6ea791ea266c774873:
+  key: dfaef54b722f9177421240cef13351eef9ca7f43c3a0ceea1fe872d05d71780e
+  source: Captial Hame Office
+  tags:
+    - Cat
+    - Captain
+    - Hame
+    - HongKong
+  original: true
 693ee9c6563a3bd3654cbee74d83f64b:
   key: 8ccd720a32d895f721961ab28107058ce3f5ee59ef9b334df2c2d0aa4a011616
   source: Big Mouth (Netflix)
@@ -25285,5 +25294,4 @@ dd5f49029ca11588db7e7cf5f92c12f9:
     - TV
     - Puberty
     - Cartoon
-  nsfw: true
   animated: true
