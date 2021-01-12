@@ -1,0 +1,59 @@
+name: Continuous Integration
+on:
+  - push
+  - pull_request
+jobs:
+  ci:
+    name: Continuous Integration
+    runs-on: ubuntu-latest
+    steps:
+      # Cancel any queued or in-progress runs of this workflow for the current
+      # branch.
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Clone Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Install Node 14.
+      - name: Set Up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      # Try to load a cached version of our node_modules folder based on the
+      # hash of our lockfile.
+      - name: Use Dependencies Cache
+        id: dependencies-cache
+        uses: actions/cache@v1
+        with:
+          key: dependencies-${{ hashFiles('package-lock.json') }}
+          path: node_modules
+
+      # Try to load a cached version of our .sticker-pack-cache based on the
+      # hash of stickers.yml.
+      - name: Use Sticker Pack Cache
+        id: sticker-pack-cache
+        uses: actions/cache@v1
+        with:
+          key: sticker-packs-${{ hashFiles('stickers.yml') }}
+          path: node_modules
+          restore-keys: |
+            sticker-packs-
+
+      # If no cache was found, install dependencies manually.
+      - name: Install Dependencies
+        if: steps.dependencies-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      # Build the project.
+      - name: Build Project
+        run: npx nps build
+
+      # Run unit tests.
+      - name: Run Tests
+        run: npx nps test
