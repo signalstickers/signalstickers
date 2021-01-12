@@ -4,32 +4,37 @@ import {StickerPackManifest} from '@signalstickers/stickers-client';
 // ----- YAML Manifest ---------------------------------------------------------
 
 /**
- * Shape of the stickers.yml manifest file.
+ * The stickers manifest is an object wherein each key represents a sticker pack
+ * ID and each value is an object with the following shape.
  */
 export interface StickerPackYaml {
-  [index: string]: {
-    key: string;
-    source: string;
-    tags: Array<string>;
-    nsfw?: boolean;
-    original?: boolean;
-    animated?: boolean;
-  };
-}
-
-/**
- * Shape of transformed objects when loaded from stickers.yml such that the
- * sticker pack ID is added to each object.
- */
-export interface StickerPackMetadata {
-  id: string;
   key: string;
-  unlisted: boolean;
   source?: string;
   tags?: Array<string>;
   nsfw?: boolean;
   original?: boolean;
   animated?: boolean;
+}
+
+/**
+ * A sticker pack "metadata object" represents a single key/value pair from the
+ * stickers manifest modified such that the key is added to the object as the
+ * 'id' field.
+ */
+export interface StickerPackMetadata {
+  id: string;
+  key: StickerPackYaml['key'];
+  source?: StickerPackYaml['source'];
+  tags?: StickerPackYaml['tags'];
+  nsfw?: StickerPackYaml['nsfw'];
+  original?: StickerPackYaml['original'];
+  animated?: StickerPackYaml['animated'];
+
+  /**
+   * This field is computed at runtime based on whether a pack exists in our
+   * manifest or not.
+   */
+  unlisted: boolean;
 }
 
 
