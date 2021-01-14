@@ -25951,3 +25951,29 @@ af3b6a3e6deb7eced21ffb53e1a11b52:
     - floss
     - open source software
     - linux
+3952a21f6b798235c26544fb737de671:
+  key: 711c8872356d2e7d317ffc294f00a39850145d7d37dd64d4fdcf08180ff43013
+  source: BugCat Capoo
+  tags:
+    - bugcat
+    - capoo
+    - animated
+  animated: true
+ddd0d46fa18fd1bfb199f8c0393fa973:
+  key: ae2346166401c3f58d2e828fffae8cdec131fd637ad2e7f20719ce1c812f5e36
+  source: 'https://store.line.me/stickershop/product/8522'
+  tags:
+    - Line Friends
+    - Brown
+    - Cony
+    - Sally
+  animated: true
+ecf2362e6b870f6cb02b253efb786565:
+  key: 5c366d33c3f2388c237a7fbdc69c6aa60296737cec11a205c566fc0a1813ce3e
+  source: 'https://store.line.me/stickershop/product/16687'
+  tags:
+    - Line Friends
+    - Brown
+    - Cony
+    - Sally
+  animated: true
