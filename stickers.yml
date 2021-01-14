@@ -25491,3 +25491,37 @@ e50ba8a8f75b0bd71ce5eacc9de44e98:
   nsfw: False
   original: False
   animated: False
+8f0dc7fbbf5543164f3fd2c6b0074391:
+  key: d872ac306f4902dabd88d0a0983cefb3459094fefb1f2e764fdbfed25c0445b8
+  source: 'https://en.another-eden.jp/tales-of/'
+  tags:
+    - Tales Of
+    - Tales
+    - Yuri
+    - Repede
+    - Velvet
+    - Magilou
+    - Milla
+    - Cress
+    - Mint
+    - Arche
+    - Another Eden
+c012e0d19234a1a471aeaddb8b60bf3f:
+  key: 8529aa79d955c626f2403e63da5f8fa0419ba6bb2bb43d0f6b1f912d91ec0413
+  source: 'https://en.another-eden.jp/p5r/'
+  tags:
+    - Persona 5
+    - Persona
+    - Morgana
+    - Another Eden
+    - cat
+    - not a cat
+9c6d8f51ee98b102d8c50be179fd6095:
+  key: 64c6c2189325a789ea66378704d965e80c2cf1b63e596630b0b2e90b28a3d528
+  source: 'https://en.another-eden.jp/'
+  tags:
+    - Aldo
+    - Another Eden
+    - RPG
+    - cat
+    - time
