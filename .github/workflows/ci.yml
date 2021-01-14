@@ -1,7 +1,6 @@
 name: CI/CD
 on:
   - push
-  - pull_request
 jobs:
   build-test:
     name: Build & Test
