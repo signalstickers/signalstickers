@@ -95,3 +95,5 @@ typings/
 
 # Cache directory for FetchStickerDataPlugin.
 /.sticker-pack-cache
+
+/NOTES.md

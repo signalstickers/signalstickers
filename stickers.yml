@@ -25162,7 +25162,7 @@ ecc8c08b4f8ed6817a3c5d83e533acc8:
     - funny
     - chistoso
     - lustig
-    - mexiko    
+    - mexiko
 0ab84cdd408ab057bb918c8e3f0cf4dc:
   key: 7525f0c443382d46a7d7a43a48eb677c3bc4c0b4d9bfa8c2f64b71a6cfb2e02a
   source: 'https://t.me/addstickers/Ffc123'
@@ -25398,7 +25398,7 @@ e73a2515010820e81a759e0e94d94734:
 08407f65e785a70a68a40dd9d5c19224:
   key: d365e263433cf8860bf516acd7a6aa9873a6902de750b7ed5b2c646a4372a5d5
   source: 'https://t.me/addstickers/AR_CheemsPack_b'
-  tags: 
+  tags:
     - 'Cheems'
 5b576cf3d26f6b36797071071161a08a:
   key: 82383d0f2b3ad4fe81b2fae8afa5e78fa0cf6886dfcb1d54713c6c11aaed4e93
@@ -25469,7 +25469,7 @@ b911d5037f32cd93b6d4aa0eea8e68c0:
   tags:
     - Telugu
     - RaoRamesh
-  original: true    
+  original: true
 47c6f011812eee422f3341ab7a76d287:
   key: 213f5cf2d52182a767c5ccfe95a70eb372221cf3af2f11592d876a939d6edf7c
   tags:
@@ -25486,8 +25486,468 @@ e50ba8a8f75b0bd71ce5eacc9de44e98:
 49bfc6628e42b7220cc7f93f7991e93d:
   key: c8fcca4a1e8df24becd667ca522d93dce90cb2b07d548861767e340f61acb5da
   source: 'https://t.me/addstickers/linuxdistro'
-  tags: 
+  tags:
     - 'linux'
-  nsfw: False
-  original: False
-  animated: False
+ffbd430b05dd11e4467ed9a91cf9d8f2:
+  key: a0f43f8b04f0d6fc526025558144e0ec8e51a6213ff8a2b3a8cc9025be11ee21
+  source: 'https://telegram.dog/addstickers/danisto'
+  tags:
+    - 'Doge'
+f14107762f17ace4a79354e52e0ec503:
+  key: e415b122240d948742c1eae1b9747376dbf4a1e0cff0e69503345581970c0ecf
+  source: Hololive
+  tags:
+    - Hololive
+    - PPT
+    - PP Tenshi
+    - Amane Kanata
+    - Hololive JP
+    - Vtuber
+  animated: true
+245eddc2189a9e0c9ad6f051a624681a:
+  key: 9a657982d3dc856bed2e1a89e0d51af5067463dd92acc06d82306c2e974f80e3
+  source: Revue Starlight RELIVE
+  tags:
+    - Anime
+    - Gaming
+    - Revue Starlight
+    - Cute
+bd7daad5af098fe9c2e1ff0100792372:
+  key: b41a7a04c2be7e19301d3f2e7449f18378ccaf988840249f64b5d9db44042756
+  source: Carey Hsie - I Love Jesus
+  tags:
+    - Jesus
+    - God
+    - Christian
+    - Gospel
+    - I Love Jesus
+    - Carey Hsie
+  original: true
+2e041e8cc98ddaa6d7d9ca7830c226cb:
+  key: 6af9ac5587a0dfa22222f57dd2a9458fe27ab7b5ef91b150c66a4678689f0052
+  tags:
+    - DnD
+    - Dungeons_and_Dragons
+882ce891f31adce171110593f97fbb43:
+  key: 53e3904ee5d5bc56e749d6234706518f070868f98ebba3e673a47e874c01c512
+  source: Shel crafts&music 手作音樂
+  tags:
+    - shel
+    - shelcraftsmusic
+    - shelcrafts
+    - hongkong
+    - hk
+    - calligraphy
+    - hkcalligraphy
+    - burshlettering
+    - doodling
+    - doodle
+  original: true
+a345da4679caba88f40b36f13bfa1e93:
+  key: 0b048034c5afbd55b9373fdf7b19b35369a2ee3bd4c5e72ae6625a427ded7006
+  original: true
+d4ea4f1bcb0f6714d0039a3893212607:
+  key: 738804c80564c96a15d686498d6b7b48b7c8328de168d446d0b732288a2bb32e
+  source: Nan Fung
+  original: true
+  animated: true
+5e3df6ebff75336779386a7d11c3833e:
+  key: e8cb0d39e2d5accc8a267d843ead1339019cf7660aaf9172acec539dc9570eab
+  source: Nan Fung
+  original: true
+  animated: true
+2dffe78fa3d59f25115bedfa0fb378a8:
+  key: 2b929bd312300574c12f8a55220487bb8a4d613e39756fd6c5a9a598f380af0a
+  source: Nan Fung
+  original: true
+  animated: true
+cc3b804b85d7e9074543edf078644905:
+  key: a48461404af7830bd516808f08bdf044b324f9a2c7c8fc81cdb81ae1410e7a57
+  source: 'http://www.inven.co.kr/board/heroes/2028/27038'
+  tags:
+    - vindictus
+    - mabinogi
+    - dumpling
+    - cute
+    - emoji
+4f9cb7446273dfbb2c46799a4b4b8e18:
+  key: fc3c16f23a21b9c72b8ec06dd07fa094c3b7aabb29bb623c5ff91b184b2683b1
+  source: 'https://t.me/addstickers/Animals'
+12a1dd6805d3d49452ae983bb9ae2cb1:
+  key: 835545a65efed57b863c93611f7ab6dd1dcfeaa982363926691063fec96f7eb9
+  source: Din Dong
+  tags:
+    - cat
+    - cute
+    - hongkong
+b3402bb8bcd92d4269de20664e68cf37:
+  key: cd38bd4a60954b922e2f5a1cb0655f85a79ca96941fc47e2bc1ceaccaaac9402
+  source: 'https://github.com/rishav-singh-0'
+  tags:
+    - anime
+    - cute
+    - emotions
+    - feelings
+    - cartoon
+  original: true
+6a919702c6177c6f3460b5373ce449c7:
+  key: 3c91de0243458aa54ad912a2c623a811488760805009257f01d9d243d3be61ec
+  source: 'https://zelda.gamepedia.com/Communication_Icon'
+  tags:
+    - zelda
+    - link
+    - 3DS
+    - triforce
+    - nintendo
+a11ebe9773f34ea737a9de3817c1883d:
+  key: f72fad3ec9837ce398dad66f7b74e3fabba745b12c40d22c2bd363b9d1e24b78
+  source: Vincent
+  tags:
+    - shrug
+  original: true
+d66f0bbbda8eb91077d4b75073bed00c:
+  key: f49a1adb113c9465dba9246df91f31adf8abe2e7e4548ed3b227f272636f29bd
+  source: 'https://github.com/rishav-singh-0'
+  tags:
+    - anime
+    - cute
+    - emotions
+    - feelings
+    - cartoon
+    - opensource
+    - girl
+  original: true
+7fe263218d1144e05cd041508512011b:
+  key: 88e4c33e40c163e52d37f0b77689d2b314cc8b15531f2b9fe8a6644d4a2fec02
+  source: 'https://loadingartist.com/'
+  tags:
+    - loading artist
+    - webcomic
+    - new zealand
+f7ecb051bd3bd1f40691187cfc7cff95:
+  key: 6b89a60709c03f2338300fa33392c2f879499da6c4e73a6707b59796581d2716
+  source: 'https://t.me/addstickers/Ryuko_Matoi'
+a7bc29a01d142a7b914c6e341e3159de:
+  key: 50ccc7ba61eec5bbde6fb077cf2becf7857adad7c387fbcbc80d60e8432776bc
+  source: Mhmd Bina
+  tags:
+    - pepe
+    - galaxy
+    - meme
+    - telegram
+    - frog
+    - pepe the frog
+0957d808e87d9533f631aa8c1e6e87b8:
+  key: 39c13599dbbdbec12abeb5c96ec2a053409a01e1b7359b7dcc4b1789910bddc1
+  source: 'https://t.me/addstickers/leachimnsfw'
+  tags:
+    - 'Furry'
+  nsfw: true
+8f0dc7fbbf5543164f3fd2c6b0074391:
+  key: d872ac306f4902dabd88d0a0983cefb3459094fefb1f2e764fdbfed25c0445b8
+  source: 'https://en.another-eden.jp/tales-of/'
+  tags:
+    - Tales Of
+    - Tales
+    - Yuri
+    - Repede
+    - Velvet
+    - Magilou
+    - Milla
+    - Cress
+    - Mint
+    - Arche
+    - Another Eden
+c012e0d19234a1a471aeaddb8b60bf3f:
+  key: 8529aa79d955c626f2403e63da5f8fa0419ba6bb2bb43d0f6b1f912d91ec0413
+  source: 'https://en.another-eden.jp/p5r/'
+  tags:
+    - Persona 5
+    - Persona
+    - Morgana
+    - Another Eden
+    - cat
+    - not a cat
+9c6d8f51ee98b102d8c50be179fd6095:
+  key: 64c6c2189325a789ea66378704d965e80c2cf1b63e596630b0b2e90b28a3d528
+  source: 'https://en.another-eden.jp/'
+  tags:
+    - Aldo
+    - Another Eden
+    - RPG
+    - cat
+    - time
+ccabc6a92ef20b406e5b78432aefca25:
+  key: 2fb5d1c9dcab2fb9c0ee4fadd363e34d80c87d96195949fb1eb8a76cd6d6f6e0
+  source: 'https://store.line.me/stickershop/product/17503'
+  tags:
+    - Line Friends
+    - Brown
+    - Cony
+    - Sally
+  animated: true
+8b75b9ea161feca470fe22b391c419cf:
+  key: 6f79f13a4e4b5eece21ad32c2a597d3c907b7797844ebce7978f8c1cb1f337ee
+  source: 'https://store.line.me/stickershop/product/8201'
+  tags:
+    - Line Friends
+    - Brown
+    - Cony
+    - Sally
+  animated: true
+3d78824aceef4e3ac6b5b1769d43d19e:
+  key: eeee36b03c786d829ab94bf2711d81e0eed0772ca6d12cab78701635afed3764
+  source: '@3grepocok'
+  tags:
+    - TXT
+    - Tomorrow x Together
+    - 3grepocok
+    - HK
+  original: true
+c9bc97f4b4a3906c6d2aa06b2c015fbd:
+  key: 273ddea7770b1774751eed9bc47e4b62f675b6ed381513e4928f5b8e9443523e
+  source: 'https://store.line.me/stickershop/product/1786'
+  tags:
+    - Line Friends
+    - Brown
+    - Cony
+    - Sally
+  animated: true
+13f6ca953ecc84f09ed6596eb71be08d:
+  key: a3111eb7dca291e1e2135226c452f1b151993f2b079bc6566a08d604cdd59ee6
+  source: '@3grepocok'
+  tags:
+    - TXT
+    - Tomorrow x Together
+    - 3grepocok
+    - HK
+    - kpop
+  original: true
+f5e7856d77eb3a65d2214773419bf767:
+  key: 6d79a77139eb88a8fe17e586c04aba0c7834acf8b331cd1079415de8725d2fc5
+767f4331cd7b7230e373f4f8154b3a44:
+  key: 974b21555f1c7ce2d58da00b702e3be7917bf08763b54bcfecd5072966954215
+  source: 'https://stickers.cloud/pack/%E7%94%9F%E6%B4%BB%E9%80%B1%E8%A8%9801'
+  tags:
+    - funny
+    - realistic
+    - sarcastic
+    - line
+6dfb151e0ce2927ecf5c30af9aec0dfc:
+  key: 5a96a474f99dad51425e231b9123341444a667b604abf4275fa25d365d68e36a
+  source: 'https://stickers.cloud/pack/%E7%94%9F%E6%B4%BB%E9%80%B1%E8%A8%9801'
+  tags:
+    - funny
+    - realistic
+    - sarcastic
+    - line
+55b8ea0fd5ffd759476715fe675c8b9b:
+  key: 3219246e8b926923593f7221c3f1ad87327b86e44bf4c51861ee0f649aeb2bc7
+  source: 'https://stickers.cloud/pack/%E7%94%9F%E6%B4%BB%E9%80%B1%E8%A8%9801'
+  tags:
+    - funny
+    - realistic
+    - sarcastic
+    - line
+ee8235928f5c0444917a1a7eb58399b6:
+  key: 8f5e6977de008c378baac30e9c68350e5dee74d01fd2de65430f768896d1c00f
+  source: 'https://stickers.cloud/pack/%E7%94%9F%E6%B4%BB%E9%80%B1%E8%A8%9801'
+  tags:
+    - funny
+    - realistic
+    - sarcastic
+    - line
+849011b959baca64bc325ead5bbe2f8a:
+  key: 1aee15f7f139374fa3a27cadbb3ac85ca5a18e428da72b4b270e14404e5ee5b9
+  source: 'https://stickers.cloud/pack/%E7%94%9F%E6%B4%BB%E9%80%B1%E8%A8%9801'
+  tags:
+    - funny
+    - realistic
+    - sarcastic
+    - line
+14f007ef591bee81b675b07f92f0bb47:
+  key: fb54696395d1b6297e9657bb065a08a41a0d09e017caecad9d1bcb3f5c88ee23
+  source: 'https://stickers.cloud/pack/%E7%94%9F%E6%B4%BB%E9%80%B1%E8%A8%9801'
+  tags:
+    - funny
+    - realistic
+    - sarcastic
+    - line
+b909f9f767603f4d1c52cc3c27aec8cd:
+  key: ced1ad2e07104c186dcfcb482b48eceee5812770695f4d1e356553d3cc5d7d67
+  source: 'https://stickers.cloud/pack/%E7%94%9F%E6%B4%BB%E9%80%B1%E8%A8%9801'
+  tags:
+    - funny
+    - realistic
+    - sarcastic
+    - line
+cdcdac046e0cbb6b12e8dd3cd2a4857b:
+  key: 0b6183e83c200abeda2fa7c40e30941aed0ac3807866b452045bf872d32d6ab5
+  source: 'https://t.me/addstickers/Borders4tg'
+  tags:
+    - 'line separators'
+c4674f22e39da75ada26b08dddde4c80:
+  key: 26d0824f5cc4797f9d467c14d16e6d6f19fbcc9e7ee74f6e79b2587e0c82c12a
+  source: 'https://quan-inc.jp/characters/businessfish/'
+  tags:
+    - Quang Inc
+    - Business Fish
+    - Facebook
+  animated: true
+e586383956908f2e528f9efe51ee0e6b:
+  key: c082f2af9008bc153ae86a9d262684590a56d57d1cb5934b906058fcd47a5b8c
+  source: 'https://www.instagram.com/zaak6naam4/?hl=zh-hk'
+  tags:
+    - HK
+    - HKG
+    - Hong Kong
+  original: true
+d4ec6ef48e839592ab5fdb5cf8195f66:
+  key: 262843c92b2e07fef0f2b5a6d32e05be9de1e192eeab4c3e380b08320620674a
+26a7249446d1425e0cb838b29037b8d3:
+  key: ec58066f5f2b2a5f361e7c97f808b14f584becd54582e7860b8dcc0d08a7bf7d
+  source: qqqoobe
+  tags:
+    - cat
+    - kitten
+    - HK
+    - animal
+    - cute
+    - kawaii
+    - HongKong
+    - Hkg
+    - daily
+    - qoobe
+    - qqqoobe
+  original: true
+7da70f4e3d70675045e5302def693e5d:
+  key: 1034db4d7221a8c005d916f047f76017d76579ebfb055298269621fbea52aa9a
+  source: Klova Studios
+  tags:
+    - Milk And Mocha
+    - Milk
+    - Mocha
+  animated: true
+e56475e0d33881cf2ee244d02e97cfd4:
+  key: ce6bcc2f298fc5c32199572287fd32a35c7f5b381df44875b3046beaf62bfc33
+  source: '@keith_tse'
+  original: true
+43036201b78ce6af167544d5e243989f:
+  key: 7e2314b620c49bfce81cc7ff630fdbf2cedcf7c7b30d0d9c39a977dbdadd3b91
+  source: 'http://www.yodayodare.com'
+  tags:
+    - cute
+    - animated
+    - for children
+  original: true
+  animated: true
+dd89fd7880a2a42f85d0e6f013b1b884:
+  key: a6f055fc0fc049b75c5e6bb1e33c37c1c19bba23b91a2bc9eb272383a40f9103
+  source: lihkg.com
+  tags:
+    - LIHKG
+    - Emotes
+    - Pixel Art
+  animated: true
+df91ac1a942f645826df7207aec8439d:
+  key: ebfb23bf305364060ce385d838ae5d4705617fe3b8efd6d3c7d203bb0c7c6976
+  source: lihkg.com
+  tags:
+    - LIHKG
+    - Emotes
+    - Pixel Art
+    - Lomore
+  original: true
+  animated: true
+d8ae4ad1b084e75b14c507c6ab454d68:
+  key: 91449f3dc42951f01a8fc52234cb3688d4e4ff740eb8b92c0ca6b59d88c57cec
+  source: lihkg.com
+  tags:
+    - LIHKG
+    - Emotes
+    - Pixel Art
+    - Cat
+    - Animals
+  original: true
+  animated: true
+b0155e08eeefcc7372cadb4a15493c98:
+  key: 8987c2bf9ba0e3e9c784688310e0a1909f0491f1031a3a05132db1a2abdf823f
+  source: lihkg.com
+  tags:
+    - LIHKG
+    - Emotes
+    - Pixel Art
+    - Pig
+    - Animals
+  original: true
+  animated: true
+73cadde3a4f99b9e77ee2624e116d029:
+  key: 247c3066bade3756c2b35961e877e15a1e368ce6dfa86e9da7c3177e06ccec09
+  source: lihkg.com
+  tags:
+    - LIHKG
+    - Emotes
+    - Pixel Art
+    - Mouse
+    - Animals
+  original: true
+  animated: true
+a579d39aceed43d775e795f4d30511dc:
+  key: 6077127d6d984a5890863b71a9fb4b92a1409927710fc02733f82f94490ecd01
+  source: lihkg.com
+  tags:
+    - LIHKG
+    - Emotes
+    - Pixel Art
+    - Dog
+    - Animals
+  original: true
+  animated: true
+e3658655dd029d606a6f8392febb4554:
+  key: 1f711baa867a202454efaa0021c1801ec2274af10a338e4d01504eb997f299ad
+  source: lihkg.com
+  tags:
+    - LIHKG
+    - Emotes
+    - Cat
+    - Animals
+  original: true
+  animated: true
+551bcdedd6a2e6d7372486d0f60ce7e3:
+  key: 6ae6045f7cdd15f207709ee83c8d1e459995e4c0574742d8fabdf12cba29ba54
+  source: lihkg.com
+  tags:
+    - LIHKG
+    - Emotes
+    - Pig
+    - Animals
+  original: true
+  animated: true
+331d5f9ecb21d62120cc1adedc257ccf:
+  key: 203632d77f2d4c91d771db11f45f60bb63b41e32bb7afcd3580fac1132fb6c19
+  source: lihkg.com
+  tags:
+    - LIHKG
+    - Emotes
+8e6bbc564e79bcbeb9812ab040084486:
+  key: f83047f0ee8b67f4a43ae17dc8ace82ecb916042895b628f7fd9f0b53fefa18a
+  source: 氣質男@lihkg.com
+  tags:
+    - LIHKG
+    - Emotes
+af3b6a3e6deb7eced21ffb53e1a11b52:
+  key: b3899a9841bd9e947995f8666f58f4c493b86600229b8542afc26f817de5c8fc
+  source: lihkg.com
+  tags:
+    - LIHKG
+    - Emotes
+    - Animals
+    - Dog
+  original: true
+00390260a2c9e18f65ec1e4d914b5bad:
+  key: e6f4fa1b456972f045bcb33e95a3668d531ae9de029be3a5e192f3795c91c275
+  tags:
+    - oss
+    - floss
+    - open source software
+    - linux
