@@ -187,16 +187,18 @@ const ContributeComponent: React.FunctionComponent = () => {
    * Get a ContributionRequest token and question
    */
   React.useEffect(() => {
-    void fetch('https://prod-scw-1.api.signalstickers.com/contributionrequest/', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      }
-    }).then(async x => x.json()).then(x => {
-      setContributionRequestQuestion(x.contribution_question);
-      setContributionRequestToken(x.contribution_id);
-    });
+    setTimeout(() => {
+      void fetch('https://api.dev-sst.romainricard.fr/contributionrequest/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      }).then(async x => x.json()).then(x => {
+        setContributionRequestQuestion(x.contribution_question);
+        setContributionRequestToken(x.contribution_id);
+      });
+    }, 3000); // Delaying the query helps reducing the load
   }, []);
 
   /**
@@ -215,7 +217,6 @@ const ContributeComponent: React.FunctionComponent = () => {
    */
   const onSubmit = React.useCallback((values: FormValues, actions: FormikHelpers<FormValues>) => {
     const matches = new RegExp(SIGNAL_ART_URL_PATTERN).exec(values.signalArtUrl);
-
     if (!matches) {
       throw new Error('Unable to extract pack ID and pack key from signal.art URL.');
     }
@@ -226,7 +227,6 @@ const ContributeComponent: React.FunctionComponent = () => {
       .split(',')
       .map(tag => tag.trim())
       .filter(tag => tag.length));
-
 
     const propositionData = {
       pack: {
@@ -245,7 +245,7 @@ const ContributeComponent: React.FunctionComponent = () => {
     // TODO use the proper way to do this
     // TODO handle errors
 
-    void fetch('https://prod-scw-1.api.signalstickers.com/packs/', {
+    void fetch('https://api.dev-sst.romainricard.fr/packs/', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -478,7 +478,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       validate={validators.secAnswer}
                       className={cx('form-control', 'mt-2', errors.secAnswer && 'is-invalid')}
                     />
-                    <small className="form-text text-muted">This question help us to make sure that you are not a robot. The answer is a single word.</small>
+                    <small className="form-text text-muted">This question helps us to make sure that you are not a robot. The answer is a single word.</small>
                     <div className="invalid-feedback">
                       <ErrorMessage name="secanswer" />&nbsp;
                     </div>
