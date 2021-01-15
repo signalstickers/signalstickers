@@ -100,8 +100,6 @@ cbc0261b03b764bc31b73118bce2905b:
   key: 26487ed63eb40c22295b5f0d806538712244263c4b4ef142a3d7d4b566300241
 92b16427f8225ca1db6c87e66d7266ea:
   key: d2719e31308e14d4a0434ad06b5cbd9825a384d63a9f306e30872dee18c909b6
-93191fc3238b49989a91f022c6c14ee8:
-  key: 45fe02ec40ad78e9a7a43405da8cbb3e6379e79e63476e29b230253bf313e8d5
 93404032b79148810121d434b58cedc2:
   key: ddd0177393ed696f846c54efa1d12cf8c139cef52236dabed194f422ce72882a
 9991ecc3f3f74805b2b3145b37f1518f:
@@ -26545,3 +26543,185 @@ e7ad72037d817ba09ec5a01ada521278:
     - 白熊
     - 對自己吐槽的白熊
   animated: true
+0c9ceb7648da4472affd07e2daede810:
+  key: a3135b62d7678a2e1730f06e4cf3d707949cb8104353f5f4e44ed75c01ff3236
+  source: Apple Inc.
+  tags:
+    - Apple
+    - Funny
+    - Animal
+    - Mouse
+    - Rodent
+    - Cute
+2e2617704974d722ec521859cb081cdc:
+  key: 728f4b921dc6040fa2cec7942da4ac2e4dc65d011ab21f246482eeb680a93dab
+  source: Apple Inc.
+  tags:
+    - Apple
+    - Funny
+    - Animal
+    - Cow
+    - Moo
+    - Farm
+e7fe5d92c880222a34677040486bde04:
+  key: 0de872e396fa00787604ed177c6ef4b3052eee05925f378e0f9817e51f3d1f06
+  source: fartynrabbie
+  tags:
+    - farty
+    - rabbie
+    - rabbit
+    - bunny
+    - cute
+  original: true
+96a83846eb3fee4524477d774f130348:
+  key: 71af8fefa410a60d4678ebc86ecf871c41dc07813b52ceea177fe87645e7746c
+  source: '#蝦毛 I.T. 醫生 / HAMO'
+  tags:
+    - 蘑菇頭
+    - Mushroom head
+  animated: true
+3822be0a512668004e9531b5bfa5feb1:
+  key: 0bbe1aba7c4d5f9bb2116b73428532c9ca2d29d5b12e2e98ade9c86b0f0c1745
+  source: '#蝦毛 I.T. 醫生 / PATPAT SUM'
+  tags:
+    - Melody
+  animated: true
+0ca2f1d86618616a88ec48a7e4fef2fd:
+  key: ca17120822acd80c491b41c1036e3aaeaf83a025ad76f66b5c9ad767936e5803
+  source: '#蝦毛 I.T. 醫生 / PATPAT SUM'
+  tags:
+    - Kuromi
+  animated: true
+120ce58a1dd26d17d9c1283516b3b962:
+  key: 0b2ccd77463cb28fdf3c1c3267c2d29fdd360d8061cb616e56b1ee24575a953d
+  source: Carey Hsie – www.careyhk.com
+  tags:
+    - Jesus
+    - I Love Jesus
+    - God
+    - Christian
+    - Gospel
+    - Easter
+    - bless
+    - Carey Hsie
+  original: true
+41dbe6e753b4485f9c14e0ff30d9a615:
+  key: e8fca1a7514477ca7bb883cb1baee54f4a7da4886cb99860053755e93adf0bf5
+  source: 'http://www.yodayodare.com'
+  tags:
+    - YoDaRe
+    - Cute
+    - Bear
+    - Animals
+    - Fun
+    - joke
+  original: true
+  animated: true
+ee1517c9a72bb29cf153d8139fd1ac02:
+  key: 03bd768e47739ef178d7412f4185eaf17c2d9d8691adda5623a3529a8fa45227
+  source: 'https://telegram.dog/addstickers/rpcmp_e'
+  tags: 
+    - 'fsm'
+    - 'god'
+    - 'heathen'
+    - 'spaghetti'
+    - 'monster'
+    - 'religion'
+    - 'monster'
+9d98b70d3bebb52f5df5d78ef060627a:
+  key: 7ca132578e32fefc9529cd36fcea349026ee2a4778a463bb9a2eab4aacbc8bc3
+  source: 'https://telegram.dog/addstickers/TomJerr'
+  tags:
+    - Tom
+    - Jerry
+    - cartoon 
+7a4183dab5c3f833a36c1468c2789df3:
+  key: 586c3271ee1ea2e0a6827dbe981e2c57fa4ab393657c90c4e50dddf0829f7ec2
+  source: 'https://t.me/addstickers/BrahmiPack'
+  tags:
+    - Telugu
+    - Brahmanandam
+    - Movie
+    - Brahmi
+5223a4c300acf491afd5f84abb3bbe24:
+  key: 0a68532fd0c7495979f919ce5f5694cc28246c6304d40548b5ff206735ed6784
+  source: 'https://t.me/addstickers/SVkRgv'
+  tags:
+    - Telugu
+    - Sunil
+    - Vennela kishore
+    - RGV
+    - Movies
+8663917d1f1d20865b235c9f492f3bec:
+  key: cb41ac8c207436d4ef62d6501722d4a23fff86dd62bcfac8050ab07f8d42bdf4
+  source: 'https://t.me/addstickers/SolluPacc_by_one_step_sticker_bot'
+  tags:
+    - Telugu
+    - Movies
+    - Trisha
+    - kajal
+    - Tamanah
+8c9c592387c391dd7b336d93ffba597c:
+  key: 382ba240b9daeb1b3552a5e7066ec4f1e89be507fb06d784aa0191e076e446ac
+  source: 'https://t.me/addstickers/HTAmemes'
+  tags:
+    - Telugu
+    - Movies
+ed1f0eb7d2d48d78a316373f0525c7e3:
+  key: 674c0b0858752d026b4f6a87b5c793a45488a538a84a8915df7f7c4da95c3aa1
+  source: 'https://t.me/addstickers/StewiePotlam'
+  tags:
+    - Telugu
+    - Movies
+f4050f27df90d0d41c56d3a11971d449:
+  key: 156af208bd1f578713a238ec35d8dac7bef4777be0e220c8428cc528c457dc18
+  source: 'https://t.me/addstickers/Rand_mixr'
+  tags:
+    - Telugu
+    - Movies
+7470d4a0a25edfa242aeaee8b79437b3:
+  key: d5d294ece1be2d021e8bb20c41e138d6fea53a431acbf20a58295bd0fe045943
+  source: 'https://t.me/addstickers/NazriyaPacc_by_one_step_sticker_bot'
+  tags:
+    - Nazriya
+    - Malayalam
+    - Telugu
+9393c653d2a99d34c3e92b6c48d2415f:
+  key: b4728926eab449949290654519805e3ae3851e9df141d49d3f84acff84166a3c
+  source: tg_milo (telegram)
+  tags:
+    - Animated
+    - El Pablo
+ab95d8c429f1505b321660edf0318e50:
+  key: 11a6fedeaf5d8432f2cf50ffdfd56c5f13f0ea20228a12a5905b901cbf1c1368
+  tags:
+    - mirrorhk
+    - Mirror
+    - Jeremy
+    - JeremyLee
+    - Unicorn
+d3925e2641a9c80b0a84496a4fb2ee5b:
+  key: c391a27ec4d5179fbda22d0da8025b01d7f11d7afa50a280dd2caea31246bb7b
+  source: 'tg://addstickers?set=AsozialesPack'
+  tags:
+    - Kaenguru
+    - Antifa
+    - Antiterror
+    - Nestle
+    - Bild
+    - Bugs
+    - Trump
+    - Afd
+    - NPD
+    - Grokuli
+    - Bundeswehr
+    - Arbeit
+    - Deutsche Bank
+    - Marc Uwe Kling
+0681795825ceebc61be17d9406244139:
+  key: 773ceff2e80873c890f7fb75cc7eed8112b59766789cbfc6b01461edebc27541
+  source: Erfan
+  tags:
+    - Daily Lives
+    - programmer
+    - programming
