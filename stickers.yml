@@ -26620,7 +26620,7 @@ e7fe5d92c880222a34677040486bde04:
 ee1517c9a72bb29cf153d8139fd1ac02:
   key: 03bd768e47739ef178d7412f4185eaf17c2d9d8691adda5623a3529a8fa45227
   source: 'https://telegram.dog/addstickers/rpcmp_e'
-  tags: 
+  tags:
     - 'fsm'
     - 'god'
     - 'heathen'
@@ -26634,7 +26634,7 @@ ee1517c9a72bb29cf153d8139fd1ac02:
   tags:
     - Tom
     - Jerry
-    - cartoon 
+    - cartoon
 7a4183dab5c3f833a36c1468c2789df3:
   key: 586c3271ee1ea2e0a6827dbe981e2c57fa4ab393657c90c4e50dddf0829f7ec2
   source: 'https://t.me/addstickers/BrahmiPack'
@@ -26725,3 +26725,9 @@ d3925e2641a9c80b0a84496a4fb2ee5b:
     - Daily Lives
     - programmer
     - programming
+83994b4d12b5dac8469828a09609fb9c:
+  key: 6792508d9624173542d9e186a4e82b63b14f5798e71efc2f11295d59082623da
+  source: Piwio Studio Line
+  tags:
+    - Gojill
+  animated: true
