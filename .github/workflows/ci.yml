@@ -1,6 +1,8 @@
 name: CI/CD
 on:
   - push
+  # This is apparently needed for PRs from forks to trigger builds.
+  - pull_request
 jobs:
   build-test:
     name: Build & Test
