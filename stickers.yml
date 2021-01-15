@@ -906,6 +906,25 @@ e1ebbeb223685c27b7217287c5d336dd:
     - monkey
     - Mona Monkey
     - telegram
+e4ab64e27348863f75fbb4f381c6e41b:
+  key: 8d8eb7c0904ff2d9e07bb86b1b90bf8ed23db74fbbdad8152fbe797184804189
+  source: 'https://twitter.com/mohoromitch'
+  tags:
+    - '2020'
+    - wfh
+    - memes
+    - politics
+    - among
+    - us
+    - animal
+    - crosing
+    - trudeau
+    - montreal
+    - toronto
+    - canada
+    - coronavirus
+  original: true
+  animated: true
 3ae3df67af0a1de21a20332076520220:
   key: da59b5f54c1a6ca2048c496883a23a99f902721df45182b5ca0a3c3f1d4453d1
   source: 'https://tlgrm.eu/stickers'
