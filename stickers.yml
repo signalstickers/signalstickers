@@ -27124,3 +27124,21 @@ fe9d97b344df94c40d4400c475334bff:
     - blue
   original: true
   animated: true
+24f794d0c6eca8c45a5d0980642b77da:
+  key: 889c795d409763daa4a8655981d2619361cc1491d5682c95a52eb7c6a2a11975
+  source: 'https://twitter.com/smallsoup2/status/1350405219545350152'
+  tags:
+    - cat
+    - milsim
+    - wargame
+  original: true
+04d99fcf580b6b2531e4c88b1e30625a:
+  key: 8e01fa0dc84810e35620111f1da32bd33fbb3f4368e2b12ba56cf5e7fd54891f
+  source: 'https://twitter.com/smallsoup2/status/1350405219545350152'
+  tags:
+    - 'stone age'
+    - 't-rex'
+    - 'Tyrannosaurus'
+    - 'stoneman'
+    - 'running'
+  original: true
