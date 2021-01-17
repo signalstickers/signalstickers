@@ -26420,7 +26420,7 @@ a9f51daf2930819af1ba617a3a1efac8:
   key: d0c12b6bbaa7826eb4164f1d3cb0b9b7d0ddabe696d7e4b816ffb2ffd36ef9ec
   source: 'https://twitter.com/rahulsimpact/status/1349405121948438528'
   tags:
-    - onion
+    - dumpling
 be3c807dedffaa8e404e5ec268704c03:
   key: 9d54ae591848cb1506274e34317831d9e5769381cb82e0e942e01a64e3259636
   source: 'https://twitter.com/MonPetitGazon'
@@ -27061,3 +27061,66 @@ a386593f467d74361408c6cb24099cb3:
     - Hong Kong
     - HKG
     - 3siblingsss
+f4272c4654b44590d5e260ef2925a1af:
+  key: 4dcc6f8e5caaa244614e59182b68c6c9cd582b17a58fa7d4dc0490ba3c0c0700
+  source: 'https://twitter.com/artamrj/status/1349852020279275525'
+  tags:
+    - arabic
+84b51847f7066c9c62ebbb0d0691e424:
+  key: 34f3e99fe848db8b7fb4e66274fb8ec6514073d7e5cc21193e023fdc8146cc75
+  source: 'https://twitter.com/artamrj/status/1349852020279275525'
+a6c01d4b80b9131fd1537a3a0af92560:
+  key: 3b30dac05cfd0f4f046a72c86301975ecd0c6d149cb46b44a319f6da3604b32e
+  source: 'https://twitter.com/ksyn1111/status/1349988032221331461'
+34b5b1d3dc7a612d7cb723f8309aaec0:
+  key: b4701e7a1595d5d6a25ed669f83006c880a7128d88d16f404f7e36885bc0e28e
+  source: 'https://twitter.com/James232B/status/1350303020370673666'
+35e0b9e807c4b30b3b19707c2e9acbf1:
+  key: 57e2a1338964edd6875a8833a6cd498751235f26d705609cac96f4bd44f5de79
+  source: 'https://twitter.com/alicelamart1/status/1350399571973734401'
+  animated: true
+15e3fb283726cc74e24f124a43bbae9e:
+  key: bc89c581afb992a41edb727e2de0b7f4903d00238b0eeef11e1d468149692e93
+  source: 'https://twitter.com/RobAscolta/status/1350440168982016002'
+  tags:
+    - italia
+    - football
+    - juventus
+    - milano
+e721a6c560ae91fc97796ffb151d98f3:
+  key: 78c1e2227fed0270bf883658b069d719afbd4fc47300e35999cddee85b37ddeb
+  source: 'https://twitter.com/rkravets_ua/status/1350513638113734659'
+  original: true
+b304d69b57c7b71da567e3eb86a88197:
+  key: b21962cfaa267bfbc773941d4908ef7d7b5f6b39d299f3f1d1ef592b9f11d64d
+  source: 'https://twitter.com/luoser/status/1350516615029395458'
+  original: true
+4c2342f89e52ec08a8e1e04f81012d35:
+  key: 4aa173414a9c8b9dc7d983c9a2fa26ad52cd4d3e4cb794b898f475f4691d7ce1
+  source: 'https://twitter.com/kuzeykoremezli/status/1350517114302554114'
+  original: true
+fe9d97b344df94c40d4400c475334bff:
+  key: 030190f0f40525c49fd9b837477b78db8a17c30036cf627bdb7075e24f43742a
+  source: 'https://twitter.com/cas/status/1350560798578335745'
+4570fe1e9d8c787608a48d9dd1d35e74:
+  key: 527652a20a15b5bb5f5b501ce170774e9784bc3aaa33fb74cc35564af613595e
+  source: 'https://twitter.com/sonu041/status/1350739998488752131'
+101e917fa3f9e88b0b1313ee3873971e:
+  key: 5fec83c7ad38997bc2856da5ed5fd6009133e2ad9b63f10d2da46a59d2f8fd84
+  tags:
+    - cat
+    - reaction
+485ef1541e981b78b78ed4986521d032:
+  key: 88f4b67ca3dbabdd16990556dadcf11f72e2936bb7cdd6d56ebc161f345eb3d1
+  source: 'instagram.com/momeimo_ig/'
+  tags:
+    - meme
+    - cute
+    - fun
+    - momeimo
+    - hk
+    - artist
+    - white
+    - blue
+  original: true
+  animated: true
