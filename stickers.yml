@@ -27137,3 +27137,12 @@ fe9d97b344df94c40d4400c475334bff:
     - 'stoneman'
     - 'running'
   original: true
+1feafa5afd455a3ed3a6715110362659:
+  key: 9c1c674d742d6424a6801a1aa632c83017a56570a063510e4425897f4599b0c7
+  source: Line
+  tags:
+    - Kuromi
+    - Sanrio
+  nsfw: false
+  original: false
+  animated: false
