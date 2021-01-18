@@ -5,6 +5,13 @@
     <meta charset="utf-8" />
     <base href="/" />
     <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-eval' code.jquery.com unpkg.com stackpath.bootstrapcdn.com; connect-src 'self' cdn-ca.signal.org; img-src 'self' data:; style-src 'self' 'unsafe-inline' stackpath.bootstrapcdn.com fonts.googleapis.com; font-src fonts.gstatic.com; object-src 'none'"
+    />
+    <meta
+      name="referrer"
+      content="no-referrer">
+    <meta
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
@@ -26,7 +33,7 @@
     />
     <meta
       property="og:description"
-      content="Community-organized gallery of sticker packs for Signal. Browse more than 1500 stickers, and propose your own!"
+      content="Community-organized gallery of sticker packs for Signal. Browse more than 2500 stickers, and propose your own!"
     />
     <meta
       property="og:image"
@@ -35,7 +42,7 @@
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap"
-      integrity="sha384-MtGEAu1MQbAPEaHmS/XQX24Fr1i/eEF2vN8Wdz9EVW0fSZwgk2wsUFJgRK6KpYa2"
+      integrity="sha256-saTs3Be4DD6cmnBVxHaCkt8n0ZZ2mYXvvd6kb8WNdgc="
       crossorigin="anonymous"
     />
     <link
@@ -45,37 +52,12 @@
       crossorigin="anonymous"
     />
     <!-- Start Single Page Apps for GitHub Pages -->
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // https://github.com/rafrex/spa-github-pages
-      // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
-      // ----------------------------------------------------------------------
-      // This script checks to see if a redirect is present in the query string
-      // and converts it back into the correct url and adds it to the
-      // browser's history using window.history.replaceState(...),
-      // which won't cause the browser to attempt to load the new url.
-      // When the single page app is loaded further down in this file,
-      // the correct url will be waiting in the browser's history for
-      // the single page app to route accordingly.
-      (function(l) {
-        if (l.search) {
-          var q = {};
-          l.search.slice(1).split('&').forEach(function(v) {
-            var a = v.split('=');
-            q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-          });
-          if (q.p !== undefined) {
-            window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + (q.p || '') +
-              (q.q ? ('?' + q.q) : '') +
-              l.hash
-            );
-          }
-        }
-      }(window.location))
+    <script
+      src="/spa-redirect.js"
+      integrity="sha384-faz8xhE7Y8+XP7+yLINlO8VKJf5NrGwbDtYutzOuyn8qvpebUM5aZH5KvZ9+fGdl"
+    >
     </script>
     <!-- End Single Page Apps for GitHub Pages -->
-
     <!-- Resource Hints -->
     <link rel="preconnect" href="https://cdn-ca.signal.org" crossorigin="anonymous" />
     <link rel="preconnect" href="https://ping.signalstickers.com" />
@@ -90,7 +72,7 @@
     >
     </script>
     <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js"
       integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
       crossorigin="anonymous"
     >
