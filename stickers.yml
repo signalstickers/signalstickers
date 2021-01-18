@@ -27137,3 +27137,11 @@ fe9d97b344df94c40d4400c475334bff:
     - 'stoneman'
     - 'running'
   original: true
+20f10a64c966b3a97fedfbca7027eb3a:
+  key: 15d16f432c3aeae38b4d5ecccd2ab9a19e6458b711c1c33cb4380fc345408bac
+  source: 'https://telegram.dog/addstickers/Oldboy0'
+  tags: 
+    - 'Malayalam'
+  nsfw: False
+  original: False
+  animated: False
