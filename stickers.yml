@@ -27399,3 +27399,16 @@ f3038d1e6d8a45df6c5223c0b7f01947:
     - reaction
     - cat
   original: true
+d19089488e41c987b919be1fc389ee2b:
+  key: 1c3758c2c205502cb6bd3dc9cef727f5c5afa4afd8b46d245f2849dd35398c84
+  source: 'https://t.me/addstickers/TegraFoxSticker'
+  tags: 
+    - 'nsfw'
+    - 'pet'
+    - 'pup'
+    - 'furry'
+    - 'cartoon'
+    - 'art'
+  nsfw: True
+  original: False
+  animated: False
