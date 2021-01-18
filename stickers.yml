@@ -26986,7 +26986,7 @@ eaffbad30695ba7cf4ee5b2e24d93cb6:
 7d2e07bd8a3bcd20b14fe98e58c30f28:
   key: cf32d378e7a47feba71c7652091665d30c4b98b12744b6500311ece94dc2b48e
   source: 'https://telegram.dog/addstickers/ChanChi'
-  tags: 
+  tags:
     - '陳夕'
 4a39e5a3d193e72af489629f9f792f16:
   key: 025c168a62969c53b4f9803ced098aa8d60bd3a2ee45ed524ad3464bebdd67b1
@@ -27016,7 +27016,7 @@ a997c3a32553a13aca6812981133651c:
 2dbde96660ba8089824e2386bbaa4058:
   key: 04d739018efaf5fe0c9071fa27a4c0c826d91e9d3a31065d8007b600e442d56f
   source: 'https://t.me/addstickers/MrSpring2'
-  tags: 
+  tags:
     - '春天先生'
     - 'Mr. Spring'
     - 'Mr Spring'
@@ -27136,4 +27136,78 @@ fe9d97b344df94c40d4400c475334bff:
     - 'Tyrannosaurus'
     - 'stoneman'
     - 'running'
+  original: true
+5be77050f704a1871e8c8585c8c9eaf7:
+  key: 622c2dc4fde4e195b349a8cc91395155ad2e95783e1fd24cf8e091a1ff813f14
+  source: elvyynd
+  tags:
+    - Lord Voldemort
+    - Voldemort
+    - Tom Riddle
+    - Harry Potter
+    - elvyynd
+1feafa5afd455a3ed3a6715110362659:
+  key: 9c1c674d742d6424a6801a1aa632c83017a56570a063510e4425897f4599b0c7
+  source: Line
+  tags:
+    - Kuromi
+    - Sanrio
+adc87927da431110dc7ab5dd3cc86d1a:
+  key: 07490141a67ad46a49940fc2e4644994657f39621de55db52caf9db881dd489e
+  source: 'https://t.me/addstickers/TKStickers'
+  tags:
+    - Pup
+    - Furry
+    - Art
+    - Cartoon
+20f10a64c966b3a97fedfbca7027eb3a:
+  key: 15d16f432c3aeae38b4d5ecccd2ab9a19e6458b711c1c33cb4380fc345408bac
+  source: 'https://telegram.dog/addstickers/Oldboy0'
+  tags:
+    - Malayalam
+7eb2a9d49258c6908cbff75f8a3e8386:
+  key: e051e406a31754037110fb0099d2140c53417b20d450b2a3d6884acf445eb7a7
+  source: thfeli
+  tags:
+    - bolsonaro
+    - presidente
+    - brasil
+    - mito
+6c28fcc5215d63d53a3465e68216290d:
+  key: d287a2eae984fa2629e634c1c52db15137e7a2945766f8e990abf93a7027eb90
+  source: Various
+  tags:
+    - Brahmi
+    - Brahmanandam
+    - Telugu
+    - Telugu Meme
+73dbb03b82806cebc9a6dba798698962:
+  key: acdfd40e15c2827384a999fa0e3e3c4f67b8c73c0eacf0f73051b38361cf2bf3
+  source: thfeli
+  tags:
+    - fluminense
+    - futebol
+    - soccer
+    - football
+    - brasil
+    - rio de janeiro
+  original: true
+9a332f54afb6b913f0afd3316edca66e:
+  key: c873d7d213718913e859125ef0001a81e40ff6f4d5a211c4b72911eeabdcb471
+  source: 'https://twitter.com/naesris'
+  tags:
+    - emoji
+    - text
+    - quick
+    - response
+    - message
+    - signal
+    - brb
+    - bye
+    - hello
+    - sasnippets
+    - fast
+    - random
+    - sirsean
+    - talk
   original: true
