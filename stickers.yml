@@ -5,6 +5,16 @@
 # When adding a new pack, please remember to add it AT THE END OF THE FILE,
 # and pay attention to the indentation.
 
+16da1052a2f9a70a7281587fbc3c949d:
+  key: 25ec61dd9a8ae98cbd6bcdf28a4db3ae29816ca3e9f2425e848caca80dca9bd4
+  source: Siriusxm.com
+  tags:
+    - SiriusXM
+    - radio
+    - Howard Stern
+    - sattelite
+    - america
+    - canada
 ae1d343accdec586fe19954a6be7aee9:
   key: ffea9831b6af7617e4ab1b3868ce6f26f5c7c8ab3f05fb8d68b436f9253232ab
   tags:
