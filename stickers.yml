@@ -27232,13 +27232,6 @@ adc87927da431110dc7ab5dd3cc86d1a:
     - 'funny'
     - 'sexy'
   nsfw: true
-31cc6a51b2f0d0cd7703a7256bcecfaf:
-  key: 78961a2fbb51cf726a44fd5c3413e375a3f82f8341a5585a785b926f18f26dad
-  source: Rose Daisy
-  tags:
-    - Red Rose
-  original: true
-  animated: true
 0e10a6060d31e493bba5933c958fbc77:
   key: 9a90ef7a840a496d7bc3d73e7953583fe4e802cdc45eae919d67ca0e8e0539ef
   source: Harshit Parwal
@@ -27256,3 +27249,11 @@ adc87927da431110dc7ab5dd3cc86d1a:
 9b285217f90ecd690237efdb34f507e5:
   key: f5c22d47dc67d5f038ffbc368a826a3d5a0f197f5f2d164b4451f3528af7afb8
   source: 'https://t.me/addstickers/Legendhere'
+31cc6a51b2f0d0cd7703a7256bcecfaf:
+  key: 78961a2fbb51cf726a44fd5c3413e375a3f82f8341a5585a785b926f18f26dad
+  source: Rose Daisy
+  tags:
+    - Red Rose
+    - Red Rose2
+  original: true
+  animated: true
