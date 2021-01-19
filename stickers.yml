@@ -4833,6 +4833,8 @@ f028f6a1e3353e2305bcdfd303238e41:
     - memes
     - HalloweenMemes
     - telegram
+cd1240030ea82e58e46c4056dee0d6a6:
+  key: 73746f6c656e2066726f6d207369676e616c737469636b6572732e636f6d2121
 21678bbb069a7809190c5993edc5b3ed:
   key: c453d2b25264731dfec95ba4f59300f09714a7c628fbc613fd530fc1fea2c32e
   source: 'https://tlgrm.eu/stickers'
@@ -27398,4 +27400,185 @@ f3038d1e6d8a45df6c5223c0b7f01947:
   tags:
     - reaction
     - cat
+  original: true
+d19089488e41c987b919be1fc389ee2b:
+  key: 1c3758c2c205502cb6bd3dc9cef727f5c5afa4afd8b46d245f2849dd35398c84
+  source: 'https://t.me/addstickers/TegraFoxSticker'
+  tags: 
+    - 'furry'
+  nsfw: True
+4e3716493e878df4d4ece977ea1b8a8b:
+  key: 7141bd643a8e1cce42adade1a0f8d26411116a136e37f4e35043e627b493ecc2
+  source: 'https://t.me/addstickers/Odyssseus'
+  tags: 
+    - 'Furry'
+  nsfw: True
+0cfb272f9e9401ff805cdbcbe5e90c0b:
+  key: ec52335f3ca545746b886fe46dcefcb2f64cdad318cc693fdef98c8244e826e5
+  source: 'https://telegram.dog/addstickers/PupJack'
+  tags: 
+    - 'Nsfw'
+  nsfw: True
+d0bfc854e88301d34667b1449a1256d1:
+  key: bc552bfb0a6e0c71b4c39605cd5d79be0645a5ed8818182f2706a8f008c2506e
+  source: the virus itself & vecta.io
+  tags:
+    - corona
+    - coronavirus
+    - covid19
+    - covid
+c4bcc0b911c7e24ce687f3b8ff0e0424:
+  key: 038d98241bd4b27b43668d287d4c563e98084f87a70b968346d4f808e0d6ddd9
+  tags:
+    - Brightwin
+    - BW
+    - 2gether
+  original: true
+b4bed9bde78a43fa4d76d6c3e23dde82:
+  key: 1417ba20d2d329ad18898cd565b3ae692ba589bef87c591c8d48df3b0b313df6
+  source: Guraya
+  tags:
+    - doge
+    - Shiba
+    - animal
+    - cute
+    - dog
+  animated: true
+c728ab675af3cde90e0177a645429450:
+  key: 7384d1edccedeaf7d3a7a14de0c4953dd04e26a8224045780d2ea8c469d85479
+  source: 'http://www.foodooparties.com/'
+  tags:
+    - foodooparties
+    - food
+    - cute
+    - hongkong
+    - cny
+    - newyear
+    - fun
+  original: true
+33ad329bc392a5df44ce6fda49738aea:
+  key: a51a1b273ee61fb1b0bb66aae2eef57c7547eafb0582aeaa13e3482ce9e7c636
+  tags:
+    - piku
+    - pikuniku
+    - devolver
+    - games
+    - gaming
+    - art
+    - indie
+    - cute
+    - lovely
+effe44e1704c9e61e4d472705a8aeb9f:
+  key: ad35bb006afa4ce10490916ca298c94b49eecfa39cd842ba95b36f152494fe9c
+  source: 'https://t.me/addstickers/Quenya101'
+  tags:
+    - Quenya
+    - Elvish
+    - High Elvish
+    - Tolkien
+    - Tengwar
+    - Lord of the Rings
+    - Silmarillion
+    - LOTR
+    - Telegram
+01cb1aeff89a9f5d474f5c334ffca444:
+  key: 3fe9cdfce6eff2ec0041bbe9e14ab373c86274df6dd9268bafcffd89e2646d99
+  source: 'https://t.me/addstickers/BSG75'
+  tags:
+    - Battlestar Galactica
+    - BSG
+    - TV
+    - Series
+    - Shows
+    - Cylons
+    - Adama
+    - Space
+    - Telegram
+775a49485ee5091ec1f084d66b1e69f9:
+  key: 31edb068f405034289f9e3baa8790ee0067d91bd98790e724c5ce1ef23160082
+  source: 'https://t.me/addstickers/AttackOnTitan'
+  tags:
+    - Attack on Titan
+    - Shingeki no Kyojin
+    - Anime
+    - Telegram
+be95fa67efc966cf946b2f1beb61d849:
+  key: 7d1808fd083287cb47316f81a54e2a66271d69fb7e179e94d7bbb6207650ee07
+  source: 'https://tlgrm.eu/stickers/JapanStudioGhibli'
+  tags:
+    - Ghibli
+    - Studio Ghibli
+    - JapanStudioGhibli
+    - Telegram
+    - Anime
+    - Hayao Miyazaki
+    - Nausicaa
+    - Totoro
+    - Mononoke
+02620ee19366bab2c3ee55728febf118:
+  key: 934b392bc062c6852e88383db7c84af3171028706efd1c84a9e94986cc06a8b1
+  source: 'https://tlgrm.eu/stickers/Brazil'
+  tags:
+    - Os Brasileiros
+    - Brasileiros
+    - Brazil
+    - Brasil
+    - Memes
+    - Characters
+    - TelegramTeam
+6e2329a2777af64d21e1c1e461d04c7c:
+  key: 038834811d57461b4a6cf75c345fc2041c674de9878bd2844c33f1509f326692
+  source: 'https://tlgrm.eu/stickers/'
+  tags:
+    - Shoujo Kakumei Utena
+    - Revolutionary Girl Utena
+    - Utena
+    - TV
+    - Anime
+    - Shows
+    - Manga
+    - Telegram
+    - Be Papas
+3c7c00a9c77a0b4a3318045ced76f8f7:
+  key: f38c03594dee41c4a47e0c3e37dd577cd9ffb1ce1f472e88cac4df582032cb9b
+  source: 'https://tlgrm.eu/stickers/aggretsu'
+  tags:
+    - Aggretsuko
+    - Retsuko
+    - Aggressive Retsuko
+    - Anime
+    - Netflix
+    - Telegram
+506c48af68af529ca1f2bd964923d0b5:
+  key: 98a7f1e87ad2838b956bb4a423e6939db85c59e9c5a50a24a31d8f64a1873b6f
+  source: 'https://tlgrm.eu/stickers/Rich_Uncle'
+  tags:
+    - Monopoly
+    - Games
+    - Board games
+    - Telegram
+081d62d21e7a89b2f057890fbb9a725e:
+  key: 6333e6e0b1d7086be24eab78d786ba0332da66827f5304eedb728341713398f0
+  source: 'https://tlgrm.eu/stickers/NeilTysonUk'
+  tags:
+    - Neil deGrasse Tyson
+    - Science
+    - Astronomy
+    - Cosmos
+    - Telegram
+    - ndt
+ef0830d66e6477243c99c551336c52dd:
+  key: 9fecaf33616809cf5ed6d63ba3225b440c7c2cef21fa9792d1bec8a962fcd1e8
+  source: 'https://tlgrm.eu/stickers/sailorpg'
+  tags:
+    - Sailor Moon
+    - Anime
+    - Telegram
+f533fc47a13d0a3f8c32fdc6aeff632c:
+  key: 05f485588b1c354c267e22cd2048d6c1feb8f8d9ff8e3a8b795de5aa11535d70
+  source: thfeli
+  tags:
+    - flamengo
+    - mulambada
+    - cheirinho
   original: true
