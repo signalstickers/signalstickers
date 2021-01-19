@@ -27399,3 +27399,13 @@ f3038d1e6d8a45df6c5223c0b7f01947:
     - reaction
     - cat
   original: true
+0cfb272f9e9401ff805cdbcbe5e90c0b:
+  key: ec52335f3ca545746b886fe46dcefcb2f64cdad318cc693fdef98c8244e826e5
+  source: 'https://telegram.dog/addstickers/PupJack'
+  tags: 
+    - 'Nsfw'
+    - 'Pup'
+    - 'Art'
+  nsfw: True
+  original: False
+  animated: False
