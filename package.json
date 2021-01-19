@@ -9,7 +9,7 @@
       "url": "https://romainricard.fr/"
     }
   ],
-  "license": "WTFPL",
+  "license": "GPL-3.0-only",
   "homepage": "https://signalstickers.com/",
   "repository": {
     "type": "git",
