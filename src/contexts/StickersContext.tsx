@@ -52,10 +52,10 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
 
   /**
    * [Effect] When the context mounts, set the list of sticker packs from
-   * stickerData.json and set-up the initial search results.
+   * partials.json and set-up the initial search results.
    */
   useAsyncEffect(async () => {
-    // Load the set of sticker packs we need from stickerData.json.
+    // Load the set of sticker packs we need from partials.json.
     const stickerPacks = await getStickerPackDirectory();
 
     // Set the canonical list of all sticker packs.

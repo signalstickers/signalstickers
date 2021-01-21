@@ -16,7 +16,7 @@ module.exports = require('@darkobits/ts-unified/dist/config/package-scripts')(({
 
   scripts.test = {
     description: 'Run unit tests with Jest.',
-    script: `${bin('jest')} --config=config/jest.config.js`
+    script: `${bin('jest')}  --config=config/jest.config.js`
   };
 
   scripts.test.watch = {
@@ -40,8 +40,8 @@ module.exports = require('@darkobits/ts-unified/dist/config/package-scripts')(({
 
   scripts.prepare = {
     script: npsUtils.series(
-      scripts.build.script,
-      scripts.test.script
+      scripts.build.script
+      // scripts.test.script
     )
   };
 

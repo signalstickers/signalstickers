@@ -36,7 +36,7 @@ import {isStorageUnavailableError} from 'lib/utils';
  * StickerPack that we want to search on or that we need to display a sticker
  * pack preview card. We use a promise here rather than the array itself to
  * ensure that if multiple calls to getStickerPackDirectory are made before the
- * initial request for stickerData.json resolves, we only make a single request
+ * initial request for partials.json resolves, we only make a single request
  * and only populate the directory once.
  */
 let stickerPackDirectoryPromise: Promise<Array<StickerPackPartial>> | undefined;
@@ -66,7 +66,7 @@ export async function getStickerPackDirectory(): Promise<Array<StickerPackPartia
   if (!stickerPackDirectoryPromise) {
     stickerPackDirectoryPromise = axios.request<Array<StickerPackPartial>>({
       method: 'GET',
-      url: 'stickerData.json'
+      url: 'https://signalstickers.github.io/stickers/partials.json'
     }).then(R.prop('data'));
   }
 

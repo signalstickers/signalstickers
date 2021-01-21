@@ -4,7 +4,6 @@ import * as R from 'ramda';
 import webpack from 'webpack';
 
 // Plugins.
-import FetchStickerDataPlugin from '@signalstickers/fetch-sticker-data-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
@@ -237,11 +236,6 @@ export default (env: string, argv: any): webpack.Configuration => {
 
   config.plugins.push(new webpack.LoaderOptionsPlugin({
     minimize: argv.mode === 'production'
-  }));
-
-  config.plugins.push(new FetchStickerDataPlugin({
-    inputFile: path.resolve(PKG_ROOT, 'stickers.yml'),
-    outputFile: 'stickerData.json'
   }));
 
   config.plugins.push(new webpack.DefinePlugin({

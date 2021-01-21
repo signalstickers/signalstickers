@@ -259,7 +259,7 @@ const ContributeComponent: React.FunctionComponent = () => {
 
   const editStickersYmlLink = React.useMemo(() => (
     <ExternalLink
-      href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml"
+      href="https://github.com/signalstickers/stickers/edit/master/src/stickers.yml"
       title="Signal Stickers repository"
     >
       Signal Stickers repository
@@ -565,7 +565,7 @@ const ContributeComponent: React.FunctionComponent = () => {
             <div className="col-12 col-md-10 offset-md-1">
               <ExternalLink
                 title="Open a Pull Request"
-                href="https://github.com/signalstickers/signalstickers/edit/master/stickers.yml"
+                href="https://github.com/signalstickers/stickers/edit/master/src/stickers.yml"
                 className="btn btn-success btn-block btn-lg"
                 ref={openPrButton}
               >
