@@ -29,7 +29,6 @@ async function importWebpHero() {
   if (!converter) {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     converter = new Promise(async resolve => {
-      console.debug('IMPORT WEBP HERO');
       const modules = await Promise.all([
         import(
           /* webpackChunkName: "webp-hero" */

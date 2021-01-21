@@ -48,9 +48,6 @@ const HomeComponent: React.FunctionComponent = () => {
    * Perform a state-to-URL sync when the search query changes.
    */
   React.useEffect(() => {
-    console.debug('Sticking this search query into the URL:', searchQuery);
-    console.debug('Type:', typeof searchQuery);
-
     updateUrl({
       query: {
         // Coerce empty strings to null to cause the query param to be
