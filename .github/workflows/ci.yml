@@ -35,17 +35,6 @@ jobs:
           key: dependencies-${{ hashFiles('package-lock.json') }}
           path: node_modules
 
-      # Try to load a cached version of our .sticker-pack-cache based on the
-      # hash of stickers.yml.
-      - name: Use Sticker Pack Cache
-        id: sticker-pack-cache
-        uses: actions/cache@v1
-        with:
-          key: sticker-packs-${{ hashFiles('stickers.yml') }}
-          path: node_modules
-          restore-keys: |
-            sticker-packs-
-
       # If no cache was found, install dependencies manually.
       - name: Install Dependencies
         if: steps.dependencies-cache.outputs.cache-hit != 'true'
