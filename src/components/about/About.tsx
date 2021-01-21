@@ -74,6 +74,10 @@ const TermsOfService = () => (
         running, but we are volunteers, and we rely on third-parties, so we can't guarantee
         that <code>signalstickers.com</code> will be accessible at any time.
       </p>
+      <p>
+        The inclusion, in whole or in part, of the <code>signalstickers.com</code> website in any other
+        application, website, or software is strictly forbidden.
+      </p>
     </div>
   </div>
 );
