@@ -543,7 +543,7 @@ const ContributeComponent: React.FunctionComponent = () => {
             <div className="col-12">
               <hr />
               <p className="mt-4 mb-4">
-                Great! Below is the YAML entry you will need to add to the end of <code>stickers.yml</code> in
+                Great! Below is the YAML entry you will need to add to <code>stickers.yml</code> in
                 the {editStickersYmlLink}:
               </p>
             </div>
