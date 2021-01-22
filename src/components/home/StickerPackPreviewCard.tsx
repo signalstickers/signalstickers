@@ -173,7 +173,7 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
 
   // ----- Render --------------------------------------------------------------
 
-  const title =`${manifest.title}${meta.nsfw ? ' (NSFW)' : ''}`;
+  const title =`${manifest.title || ''}${meta.nsfw ? ' (NSFW)' : ''}`;
 
   return (
     <StickerPackPreviewCard
