@@ -151,14 +151,14 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
   const [cover, setCover] = React.useState<string | undefined>();
   const {meta, manifest} = props.stickerPack;
 
-
+ const manifestCoverId = (manifest.cover || {}).id;
   /**
    * [Effect] Loads a sticker pack's cover image when the component mounts.
    */
   useAsyncEffect(async () => {
     try {
       if (meta.id !== undefined) {
-        const coverImage = await getConvertedStickerInPack(meta.id, meta.key, manifest.cover.id);
+        const coverImage = await getConvertedStickerInPack(meta.id, meta.key, manifestCoverId);
         setCover(coverImage);
       }
     } catch (err) {
@@ -167,7 +167,7 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
   }, [
     meta.id,
     meta.key,
-    manifest.cover.id
+    manifestCoverId
   ]);
 
 
