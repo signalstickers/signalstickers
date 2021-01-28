@@ -1,3 +1,4 @@
+import copyToClipboard from 'copy-to-clipboard';
 import {
   Formik,
   Form,
@@ -8,16 +9,20 @@ import {
 } from 'formik';
 import { cx } from 'linaria';
 import { styled } from 'linaria/react';
+import { darken, rgb } from 'polished';
 import * as R from 'ramda';
 import React from 'react';
 import { BsBoxArrowUpRight } from 'react-icons/bs';
+import { RiFileCopyLine } from 'react-icons/ri';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism-light';
 import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
-import syntaxTheme from 'react-syntax-highlighter/dist/esm/styles/prism/base16-ateliersulphurpool.light';
+import syntaxThemeLight from 'react-syntax-highlighter/dist/esm/styles/prism/base16-ateliersulphurpool.light';
+import syntaxThemeDark from 'react-syntax-highlighter/dist/esm/styles/hljs/atom-one-dark';
 import yaml from 'js-yaml';
 
 import ExternalLink from 'components/general/ExternalLink';
 import { StickerPackYaml } from 'etc/types';
+import useTheme from 'hooks/use-theme';
 import { getStickerPackDirectory, getStickerPack } from 'lib/stickers';
 
 
@@ -45,6 +50,38 @@ const Contribute = styled.div`
 
   & pre[class*="language-"] {
     margin: 0;
+  }
+`;
+
+const CopyToClipboardButton = styled.button`
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+
+  .theme-light & {
+    background-color: rgb(245, 247, 255);
+    color: var(--dark);
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+
+    &:hover {
+      background-color: ${darken(0.015, rgb(245, 247, 255))};
+      color: var(--dark);
+    }
+  }
+
+  .theme-dark & {
+    background-color: rgb(40, 44, 52);
+    color: var(--light);
+    border-top: 1px solid var(--gray-dark);
+
+    &:hover {
+      background-color: ${darken(0.01, rgb(40, 44, 52))};
+      color: var(--light);
+    }
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
   }
 `;
 
@@ -148,6 +185,7 @@ const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = React.useState(false);
   const [ymlBlob, setYmlBlob] = React.useState('');
   const openPrButton = React.useRef<HTMLAnchorElement>(null);
+  const theme = useTheme();
 
 
   /**
@@ -207,7 +245,13 @@ const ContributeComponent: React.FunctionComponent = () => {
       packYaml.animated = true;
     }
 
-    setYmlBlob(yaml.safeDump({ [packId]: packYaml }, { indent: 2 }).trim());
+    const yamlBlob = yaml.safeDump({ [packId]: packYaml }, { indent: 2 }).trim();
+
+    // NOTE(darkobits): Experiment to see if padding YAML blobs with a trailing
+    // newline will prevent merge conflicts and allow us to accept/merge packs
+    // more quickly.
+    const paddedYamlBlob = `${yamlBlob}\n`;
+    setYmlBlob(paddedYamlBlob);
 
     if (openPrButton.current) {
       openPrButton.current.scrollIntoView({ behavior: 'smooth' });
@@ -216,6 +260,17 @@ const ContributeComponent: React.FunctionComponent = () => {
     actions.setSubmitting(false);
   }, [
     setYmlBlob
+  ]);
+
+  const handleCopy = React.useCallback(() => {
+    try {
+      const wtf = copyToClipboard(ymlBlob, { format: 'text/plain' });
+      console.debug('Copied', ymlBlob, 'to clipboard.', wtf);
+    } catch (err) {
+      console.error(`Unable to copy YAML to clipboard: ${err.message}`);
+    }
+  }, [
+    ymlBlob
   ]);
 
 
@@ -553,11 +608,18 @@ const ContributeComponent: React.FunctionComponent = () => {
               <div className="card">
                 <SyntaxHighlighter
                   language="yaml"
-                  style={syntaxTheme}
+                  style={theme === 'light' ? syntaxThemeLight : syntaxThemeDark}
                   customStyle={{ margin: '0' }}
                 >
                   {ymlBlob}
                 </SyntaxHighlighter>
+                <CopyToClipboardButton
+                  type="button"
+                  className="btn btn-sm"
+                  onClick={handleCopy}
+                >
+                  <RiFileCopyLine /> Copy to Clipboard
+                </CopyToClipboardButton>
               </div>
             </div>
           </div>
