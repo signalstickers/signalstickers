@@ -31,6 +31,7 @@
     "@signalstickers/stickers-client": "^1.0.1",
     "axios": "^0.21.1",
     "bytes": "^3.1.0",
+    "copy-to-clipboard": "^3.3.1",
     "core-js": "^3.8.2",
     "debounce-fn": "^4.0.0",
     "formik": "^2.2.6",
