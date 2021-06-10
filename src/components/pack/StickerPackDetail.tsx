@@ -3,6 +3,7 @@ import React, {useState, useContext} from 'react';
 import {
   BsArrowLeftShort,
   BsAt,
+  BsFillHeartFill,
   BsFolder,
   BsFillCameraVideoFill,
   BsPlus,
@@ -295,6 +296,14 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
                 <li className="list-group-item text-wrap text-break">
                   <BsFillCameraVideoFill title="Animated" className="text-primary mr-4" />
                   This pack contains animated stickers!
+                </li>
+              }
+
+              {/* Editor's choice */}
+              {stickerPack.meta.editorschoice &&
+                <li className="list-group-item text-wrap text-break">
+                  <BsFillHeartFill title="Editor's choice" className="text-primary mr-4" />
+                  Editor's choice: we love this pack!
                 </li>
               }
 

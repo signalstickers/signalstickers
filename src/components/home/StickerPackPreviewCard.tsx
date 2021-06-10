@@ -18,6 +18,7 @@ interface StickerPackPreviewCardProps extends React.ComponentProps<'div'> {
   nsfw?: boolean;
   original?: boolean;
   animated?: boolean;
+  editorschoice?: boolean;
 }
 
 
@@ -173,7 +174,7 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
 
   // ----- Render --------------------------------------------------------------
 
-  const title =`${manifest.title}${meta.nsfw ? ' (NSFW)' : ''}`;
+  const title = `${manifest.title}${meta.nsfw ? ' (NSFW)' : ''}`;
 
   return (
     <StickerPackPreviewCard
@@ -181,6 +182,7 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
       original={meta.original}
       animated={meta.animated}
       nsfw={meta.nsfw}
+      editorschoice={meta.editorschoice}
       aria-label={title}
     >
       {cover ?

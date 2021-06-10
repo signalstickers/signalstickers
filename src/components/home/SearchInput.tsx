@@ -144,6 +144,11 @@ const MiniAnimated = styled(MiniTag)`
   color: var(--orange);
 `;
 
+const MiniEditorschoice = styled(MiniTag)`
+  border: 1px solid #9400d3;
+  color: #9400d3;
+`;
+
 // ----- Component -------------------------------------------------------------
 
 const SearchInputComponent: React.FunctionComponent = () => {
@@ -213,6 +218,12 @@ const SearchInputComponent: React.FunctionComponent = () => {
         setSearchQuery(searcher.buildQueryString({
           attributeQueries: [{
             animated: 'true'
+          }]
+        }));
+      } else if (event.currentTarget.getAttribute('data-suggestion-type') === 'editorschoice') {
+        setSearchQuery(searcher.buildQueryString({
+          attributeQueries: [{
+            editorschoice: 'true'
           }]
         }));
       }
@@ -364,7 +375,7 @@ const SearchInputComponent: React.FunctionComponent = () => {
       <div className="d-flex justify-content-between">
         <div>
           <small>
-            Lost? Why not start with...{' '}
+            Suggested: {' '}
           </small>
           <br className="d-inline d-md-none" />
           <MiniAnimated
@@ -373,8 +384,16 @@ const SearchInputComponent: React.FunctionComponent = () => {
             onClick={onSuggestionClick}
             data-suggestion-type="animated"
           >
-            animated
+            Animated
           </MiniAnimated>
+          <MiniEditorschoice
+            type="button"
+            className="btn mr-1"
+            onClick={onSuggestionClick}
+            data-suggestion-type="editorschoice"
+          >
+            Editor's choice
+          </MiniEditorschoice>
           {tagsFragment}
         </div>
         <div className="text-muted">

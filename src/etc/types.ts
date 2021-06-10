@@ -14,6 +14,7 @@ export interface StickerPackYaml {
   nsfw?: boolean;
   original?: boolean;
   animated?: boolean;
+  editorschoice?: boolean;
 }
 
 /**
@@ -29,6 +30,7 @@ export interface StickerPackMetadata {
   nsfw?: StickerPackYaml['nsfw'];
   original?: StickerPackYaml['original'];
   animated?: StickerPackYaml['animated'];
+  editorschoice?: StickerPackYaml['editorschoice'];
 
   /**
    * This field is computed at runtime based on whether a pack exists in our
