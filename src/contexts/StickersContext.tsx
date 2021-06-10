@@ -71,7 +71,8 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
         tag: ['meta', 'tags'],
         nsfw: ['meta', 'nsfw'],
         original: ['meta', 'original'],
-        animated: ['meta', 'animated']
+        animated: ['meta', 'animated'],
+        editorschoice: ['meta', 'editorschoice']
       }
     }));
   }, []);

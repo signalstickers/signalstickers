@@ -23,9 +23,9 @@ import {
   StickerPackPartial,
   StickerPackMetadata
 } from 'etc/types';
-import {convertImage} from 'lib/convert-image';
+import { convertImage } from 'lib/convert-image';
 import ErrorWithCode from 'lib/error';
-import {isStorageUnavailableError} from 'lib/utils';
+import { isStorageUnavailableError } from 'lib/utils';
 
 
 // ----- Locals ----------------------------------------------------------------
@@ -66,7 +66,7 @@ export async function getStickerPackDirectory(): Promise<Array<StickerPackPartia
   if (!stickerPackDirectoryPromise) {
     stickerPackDirectoryPromise = axios.request<Array<StickerPackPartial>>({
       method: 'GET',
-      url: 'https://signalstickers.github.io/stickers/partials.json'
+      url: '/static/partials.json'
     }).then(R.prop('data'));
   }
 
