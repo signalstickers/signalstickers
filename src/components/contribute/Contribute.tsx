@@ -16,9 +16,8 @@ import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism-light';
 import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
 
 import ExternalLink from 'components/general/ExternalLink';
-import { StickerPackYaml } from 'etc/types';
-import useTheme from 'hooks/use-theme';
 import { getStickerPackDirectory, getStickerPack } from 'lib/stickers';
+import { data } from 'jquery';
 
 
 /**
@@ -188,13 +187,14 @@ const ContributeComponent: React.FunctionComponent = () => {
    */
   React.useEffect(() => {
     setTimeout(() => {
-      void fetch('https://api.dev-sst.romainricard.fr/contributionrequest/', {
+      void fetch('https://data-dev.signalstickers.com/api/contributionrequest/', {
         method: 'POST',
         headers: {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         }
       }).then(async x => x.json()).then(x => {
+        console.log(x)
         setContributionRequestQuestion(x.contribution_question);
         setContributionRequestToken(x.contribution_id);
       });
@@ -210,12 +210,15 @@ const ContributeComponent: React.FunctionComponent = () => {
    */
   const onSubmitClick = React.useCallback(() => {
     setHasBeenSubmitted(true);
-  };
+  }, [
+    setHasBeenSubmitted
+  ]);
 
   /**
    * Called when the form is submitted and has passed validation.
    */
-  const onSubmit = React.useCallback((values: FormValues, actions: FormikHelpers<FormValues>) => {
+  // const onSubmit = React.useCallback((values: FormValues, actions: FormikHelpers<FormValues>) => {
+  const onSubmit = React.useCallback((values: FormValues, { setErrors, setSubmitting }) => {
     const matches = new RegExp(SIGNAL_ART_URL_PATTERN).exec(values.signalArtUrl);
     if (!matches) {
       throw new Error('Unable to extract pack ID and pack key from signal.art URL.');
@@ -242,20 +245,32 @@ const ContributeComponent: React.FunctionComponent = () => {
       submitter_comments: ''
     };
 
-    // TODO use the proper way to do this
-    // TODO handle errors
-
-    void fetch('https://api.dev-sst.romainricard.fr/packs/', {
+    void fetch('https://data-dev.signalstickers.com/api/contribute/', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(propositionData)
-    });
-    setRequestSent(true);
-    return true;
-  };
+    }).then(response =>
+      response.json().then(data => ({
+        data: data,
+        status: response.status
+      })
+      ).then(res => {
+        console.log(res);
+        if (res.status === 400) {
+          setErrors({
+            secAnswer: res.data.error
+          });
+          setRequestSent(false);
+          setSubmitting(false);
+          return
+        }
+        setRequestSent(true);
+      }));
+
+  }, [contributionRequestQuestion, contributionRequestToken]);
 
 
   // ----- Render --------------------------------------------------------------
@@ -312,7 +327,7 @@ const ContributeComponent: React.FunctionComponent = () => {
         <div className="col-12 col-md-10 offset-md-1">
           <Formik
             initialValues={initialValues}
-            onSubmit={onSubmit}
+            onSubmit={(values, { setErrors, setSubmitting }) => (onSubmit(values, { setErrors, setSubmitting }))}
             validateOnChange={hasBeenSubmitted}
             validateOnBlur={hasBeenSubmitted}
           >{({ values, errors, isValidating, isSubmitting }) => (
@@ -480,7 +495,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                     />
                     <small className="form-text text-muted">This question helps us to make sure that you are not a robot. The answer is a single word.</small>
                     <div className="invalid-feedback">
-                      <ErrorMessage name="secanswer" />&nbsp;
+                      <ErrorMessage name="secAnswer" />&nbsp;
                     </div>
                   </label>
                 </div>
@@ -498,9 +513,10 @@ const ContributeComponent: React.FunctionComponent = () => {
                       onClick={onSubmitClick}
                     >
                       {requestSent ?
-                        <span>Thanks!</span>
+                        <span>Request sent, thanks!</span>
                         : <span>Propose to signalstickers.com</span>
                       }
+                      {isSubmitting}
                     </button>
                   </div>
                 </div>
