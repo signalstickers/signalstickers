@@ -1,15 +1,12 @@
-import copyToClipboard from 'copy-to-clipboard';
 import {
   Formik,
   Form,
   Field,
   ErrorMessage,
-  FieldValidator,
-  FormikHelpers
+  FieldValidator
 } from 'formik';
 import { cx } from 'linaria';
 import { styled } from 'linaria/react';
-import { darken, rgb } from 'polished';
 import * as R from 'ramda';
 import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism-light';
@@ -17,8 +14,6 @@ import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml
 
 import ExternalLink from 'components/general/ExternalLink';
 import { getStickerPackDirectory, getStickerPack } from 'lib/stickers';
-import { data } from 'jquery';
-
 
 /**
  * Test pack:
@@ -46,39 +41,6 @@ const Contribute = styled.div`
     margin: 0;
   }
 `;
-
-const CopyToClipboardButton = styled.button`
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-
-  .theme-light & {
-    background-color: rgb(245, 247, 255);
-    color: var(--dark);
-    border-top: 1px solid rgba(0, 0, 0, 0.125);
-
-    &:hover {
-      background-color: ${darken(0.015, rgb(245, 247, 255))};
-      color: var(--dark);
-    }
-  }
-
-  .theme-dark & {
-    background-color: rgb(40, 44, 52);
-    color: var(--light);
-    border-top: 1px solid var(--gray-dark);
-
-    &:hover {
-      background-color: ${darken(0.01, rgb(40, 44, 52))};
-      color: var(--light);
-    }
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: none;
-  }
-`;
-
 
 // ----- Types -----------------------------------------------------------------
 
@@ -185,21 +147,29 @@ const ContributeComponent: React.FunctionComponent = () => {
   /**
    * Get a ContributionRequest token and question
    */
+  const fetchContributionRequest = () => {
+    void fetch('https://data-dev.signalstickers.com/api/contributionrequest/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    }).then(async x => x.json()).then(x => {
+      setContributionRequestQuestion(x.contribution_question);
+      setContributionRequestToken(x.contribution_id);
+    });
+  };
+
+
+  /**
+   * Get a ContributionRequest at loading
+   */
   React.useEffect(() => {
     setTimeout(() => {
-      void fetch('https://data-dev.signalstickers.com/api/contributionrequest/', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        }
-      }).then(async x => x.json()).then(x => {
-        console.log(x)
-        setContributionRequestQuestion(x.contribution_question);
-        setContributionRequestToken(x.contribution_id);
-      });
+      fetchContributionRequest();
     }, 3000); // Delaying the query helps reducing the load
   }, []);
+
 
   /**
    * Sets 'hasBeenSubmitted' when the Submit button is clicked. We need this
@@ -215,9 +185,24 @@ const ContributeComponent: React.FunctionComponent = () => {
   ]);
 
   /**
+   * Reset the form to its original state
+   */
+  const handleReset = React.useCallback(({ resetForm }) => {
+    fetchContributionRequest();
+    resetForm();
+    setRequestSent(false);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [
+    requestSent
+  ]);
+
+
+  /**
    * Called when the form is submitted and has passed validation.
    */
-  // const onSubmit = React.useCallback((values: FormValues, actions: FormikHelpers<FormValues>) => {
   const onSubmit = React.useCallback((values: FormValues, { setErrors, setSubmitting }) => {
     const matches = new RegExp(SIGNAL_ART_URL_PATTERN).exec(values.signalArtUrl);
     if (!matches) {
@@ -252,22 +237,25 @@ const ContributeComponent: React.FunctionComponent = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(propositionData)
-    }).then(response =>
+    }).then(async response =>
       response.json().then(data => ({
         data: data,
         status: response.status
       })
       ).then(res => {
-        console.log(res);
         if (res.status === 400) {
           setErrors({
             secAnswer: res.data.error
           });
           setRequestSent(false);
           setSubmitting(false);
-          return
+          return;
         }
         setRequestSent(true);
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        });
       }));
 
   }, [contributionRequestQuestion, contributionRequestToken]);
@@ -327,10 +315,10 @@ const ContributeComponent: React.FunctionComponent = () => {
         <div className="col-12 col-md-10 offset-md-1">
           <Formik
             initialValues={initialValues}
-            onSubmit={(values, { setErrors, setSubmitting }) => (onSubmit(values, { setErrors, setSubmitting }))}
+            onSubmit={(values, { setErrors, setSubmitting }) => onSubmit(values, { setErrors, setSubmitting })}
             validateOnChange={hasBeenSubmitted}
             validateOnBlur={hasBeenSubmitted}
-          >{({ values, errors, isValidating, isSubmitting }) => (
+          >{({ values, errors, isValidating, isSubmitting, resetForm }) => (
             <Form noValidate>
 
               {/* [Field] Signal.art Url */}
@@ -344,6 +332,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       name="signalArtUrl"
                       validate={validators.signalArtUrl}
                       className={cx('form-control', 'mt-2', errors.signalArtUrl && 'is-invalid')}
+                      disabled={requestSent}
                       placeholder="https://signal.art/addstickers/#pack_id=<your pack id>&pack_key=<your pack key>"
                     />
                     <div className="invalid-feedback">
@@ -364,6 +353,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       name="source"
                       validate={validators.source}
                       className={cx('form-control', 'mt-2', errors.source && 'is-invalid')}
+                      disabled={requestSent}
                     />
                     <small className="form-text text-muted">Original author, website, company, etc.</small>
                     <div className="invalid-feedback">
@@ -384,6 +374,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       name="tags"
                       validate={validators.tags}
                       className={cx('form-control', 'mt-2', errors.tags && 'is-invalid')}
+                      disabled={requestSent}
                     />
                     <small className="form-text text-muted">Comma-separated list of words.</small>
                     <div className="invalid-feedback">
@@ -411,6 +402,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                         className={cx('custom-control-input', errors.isNsfw && 'is-invalid')}
                         value="true"
                         checked={values.isNsfw === 'true'}
+                        disabled={requestSent}
                       />
                       <label className="custom-control-label" htmlFor="is-nsfw-true">
                         Yes
@@ -427,6 +419,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                         className={cx('custom-control-input', errors.isNsfw && 'is-invalid')}
                         value="false"
                         checked={values.isNsfw === 'false'}
+                        disabled={requestSent}
                       />
                       <label className="custom-control-label" htmlFor="is-nsfw-false">No</label>
                     </div>
@@ -455,6 +448,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                         className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
                         value="true"
                         checked={values.isOriginal === 'true'}
+                        disabled={requestSent}
                       />
                       <label className="custom-control-label" htmlFor="is-original-true">
                         Yes
@@ -471,6 +465,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                         className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
                         value="false"
                         checked={values.isOriginal === 'false'}
+                        disabled={requestSent}
                       />
                       <label className="custom-control-label" htmlFor="is-original-false">No</label>
                     </div>
@@ -492,6 +487,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       name="secAnswer"
                       validate={validators.secAnswer}
                       className={cx('form-control', 'mt-2', errors.secAnswer && 'is-invalid')}
+                      disabled={requestSent}
                     />
                     <small className="form-text text-muted">This question helps us to make sure that you are not a robot. The answer is a single word.</small>
                     <div className="invalid-feedback">
@@ -518,6 +514,17 @@ const ContributeComponent: React.FunctionComponent = () => {
                       }
                       {isSubmitting}
                     </button>
+                    {requestSent ?
+                      <button
+                        type="reset"
+                        className="btn btn-block btn-lg btn-primary"
+                        onClick={() => handleReset({ resetForm })}
+                      >
+                        Propose another pack
+                      </button>
+                      : ''
+                    }
+
                   </div>
                 </div>
               </div>
