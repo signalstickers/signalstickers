@@ -66,7 +66,7 @@ export async function getStickerPackDirectory(): Promise<Array<StickerPackPartia
   if (!stickerPackDirectoryPromise) {
     stickerPackDirectoryPromise = axios.request<Array<StickerPackPartial>>({
       method: 'GET',
-      url: 'https://data-dev.signalstickers.com/api/packs/'
+      url: 'https://api.signalstickers.com/v1/packs/'
     }).then(R.prop('data'));
   }
 

@@ -51,6 +51,7 @@ export interface FormValues {
   isNsfw?: 'true' | 'false';
   isOriginal?: 'true' | 'false';
   secAnswer: string;
+  submitterComments: string;
 }
 
 
@@ -148,7 +149,7 @@ const ContributeComponent: React.FunctionComponent = () => {
    * Get a ContributionRequest token and question
    */
   const fetchContributionRequest = () => {
-    void fetch('https://data-dev.signalstickers.com/api/contributionrequest/', {
+    void fetch('https://api.signalstickers.com/v1/contributionrequest/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -227,10 +228,10 @@ const ContributeComponent: React.FunctionComponent = () => {
       },
       contribution_id: contributionRequestToken,
       contribution_answer: values.secAnswer,
-      submitter_comments: ''
+      submitter_comments: values.submitterComments
     };
 
-    void fetch('https://data-dev.signalstickers.com/api/contribute/', {
+    void fetch('https://api.signalstickers.com/v1/contribute/', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -489,7 +490,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       className={cx('form-control', 'mt-2', errors.secAnswer && 'is-invalid')}
                       disabled={requestSent}
                     />
-                    <small className="form-text text-muted">This question helps us to make sure that you are not a robot. The answer is a single word.</small>
+                    <small className="form-text text-muted">This question helps us to make sure that you are not a robot. The answer is a single word or number, without quotes.</small>
                     <div className="invalid-feedback">
                       <ErrorMessage name="secAnswer" />&nbsp;
                     </div>
@@ -497,8 +498,26 @@ const ContributeComponent: React.FunctionComponent = () => {
                 </div>
               </div>
 
+              {/* [Field] Submitter comments */}
+              <div className="form-group">
+                <div className="form-row">
+                  <label className='col-12' htmlFor="submitterComments">
+                    (Optional) Any comments?
+                    <Field
+                      as="textarea"
+                      type="textarea"
+                      id="submitterComments"
+                      name="submitterComments"
+                      className='form-control mt-2'
+                      disabled={requestSent}
+                      maxLength="400"
+                    />
+                    <small className="form-text text-muted">This will only be visible to moderators. Do not enter personnal information. Or just say hello, we love it :-)</small>
+                  </label>
+                </div>
+              </div>
 
-              {/* [Control] Submit */}
+              {/* [Control] Submit and Reset */}
               <div className="form-group">
                 <div className="form-row">
                   <div className="col-12">
