@@ -7,11 +7,10 @@ import {
 } from 'formik';
 import { cx } from 'linaria';
 import { styled } from 'linaria/react';
+import { Link } from 'react-router-dom';
 import * as R from 'ramda';
 import React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism-light';
-import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
-
+import { SIGNAL_ART_URL_PATTERN, API_URL_CONTRIBUTIONREQUEST, API_URL_CONTRIBUTE } from 'etc/constants';
 import ExternalLink from 'components/general/ExternalLink';
 import { getStickerPackDirectory, getStickerPack } from 'lib/stickers';
 
@@ -58,11 +57,6 @@ export interface FormValues {
 // ----- Locals ----------------------------------------------------------------
 
 /**
- * Regular expression used to validate signal.art URLs for sticker packs.
- */
-const SIGNAL_ART_URL_PATTERN = /^https:\/\/signal.art\/addstickers\/#pack_id=([\dA-Za-z]+)&pack_key=([\dA-Za-z]+)$/g;
-
-/**
  * Regular expression used to validate lists of tags.
  */
 const TAGS_PATTERN = /^(?:([\w ]+))+(?:, ?([\w ]+))*$/g;
@@ -76,7 +70,8 @@ const initialValues: FormValues = {
   tags: '',
   isNsfw: undefined,
   isOriginal: undefined,
-  secAnswer: ''
+  secAnswer: '',
+  submitterComments: ''
 };
 
 /**
@@ -136,8 +131,6 @@ const validators: Record<string, FieldValidator> = {
 
 // ----- Component -------------------------------------------------------------
 
-SyntaxHighlighter.registerLanguage('yaml', yamlLanguage);
-
 const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = React.useState(false);
   const [requestSent, setRequestSent] = React.useState(false);
@@ -149,7 +142,7 @@ const ContributeComponent: React.FunctionComponent = () => {
    * Get a ContributionRequest token and question
    */
   const fetchContributionRequest = () => {
-    void fetch('https://api.signalstickers.com/v1/contributionrequest/', {
+    void fetch(API_URL_CONTRIBUTIONREQUEST, {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -231,7 +224,7 @@ const ContributeComponent: React.FunctionComponent = () => {
       submitter_comments: values.submitterComments
     };
 
-    void fetch('https://api.signalstickers.com/v1/contribute/', {
+    void fetch(API_URL_CONTRIBUTE, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -309,6 +302,9 @@ const ContributeComponent: React.FunctionComponent = () => {
               on <code>signalstickers.com</code> !
             </li>
           </ol>
+          <p>
+            To check the status of your contribution, <Link to="/contribution-status">click here.</Link>
+          </p>
         </div>
       </div>
       <hr className="pt-3 pb-2" />
@@ -501,14 +497,14 @@ const ContributeComponent: React.FunctionComponent = () => {
               {/* [Field] Submitter comments */}
               <div className="form-group">
                 <div className="form-row">
-                  <label className='col-12' htmlFor="submitterComments">
+                  <label className="col-12" htmlFor="submitterComments">
                     (Optional) Any comments?
                     <Field
                       as="textarea"
                       type="textarea"
                       id="submitterComments"
                       name="submitterComments"
-                      className='form-control mt-2'
+                      className="form-control mt-2"
                       disabled={requestSent}
                       maxLength="400"
                     />
