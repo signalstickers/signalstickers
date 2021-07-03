@@ -1,12 +1,12 @@
 import React from 'react';
-import {BsBoxArrowUpRight} from 'react-icons/bs';
+import { BsBoxArrowUpRight } from 'react-icons/bs';
 
 import ExternalLink from 'components/general/ExternalLink';
 
 
 // ----- Search Help -----------------------------------------------------------
 
-const Example = ({children}: {children: React.ReactNode}) => (
+const Example = ({ children }: { children: React.ReactNode }) => (
   <div className="card mb-4">
     <div className="card-body">
       <pre className="mb-0"><code>{children}</code></pre>
@@ -14,11 +14,11 @@ const Example = ({children}: {children: React.ReactNode}) => (
   </div>
 );
 
-const Attr = ({children}: {children: React.ReactNode}) => (
+const Attr = ({ children }: { children: React.ReactNode }) => (
   <code className="text-primary font-weight-bolder">{children}</code>
 );
 
-const Term = ({children}: {children: React.ReactNode}) => (
+const Term = ({ children }: { children: React.ReactNode }) => (
   <code className="text-dark font-weight-bolder">{children}</code>
 );
 
@@ -91,13 +91,14 @@ const PrivacyPolicy = () => (
       <h1 id="privacy-policy" className="mb-4">Privacy Policy</h1>
       <h5 className="my-4">What do we collect?</h5>
       <p>
-        We count the number of visitors on <code>signalstickers.com</code> <ExternalLink href="https://gist.github.com/romainricard/3e15e1b7a983722f9e35be9bc4a3e199">
+        We count the number of visitors on <code>signalstickers.com</code> <ExternalLink href="https://gist.github.com/romainricard/7ac34b6ea34a58f6c98087ae9aadfbc0">
           in a way that does <b>not</b> log your IP address
-        </ExternalLink>, so our visitors count is anonymous. <ExternalLink href="https://ping.signalstickers.com/">Statistics are available here.</ExternalLink>
+        </ExternalLink>, so our visitors count and stats for packs are anonymous.
       </p>
       <p>
-        <code>signalstickers.com</code> is hosted on <ExternalLink href="https://pages.github.com/">GitHub Pages</ExternalLink>,
-        and we use third-party scripts, which might collect your IP address.
+        <code>signalstickers.com</code> interface is hosted on <ExternalLink href="https://pages.github.com/">GitHub Pages</ExternalLink>,
+        and we use third-party scripts, which might collect your IP address. Our API (where we store the data) is hosted on a server we own, and
+        is cached by Cloudflare. In certain rare cases, we would collect your IP address.
       </p>
       <h5 className="my-4">What don't we collect?</h5>
       <p>
@@ -131,7 +132,7 @@ const Links = () => {
   return (<>
     <h1 className="mb-4">Links</h1>
     <ul className="list-unstyled">
-      {externalLinks.map(({name, href}) => (
+      {externalLinks.map(({ name, href }) => (
         <li key={href}>
           <ExternalLink href={href} title={name}>
             <BsBoxArrowUpRight className="mr-1" />
