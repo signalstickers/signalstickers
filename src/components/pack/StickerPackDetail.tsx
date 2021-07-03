@@ -1,5 +1,5 @@
-import {styled} from 'linaria/react';
-import React, {useState, useContext} from 'react';
+import { styled } from 'linaria/react';
+import React, { useState, useContext } from 'react';
 import {
   BsArrowLeftShort,
   BsAt,
@@ -10,17 +10,17 @@ import {
   BsStarFill,
   BsTag
 } from 'react-icons/bs';
-import {Link, useParams, useHistory} from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import Linkify from 'react-linkify';
 import useAsyncEffect from 'use-async-effect';
 
 import ExternalLink from 'components/general/ExternalLink';
 import StickersContext from 'contexts/StickersContext';
-import {GRAY_DARKER} from 'etc/colors';
-import {StickerPack} from 'etc/types';
+import { GRAY_DARKER } from 'etc/colors';
+import { StickerPack } from 'etc/types';
 import useQuery from 'hooks/use-query';
-import {getStickerPack} from 'lib/stickers';
-import {bp} from 'lib/utils';
+import { getStickerPack } from 'lib/stickers';
+import { bp, sendPackBeacon } from 'lib/utils';
 
 import NsfwModal from './NsfwModal';
 import Sticker from './Sticker';
@@ -136,12 +136,12 @@ const linkifyHrefDecorator = (decoratedHref: string, decoratedText: string, key:
 
 
 const StickerPackDetailComponent: React.FunctionComponent = () => {
-  const {setSearchQuery, searcher} = useContext(StickersContext);
+  const { setSearchQuery, searcher } = useContext(StickersContext);
   const history = useHistory();
   const query = useQuery();
 
   // Extract :packId from the URL.
-  const {packId} = useParams<UrlParams>();
+  const { packId } = useParams<UrlParams>();
 
   // Extract the optional "key" query param from the URL.
   const key = typeof query.key === 'string' ? query.key : undefined;
@@ -165,6 +165,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       }
 
       setStickerPack(await getStickerPack(packId, key));
+      sendPackBeacon(packId);
     } catch (err) {
       if (err.code) {
         setStickerPackError(err.code);

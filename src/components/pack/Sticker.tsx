@@ -1,9 +1,9 @@
-import {styled} from 'linaria/react';
-import React, {useState} from 'react';
+import { styled } from 'linaria/react';
+import React, { useState } from 'react';
 import useAsyncEffect from 'use-async-effect';
 
-import {GRAY_DARKER} from 'etc/colors';
-import {getConvertedStickerInPack, getEmojiForSticker} from 'lib/stickers';
+import { GRAY_DARKER } from 'etc/colors';
+import { getConvertedStickerInPack, getEmojiForSticker } from 'lib/stickers';
 
 
 // ----- Props -----------------------------------------------------------------
@@ -67,7 +67,7 @@ const Sticker = styled.div`
 
 // ----- Component -------------------------------------------------------------
 
-const StickerComponent: React.FunctionComponent<Props> = ({packId, packKey, stickerId}) => {
+const StickerComponent: React.FunctionComponent<Props> = ({ packId, packKey, stickerId }) => {
   const [emoji, setEmoji] = useState('');
   const [stickerSrc, setStickerSrc] = useState('');
 

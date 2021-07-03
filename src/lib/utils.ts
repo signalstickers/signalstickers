@@ -1,7 +1,6 @@
 import bytes from 'bytes';
 import * as R from 'ramda';
-
-import {BOOTSTRAP_BREAKPOINTS} from 'etc/constants';
+import { BOOTSTRAP_BREAKPOINTS, API_URL_PACKS_PING } from 'etc/constants';
 
 
 /**
@@ -56,11 +55,12 @@ export function bp(bpName: keyof typeof BOOTSTRAP_BREAKPOINTS, minMax: 'min' | '
 /**
  * Used for analytics.
  */
-export function sendBeacon() {
-  if (process.env.NODE_ENV === 'production' ) {
+export function sendPackBeacon(packId: string) {
+  if (process.env.NODE_ENV === 'production') {
     try {
-      navigator.sendBeacon('https://ping.signalstickers.com/ping', '');
-    } catch (err){
+      const beaconData = new Blob([`pack_id=${packId}`], { type: 'application/x-www-form-urlencoded' });
+      navigator.sendBeacon(API_URL_PACKS_PING, beaconData);
+    } catch (err) {
       console.log(`${err}. No worries, it's okay!`);
     }
   }

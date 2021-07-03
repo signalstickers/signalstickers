@@ -17,6 +17,7 @@ import {
 import axios from 'axios';
 import LocalForage from 'localforage';
 import * as R from 'ramda';
+import { API_URL_PACKS } from 'etc/constants';
 
 import {
   StickerPack,
@@ -66,7 +67,7 @@ export async function getStickerPackDirectory(): Promise<Array<StickerPackPartia
   if (!stickerPackDirectoryPromise) {
     stickerPackDirectoryPromise = axios.request<Array<StickerPackPartial>>({
       method: 'GET',
-      url: 'https://signalstickers.github.io/stickers/partials.json'
+      url: API_URL_PACKS
     }).then(R.prop('data'));
   }
 

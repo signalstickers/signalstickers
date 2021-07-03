@@ -1,11 +1,11 @@
-import {styled} from 'linaria/react';
-import {rgba} from 'polished';
+import { styled } from 'linaria/react';
+import { rgba } from 'polished';
 import React from 'react';
 import useAsyncEffect from 'use-async-effect';
 
-import {GRAY_DARKER_2, GRAY_DARKER} from 'etc/colors';
-import {StickerPackPartial} from 'etc/types';
-import {getConvertedStickerInPack} from 'lib/stickers';
+import { GRAY_DARKER_2, GRAY_DARKER } from 'etc/colors';
+import { StickerPackPartial } from 'etc/types';
+import { getConvertedStickerInPack } from 'lib/stickers';
 
 
 // ----- Props -----------------------------------------------------------------
@@ -150,7 +150,7 @@ const StickerPackPreviewCard = styled.div<StickerPackPreviewCardProps>`
 
 const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props => {
   const [cover, setCover] = React.useState<string | undefined>();
-  const {meta, manifest} = props.stickerPack;
+  const { meta, manifest } = props.stickerPack;
 
 
   /**
@@ -158,6 +158,9 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
    */
   useAsyncEffect(async () => {
     try {
+      if (manifest.cover === undefined) {
+        manifest.cover = { id: 0, emoji: '' };
+      }
       if (meta.id !== undefined) {
         const coverImage = await getConvertedStickerInPack(meta.id, meta.key, manifest.cover.id);
         setCover(coverImage);
@@ -168,7 +171,7 @@ const StickerPackPreviewCardComponent: React.FunctionComponent<Props> = props =>
   }, [
     meta.id,
     meta.key,
-    manifest.cover.id
+    manifest
   ]);
 
 

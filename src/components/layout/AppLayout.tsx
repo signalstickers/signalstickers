@@ -1,10 +1,10 @@
-import {css} from 'linaria';
-import {styled} from 'linaria/react';
+import { css } from 'linaria';
+import { styled } from 'linaria/react';
 import pThrottle from 'p-throttle';
-import {rgba} from 'polished';
-import React, {Suspense} from 'react';
-import {Switch, Route} from 'react-router-dom';
-import {useScrollPercentage} from 'react-scroll-percentage';
+import { rgba } from 'polished';
+import React, { Suspense } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { useScrollPercentage } from 'react-scroll-percentage';
 import useAsyncEffect from 'use-async-effect';
 
 import Navbar from 'components/layout/Navbar';
@@ -34,6 +34,11 @@ const Pack = React.lazy(async () => import(
 const Contribute = React.lazy(async () => import(
   /* webpackChunkName: "contribute" */
   'components/contribute/Contribute'
+));
+
+const ContributionStatus = React.lazy(async () => import(
+  /* webpackChunkName: "contributionstatus" */
+  'components/contributionstatus/ContributionStatus'
 ));
 
 const About = React.lazy(async () => import(
@@ -233,6 +238,9 @@ const AppLayout: React.FunctionComponent = () => {
             </Route>
             <Route path="/contribute">
               <Contribute />
+            </Route>
+            <Route path="/contribution-status">
+              <ContributionStatus />
             </Route>
             <Route path="/about">
               <About />

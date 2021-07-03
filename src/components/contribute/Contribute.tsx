@@ -1,30 +1,18 @@
-import copyToClipboard from 'copy-to-clipboard';
 import {
   Formik,
   Form,
   Field,
   ErrorMessage,
-  FieldValidator,
-  FormikHelpers
+  FieldValidator
 } from 'formik';
 import { cx } from 'linaria';
 import { styled } from 'linaria/react';
-import { darken, rgb } from 'polished';
+import { Link } from 'react-router-dom';
 import * as R from 'ramda';
 import React from 'react';
-import { BsBoxArrowUpRight } from 'react-icons/bs';
-import { RiFileCopyLine } from 'react-icons/ri';
-import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism-light';
-import yamlLanguage from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
-import syntaxThemeLight from 'react-syntax-highlighter/dist/esm/styles/prism/base16-ateliersulphurpool.light';
-import syntaxThemeDark from 'react-syntax-highlighter/dist/esm/styles/hljs/atom-one-dark';
-import yaml from 'js-yaml';
-
+import { SIGNAL_ART_URL_PATTERN, API_URL_CONTRIBUTIONREQUEST, API_URL_CONTRIBUTE } from 'etc/constants';
 import ExternalLink from 'components/general/ExternalLink';
-import { StickerPackYaml } from 'etc/types';
-import useTheme from 'hooks/use-theme';
 import { getStickerPackDirectory, getStickerPack } from 'lib/stickers';
-
 
 /**
  * Test pack:
@@ -53,39 +41,6 @@ const Contribute = styled.div`
   }
 `;
 
-const CopyToClipboardButton = styled.button`
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-
-  .theme-light & {
-    background-color: rgb(245, 247, 255);
-    color: var(--dark);
-    border-top: 1px solid rgba(0, 0, 0, 0.125);
-
-    &:hover {
-      background-color: ${darken(0.015, rgb(245, 247, 255))};
-      color: var(--dark);
-    }
-  }
-
-  .theme-dark & {
-    background-color: rgb(40, 44, 52);
-    color: var(--light);
-    border-top: 1px solid var(--gray-dark);
-
-    &:hover {
-      background-color: ${darken(0.01, rgb(40, 44, 52))};
-      color: var(--light);
-    }
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: none;
-  }
-`;
-
-
 // ----- Types -----------------------------------------------------------------
 
 export interface FormValues {
@@ -94,16 +49,12 @@ export interface FormValues {
   tags: string;
   isNsfw?: 'true' | 'false';
   isOriginal?: 'true' | 'false';
-  isAnimated?: 'true' | 'false';
+  secAnswer: string;
+  submitterComments: string;
 }
 
 
 // ----- Locals ----------------------------------------------------------------
-
-/**
- * Regular expression used to validate signal.art URLs for sticker packs.
- */
-const SIGNAL_ART_URL_PATTERN = /^https:\/\/signal.art\/addstickers\/#pack_id=([\dA-Za-z]+)&pack_key=([\dA-Za-z]+)$/g;
 
 /**
  * Regular expression used to validate lists of tags.
@@ -119,7 +70,8 @@ const initialValues: FormValues = {
   tags: '',
   isNsfw: undefined,
   isOriginal: undefined,
-  isAnimated: undefined
+  secAnswer: '',
+  submitterComments: ''
 };
 
 /**
@@ -169,8 +121,8 @@ const validators: Record<string, FieldValidator> = {
       return 'This field is required.';
     }
   },
-  isAnimated: (isAnimated?: boolean) => {
-    if (isAnimated === undefined) {
+  secAnswer: (secAnswer: string) => {
+    if (secAnswer === '') {
       return 'This field is required.';
     }
   }
@@ -179,13 +131,38 @@ const validators: Record<string, FieldValidator> = {
 
 // ----- Component -------------------------------------------------------------
 
-SyntaxHighlighter.registerLanguage('yaml', yamlLanguage);
-
 const ContributeComponent: React.FunctionComponent = () => {
   const [hasBeenSubmitted, setHasBeenSubmitted] = React.useState(false);
-  const [ymlBlob, setYmlBlob] = React.useState('');
-  const openPrButton = React.useRef<HTMLAnchorElement>(null);
-  const theme = useTheme();
+  const [requestSent, setRequestSent] = React.useState(false);
+  const [contributionRequestToken, setContributionRequestToken] = React.useState('');
+  const [contributionRequestQuestion, setContributionRequestQuestion] = React.useState('');
+
+
+  /**
+   * Get a ContributionRequest token and question
+   */
+  const fetchContributionRequest = () => {
+    void fetch(API_URL_CONTRIBUTIONREQUEST, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    }).then(async x => x.json()).then(x => {
+      setContributionRequestQuestion(x.contribution_question);
+      setContributionRequestToken(x.contribution_id);
+    });
+  };
+
+
+  /**
+   * Get a ContributionRequest at loading
+   */
+  React.useEffect(() => {
+    setTimeout(() => {
+      fetchContributionRequest();
+    }, 3000); // Delaying the query helps reducing the load
+  }, []);
 
 
   /**
@@ -197,19 +174,31 @@ const ContributeComponent: React.FunctionComponent = () => {
    */
   const onSubmitClick = React.useCallback(() => {
     setHasBeenSubmitted(true);
-    setYmlBlob('');
   }, [
-    setHasBeenSubmitted,
-    setYmlBlob
+    setHasBeenSubmitted
+  ]);
+
+  /**
+   * Reset the form to its original state
+   */
+  const handleReset = React.useCallback(({ resetForm }) => {
+    fetchContributionRequest();
+    resetForm();
+    setRequestSent(false);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [
+    requestSent
   ]);
 
 
   /**
    * Called when the form is submitted and has passed validation.
    */
-  const onSubmit = React.useCallback((values: FormValues, actions: FormikHelpers<FormValues>) => {
+  const onSubmit = React.useCallback((values: FormValues, { setErrors, setSubmitting }) => {
     const matches = new RegExp(SIGNAL_ART_URL_PATTERN).exec(values.signalArtUrl);
-
     if (!matches) {
       throw new Error('Unable to extract pack ID and pack key from signal.art URL.');
     }
@@ -221,78 +210,53 @@ const ContributeComponent: React.FunctionComponent = () => {
       .map(tag => tag.trim())
       .filter(tag => tag.length));
 
-    const packYaml: StickerPackYaml = {
-      key: packKey
+    const propositionData = {
+      pack: {
+        pack_id: packId,
+        pack_key: packKey,
+        source: values.source,
+        tags: tags,
+        nsfw: values.isNsfw === 'true' ? true : false,
+        original: values.isOriginal === 'true' ? true : false
+      },
+      contribution_id: contributionRequestToken,
+      contribution_answer: values.secAnswer,
+      submitter_comments: values.submitterComments
     };
 
-    if (values.source) {
-      packYaml.source = values.source;
-    }
+    void fetch(API_URL_CONTRIBUTE, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(propositionData)
+    }).then(async response =>
+      response.json().then(data => ({
+        data: data,
+        status: response.status
+      })
+      ).then(res => {
+        if (res.status === 400) {
+          setErrors({
+            secAnswer: res.data.error
+          });
+          setRequestSent(false);
+          setSubmitting(false);
+          return;
+        }
+        setRequestSent(true);
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        });
+      }));
 
-    if (tags.length > 0) {
-      packYaml.tags = tags;
-    }
-
-    if (values.isNsfw === 'true') {
-      packYaml.nsfw = true;
-    }
-
-    if (values.isOriginal === 'true') {
-      packYaml.original = true;
-    }
-
-    if (values.isAnimated === 'true') {
-      packYaml.animated = true;
-    }
-
-    const yamlBlob = yaml.safeDump({ [packId]: packYaml }, { indent: 2 }).trim();
-
-    // NOTE(darkobits): Experiment to see if padding YAML blobs with a trailing
-    // newline will prevent merge conflicts and allow us to accept/merge packs
-    // more quickly.
-    const paddedYamlBlob = `${yamlBlob}\n`;
-    setYmlBlob(paddedYamlBlob);
-
-    if (openPrButton.current) {
-      openPrButton.current.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    actions.setSubmitting(false);
-  }, [
-    setYmlBlob
-  ]);
-
-  const handleCopy = React.useCallback(() => {
-    try {
-      const wtf = copyToClipboard(ymlBlob, { format: 'text/plain' });
-      console.debug('Copied', ymlBlob, 'to clipboard.', wtf);
-    } catch (err) {
-      console.error(`Unable to copy YAML to clipboard: ${err.message}`);
-    }
-  }, [
-    ymlBlob
-  ]);
+  }, [contributionRequestQuestion, contributionRequestToken]);
 
 
   // ----- Render --------------------------------------------------------------
 
-  const gitHubLink = React.useMemo(() => (
-    <ExternalLink
-      href="https://github.com"
-      title="GitHub"
-    >
-      GitHub
-    </ExternalLink>
-  ), []);
-
-  const pullRequestLink = React.useMemo(() => (
-    <ExternalLink
-      href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests"
-      title="Pull Request"
-    >
-      Pull Request
-    </ExternalLink>
-  ), []);
 
   const stickerPackGuideLink = React.useMemo(() => (
     <ExternalLink
@@ -303,30 +267,12 @@ const ContributeComponent: React.FunctionComponent = () => {
     </ExternalLink>
   ), []);
 
-  const yamlLink = React.useMemo(() => (
+  const contributionGuidelines = React.useMemo(() => (
     <ExternalLink
-      href="https://en.wikipedia.org/wiki/YAML"
-      title="YAML"
+      href="https://github.com/signalstickers/signalstickers#contribution-guidelines"
+      title="Signalstickers' Contribution Guidelines"
     >
-      YAML
-    </ExternalLink>
-  ), []);
-
-  const editStickersYmlLink = React.useMemo(() => (
-    <ExternalLink
-      href="https://github.com/signalstickers/stickers/edit/master/src/stickers.yml"
-      title="Signal Stickers repository"
-    >
-      Signal Stickers repository
-    </ExternalLink>
-  ), []);
-
-  const twitterLink = React.useMemo(() => (
-    <ExternalLink
-      href="https://twitter.com/signalstickers"
-      title="Twitter"
-    >
-      @signalstickers
+      Signalstickers' Contribution Guidelines
     </ExternalLink>
   ), []);
 
@@ -340,10 +286,6 @@ const ContributeComponent: React.FunctionComponent = () => {
           </p>
           <ol>
             <li className="mb-2">
-              If you don't already have one, create a {gitHubLink} account. You will need one in order
-              to open a {pullRequestLink} against the Signal Stickers repository.
-            </li>
-            <li className="mb-2">
               Create a sticker pack using the Signal desktop app. For help, see Signal's {stickerPackGuideLink}.
               Be sure to save the <code>signal.art</code> URL for your pack. If you are creating a
               sticker pack derived from an existing one on another platform or from someone else's
@@ -352,17 +294,16 @@ const ContributeComponent: React.FunctionComponent = () => {
               other online presence to the <strong>Source</strong> field below.
             </li>
             <li className="mb-2">
-              Open a Pull Request in the Signal Stickers GitHub repository updating <code>stickers.yml</code> to
-              to include an entry for your sticker pack.
+              Fill this form. Please check that your pack is not already listed on the website.
+              Take the time to add tags, to help other users find your pack!
+            </li>
+            <li className="mb-2">
+              We will review the pack, and if it meets the {contributionGuidelines}, it will be publicly available
+              on <code>signalstickers.com</code> !
             </li>
           </ol>
           <p>
-            The form below will guide you through the process of generating the {yamlLink} entry for
-            your pack that you will need to add to <code>stickers.yml</code>.
-          </p>
-          <p>
-            Alternatively, you can send us the YAML via a Twitter message at {twitterLink}.
-            Please only use this if you have no way to open a Pull Request on GitHub!
+            To check the status of your contribution, <Link to="/contribution-status">click here.</Link>
           </p>
         </div>
       </div>
@@ -371,10 +312,10 @@ const ContributeComponent: React.FunctionComponent = () => {
         <div className="col-12 col-md-10 offset-md-1">
           <Formik
             initialValues={initialValues}
-            onSubmit={onSubmit}
+            onSubmit={(values, { setErrors, setSubmitting }) => onSubmit(values, { setErrors, setSubmitting })}
             validateOnChange={hasBeenSubmitted}
             validateOnBlur={hasBeenSubmitted}
-          >{({ values, errors, isValidating, isSubmitting }) => (
+          >{({ values, errors, isValidating, isSubmitting, resetForm }) => (
             <Form noValidate>
 
               {/* [Field] Signal.art Url */}
@@ -388,6 +329,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       name="signalArtUrl"
                       validate={validators.signalArtUrl}
                       className={cx('form-control', 'mt-2', errors.signalArtUrl && 'is-invalid')}
+                      disabled={requestSent}
                       placeholder="https://signal.art/addstickers/#pack_id=<your pack id>&pack_key=<your pack key>"
                     />
                     <div className="invalid-feedback">
@@ -408,6 +350,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       name="source"
                       validate={validators.source}
                       className={cx('form-control', 'mt-2', errors.source && 'is-invalid')}
+                      disabled={requestSent}
                     />
                     <small className="form-text text-muted">Original author, website, company, etc.</small>
                     <div className="invalid-feedback">
@@ -428,6 +371,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       name="tags"
                       validate={validators.tags}
                       className={cx('form-control', 'mt-2', errors.tags && 'is-invalid')}
+                      disabled={requestSent}
                     />
                     <small className="form-text text-muted">Comma-separated list of words.</small>
                     <div className="invalid-feedback">
@@ -455,6 +399,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                         className={cx('custom-control-input', errors.isNsfw && 'is-invalid')}
                         value="true"
                         checked={values.isNsfw === 'true'}
+                        disabled={requestSent}
                       />
                       <label className="custom-control-label" htmlFor="is-nsfw-true">
                         Yes
@@ -471,6 +416,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                         className={cx('custom-control-input', errors.isNsfw && 'is-invalid')}
                         value="false"
                         checked={values.isNsfw === 'false'}
+                        disabled={requestSent}
                       />
                       <label className="custom-control-label" htmlFor="is-nsfw-false">No</label>
                     </div>
@@ -499,6 +445,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                         className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
                         value="true"
                         checked={values.isOriginal === 'true'}
+                        disabled={requestSent}
                       />
                       <label className="custom-control-label" htmlFor="is-original-true">
                         Yes
@@ -515,6 +462,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                         className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
                         value="false"
                         checked={values.isOriginal === 'false'}
+                        disabled={requestSent}
                       />
                       <label className="custom-control-label" htmlFor="is-original-false">No</label>
                     </div>
@@ -525,62 +473,73 @@ const ContributeComponent: React.FunctionComponent = () => {
                 </div>
               </div>
 
-              {/* [Field] Animated */}
+              {/* [Field] Security answer */}
               <div className="form-group">
                 <div className="form-row">
-                  <legend className={cx('col-12', 'mb-2', errors.isAnimated && 'text-danger')}>
-                    Is your pack animated?
-                  </legend>
-                </div>
-                <div className="form-row">
-                  <div className="col-12 mb-1">
-                    <div className="custom-control custom-radio">
-                      <Field
-                        type="radio"
-                        id="is-animated-true"
-                        name="isAnimated"
-                        validate={validators.isAnimated}
-                        className={cx('custom-control-input', errors.isAnimated && 'is-invalid')}
-                        value="true"
-                        checked={values.isAnimated === 'true'}
-                      />
-                      <label className="custom-control-label" htmlFor="is-animated-true">
-                        Yes
-                      </label>
-                    </div>
-                  </div>
-                  <div className="col-12 mb-1">
-                    <div className="custom-control custom-radio">
-                      <Field
-                        type="radio"
-                        id="is-animated-false"
-                        name="isAnimated"
-                        validate={validators.isAnimated}
-                        className={cx('custom-control-input', errors.isAnimated && 'is-invalid')}
-                        value="false"
-                        checked={values.isAnimated === 'false'}
-                      />
-                      <label className="custom-control-label" htmlFor="is-animated-false">No</label>
-                    </div>
+                  <label className={cx('col-12', errors.secAnswer && 'text-danger')} htmlFor="secAnswer">
+                    {contributionRequestQuestion}
+                    <Field
+                      type="text"
+                      id="secAnswer"
+                      name="secAnswer"
+                      validate={validators.secAnswer}
+                      className={cx('form-control', 'mt-2', errors.secAnswer && 'is-invalid')}
+                      disabled={requestSent}
+                    />
+                    <small className="form-text text-muted">This question helps us to make sure that you are not a robot. The answer is a single word or number, without quotes.</small>
                     <div className="invalid-feedback">
-                      <ErrorMessage name="isAnimated" />&nbsp;
+                      <ErrorMessage name="secAnswer" />&nbsp;
                     </div>
-                  </div>
+                  </label>
                 </div>
               </div>
 
-              {/* [Control] Submit */}
+              {/* [Field] Submitter comments */}
+              <div className="form-group">
+                <div className="form-row">
+                  <label className="col-12" htmlFor="submitterComments">
+                    (Optional) Any comments?
+                    <Field
+                      as="textarea"
+                      type="textarea"
+                      id="submitterComments"
+                      name="submitterComments"
+                      className="form-control mt-2"
+                      disabled={requestSent}
+                      maxLength="400"
+                    />
+                    <small className="form-text text-muted">This will only be visible to moderators. Do not enter personnal information. Or just say hello, we love it :-)</small>
+                  </label>
+                </div>
+              </div>
+
+              {/* [Control] Submit and Reset */}
               <div className="form-group">
                 <div className="form-row">
                   <div className="col-12">
                     <button
                       type="submit"
-                      className="btn btn-primary btn-block btn-lg"
-                      disabled={isSubmitting || isValidating}
+                      className={`btn btn-block btn-lg ${requestSent ? 'btn-success' : 'btn-primary '}`}
+                      disabled={isSubmitting || isValidating || requestSent}
                       onClick={onSubmitClick}
                     >
-                      Generate YAML
+                      {requestSent ?
+                        <span>Request sent, thanks!</span>
+                        : <span>Propose to signalstickers.com</span>
+                      }
+                      {isSubmitting}
                     </button>
+                    {requestSent ?
+                      <button
+                        type="reset"
+                        className="btn btn-block btn-lg btn-primary"
+                        onClick={() => handleReset({ resetForm })}
+                      >
+                        Propose another pack
+                      </button>
+                      : ''
+                    }
+
                   </div>
                 </div>
               </div>
@@ -590,55 +549,6 @@ const ContributeComponent: React.FunctionComponent = () => {
           </Formik>
         </div>
       </div>
-
-      {/* Rendered YML Output */}
-      {ymlBlob ?
-        <>
-          <div className="row">
-            <div className="col-12">
-              <hr />
-              <p className="mt-4 mb-4">
-                Great! Below is the YAML entry you will need to add to <code>stickers.yml</code> in
-                the {editStickersYmlLink}:
-              </p>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12 col-md-10 offset-md-1">
-              <div className="card">
-                <SyntaxHighlighter
-                  language="yaml"
-                  style={theme === 'light' ? syntaxThemeLight : syntaxThemeDark}
-                  customStyle={{ margin: '0' }}
-                >
-                  {ymlBlob}
-                </SyntaxHighlighter>
-                <CopyToClipboardButton
-                  type="button"
-                  className="btn btn-sm"
-                  onClick={handleCopy}
-                >
-                  <RiFileCopyLine /> Copy to Clipboard
-                </CopyToClipboardButton>
-              </div>
-            </div>
-          </div>
-          <div className="row mt-4">
-            <div className="col-12 col-md-10 offset-md-1">
-              <ExternalLink
-                title="Open a Pull Request"
-                href="https://github.com/signalstickers/stickers/edit/master/src/stickers.yml"
-                className="btn btn-success btn-block btn-lg"
-                ref={openPrButton}
-              >
-                Edit the file and open a Pull Request
-                <BsBoxArrowUpRight className="ml-2" />
-              </ExternalLink>
-            </div>
-          </div>
-        </> :
-        null
-      }
     </Contribute>
   );
 };
