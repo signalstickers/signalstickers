@@ -108,9 +108,19 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
         item: stickerPack
       }), allStickerPacks);
 
-      if (sortOrder) {
+      let sortKey = ''; // Key to sort by in StickerPackMetadata
+      switch (sortOrder) {
+        case 'trending':
+          sortKey = 'hotviews';
+          break;
+        case 'mostViewed':
+          sortKey = 'totalviews';
+          break;
+      }
+
+      if (sortKey) {
         orderedSearchResults = orderedSearchResults.sort((a, b) => (
-          (a.item.meta[sortOrder as keyof StickerPackMetadata] || 0) > (b.item.meta[sortOrder as keyof StickerPackMetadata] || 0) ? -1 : 1
+          (a.item.meta[sortKey as keyof StickerPackMetadata] || 0) > (b.item.meta[sortKey as keyof StickerPackMetadata] || 0) ? -1 : 1
         ));
       }
 

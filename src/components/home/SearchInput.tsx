@@ -414,10 +414,15 @@ const SearchInputComponent: React.FunctionComponent = () => {
       </div>
       <div className="mt-5 d-flex">
         Sort by
-        <select className="form-control form-control-sm w-auto ml-2" value={sortOrder} onChange={onSortOrderChange} disabled={searchQuery !== ''}>
+        <select className="form-control form-control-sm w-auto ml-2" value={searchQuery ? 'relevance' : sortOrder} onChange={onSortOrderChange} disabled={searchQuery !== ''}>
           <option value="">Latest</option>
-          <option value="hotviews">Trending</option>
-          <option value="totalviews">Most viewed (all times)</option>
+          <option value="trending">Trending</option>
+          <option value="mostViewed">Most viewed (all times)</option>
+          {searchQuery &&
+            /* Only used as a placeholder when a searchQuery is set */
+            <option value="relevance">Relevance</option>
+          }
+
         </select>
       </div>
     </SearchInput>
