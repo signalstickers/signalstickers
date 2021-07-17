@@ -1,12 +1,12 @@
 import debounceFn from 'debounce-fn';
-import {styled} from 'linaria/react';
+import { styled } from 'linaria/react';
 import React from 'react';
-import {HashLink} from 'react-router-hash-link';
-import {BsSearch, BsX} from 'react-icons/bs';
-import {FaInfoCircle} from 'react-icons/fa';
+import { HashLink } from 'react-router-hash-link';
+import { BsSearch, BsX } from 'react-icons/bs';
+import { FaInfoCircle } from 'react-icons/fa';
 
 import StickersContext from 'contexts/StickersContext';
-import {DANGER_SATURATED, GRAY_DARKER_2} from 'etc/colors';
+import { DANGER_SATURATED, GRAY_DARKER_2 } from 'etc/colors';
 
 
 // ----- Styles ----------------------------------------------------------------
@@ -152,7 +152,7 @@ const MiniEditorschoice = styled(MiniTag)`
 // ----- Component -------------------------------------------------------------
 
 const SearchInputComponent: React.FunctionComponent = () => {
-  const {searcher, searchQuery, searchResults, setSearchQuery} = React.useContext(StickersContext);
+  const { searcher, searchQuery, searchResults, setSearchQuery, sortOrder, setSortOrder } = React.useContext(StickersContext);
   const [searchQueryInputValue, setSearchQueryInputValue] = React.useState('');
   const searchHelpRef = React.useRef<HTMLDivElement>(null);
   const suggestedTags = ['cute', 'privacy', 'meme', 'for children'];
@@ -162,7 +162,7 @@ const SearchInputComponent: React.FunctionComponent = () => {
    * Allows us to de-bounce calls to setSearchQuery to avoid making excessive
    * re-renders when the input value is updated.
    */
-  const debouncedSetSearchQuery = debounceFn(setSearchQuery, {wait: 250});
+  const debouncedSetSearchQuery = debounceFn(setSearchQuery, { wait: 250 });
 
 
   /**
@@ -179,10 +179,20 @@ const SearchInputComponent: React.FunctionComponent = () => {
    * [Event Handler] Input state -> local state.
    */
   const onSearchQueryInputChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const {value} = event.target;
+    const { value } = event.target;
     setSearchQueryInputValue(value);
   }, [
     setSearchQueryInputValue
+  ]);
+
+  /**
+   * [Event Handler] Input order state -> local state.
+   */
+  const onSortOrderChange = React.useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = event.target;
+    setSortOrder(value);
+  }, [
+    setSortOrder
   ]);
 
 
@@ -336,7 +346,7 @@ const SearchInputComponent: React.FunctionComponent = () => {
   // ----- Render --------------------------------------------------------------
 
   return (
-    <SearchInput className="form-group mb-4 mb-md-5">
+    <SearchInput className="form-group mb-4">
       <div className="mb-1 position-relative">
         <SearchPrepend>
           <BsSearch />
@@ -401,6 +411,14 @@ const SearchInputComponent: React.FunctionComponent = () => {
             {searchResults?.length || 0} {searchResults.length === 1 ? 'result' : 'results'}
           </small>
         </div>
+      </div>
+      <div className="mt-5 d-flex">
+        Sort by
+        <select className="form-control form-control-sm w-auto ml-2" value={sortOrder} onChange={onSortOrderChange} disabled={searchQuery !== ''}>
+          <option value="">Latest</option>
+          <option value="hotviews">Trending</option>
+          <option value="totalviews">Most viewed (all times)</option>
+        </select>
       </div>
     </SearchInput>
   );

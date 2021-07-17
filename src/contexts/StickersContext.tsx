@@ -1,11 +1,10 @@
 import * as R from 'ramda';
-import React, {createContext, PropsWithChildren} from 'react';
+import React, { createContext, PropsWithChildren } from 'react';
 import useAsyncEffect from 'use-async-effect';
 
-import {StickerPackPartial} from 'etc/types';
-import {getStickerPackDirectory} from 'lib/stickers';
-import SearchFactory, {SearchResults, Search} from 'lib/search';
-
+import { StickerPackPartial, StickerPackMetadata } from 'etc/types';
+import { getStickerPackDirectory } from 'lib/stickers';
+import SearchFactory, { SearchResults, Search } from 'lib/search';
 
 /**
  * Shape of the object provided by this Context.
@@ -37,6 +36,16 @@ export interface StickersContext {
    * update the current search results.
    */
   setSearchQuery: (needle: string) => void;
+
+  /**
+   * Current sort order
+   */
+  sortOrder: string;
+
+  /**
+   * Allows a consumer to set the sort order
+   */
+  setSortOrder: (sortOrder: string) => void;
 }
 
 
@@ -47,6 +56,7 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
   const [allStickerPacks, setAllStickerPacks] = React.useState<StickersContext['allStickerPacks']>();
   const [searcher, setSearcher] = React.useState<Search<StickerPackPartial>>();
   const [searchQuery, setSearchQuery] = React.useState<StickersContext['searchQuery']>('');
+  const [sortOrder, setSortOrder] = React.useState<StickersContext['sortOrder']>('');
   const [searchResults, setSearchResults] = React.useState<StickersContext['searchResults']>([]);
 
 
@@ -88,14 +98,23 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
       return;
     }
 
+
     // If there is currently no query, set the search results to the result of
     // mapping the full list of sticker packs into a list with the same shape
     // returned by the search function.
     if (searchQuery.length === 0) {
-      setSearchResults(R.map(stickerPack => ({
+      // Default ordering
+      let orderedSearchResults = R.map(stickerPack => ({
         item: stickerPack
-      }), allStickerPacks) as SearchResults<StickerPackPartial>);
+      }), allStickerPacks);
 
+      if (sortOrder) {
+        orderedSearchResults = orderedSearchResults.sort((a, b) => (
+          (a.item.meta[sortOrder as keyof StickerPackMetadata] || 0) > (b.item.meta[sortOrder as keyof StickerPackMetadata] || 0) ? -1 : 1
+        ));
+      }
+
+      setSearchResults(orderedSearchResults as SearchResults<StickerPackPartial>);
       return;
     }
 
@@ -103,7 +122,8 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
   }, [
     allStickerPacks,
     searcher,
-    searchQuery
+    searchQuery,
+    sortOrder
   ]);
 
 
@@ -116,7 +136,9 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
         searcher,
         searchQuery,
         searchResults,
-        setSearchQuery
+        setSearchQuery,
+        sortOrder,
+        setSortOrder
       }}
     >
       {props.children}

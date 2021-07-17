@@ -259,7 +259,7 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
         // Remove the matched term from the query string.
         remainingQuery = remainingQuery.replace(match[0], '').trim();
 
-        attributeQueries.push({[attribute]: query});
+        attributeQueries.push({ [attribute]: query });
       }, [...remainingQuery.matchAll(curPattern)]);
     }, [
       UNQUOTED_EXPRESSION_PATTERN,
@@ -293,7 +293,7 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
 
   const search = R.memoizeWith(R.identity, (queryString: string) => {
     let results: SearchResults<T> = [];
-    const {query, attributeQueries} = parseQueryString(queryString);
+    const { query, attributeQueries } = parseQueryString(queryString);
 
     // Perform an attribute search for each attribute query.
     R.forEach(R.forEachObjIndexed((attributeQuery, attribute) => {

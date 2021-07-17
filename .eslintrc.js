@@ -4,6 +4,7 @@ module.exports = {
   ],
   rules: {
     'no-console': 'off',
-    'no-confusing-arrow': 'off'
+    'no-confusing-arrow': 'off',
+    'jsx-a11y/no-onchange': 'off',
   }
 };

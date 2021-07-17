@@ -1,4 +1,4 @@
-import {StickerPackManifest} from '@signalstickers/stickers-client';
+import { StickerPackManifest } from '@signalstickers/stickers-client';
 
 
 // ----- YAML Manifest ---------------------------------------------------------
@@ -15,6 +15,8 @@ export interface StickerPackYaml {
   original?: boolean;
   animated?: boolean;
   editorschoice?: boolean;
+  hotviews: number;
+  totalviews: number;
 }
 
 /**
@@ -31,6 +33,8 @@ export interface StickerPackMetadata {
   original?: StickerPackYaml['original'];
   animated?: StickerPackYaml['animated'];
   editorschoice?: StickerPackYaml['editorschoice'];
+  hotviews?: StickerPackYaml['hotviews'];
+  totalviews?: StickerPackYaml['totalviews'];
 
   /**
    * This field is computed at runtime based on whether a pack exists in our
