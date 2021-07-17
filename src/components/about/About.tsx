@@ -91,19 +91,16 @@ const PrivacyPolicy = () => (
       <h1 id="privacy-policy" className="mb-4">Privacy Policy</h1>
       <h5 className="my-4">What do we collect?</h5>
       <p>
-        We count the number of visitors on <code>signalstickers.com</code> <ExternalLink href="https://gist.github.com/romainricard/7ac34b6ea34a58f6c98087ae9aadfbc0">
-          in a way that does <b>not</b> log your IP address
-        </ExternalLink>, so our visitors count and stats for packs are anonymous.
+        To provide statistics, we count the number of visitors on <code>signalstickers.com</code> <ExternalLink href="https://gist.github.com/romainricard/7ac34b6ea34a58f6c98087ae9aadfbc0">
+          in a way that does <b>not</b> log your IP address</ExternalLink>, so our statistics are anonymous.
       </p>
       <p>
         <code>signalstickers.com</code> interface is hosted on <ExternalLink href="https://pages.github.com/">GitHub Pages</ExternalLink>,
-        and we use third-party scripts, which might collect your IP address. Our API (where we store the data) is hosted on a server we own, and
-        is cached by Cloudflare. In certain rare cases, we would collect your IP address.
+        and we use third-party scripts, which might collect your IP address. Our API server is cached by Cloudflare, which might collect your IP address.
       </p>
       <h5 className="my-4">What don't we collect?</h5>
       <p>
-        All the rest. We don't use cookies, and don't track you as you visit <code>signalstickers.com</code>,
-        or any other site.
+        All the rest. We don't use cookies, we don't use Google Analytics, and we don't track you as you visit any other site.
       </p>
       <h5 className="my-4">What data do we sell?</h5>
       <p>
