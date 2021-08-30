@@ -1,17 +1,17 @@
-import {styled} from 'linaria/react';
-import {darken} from 'polished';
+import { styled } from 'linaria/react';
+import { darken } from 'polished';
 import React from 'react';
-import {BsBoxArrowUpRight, BsList} from 'react-icons/bs';
-import {FaGithub, FaTwitter} from 'react-icons/fa';
-import {FiSun, FiMoon} from 'react-icons/fi';
-import {Link, NavLink} from 'react-router-dom';
+import { BsBoxArrowUpRight, BsList } from 'react-icons/bs';
+import { FaGithub, FaRss, FaTwitter } from 'react-icons/fa';
+import { FiSun, FiMoon } from 'react-icons/fi';
+import { Link, NavLink } from 'react-router-dom';
 
 import signalStickersLogoUrl from 'assets/favicon.png';
 import ExternalLink from 'components/general/ExternalLink';
 import AppStateContext from 'contexts/AppStateContext';
-import {PRIMARY_DARKER} from 'etc/colors';
-import {NAVBAR_HEIGHT} from 'etc/constants';
-import {bp} from 'lib/utils';
+import { PRIMARY_DARKER } from 'etc/colors';
+import { NAVBAR_HEIGHT } from 'etc/constants';
+import { bp } from 'lib/utils';
 
 
 // ----- Types -----------------------------------------------------------------
@@ -162,6 +162,16 @@ const NavbarComponent: React.FunctionComponent = () => {
         Twitter <BsBoxArrowUpRight />
       </span>
       <FaTwitter className="d-none d-md-inline" />
+    </>
+  }, {
+    title: 'RSS',
+    href: 'https://api.signalstickers.com/feed/rss/',
+    external: true,
+    children: <>
+      <span className="d-md-none">
+        RSS <BsBoxArrowUpRight />
+      </span>
+      <FaRss className="d-none d-md-inline" />
     </>
   }, {
     title: 'GitHub Repository',
