@@ -19,14 +19,6 @@ directly from this GitHub repository.
 Use the tool [Contribute](https://signalstickers.com/contribute) at the top of
 `signalstickers.com`, and follow the guide!
 
-> Note: adding a sticker pack requires [a Github account](https://github.com/join).
-> It's free!
-
-Alternatively, you can send us the results of the
-[Contribute](https://signalstickers.com/contribute) page via a Twitter private
-message at [@signalstickers](https://twitter.com/signalstickers). Please only
-use this if you have no way to open a PR on Github!
-
 ### Contribution guidelines
 We reserve the right to moderate and refuse packs or stickers. In particular:
 + Stickers packs that call for hatred or violence against people or communities
