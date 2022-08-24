@@ -21,9 +21,6 @@ Github.
 Utilisez l'outil [Contribute](https://signalstickers.com/contribute) en haut de
 `signalstickers.com`, et suivez le guide !
 
-> Note : l'ajout d'un pack d'autocollants nécessite [un compte Github](https://github.com/join).
-> C'est gratuit !
-
 ### Guide de contribution
 
 Nous nous réservons le droit de modérer et refuser les packs et les stickers, et
