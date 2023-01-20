@@ -153,7 +153,7 @@ const AboutComponent: React.FunctionComponent = () => {
           <p>
             Signal Stickers is a community-organized, unofficial directory of sticker packs for Signal,
             the secure messenger. All content on this website is copyrighted by their respective owners.
-            This website is not affiliated with Signal or Open Whisper Systems.
+            This website is <b>not affiliated with Signal</b> or Open Whisper Systems.
           </p>
           <p>
             <ExternalLink href="https://twitter.com/search?q=%23makeprivacystick&src=typed_query">
