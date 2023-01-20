@@ -1,0 +1,47 @@
+.s1l3u8z6{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;overflow:hidden;padding-bottom:6px;padding-top:6px;min-height:64px;}@media (min-width:768px){.s1l3u8z6{max-height:64px;}}.s1l3u8z6.navbar-dark .navbar-nav .nav-link{color:#ededed;-webkit-transition:color 0.15s ease;transition:color 0.15s ease;-webkit-letter-spacing:0.05em;-moz-letter-spacing:0.05em;-ms-letter-spacing:0.05em;letter-spacing:0.05em;}.s1l3u8z6.navbar-dark .navbar-nav .nav-link.active{color:white;}.s1l3u8z6.navbar-dark .navbar-nav .nav-link svg{fill:#e6e6e6;-webkit-transition:fill 0.15s ease;transition:fill 0.15s ease;}.s1l3u8z6.navbar-dark .navbar-nav .nav-link:hover{color:white;}.s1l3u8z6.navbar-dark .navbar-nav .nav-link:hover svg{fill:white;}.s1l3u8z6 .container::before{content:'';display:block;position:absolute;width:200vw;left:-100vw;top:65px;height:1px;background-color:rgba(255,255,255,0.33);}.s1l3u8z6 .navbar-brand{font-size:24px;color:white;-webkit-letter-spacing:0.02em;-moz-letter-spacing:0.02em;-ms-letter-spacing:0.02em;letter-spacing:0.02em;padding:7px 0;}.s1l3u8z6 .navbar-brand:hover{color:white;-webkit-text-decoration:none;text-decoration:none;}.s1l3u8z6 .navbar-brand img{bottom:2px;height:1.5em;margin-right:8px;position:relative;width:auto;}.s1l3u8z6 .navbar-toggler{border:none;font-size:26px;padding-right:12px;}.s1l3u8z6 .navbar-toggler:focus{outline:none;}@media (max-width:767px){.s1l3u8z6 .navbar-nav{padding-top:10px;padding-bottom:4px;}}.s1l3u8z6 .menu-icon{fill:#e6e6e6;-webkit-transform:scale(1.2) translateY(1px);-ms-transform:scale(1.2) translateY(1px);transform:scale(1.2) translateY(1px);}.theme-light .s1l3u8z6{background-color:var(--primary);}.theme-dark .s1l3u8z6{background-color:#0056b3;}.theme-dark .s1l3u8z6 .navbar-brand img{-webkit-filter:brightness(0.75);filter:brightness(0.75);}
+
+.slpzcbs{border-width:2px;color:rgba(0,0,0,0.5);}
+
+.theme-light .form-control:not(.is-invalid){border-color:rgba(0,0,0,0.125);}.theme-light .form-control:not(.is-invalid):focus{box-shadow:0 0 0 0.15rem rgba(156,163,169,0.25);}.theme-dark .btn-light{background-color:var(--gray-dark);border-color:#545b62;color:var(--light);}.theme-dark .btn-light:hover{background-color:#303437;color:var(--light);}.theme-dark .btn-light:active:focus{background-color:#303437;color:var(--light);}.theme-dark .btn-primary,.theme-dark .btn-success{color:var(--light);}.theme-dark .btn-primary:hover,.theme-dark .btn-success:hover{color:var(--light);}.theme-dark .btn-secondary{background-color:var(--secondary);}.theme-dark .card{background-color:#303437;border-color:#545b62;box-shadow:1px 1px 4px rgba(0,0,0,0.15);}.theme-dark .form-control{background-color:#303437;color:inherit;}.theme-dark .form-control:not(.is-invalid){border-color:#545b62;}.theme-dark .form-control:not(.is-invalid):focus{border-color:#9ca3a9;box-shadow:0 0 0 0.15rem rgba(156,163,169,0.25);}.theme-dark .modal-header,.theme-dark .modal-footer{border-color:#545b62;}.theme-dark .text-dark{color:var(--light) !important;}.theme-dark .text-muted{color:#9ca3a9 !important;}.theme-dark a,.theme-dark .btn.btn-link{color:var(--primary);}.theme-dark a:hover,.theme-dark .btn.btn-link:hover{color:#66b0ff;}.theme-dark hr{border-color:#545b62;}.theme-dark pre{color:var(--light);}
+.s1a46sws{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}.theme-light .s1a46sws{background-color:var(--white);color:var(--dark);}.theme-dark .s1a46sws{background-color:#32373d;color:var(--light);}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - env(safe-area-inset-top, 0px));
+}
+
+
+/*# sourceMappingURL=app-d045e4708c5a146f5ae4.css.map*/
