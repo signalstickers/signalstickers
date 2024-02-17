@@ -10,9 +10,11 @@ import {
   BsStarFill,
   BsTag
 } from 'react-icons/bs';
+import { ImEye } from "react-icons/im";
 import { Link, useParams, useHistory } from 'react-router-dom';
 import Linkify from 'react-linkify';
 import useAsyncEffect from 'use-async-effect';
+import pluralize from 'pluralize';
 
 import ExternalLink from 'components/general/ExternalLink';
 import StickersContext from 'contexts/StickersContext';
@@ -68,6 +70,10 @@ const StickerPackDetail = styled.div`
     display: flex;
     flex-direction: row;
     font-size: 14px;
+  }
+
+  & .nbStickers {
+    color: ${GRAY_DARKER};
   }
 
   @media ${bp('sm')} {
@@ -320,21 +326,22 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
                 </li>
               }
 
-              {/* Sticker Count */}
+              {/* Pack views */}
               <li className="list-group-item text-wrap text-break">
-                <BsFolder title="Sticker Count" className="mr-4 text-primary" />
-                {stickerPack.manifest.stickers.length}
+                <ImEye className="mr-4 text-primary" />  {stickerPack.meta.hotviews ?? 0} {pluralize('view', stickerPack.meta.hotviews)} last month, {stickerPack.meta.totalviews ?? 0} total
               </li>
 
               {/* Tags */}
-              <li className="list-group-item">
-                <BsTag title="Tags" className="mr-4 text-primary" />
-                <div className="text-wrap text-break mb-n1">
-                  {stickerPack.meta.tags && stickerPack.meta.tags.length > 0 ? stickerPack.meta.tags.map(tag => (
-                    <Tag key={tag} className="mb-1 mr-1" label={tag} />
-                  )) : 'None'}
-                </div>
-              </li>
+              {stickerPack.meta.tags && stickerPack.meta.tags.length > 0 &&
+                <li className="list-group-item">
+                  <BsTag title="Tags" className="mr-4 text-primary" />
+                  <div className="text-wrap text-break mb-n1">
+                    { stickerPack.meta.tags.map(tag => (
+                      <Tag key={tag} className="mb-1 mr-1" label={tag} />
+                    ))}
+                  </div>
+                </li>
+              }
             </ul>
           </div>
         </div>
@@ -354,6 +361,9 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
             ))}
           </StickerGridView>
         </div>
+      </div>
+      <div className="nbStickers row justify-content-center mt-4">
+        <small>{stickerPack.manifest.stickers.length} {pluralize('sticker', stickerPack.manifest.stickers.length)}</small>
       </div>
     </StickerPackDetail>
   );
