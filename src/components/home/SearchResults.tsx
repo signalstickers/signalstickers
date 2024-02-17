@@ -29,7 +29,7 @@ const PAGE_SIZE = 64;
 
 
 const StickerPackListComponent = () => {
-  const {searchResults} = React.useContext(StickersContext);
+  const {searchResults, showNsfw} = React.useContext(StickersContext);
   // Used by Waypoint to persist the component across re-renders.
   const [cursor, setCursor] = React.useState(0);
   // Subset of total search results that have been rendered.
@@ -71,13 +71,18 @@ const StickerPackListComponent = () => {
 
   return (
     <StickerPackList className="row">
-      {renderedSearchResults.map(result => (
-        <div className="col-6 col-md-4 col-lg-3 mb-4" key={result.item.meta.id}>
-          <Link to={`/pack/${result.item.meta.id}`}>
-            <StickerPackPreviewCard stickerPack={result.item} />
-          </Link>
-        </div>
-      ))}
+      {renderedSearchResults.map(result => {
+        if (!result.item.meta.nsfw || (result.item.meta.nsfw && showNsfw)){
+          return (
+            <div className="col-6 col-md-4 col-lg-3 mb-4" key={result.item.meta.id}>
+              <Link to={`/pack/${result.item.meta.id}`}>
+                <StickerPackPreviewCard stickerPack={result.item} />
+              </Link>
+            </div>
+          );
+        }
+        return null;
+      })}
       <Waypoint key={cursor} onEnter={loadMore} bottomOffset="-500px" />
     </StickerPackList>
   );

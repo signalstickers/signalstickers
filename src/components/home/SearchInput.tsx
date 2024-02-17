@@ -1,6 +1,7 @@
 import debounceFn from 'debounce-fn';
 import { styled } from 'linaria/react';
 import React from 'react';
+import ToggleSwitch from './ToggleSwitch';
 import { HashLink } from 'react-router-hash-link';
 import { BsSearch, BsX } from 'react-icons/bs';
 import { FaInfoCircle } from 'react-icons/fa';
@@ -23,6 +24,10 @@ const SearchInput = styled.div`
   & button:active:focus {
     box-shadow: none;
     outline: none;
+  }
+
+  & label {
+    cursor: pointer;
   }
 `;
 
@@ -152,7 +157,7 @@ const MiniEditorschoice = styled(MiniTag)`
 // ----- Component -------------------------------------------------------------
 
 const SearchInputComponent: React.FunctionComponent = () => {
-  const { searcher, searchQuery, searchResults, setSearchQuery, sortOrder, setSortOrder } = React.useContext(StickersContext);
+  const { searcher, searchQuery, searchResults, setSearchQuery, sortOrder, setSortOrder, setShowNsfw} = React.useContext(StickersContext);
   const [searchQueryInputValue, setSearchQueryInputValue] = React.useState('');
   const searchHelpRef = React.useRef<HTMLDivElement>(null);
   const suggestedTags = ['cute', 'privacy', 'meme', 'for children'];
@@ -218,24 +223,31 @@ const SearchInputComponent: React.FunctionComponent = () => {
    */
   const onSuggestionClick = React.useCallback((event: React.SyntheticEvent) => {
     if (searcher && event.currentTarget.textContent) {
-      if (event.currentTarget.getAttribute('data-suggestion-type') === 'tag') {
-        setSearchQuery(searcher.buildQueryString({
-          attributeQueries: [{
-            tag: event.currentTarget.textContent
-          }]
-        }));
-      } else if (event.currentTarget.getAttribute('data-suggestion-type') === 'animated') {
-        setSearchQuery(searcher.buildQueryString({
-          attributeQueries: [{
-            animated: 'true'
-          }]
-        }));
-      } else if (event.currentTarget.getAttribute('data-suggestion-type') === 'editorschoice') {
-        setSearchQuery(searcher.buildQueryString({
-          attributeQueries: [{
-            editorschoice: 'true'
-          }]
-        }));
+      switch (event.currentTarget.getAttribute('data-suggestion-type')) {
+        case 'tag': {
+          setSearchQuery(searcher.buildQueryString({
+            attributeQueries: [{
+              tag: event.currentTarget.textContent
+            }]
+          }));
+          break;
+        }
+        case 'animated': {
+          setSearchQuery(searcher.buildQueryString({
+            attributeQueries: [{
+              animated: 'true'
+            }]
+          }));
+          break;
+        }
+        case 'editorschoice': {
+          setSearchQuery(searcher.buildQueryString({
+            attributeQueries: [{
+              editorschoice: 'true'
+            }]
+          }));
+          break;
+        }
       }
     }
   }, [
@@ -297,6 +309,13 @@ const SearchInputComponent: React.FunctionComponent = () => {
     setSearchQueryInputValue,
     setSearchQuery
   ]);
+
+  /**
+   * [Event Handler] Change either to show NSFW
+   */
+  const onNsfwToggle = (state: boolean) => {
+    setShowNsfw(state);
+  };
 
 
   /**
@@ -412,18 +431,25 @@ const SearchInputComponent: React.FunctionComponent = () => {
           </small>
         </div>
       </div>
-      <div className="mt-5 d-flex">
-        Sort by
-        <select className="form-control form-control-sm w-auto ml-2" value={searchQuery ? 'relevance' : sortOrder} onChange={onSortOrderChange} disabled={searchQuery !== ''}>
-          <option value="">Latest</option>
-          <option value="trending">Trending</option>
-          <option value="mostViewed">Most viewed (all times)</option>
-          {searchQuery &&
-            /* Only used as a placeholder when a searchQuery is set */
-            <option value="relevance">Relevance</option>
-          }
+      <div className="mt-5 d-flex flex-wrap">
+        <div className="mr-3">
+          Sort by
+          <select className="d-inline-block form-control form-control-sm w-auto ml-2" value={searchQuery ? 'relevance' : sortOrder} onChange={onSortOrderChange} disabled={searchQuery !== ''}>
+            <option value="">Latest</option>
+            <option value="trending">Trending</option>
+            <option value="mostViewed">Most viewed (all times)</option>
+            {searchQuery &&
+              /* Only used as a placeholder when a searchQuery is set */
+              <option value="relevance">Relevance</option>
+            }
 
-        </select>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="nsfwToggle">
+            Show NSFW <ToggleSwitch id="nsfwToggle" onToggle={onNsfwToggle} />
+          </label>
+        </div>
       </div>
     </SearchInput>
   );

@@ -52,6 +52,7 @@
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.3.1",
     "react-scroll-percentage": "^4.2.0",
+    "react-switch": "^7.0.0",
     "react-syntax-highlighter": "^15.4.3",
     "react-waypoint": "^9.0.3",
     "use-async-effect": "^2.2.2",

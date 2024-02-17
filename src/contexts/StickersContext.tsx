@@ -46,6 +46,16 @@ export interface StickersContext {
    * Allows a consumer to set the sort order
    */
   setSortOrder: (sortOrder: string) => void;
+
+  /**
+   * Either show or hide NSFW content
+   */
+  showNsfw: boolean;
+
+  /**
+   * Allow a consumer to show or hide NSFW content
+   */
+  setShowNsfw: (show: boolean) => void;
 }
 
 
@@ -58,6 +68,7 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
   const [searchQuery, setSearchQuery] = React.useState<StickersContext['searchQuery']>('');
   const [sortOrder, setSortOrder] = React.useState<StickersContext['sortOrder']>('');
   const [searchResults, setSearchResults] = React.useState<StickersContext['searchResults']>([]);
+  const [showNsfw, setShowNsfw] = React.useState(false);
 
 
   /**
@@ -133,7 +144,8 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
     allStickerPacks,
     searcher,
     searchQuery,
-    sortOrder
+    sortOrder,
+    showNsfw
   ]);
 
 
@@ -148,7 +160,9 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
         searchResults,
         setSearchQuery,
         sortOrder,
-        setSortOrder
+        setSortOrder,
+        showNsfw,
+        setShowNsfw
       }}
     >
       {props.children}
