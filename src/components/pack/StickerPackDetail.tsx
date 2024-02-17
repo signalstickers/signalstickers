@@ -4,7 +4,6 @@ import {
   BsArrowLeftShort,
   BsAt,
   BsFillHeartFill,
-  BsFolder,
   BsFillCameraVideoFill,
   BsPlus,
   BsStarFill,
