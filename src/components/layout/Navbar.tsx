@@ -4,6 +4,7 @@ import React from 'react';
 import { BsBoxArrowUpRight, BsList } from 'react-icons/bs';
 import { FaGithub, FaRss, FaTwitter } from 'react-icons/fa';
 import { FiSun, FiMoon } from 'react-icons/fi';
+import { SiKofi } from "react-icons/si";
 import { Link, NavLink } from 'react-router-dom';
 
 import signalStickersLogoUrl from 'assets/favicon.png';
@@ -153,6 +154,16 @@ const NavbarComponent: React.FunctionComponent = () => {
   }, {
     title: 'About',
     href: '/about'
+  }, {
+    title: 'Help Signalstickers to stay alive!',
+    href: 'https://ko-fi.com/signalstickers',
+    external: true,
+    children: <>
+      <SiKofi className="d-none d-md-inline" /> Donate
+      <span className="d-md-none">
+        &nbsp;on Ko-Fi <BsBoxArrowUpRight />
+      </span>
+    </>
   }, {
     title: 'Twitter',
     href: 'https://twitter.com/signalstickers',
