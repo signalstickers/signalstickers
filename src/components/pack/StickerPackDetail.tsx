@@ -186,17 +186,17 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
    * [Event Handler] Search for packs from the same author.
    */
   const onAuthorClick = React.useCallback((event: React.SyntheticEvent) => {
-    event.preventDefault();
+      event.preventDefault();
 
-    if (searcher && event.currentTarget.textContent) {
+      if (searcher && event.currentTarget.textContent) {
       setSearchQuery(searcher.buildQueryString({
         attributeQueries: [{
           author: event.currentTarget.textContent
         }]
       }));
 
-      history.push('/');
-    }
+        history.push('/');
+      }
   }, [
     history,
     searcher,
@@ -361,8 +361,13 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
           </StickerGridView>
         </div>
       </div>
-      <div className="nbStickers row justify-content-center mt-4">
-        <small>{stickerPack.manifest.stickers.length} {pluralize('sticker', stickerPack.manifest.stickers.length)}</small>
+      <div className="nbStickers row justify-content-center align-items-center mt-4">
+        <small className="mr-3">
+          {stickerPack.manifest.stickers.length} 
+          {pluralize('sticker', stickerPack.manifest.stickers.length)}</small>
+        <Link to={`/pack/${packId}/report`}>
+          <small>🚨 Report this pack</small>
+        </Link>
       </div>
     </StickerPackDetail>
   );

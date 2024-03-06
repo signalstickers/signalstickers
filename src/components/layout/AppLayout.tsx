@@ -23,27 +23,32 @@ import {
 // Note: Each top-level route should be imported az a lazy-loaded component.
 const Home = React.lazy(async () => import(
   /* webpackChunkName: "home" */
-  'components/home/Home'
+      'components/home/Home'
 ));
 
 const Pack = React.lazy(async () => import(
   /* webpackChunkName: "detail" */
-  'components/pack/StickerPackDetail'
+      'components/pack/StickerPackDetail'
 ));
 
 const Contribute = React.lazy(async () => import(
   /* webpackChunkName: "contribute" */
-  'components/contribute/Contribute'
+      'components/contribute/Contribute'
+));
+
+const Report = React.lazy(async () => import(
+  /* webpackChunkName: "report" */
+      'components/report/Report'
 ));
 
 const ContributionStatus = React.lazy(async () => import(
   /* webpackChunkName: "contributionstatus" */
-  'components/contributionstatus/ContributionStatus'
+      'components/contributionstatus/ContributionStatus'
 ));
 
 const About = React.lazy(async () => import(
   /* webpackChunkName: "about" */
-  'components/about/About'
+      'components/about/About'
 ));
 
 
@@ -210,45 +215,48 @@ const AppLayout: React.FunctionComponent = () => {
    * times per second.
    */
   useAsyncEffect(pThrottle(() => {
-    const bodyEl = document.querySelector('body');
+        const bodyEl = document.querySelector('body');
 
-    if (!bodyEl) {
-      return;
-    }
+        if (!bodyEl) {
+          return;
+        }
 
-    if (darkMode) {
+        if (darkMode) {
       bodyEl.style.backgroundColor = percentage < 0.5 ? PRIMARY_DARKER : 'var(--dark)';
-    } else {
+        } else {
       bodyEl.style.backgroundColor = percentage < 0.5 ? 'var(--primary)' : 'var(--white)';
-    }
+        }
   }, 10, 1000), [percentage, darkMode]);
 
 
   return (<>
-    <Navbar />
-    <StyledContainer ref={ref}>
+      <Navbar />
+      <StyledContainer ref={ref}>
       <div className="container d-flex flex-column flex-grow-1">
-        <Suspense fallback={<SuspenseFallback />}>
-          <Switch>
+          <Suspense fallback={<SuspenseFallback />}>   
+            <Switch>
             <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/pack/:packId">
-              <Pack />
-            </Route>
-            <Route path="/contribute">
-              <Contribute />
-            </Route>
-            <Route path="/contribution-status">
-              <ContributionStatus />
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
-          </Switch>
-        </Suspense>
-      </div>
-    </StyledContainer>
+                <Home />
+              </Route>
+              <Route path="/pack/:packId/report">
+                <Report />
+              </Route>
+              <Route path="/pack/:packId">
+                <Pack />
+              </Route>
+              <Route path="/contribute">
+                <Contribute />
+              </Route>
+              <Route path="/contribution-status">
+                <ContributionStatus />
+              </Route>
+              <Route path="/about">
+                <About />
+              </Route>
+            </Switch>
+          </Suspense>
+        </div>
+      </StyledContainer>
   </>);
 };
 
