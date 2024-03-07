@@ -31,7 +31,7 @@ export const SIGNAL_ART_URL_PATTERN = /^https:\/\/signal.art\/addstickers\/#pack
 /**
  * API urls
  */
-const API_BASE_URL = 'https://api.signalstickers.com/v1';
+const API_BASE_URL = 'https://api.signalstickers.org/v1';
 
 const API_URL_CONTRIBUTIONREQUEST = `${API_BASE_URL}/contributionrequest/`;
 const API_URL_CONTRIBUTE = `${API_BASE_URL}/contribute/`;

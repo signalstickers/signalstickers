@@ -176,7 +176,7 @@ const NavbarComponent: React.FunctionComponent = () => {
     </>
   }, {
     title: 'RSS',
-    href: 'https://api.signalstickers.com/feed/rss/',
+    href: 'https://api.signalstickers.org/feed/rss/',
     external: true,
     children: <>
       <span className="d-md-none">
