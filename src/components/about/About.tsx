@@ -71,12 +71,12 @@ const TermsOfService = () => (
     <div className="col-12">
       <h1 id="terms-of-service" className="mb-4">Terms of Service</h1>
       <p>
-        <code>signalstickers.com</code> is provided "as is". We try the best we can to keep it up and
+        <code>signalstickers.org</code> is provided "as is". We try the best we can to keep it up and
         running, but we are volunteers, and we rely on third-parties, so we can't guarantee
-        that <code>signalstickers.com</code> will be accessible at any time.
+        that <code>signalstickers.org</code> will be accessible at any time.
       </p>
       <p>
-        The inclusion, in whole or in part, of the <code>signalstickers.com</code> website in any other
+        The inclusion, in whole or in part, of the <code>signalstickers.org</code> website in any other
         application, website, or software is strictly forbidden.
       </p>
     </div>
@@ -91,11 +91,11 @@ const PrivacyPolicy = () => (
     <div className="col-12">
       <h1 id="privacy-policy" className="mb-4">Privacy Policy</h1>
       <h5 className="my-4">What do we collect?</h5>
-      <p>
+      <p>signalstickers.org
         To provide statistics, we count the number of visitors on <code>signalstickers.com</code> <ExternalLink href="https://gist.github.com/romainricard/7ac34b6ea34a58f6c98087ae9aadfbc0">
           in a way that does <b>not</b> log your IP address</ExternalLink>, so our statistics are anonymous.
       </p>
-      <p>
+      <p>signalstickers.org
         <code>signalstickers.com</code> interface is hosted on <ExternalLink href="https://pages.github.com/">GitHub Pages</ExternalLink>,
         and we use third-party scripts, which might collect your IP address. Our API server is cached by Cloudflare, which might collect your IP address.
       </p>
