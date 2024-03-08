@@ -19,14 +19,6 @@ const Report = styled.div`
   & .invalid-feedback {
     display: block;
   }
-
-  & legend {
-    font-size: 1em;
-  }
-
-  & pre[class*='language-'] {
-    margin: 0;
-  }
 `;
 
 // ----- Types -----------------------------------------------------------------
@@ -58,15 +50,15 @@ const initialValues: FormValues = {
  */
 const validators: Record<string, FieldValidator> = {
   secAnswer: (secAnswer: string) => {
-    if (secAnswer === "") {
-      return "This field is required.";
+    if (secAnswer === '') {
+      return 'This field is required.';
     }
   },
   submitterComments: (submitterComments: string) => {
     if (submitterComments.length <= 30) {
-      return "Please give more details (min 30 chars).";
+      return 'Please give more details (min 30 chars).';
     }
-  },
+  }
 };
 
 // ----- Report ----------------------------------------------------------------
@@ -97,9 +89,6 @@ const ReportComponent: React.FunctionComponent = () => {
 
       setStickerPack(await getStickerPack(packId));
     } catch (err) {
-      if (err.code) {
-        setStickerPackError(err.code);
-      }
     }
   }, [packId]);
 
@@ -111,11 +100,11 @@ const ReportComponent: React.FunctionComponent = () => {
       method: 'POST',
       headers: {
         Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json'
+      }
     })
-      .then(async (x) => x.json())
-      .then((x) => {
+      .then(async x => x.json())
+      .then(x => {
         setReportRequestQuestion(x.contribution_question);
         setReportRequestToken(x.contribution_id);
       });
@@ -150,27 +139,27 @@ const ReportComponent: React.FunctionComponent = () => {
         contribution_id: reportRequestToken,
         contribution_answer: values.secAnswer,
         pack_id: packId,
-        content: values.submitterComments,
+        content: values.submitterComments
       };
 
       void fetch(API_URL_REPORT, {
         method: 'PUT',
         headers: {
           Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(reportData),
-      }).then(async (response) =>
+        body: JSON.stringify(reportData)
+      }).then(async response =>
         response
           .json()
-          .then((data) => ({
+          .then(data => ({
             data: data,
-            status: response.status,
+            status: response.status
           }))
-          .then((res) => {
+          .then(res => {
             if (res.status === 400) {
               setErrors({
-                secAnswer: res.data.error,
+                secAnswer: res.data.error
               });
               setRequestSent(false);
               setSubmitting(false);
@@ -179,7 +168,7 @@ const ReportComponent: React.FunctionComponent = () => {
             setRequestSent(true);
             window.scrollTo({
               top: document.body.scrollHeight,
-              behavior: 'smooth',
+              behavior: 'smooth'
             });
           })
       );
@@ -195,16 +184,8 @@ const ReportComponent: React.FunctionComponent = () => {
         <div className="col-12">
           <h1 className="mb-4">Report a pack</h1>
           <p className="mt-lg-3 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-            pariatur sequi, sint consectetur fugiat neque blanditiis quas id
-            iusto mollitia at libero quis eos velit soluta. Nobis amet, corrupti
-            impedit eveniet eligendi nostrum ipsum ex doloribus omnis est
-            magnam, beatae sed voluptates sapiente consectetur aliquid
-            voluptatum iure eos inventore. Pariatur aspernatur dolores optio
-            consequatur odio! Iure necessitatibus minus sapiente! Aliquam
-            quibusdam recusandae deleniti rerum quas, et reprehenderit odit
-            minima, corporis, doloribus ratione ipsam qui. Numquam inventore
-            quibusdam veniam voluptatem dolor?
+            <p>Use this form to report a pack to Signalstickers' admins.</p>
+            <p>Please add context and explain why you are reporting this pack.</p>
           </p>
         </div>
       </div>
@@ -232,7 +213,7 @@ const ReportComponent: React.FunctionComponent = () => {
                         id="pack-title"
                         name="pack-title"
                         className="form-control mt-2"
-                        disabled={true}
+                        disabled
                         value={stickerPack?.manifest.title}
                       />
                     </label>
@@ -271,8 +252,8 @@ const ReportComponent: React.FunctionComponent = () => {
                   <div className="form-row">
                     <label
                       className={cx(
-                        "col-12",
-                        errors.secAnswer && "text-danger"
+                        'col-12',
+                        errors.secAnswer && 'text-danger'
                       )}
                       htmlFor="secAnswer"
                     >
@@ -282,7 +263,7 @@ const ReportComponent: React.FunctionComponent = () => {
                         id="secAnswer"
                         name="secAnswer"
                         validate={validators.secAnswer}
-                        className={cx("form-control", "mt-2", errors.secAnswer && "is-invalid")}
+                        className={cx('form-control', 'mt-2', errors.secAnswer && 'is-invalid')}
                         disabled={requestSent}
                       />
                       <small className="form-text text-muted">
@@ -298,14 +279,14 @@ const ReportComponent: React.FunctionComponent = () => {
                   </div>
                 </div>
 
-                {/* [Control] Submit and Reset */}
+                {/* [Control] Submit */}
                 <div className="form-group">
                   <div className="form-row">
                     <div className="col-12">
                       <button
                         type="submit"
                         className={`btn btn-block btn-lg ${
-                          requestSent ? "btn-success" : "btn-primary "
+                          requestSent ? 'btn-success' : 'btn-primary '
                         }`}
                         disabled={isSubmitting || isValidating || requestSent}
                         onClick={onSubmitClick}
@@ -321,13 +302,13 @@ const ReportComponent: React.FunctionComponent = () => {
                         <Link
                           type="reset"
                           className="btn btn-block btn-lg btn-primary"
-                          to={"/"}
+                          to="/"
                         >
                           Return to homepage
                         </Link>
-                      ) : (
-                        ""
-                      )}
+                      ) : 
+                        ''
+                      }
                     </div>
                   </div>
                 </div>
