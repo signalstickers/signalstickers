@@ -1,5 +1,5 @@
-<a href="https://signalstickers.com" id="top">
-  <img src="https://user-images.githubusercontent.com/441546/104887908-e3c38800-5920-11eb-9f4b-aceab4d70009.png" style="max-width: 100%;"></<img>
+<a href="https://signalstickers.org" id="top">
+  <img src=".github/header_signalstickers_de.png" style="max-width: 100%;"></<img>
 </a>
 
 <p align="center">
@@ -12,20 +12,21 @@
 
 ## Über dieses Projekt
 
-Dieses GitHub-Projekt bildet das Rückgrad für [signalstickers.com](https://signalstickers.com), einer schönen und praktischen Galerie zum Durchsuchen und Herunterladen von Sticker-Packungen für Signal.
+Dieses GitHub-Projekt bildet das Rückgrad für [signalstickers.org](https://signalstickers.org), einer schönen und praktischen Galerie zum Durchsuchen und Herunterladen von Sticker-Packungen für Signal.
 
 ## Fragen und Antworten
 
 ### Wie kann ich Sticker-Packungen hinzufügen?
 
 Du benötigst eigentlich nur die "Signal Art URL" (wird dir bei der Erstellung mit dem "Sticker pack creator" angezeigt) und ein GitHub-Konto (das ist kostenlos).
-Folge einfach der Anleitung auf [signalstickers.com/contribute](https://signalstickers.com/contribute).
+Folge einfach der Anleitung auf [signalstickers.org/contribute](https://signalstickers.org/contribute).
 
 ### Welche Art von Sticker werden akzeptiert?
 
 Alle Sticker werden akzeptiert, mit Ausnahme von:
-+ Sticker, die aufgrund von Alter, Körpergröße, Behinderung, ethnischer Zugehörigkeit, Geschlechtsidentität, Nationalität, persönlichem Auftreten, Rasse, Religion oder sexueller Identität und Orientierung zu Hass oder Gewalt gegen Menschen oder Gemeinschaften aufrufen;
-+ Sticker, die direkt für eine Marke oder ein Unternehmen werben.
+
+- Sticker, die aufgrund von Alter, Körpergröße, Behinderung, ethnischer Zugehörigkeit, Geschlechtsidentität, Nationalität, persönlichem Auftreten, Rasse, Religion oder sexueller Identität und Orientierung zu Hass oder Gewalt gegen Menschen oder Gemeinschaften aufrufen;
+- Sticker, die direkt für eine Marke oder ein Unternehmen werben.
 
 Die Idee ist, eine familiäre Atmosphäre zu bewahren: Ich möchte, dass auch meine Großmutter durch die Galerie navigieren kann -- ohne Ausrufe des Entsetzens.
 
@@ -56,8 +57,8 @@ Das ist nicht das Ziel dieses Projekts :-)
 
 ### Wo finde ich weitere Sticker?
 
-+ Besuch den [Sticker-Pack collection thread](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650) im [Signal Community-Forum](https://community.signalusers.org);
-+ Such auf Twitter nach dem Hashtag [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick).
+- Besuch den [Sticker-Pack collection thread](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650) im [Signal Community-Forum](https://community.signalusers.org);
+- Such auf Twitter nach dem Hashtag [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick).
 
 ### Ist das ein kommerzielles Projekt?
 

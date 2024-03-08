@@ -1,5 +1,5 @@
-<a href="https://signalstickers.com" id="top">
-  <img src="https://user-images.githubusercontent.com/441546/104887867-d3aba880-5920-11eb-872d-b7e1ad056af4.png" style="max-width: 100%;"></<img>
+<a href="https://signalstickers.org" id="top">
+  <img src=".github/header_signalstickers_fr.png" style="max-width: 100%;"></<img>
 </a>
 
 <p align="center">
@@ -13,25 +13,25 @@
 ## À propos
 
 Une galerie pratique pour parcourir et télécharger des packs d'autocollants pour
-Signal. Ce site est servi sur [signalstickers.com](signalstickers.com), directement depuis ce dépôt
+Signal. Ce site est servi sur [signalstickers.org](signalstickers.org), directement depuis ce dépôt
 Github.
 
 ## Ajouter un pack d'autocollants à ce site
 
-Utilisez l'outil [Contribute](https://signalstickers.com/contribute) en haut de
-`signalstickers.com`, et suivez le guide !
+Utilisez l'outil [Contribute](https://signalstickers.org/contribute) en haut de
+`signalstickers.org`, et suivez le guide !
 
 ### Guide de contribution
 
 Nous nous réservons le droit de modérer et refuser les packs et les stickers, et
 en particulier :
 
-+ Les paquets d'autocollants qui appellent à la haine ou à la violence contre
+- Les paquets d'autocollants qui appellent à la haine ou à la violence contre
   des personnes ou des communautés en fonction de l'âge, de la taille, du
   handicap, de l'origine ethnique, de l'identité et de l'expression du genre, de
   la nationalité, de l'apparence, de la race, de la religion ou de l'identité et
   de l'orientation sexuelles ;
-+ Les packs d'autocollants qui font la promotion directe d'une marque ou d'une
+- Les packs d'autocollants qui font la promotion directe d'une marque ou d'une
   entreprise.
 
 Nous nous réservons également le droit de modérer les packs ou certains stickers
@@ -72,9 +72,9 @@ Ce n'est pas le but de ce projet :-)
 
 ### Où puis-je trouver d'autres autocollants ?
 
-+ Rendez-vous sur le [fil de la collection de packs d'autocollants](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650)
+- Rendez-vous sur le [fil de la collection de packs d'autocollants](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650)
   sur le [forum de la communauté Signal](https://community.signalusers.org/) ;
-+ Cherchez sur Twitter le hashtag [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick).
+- Cherchez sur Twitter le hashtag [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick).
 
 ### Est-ce un projet commercial ?
 

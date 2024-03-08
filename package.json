@@ -10,7 +10,7 @@
     }
   ],
   "license": "GPL-3.0-only",
-  "homepage": "https://signalstickers.com/",
+  "homepage": "https://signalstickers.org/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/signalstickers/signalstickers.git"

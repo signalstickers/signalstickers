@@ -299,7 +299,7 @@ const ContributeComponent: React.FunctionComponent = () => {
             </li>
             <li className="mb-2">
               We will review the pack, and if it meets the {contributionGuidelines}, it will be publicly available
-              on <code>signalstickers.com</code> !
+              on <code>signalstickers.org</code> !
             </li>
           </ol>
           <p>
@@ -525,7 +525,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                     >
                       {requestSent ?
                         <span>Request sent, thanks!</span>
-                        : <span>Propose to signalstickers.com</span>
+                        : <span>Propose to signalstickers.org</span>
                       }
                       {isSubmitting}
                     </button>

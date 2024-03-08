@@ -1,5 +1,5 @@
-<a href="https://signalstickers.com" id="top">
-  <img src="https://user-images.githubusercontent.com/441546/104887603-6730a980-5920-11eb-92cb-ed7cff9e4aaa.png" style="max-width: 100%;" />
+<a href="https://signalstickers.org" id="top">
+  <img src=".github/header_signalstickers_en.png" style="max-width: 100%;" />
 </a>
 
 <p align="center">
@@ -11,21 +11,25 @@
 </p>
 
 ## About
+
 A nice and handy gallery to browse and download sticker packs for Signal.
-This site is served on [signalstickers.com](https://signalstickers.com),
+This site is served on [signalstickers.org](https://signalstickers.org),
 directly from this GitHub repository.
 
 ## Adding a sticker pack to this site
-Use the tool [Contribute](https://signalstickers.com/contribute) at the top of
-`signalstickers.com`, and follow the guide!
+
+Use the tool [Contribute](https://signalstickers.org/contribute) at the top of
+`signalstickers.org`, and follow the guide!
 
 ### Contribution guidelines
+
 We reserve the right to moderate and refuse packs or stickers. In particular:
-+ Stickers packs that call for hatred or violence against people or communities
+
+- Stickers packs that call for hatred or violence against people or communities
   based on age, body size, disability, ethnicity, gender identity and
   expression, nationality, personal appearance, race, religion, or sexual
   identity and orientation;
-+ Sticker packs that directly promote a brand or a company.
+- Sticker packs that directly promote a brand or a company.
 
 We also reserve the right to moderate packs or stickers after their submission
 and acceptance.
@@ -36,6 +40,7 @@ navigate sticker packs quietly.
 ## Q&A
 
 ### How can I create a sticker pack?
+
 Follow the tutorial on the [Signal support site](https://support.signal.org/hc/articles/360031836512-Stickers#h_c2a0a45b-862f-4d12-9ab1-d9a6844062ca)
 to upload your stickers to Signal.
 
@@ -46,6 +51,7 @@ to upload your stickers to Signal.
 > of a directory.
 
 ### How can I create animated stickers?
+
 You can use our lib to create animated stickers from GIF/APNG. You can also use
 the Signal Desktop app to create animated stickers from APNG files.
 
@@ -54,6 +60,7 @@ You can also use [some tools we provide to assist you with animated stickers cre
 > Note that support for some APNG files is [not perfect on Signal for iOS at the moment.](https://github.com/signalapp/Signal-iOS/issues/4611)
 
 ### Am I required to add my sticker pack to this site to share it with my friends?
+
 **No**. You can just send any sticker to your friends and they will be able to
 install the pack, or you can share your sticker pack using the `signal.art` link
 that you got when you created your sticker pack, or by using the share button
@@ -63,9 +70,11 @@ Do not hesitate to post your pack on social networks using the hashtag
 `#makeprivacystick` as well!
 
 ### Can you create a sticker pack for me?
+
 Ask on [Discussions](https://github.com/signalstickers/signalstickers/discussions), and a fellow user might help you!
 
 ### Where can I find more stickers?
+
 - Head to the [Sticker pack collection
   thread](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650)
   on the [Signal Community forum](https://community.signalusers.org);
@@ -73,10 +82,11 @@ Ask on [Discussions](https://github.com/signalstickers/signalstickers/discussion
   [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick) hashtag.
 
 ### Is this a commercial project?
+
 **No**. This project is and will remain open-source.
 
-
 ### Who built this?
+
 [@romainricard](https://github.com/romainricard),
 [@darkobits](https://github.com/darkobits),
 [@valkheim](https://github.com/valkheim),
@@ -89,4 +99,5 @@ The stickers were added [by the community](https://github.com/signalstickers/sig
 Most of stickers from Telegram were ported by [@signal-stickers](https://github.com/signal-stickers).
 
 ## License
+
 See [LICENSE.md](LICENSE.md).

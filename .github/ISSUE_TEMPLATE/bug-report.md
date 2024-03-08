@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Found a bug on signalstickers.com? This is the right place to report it! Please
+about: Found a bug on signalstickers.org? This is the right place to report it! Please
   only report "technical" bugs here (no issues about stickers, etc.)
 title: ''
 labels: bug
