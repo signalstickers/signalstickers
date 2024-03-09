@@ -363,8 +363,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       </div>
       <div className="nbStickers row justify-content-center align-items-center mt-4">
         <small className="mr-3">
-          {stickerPack.manifest.stickers.length} 
-          {pluralize('sticker', stickerPack.manifest.stickers.length)}</small>
+          {stickerPack.manifest.stickers.length} {pluralize('sticker', stickerPack.manifest.stickers.length)}</small>
         <Link to={`/pack/${packId}/report`}>
           <small>🚨 Report this pack</small>
         </Link>
