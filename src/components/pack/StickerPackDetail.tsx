@@ -9,7 +9,7 @@ import {
   BsStarFill,
   BsTag
 } from 'react-icons/bs';
-import { ImEye } from "react-icons/im";
+import { ImEye } from 'react-icons/im';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import Linkify from 'react-linkify';
 import useAsyncEffect from 'use-async-effect';
@@ -361,8 +361,13 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
           </StickerGridView>
         </div>
       </div>
-      <div className="nbStickers row justify-content-center mt-4">
-        <small>{stickerPack.manifest.stickers.length} {pluralize('sticker', stickerPack.manifest.stickers.length)}</small>
+      <div className="nbStickers row justify-content-center align-items-center mt-4">
+        <small className="mr-3">
+          {stickerPack.manifest.stickers.length} 
+          {pluralize('sticker', stickerPack.manifest.stickers.length)}</small>
+        <Link to={`/pack/${packId}/report`}>
+          <small>🚨 Report this pack</small>
+        </Link>
       </div>
     </StickerPackDetail>
   );

@@ -36,6 +36,11 @@ const Contribute = React.lazy(async () => import(
   'components/contribute/Contribute'
 ));
 
+const Report = React.lazy(async () => import(
+  /* webpackChunkName: "report" */
+  'components/report/Report'
+));
+
 const ContributionStatus = React.lazy(async () => import(
   /* webpackChunkName: "contributionstatus" */
   'components/contributionstatus/ContributionStatus'
@@ -232,6 +237,9 @@ const AppLayout: React.FunctionComponent = () => {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route path="/pack/:packId/report">
+              <Report />
             </Route>
             <Route path="/pack/:packId">
               <Pack />
