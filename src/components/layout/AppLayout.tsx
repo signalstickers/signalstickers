@@ -233,7 +233,7 @@ const AppLayout: React.FunctionComponent = () => {
     <Navbar />
     <StyledContainer ref={ref}>
       <div className="container d-flex flex-column flex-grow-1">
-        <Suspense fallback={<SuspenseFallback />}>   
+        <Suspense fallback={<SuspenseFallback />}>
           <Switch>
             <Route exact path="/">
               <Home />
