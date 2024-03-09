@@ -73,10 +73,6 @@ const ReportComponent: React.FunctionComponent = () => {
   const { packId } = useParams<UrlParams>();
   // StickerPack object for the requested pack.
   const [stickerPack, setStickerPack] = React.useState<StickerPack>();
-  // One of many possible error codes we may catch when trying to load or
-  // decrypt a sticker pack. This will be used to determine what error message
-  // to show the user.
-  const [stickerPackError, setStickerPackError] = React.useState('');
 
   /**
    * [Effect] Set `stickerPack` when the component mounts.

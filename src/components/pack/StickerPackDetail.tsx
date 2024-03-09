@@ -9,7 +9,7 @@ import {
   BsStarFill,
   BsTag
 } from 'react-icons/bs';
-import { ImEye } from "react-icons/im";
+import { ImEye } from 'react-icons/im';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import Linkify from 'react-linkify';
 import useAsyncEffect from 'use-async-effect';
@@ -186,17 +186,17 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
    * [Event Handler] Search for packs from the same author.
    */
   const onAuthorClick = React.useCallback((event: React.SyntheticEvent) => {
-      event.preventDefault();
+    event.preventDefault();
 
-      if (searcher && event.currentTarget.textContent) {
+    if (searcher && event.currentTarget.textContent) {
       setSearchQuery(searcher.buildQueryString({
         attributeQueries: [{
           author: event.currentTarget.textContent
         }]
       }));
 
-        history.push('/');
-      }
+      history.push('/');
+    }
   }, [
     history,
     searcher,
