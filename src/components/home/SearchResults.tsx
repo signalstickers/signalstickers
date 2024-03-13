@@ -1,26 +1,13 @@
-import {styled} from 'linaria/react';
+import * as R from 'ramda';
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Waypoint} from 'react-waypoint';
-import * as R from 'ramda';
 
 import StickersContext from 'contexts/StickersContext';
 
+import classes from './SearchResults.css';
 import StickerPackPreviewCard from './StickerPackPreviewCard';
 
-
-// ----- Styles ----------------------------------------------------------------
-
-const StickerPackList = styled.div`
-  & a {
-    &:hover {
-      text-decoration: none;
-    }
-  }
-`;
-
-
-// ----- Component -------------------------------------------------------------
 
 /**
  * How many items we will load each time loadMore() is called.
@@ -28,7 +15,7 @@ const StickerPackList = styled.div`
 const PAGE_SIZE = 64;
 
 
-const StickerPackListComponent = () => {
+export default function StickerPackListComponent() {
   const {searchResults, showNsfw} = React.useContext(StickersContext);
   // Used by Waypoint to persist the component across re-renders.
   const [cursor, setCursor] = React.useState(0);
@@ -70,12 +57,18 @@ const StickerPackListComponent = () => {
   // ----- Render --------------------------------------------------------------
 
   return (
-    <StickerPackList className="row">
+    <div className="row">
       {renderedSearchResults.map(result => {
-        if (!result.item.meta.nsfw || (result.item.meta.nsfw && showNsfw)){
+        if (!result.item.meta.nsfw || result.item.meta.nsfw && showNsfw){
           return (
-            <div className="col-6 col-md-4 col-lg-3 mb-4" key={result.item.meta.id}>
-              <Link to={`/pack/${result.item.meta.id}`}>
+            <div
+              key={result.item.meta.id}
+              className="col-6 col-md-4 col-lg-3 mb-4"
+            >
+              <Link
+                to={`/pack/${result.item.meta.id}`}
+                className={classes.stickerPackLink}
+              >
                 <StickerPackPreviewCard stickerPack={result.item} />
               </Link>
             </div>
@@ -83,10 +76,11 @@ const StickerPackListComponent = () => {
         }
         return null;
       })}
-      <Waypoint key={cursor} onEnter={loadMore} bottomOffset="-500px" />
-    </StickerPackList>
+      <Waypoint
+        key={cursor}
+        onEnter={loadMore}
+        bottomOffset="-500px"
+      />
+    </div>
   );
-};
-
-
-export default StickerPackListComponent;
+}

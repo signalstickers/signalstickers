@@ -1,32 +1,26 @@
-import { Formik, Form, Field, ErrorMessage, FieldValidator } from 'formik';
-import { cx } from 'linaria';
-import { styled } from 'linaria/react';
+import cx from 'classnames';
+import {
+  Formik,
+  Form,
+  Field,
+  ErrorMessage,
+  FieldValidator,
+  type FormikHelpers
+} from 'formik';
 import React from 'react';
-import { API_URL_CONTRIBUTIONREQUEST, API_URL_REPORT } from 'etc/constants';
 import { Link, useParams } from 'react-router-dom';
 import useAsyncEffect from 'use-async-effect';
+
+import { API_URL_CONTRIBUTIONREQUEST, API_URL_REPORT } from 'etc/constants';
 import { StickerPack } from 'etc/types';
 import { getStickerPack } from 'lib/stickers';
 
-// ----- Styles ----------------------------------------------------------------
-
-const Report = styled.div`
-  /**
-   * Ensures error feedback containers are always visible (even if empty) so
-   * that controls do not jump around as they move between valid and invalid
-   * states.
-   */
-  & .invalid-feedback {
-    display: block;
-  }
-`;
-
-// ----- Types -----------------------------------------------------------------
 
 export interface FormValues {
   secAnswer: string;
   submitterComments: string;
 }
+
 
 /**
  * URL parameters that we expect to have set when this component is rendered.
@@ -35,7 +29,6 @@ export interface UrlParams {
   packId: string;
 }
 
-// ----- Locals ----------------------------------------------------------------
 
 /**
  * Initial values for the form.
@@ -44,6 +37,7 @@ const initialValues: FormValues = {
   secAnswer: '',
   submitterComments: ''
 };
+
 
 /**
  * Validators for each field in our form.
@@ -61,15 +55,12 @@ const validators: Record<string, FieldValidator> = {
   }
 };
 
-// ----- Report ----------------------------------------------------------------
 
-const ReportComponent: React.FunctionComponent = () => {
+export default function ReportPack() {
   const [hasBeenSubmitted, setHasBeenSubmitted] = React.useState(false);
   const [requestSent, setRequestSent] = React.useState(false);
-  const [reportRequestToken, setReportRequestToken] =
-    React.useState('');
-  const [reportRequestQuestion, setReportRequestQuestion] =
-    React.useState('');
+  const [reportRequestToken, setReportRequestToken] = React.useState('');
+  const [reportRequestQuestion, setReportRequestQuestion] = React.useState('');
   const { packId } = useParams<UrlParams>();
   // StickerPack object for the requested pack.
   const [stickerPack, setStickerPack] = React.useState<StickerPack>();
@@ -84,7 +75,8 @@ const ReportComponent: React.FunctionComponent = () => {
       }
 
       setStickerPack(await getStickerPack(packId));
-    } catch (err) {
+    } catch {
+      // TODO: Handle errors.
     }
   }, [packId]);
 
@@ -130,7 +122,7 @@ const ReportComponent: React.FunctionComponent = () => {
    * Called when the form is submitted and has passed validation.
    */
   const onSubmit = React.useCallback(
-    (values: FormValues, { setErrors, setSubmitting }) => {
+    (values: FormValues, { setErrors, setSubmitting }: FormikHelpers<FormValues>) => {
       const reportData = {
         contribution_id: reportRequestToken,
         contribution_answer: values.secAnswer,
@@ -172,10 +164,9 @@ const ReportComponent: React.FunctionComponent = () => {
     [reportRequestQuestion, reportRequestToken]
   );
 
-  // ----- Render --------------------------------------------------------------
 
   return (
-    <Report className="my-4 p-lg-3 px-lg-4">
+    <div className="my-4 p-lg-3 px-lg-4">
       <div className="row">
         <div className="col-12">
           <h1 className="mb-4">Report a pack</h1>
@@ -190,15 +181,13 @@ const ReportComponent: React.FunctionComponent = () => {
         <div className="col-12 col-md-10 offset-md-1">
           <Formik
             initialValues={initialValues}
-            onSubmit={(values, { setErrors, setSubmitting }) =>
-              onSubmit(values, { setErrors, setSubmitting })
-            }
+            onSubmit={onSubmit}
             validateOnChange={hasBeenSubmitted}
             validateOnBlur={hasBeenSubmitted}
           >
             {({ errors, isValidating, isSubmitting }) => (
               <Form noValidate>
-                
+
                 {/* [Field] Pack title */}
                 <div className="form-group">
                   <div className="form-row">
@@ -302,7 +291,7 @@ const ReportComponent: React.FunctionComponent = () => {
                         >
                           Return to homepage
                         </Link>
-                      ) : 
+                      ) :
                         ''
                       }
                     </div>
@@ -313,8 +302,6 @@ const ReportComponent: React.FunctionComponent = () => {
           </Formik>
         </div>
       </div>
-    </Report>
+    </div>
   );
-};
-
-export default ReportComponent;
+}

@@ -1,13 +1,11 @@
 import { StickerPackManifest } from '@signalstickers/stickers-client';
 
 
-// ----- YAML Manifest ---------------------------------------------------------
-
 /**
- * The stickers manifest is an object wherein each key represents a sticker pack
- * ID and each value is an object with the following shape.
+ * Additional data about a sticker pack tracked by Signal Stickers.
  */
-export interface StickerPackYaml {
+export interface StickerPackMetadata {
+  id: string;
   key: string;
   source?: string;
   tags?: Array<string>;
@@ -15,26 +13,8 @@ export interface StickerPackYaml {
   original?: boolean;
   animated?: boolean;
   editorschoice?: boolean;
-  hotviews: number;
-  totalviews: number;
-}
-
-/**
- * A sticker pack "metadata object" represents a single key/value pair from the
- * stickers manifest modified such that the key is added to the object as the
- * 'id' field.
- */
-export interface StickerPackMetadata {
-  id: string;
-  key: StickerPackYaml['key'];
-  source?: StickerPackYaml['source'];
-  tags?: StickerPackYaml['tags'];
-  nsfw?: StickerPackYaml['nsfw'];
-  original?: StickerPackYaml['original'];
-  animated?: StickerPackYaml['animated'];
-  editorschoice?: StickerPackYaml['editorschoice'];
-  hotviews?: StickerPackYaml['hotviews'];
-  totalviews?: StickerPackYaml['totalviews'];
+  hotviews?: number;
+  totalviews?: number;
 
   /**
    * This field is computed at runtime based on whether a pack exists in our
@@ -43,8 +23,6 @@ export interface StickerPackMetadata {
   unlisted: boolean;
 }
 
-
-// ----- Custom Objects --------------------------------------------------------
 
 /**
  * A sticker pack contains all information about a sticker pack from
@@ -56,26 +34,23 @@ export interface StickerPackMetadata {
  */
 export interface StickerPack {
   /**
-   * All information about the sticker pack from stickers.yml.
-   */
-  meta: StickerPackMetadata;
-
-  /**
    * All information about the sticker pack loaded from the Signal API.
    */
   manifest: StickerPackManifest;
+
+  /**
+   * Additional information about the sticker pack from Signal Stickers.
+   */
+  meta: StickerPackMetadata;
 }
 
 
 /**
- * A sticker pack partial is an object that contains all information for a
- * sticker pack from stickers.yml plus its title and author, which are fetched
- * from the Signal API.
- *
- * Sticker pack partials are used as the source of truth for searching,
- * filtering, and displaying preview cards on the home page.
+ * A sticker pack partial is a `StickerPack` whose `manifest` (from Signal) with
+ * its `stickers` omitted. This object is used for searching, filtering, and
+ * displaying preview cards on the home page.
  */
 export interface StickerPackPartial {
+  manifest: Omit<StickerPackManifest, 'stickers'>;
   meta: StickerPack['meta'];
-  manifest: Pick<StickerPackManifest, 'title' | 'author' | 'cover'>;
 }

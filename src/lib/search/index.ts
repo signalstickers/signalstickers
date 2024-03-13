@@ -78,7 +78,7 @@ export interface SearchFactoryOptions<T> {
    * See: https://fusejs.io/examples.html#nested-search
    */
   keys: {
-    [key: string]: Fuse.FuseOptionKey;
+    [key: string]: Fuse.FuseOptionKey<T>;
   };
 }
 
@@ -232,12 +232,12 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
     let remainingQuery = query;
     const attributeQueries: Array<AttributeQuery> = [];
 
-    R.forEach(curPattern => {
+    R.forEach((curPattern: RegExp) => {
       if (remainingQuery.length === 0) {
         return;
       }
 
-      R.forEach(match => {
+      R.forEach((match: RegExpMatchArray) => {
         if (!match.groups) {
           return;
         }
@@ -309,6 +309,7 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
 
       const resultsForAttribute = searcherForAttribute.search(attributeQuery);
 
+      // eslint-disable-next-line unicorn/prefer-ternary
       if (results.length === 0) {
         // If this is the first query that produced results, set results array
         // directly.
@@ -331,13 +332,9 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
       if (querySearcher) {
         const queryResults = querySearcher.search(query);
 
-        if (results.length === 0) {
-          results = queryResults;
-        } else {
-          results = R.innerJoin((a, b) => {
-            return options.identity(a.item) === options.identity(b.item);
-          }, results, queryResults);
-        }
+        results = results.length === 0 ? queryResults : R.innerJoin((a, b) => {
+          return options.identity(a.item) === options.identity(b.item);
+        }, results, queryResults);
       } else {
         throw new Error('[Search] Unable to find the generic searcher.');
       }

@@ -1,5 +1,6 @@
-import { styled } from 'linaria/react';
-import React, { useState, useContext } from 'react';
+import cx from 'classnames';
+import pluralize from 'pluralize';
+import React from 'react';
 import {
   BsArrowLeftShort,
   BsAt,
@@ -10,26 +11,23 @@ import {
   BsTag
 } from 'react-icons/bs';
 import { ImEye } from 'react-icons/im';
-import { Link, useParams, useHistory } from 'react-router-dom';
 import Linkify from 'react-linkify';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import useAsyncEffect from 'use-async-effect';
-import pluralize from 'pluralize';
 
 import ExternalLink from 'components/general/ExternalLink';
 import StickersContext from 'contexts/StickersContext';
-import { GRAY_DARKER } from 'etc/colors';
 import { StickerPack } from 'etc/types';
 import useQuery from 'hooks/use-query';
 import { getStickerPack } from 'lib/stickers';
-import { bp, sendPackBeacon } from 'lib/utils';
+import { sendPackBeacon } from 'lib/utils';
 
 import NsfwModal from './NsfwModal';
 import Sticker from './Sticker';
+import classes from './StickerPackDetail.css';
 import StickerPackError from './StickerPackError';
 import Tag from './Tag';
 
-
-// ----- Types -----------------------------------------------------------------
 
 /**
  * URL parameters that we expect to have set when this component is rendered.
@@ -38,97 +36,6 @@ export interface UrlParams {
   packId: string;
 }
 
-
-// ----- Styles ----------------------------------------------------------------
-
-const StickerPackDetail = styled.div`
-  & h1 {
-    font-size: 2rem;
-  }
-
-  & strong {
-    font-weight: 600;
-  }
-
-  & svg {
-    font-size: 20px;
-
-    &.arrow-left-icon,
-    &.plus-icon {
-      transform: scale(1.2) translateY(2px);
-    }
-
-    &.star-icon {
-      color: gold;
-    }
-  }
-
-  & .list-group-item {
-    align-items: center;
-    background-color: transparent;
-    display: flex;
-    flex-direction: row;
-    font-size: 14px;
-  }
-
-  & .nbStickers {
-    color: ${GRAY_DARKER};
-  }
-
-  @media ${bp('sm')} {
-    border: 1px solid rgba(0, 0, 0, .125);
-    border-radius: 4px;
-  }
-
-  @media ${bp('md')} {
-    & h1 {
-      font-size: 2.5rem;
-    }
-
-    & .list-group-item {
-      font-size: inherit;
-    }
-  }
-
-  .theme-dark & {
-    border-color: ${GRAY_DARKER};
-
-    & .list-group-item {
-      border-color: ${GRAY_DARKER};
-    }
-  }
-`;
-
-/**
- * N.B. We use CSS Grid here rather than the Bootstrap grid because it allows us
- * to specify odd numbers of identically-sized columns, which we cannot do in
- * Bootstrap's 12-column grid.
- */
-const StickerGridView = styled.div`
-  display: grid;
-  grid-gap: 24px;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: space-between;
-
-  @media ${bp('sm')} {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media ${bp('md')} {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  @media ${bp('lg')} {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  @media ${bp('xl')} {
-    grid-template-columns: repeat(6, 1fr);
-  }
-`;
-
-
-// ----- Component -------------------------------------------------------------
 
 /**
  * Custom component for Linkify links that adds "target" and "rel" attributes.
@@ -140,8 +47,8 @@ const linkifyHrefDecorator = (decoratedHref: string, decoratedText: string, key:
 };
 
 
-const StickerPackDetailComponent: React.FunctionComponent = () => {
-  const { setSearchQuery, searcher } = useContext(StickersContext);
+export default function StickerPackDetail() {
+  const { setSearchQuery, searcher } = React.useContext(StickersContext);
   const history = useHistory();
   const query = useQuery();
 
@@ -152,12 +59,12 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   const key = typeof query.key === 'string' ? query.key : undefined;
 
   // StickerPack object for the requested pack.
-  const [stickerPack, setStickerPack] = useState<StickerPack>();
+  const [stickerPack, setStickerPack] = React.useState<StickerPack>();
 
   // One of many possible error codes we may catch when trying to load or
   // decrypt a sticker pack. This will be used to determine what error message
   // to show the user.
-  const [stickerPackError, setStickerPackError] = useState('');
+  const [stickerPackError, setStickerPackError] = React.useState('');
 
 
   /**
@@ -171,7 +78,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
 
       setStickerPack(await getStickerPack(packId, key));
       sendPackBeacon(packId);
-    } catch (err) {
+    } catch (err: any) {
       if (err.code) {
         setStickerPackError(err.code);
       }
@@ -203,8 +110,6 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
     setSearchQuery
   ]);
 
-
-  // ----- Render --------------------------------------------------------------
 
   if (!packId || !stickerPack) {
     // If an error code has been set, display an error alert to the user.
@@ -249,7 +154,9 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
   const author = stickerPack.manifest.author.trim() ? stickerPack.manifest.author : 'Anonymous';
 
   return (
-    <StickerPackDetail className="px-1 px-sm-4 py-4 mt-0 my-sm-4">
+    <div
+      className={cx(classes.stickerPackDetail, 'px-1 px-sm-4 py-4 mt-0 my-sm-4')}
+    >
       {stickerPack.meta.nsfw && <NsfwModal />}
 
       {/* Header */}
@@ -349,7 +256,7 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
       {/* Stickers */}
       <div className="row">
         <div className="col-12">
-          <StickerGridView>
+          <div className={classes.stickerGridView}>
             {stickerPack.manifest.stickers.map(sticker => (
               <Sticker
                 packId={packId}
@@ -358,19 +265,19 @@ const StickerPackDetailComponent: React.FunctionComponent = () => {
                 key={sticker.id}
               />
             ))}
-          </StickerGridView>
+          </div>
         </div>
       </div>
       <div className="nbStickers row justify-content-center align-items-center mt-4">
         <small className="mr-3">
-          {stickerPack.manifest.stickers.length} {pluralize('sticker', stickerPack.manifest.stickers.length)}</small>
+          {stickerPack.manifest.stickers.length}
+          {' '}
+          {pluralize('sticker', stickerPack.manifest.stickers.length)}
+        </small>
         <Link to={`/pack/${packId}/report`}>
           <small>🚨 Report this pack</small>
         </Link>
       </div>
-    </StickerPackDetail>
+    </div>
   );
-};
-
-
-export default StickerPackDetailComponent;
+}
