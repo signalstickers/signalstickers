@@ -1,10 +1,10 @@
 import * as R from 'ramda';
-import React, { createContext, PropsWithChildren } from 'react';
+import React from 'react';
 import useAsyncEffect from 'use-async-effect';
 
 import { StickerPackPartial, StickerPackMetadata } from 'etc/types';
-import { getStickerPackDirectory } from 'lib/stickers';
 import SearchFactory, { SearchResults, Search } from 'lib/search';
+import { getStickerPackDirectory } from 'lib/stickers';
 
 /**
  * Shape of the object provided by this Context.
@@ -59,10 +59,10 @@ export interface StickersContext {
 }
 
 
-const Context = createContext<StickersContext>({} as any);
+const Context = React.createContext<StickersContext>({} as any);
 
 
-export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
+export const Provider = (props: React.PropsWithChildren<Record<string, unknown>>) => {
   const [allStickerPacks, setAllStickerPacks] = React.useState<StickersContext['allStickerPacks']>();
   const [searcher, setSearcher] = React.useState<Search<StickerPackPartial>>();
   const [searchQuery, setSearchQuery] = React.useState<StickersContext['searchQuery']>('');
@@ -131,7 +131,7 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
 
       if (sortKey) {
         orderedSearchResults = orderedSearchResults.sort((a, b) => (
-          (a.item.meta[sortKey as keyof StickerPackMetadata] || 0) > (b.item.meta[sortKey as keyof StickerPackMetadata] || 0) ? -1 : 1
+          (a.item.meta[sortKey as keyof StickerPackMetadata] ?? 0) > (b.item.meta[sortKey as keyof StickerPackMetadata] ?? 0) ? -1 : 1
         ));
       }
 
@@ -153,6 +153,7 @@ export const Provider = (props: PropsWithChildren<Record<string, unknown>>) => {
 
   return (
     <Context.Provider
+      // @ts-expect-error
       value={{
         allStickerPacks,
         searcher,

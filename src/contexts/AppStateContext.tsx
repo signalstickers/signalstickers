@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import * as R from 'ramda';
 import React from 'react';
 
@@ -46,7 +47,7 @@ const initialState: State = {
 const Context = React.createContext<AppStateContext>({} as any);
 
 
-export const Provider = (props: React.PropsWithChildren<Record<string, unknown>>) => {
+export function Provider(props: React.PropsWithChildren<Record<string, unknown>>) {
   /**
    * Initializes app state by iterating over each key in our initial state
    * object and fetching the corresponding value from Local Storage.
@@ -93,7 +94,7 @@ export const Provider = (props: React.PropsWithChildren<Record<string, unknown>>
       {props.children}
     </Context.Provider>
   );
-};
+}
 
 
 export default Context;

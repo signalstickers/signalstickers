@@ -1,21 +1,17 @@
-import { styled } from 'linaria/react';
-import { darken } from 'polished';
+import cx from 'classnames';
 import React from 'react';
 import { BsBoxArrowUpRight, BsList } from 'react-icons/bs';
 import { FaGithub, FaRss, FaTwitter } from 'react-icons/fa';
 import { FiSun, FiMoon } from 'react-icons/fi';
-import { SiKofi } from "react-icons/si";
+import { SiKofi } from 'react-icons/si';
 import { Link, NavLink } from 'react-router-dom';
 
 import signalStickersLogoUrl from 'assets/favicon.png';
 import ExternalLink from 'components/general/ExternalLink';
 import AppStateContext from 'contexts/AppStateContext';
-import { PRIMARY_DARKER } from 'etc/colors';
-import { NAVBAR_HEIGHT } from 'etc/constants';
-import { bp } from 'lib/utils';
 
+import classes from './Navbar.css';
 
-// ----- Types -----------------------------------------------------------------
 
 interface NavLinkDescriptor {
   title: string;
@@ -25,176 +21,61 @@ interface NavLinkDescriptor {
 }
 
 
-// ----- Styles ----------------------------------------------------------------
-
-const StyledNav = styled.nav`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  padding-bottom: 6px;
-  padding-top: 6px;
-
-  /*
-   * N.B. Navbar height will need to increase when the navigation menu is
-   * expanded on mobile.
-   */
-  min-height: ${NAVBAR_HEIGHT}px;
-
-  @media ${bp('md')} {
-    max-height: ${NAVBAR_HEIGHT}px;
-  }
-
-  /**
-   * We need to fight with Bootstrap's specificity a little here, hence the
-   * verbose selector.
-   */
-  &.navbar-dark .navbar-nav .nav-link {
-    color: ${darken(0.07, 'white')};
-    transition: color 0.15s ease;
-    letter-spacing: 0.05em;
-
-    &.active {
-      color: white;
-    }
-
-    & svg {
-      fill: ${darken(0.1, 'white')};
-      transition: fill 0.15s ease;
-    }
-
-    &:hover {
-      color: white;
-
-      & svg {
-        fill: white;
-      }
-    }
-  }
-
-  /* Creates a border between the navbar and menu items when open (on mobile). */
-  & .container::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 200vw;
-    left: -100vw;
-    top: ${NAVBAR_HEIGHT + 1}px;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.33);
-  }
-
-  & .navbar-brand {
-    font-size: 24px;
-    color: white;
-    letter-spacing: 0.02em;
-    padding: 7px 0;
-
-    &:hover {
-      color: white;
-      text-decoration: none;
-    }
-
-    & img {
-      bottom: 2px;
-      height: 1.5em;
-      margin-right: 8px;
-      position: relative;
-      width: auto;
-    }
-  }
-
-  & .navbar-toggler {
-    border: none;
-    font-size: 26px;
-    padding-right: 12px;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  & .navbar-nav {
-    @media ${bp('md', 'max')} {
-      padding-top: 10px;
-      padding-bottom: 4px;
-    }
-  }
-
-  & .menu-icon {
-    fill: ${darken(0.1, 'white')};
-    transform: scale(1.2) translateY(1px);
-  }
-
-  .theme-light & {
-    background-color: var(--primary);
-  }
-
-  .theme-dark & {
-    background-color: ${PRIMARY_DARKER};
-
-    & .navbar-brand img {
-      filter: brightness(0.75);
-    }
-  }
-`;
+const navLinks: Array<NavLinkDescriptor> = [{
+  title: 'Contribute',
+  href: '/contribute'
+}, {
+  title: 'About',
+  href: '/about'
+}, {
+  title: 'Help Signalstickers to stay alive!',
+  href: 'https://ko-fi.com/signalstickers',
+  external: true,
+  children: <>
+    <SiKofi className="d-none d-md-inline" /> Donate
+    <span className="d-md-none">
+      &nbsp;on Ko-Fi <BsBoxArrowUpRight />
+    </span>
+  </>
+}, {
+  title: 'Twitter',
+  href: 'https://twitter.com/signalstickers',
+  external: true,
+  children: <>
+    <span className="d-md-none">
+      Twitter <BsBoxArrowUpRight />
+    </span>
+    <FaTwitter className="d-none d-md-inline" />
+  </>
+}, {
+  title: 'RSS',
+  href: 'https://api.signalstickers.org/feed/rss/',
+  external: true,
+  children: <>
+    <span className="d-md-none">
+      RSS <BsBoxArrowUpRight />
+    </span>
+    <FaRss className="d-none d-md-inline" />
+  </>
+}, {
+  title: 'GitHub Repository',
+  href: 'https://github.com/signalstickers/signalstickers',
+  external: true,
+  children: <>
+    <span className="d-md-none">
+      GitHub <BsBoxArrowUpRight />
+    </span>
+    <FaGithub className="d-none d-md-inline" />
+  </>
+}];
 
 
-// ----- Component -------------------------------------------------------------
+const NAVBAR_TOGGLE_ID = 'navbar-toggle';
 
-const NavbarComponent: React.FunctionComponent = () => {
+
+export default function NavbarComponent() {
   const useAppState = React.useContext(AppStateContext);
   const [darkMode, setDarkMode] = useAppState<boolean>('darkMode');
-
-  const NAVBAR_TOGGLE_ID = 'navbar-toggle';
-
-  const navLinks: Array<NavLinkDescriptor> = [{
-    title: 'Contribute',
-    href: '/contribute'
-  }, {
-    title: 'About',
-    href: '/about'
-  }, {
-    title: 'Help Signalstickers to stay alive!',
-    href: 'https://ko-fi.com/signalstickers',
-    external: true,
-    children: <>
-      <SiKofi className="d-none d-md-inline" /> Donate
-      <span className="d-md-none">
-        &nbsp;on Ko-Fi <BsBoxArrowUpRight />
-      </span>
-    </>
-  }, {
-    title: 'Twitter',
-    href: 'https://twitter.com/signalstickers',
-    external: true,
-    children: <>
-      <span className="d-md-none">
-        Twitter <BsBoxArrowUpRight />
-      </span>
-      <FaTwitter className="d-none d-md-inline" />
-    </>
-  }, {
-    title: 'RSS',
-    href: 'https://api.signalstickers.org/feed/rss/',
-    external: true,
-    children: <>
-      <span className="d-md-none">
-        RSS <BsBoxArrowUpRight />
-      </span>
-      <FaRss className="d-none d-md-inline" />
-    </>
-  }, {
-    title: 'GitHub Repository',
-    href: 'https://github.com/signalstickers/signalstickers',
-    external: true,
-    children: <>
-      <span className="d-md-none">
-        GitHub <BsBoxArrowUpRight />
-      </span>
-      <FaGithub className="d-none d-md-inline" />
-    </>
-  }];
 
 
   /**
@@ -209,14 +90,19 @@ const NavbarComponent: React.FunctionComponent = () => {
    * Closes the navigation menu (on small devices) upon navigation.
    */
   const collapseNavigation = React.useCallback(() => {
+    // @ts-expect-error
     $(`#${NAVBAR_TOGGLE_ID}`).collapse('hide');
   }, []);
 
 
   return (
-    <StyledNav className="navbar navbar-expand-md navbar-dark">
+    <nav className={cx(classes.navbar, 'navbar navbar-expand-md navbar-dark')}>
       <div className="container">
-        <Link to="/" className="navbar-brand" onClick={collapseNavigation}>
+        <Link
+          to="/"
+          className="navbar-brand"
+          onClick={collapseNavigation}
+        >
           <img src={signalStickersLogoUrl} alt="Signal Stickers Logo" /> Signal Stickers
         </Link>
         <button
@@ -280,9 +166,6 @@ const NavbarComponent: React.FunctionComponent = () => {
           </ul>
         </div>
       </div>
-    </StyledNav>
+    </nav>
   );
-};
-
-
-export default NavbarComponent;
+}
