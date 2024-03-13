@@ -508,7 +508,7 @@ const ContributeComponent: React.FunctionComponent = () => {
                       disabled={requestSent}
                       maxLength="400"
                     />
-                    <small className="form-text text-muted">This will only be visible to moderators. Do not enter personnal information. Or just say hello, we love it :-)</small>
+                    <small className="form-text text-muted">This will only be visible to moderators. Do not enter personal information. Or just say hello, we love it :-)</small>
                   </label>
                 </div>
               </div>
