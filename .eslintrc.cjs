@@ -11,5 +11,8 @@ module.exports = {
     // When this rule converts functions to variables, it uses `var`. This does
     // not appear to be configurable.
     'react/function-component-definition': 'off'
-  }
+  },
+  ignorePatterns: [
+    'src/public/**'
+  ]
 };
