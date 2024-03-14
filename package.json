@@ -29,8 +29,11 @@
     "help": "nr --scripts"
   },
   "dependencies": {
-    "@signalstickers/stickers-client": "^1.0.2",
+    "@fontsource/montserrat": "^5.0.17",
+    "@popperjs/core": "^2.11.8",
+    "@signalstickers/stickers-client": "^2.0.0",
     "axios": "^1.6.7",
+    "bootstrap": "^5.3.3",
     "bytes": "^3.1.2",
     "classnames": "^2.5.1",
     "debounce-fn": "^4.0.0",
@@ -40,7 +43,6 @@
     "localforage": "^1.10.0",
     "modernizr": "^3.13.0",
     "p-queue": "^6.6.2",
-    "p-throttle": "^3.1.0",
     "p-wait-for": "^3.2.0",
     "polished": "^4.3.1",
     "query-string": "^6.13.8",
@@ -49,8 +51,6 @@
     "react-linkify": "^1.0.0-alpha",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.4.3",
-    "react-scroll-percentage": "^4.3.2",
-    "react-switch": "^7.0.0",
     "react-syntax-highlighter": "^15.5.0",
     "react-waypoint": "^10.3.0",
     "use-async-effect": "^2.2.7",
@@ -60,7 +60,7 @@
   "devDependencies": {
     "@darkobits/tsx": "^0.12.12",
     "@darkobits/vite-plugin-favicons": "^0.3.2",
-    "@types/bootstrap": "^4.5.1",
+    "@types/bootstrap": "^5.2.10",
     "@types/bytes": "^3.1.4",
     "@types/jquery": "^3.5.29",
     "@types/js-yaml": "^4.0.9",
