@@ -28,8 +28,8 @@ export interface FormValues {
   signalArtUrl: string;
   source: string;
   tags: string;
-  isNsfw?: boolean;
-  isOriginal?: boolean;
+  isNsfw: 'true' | 'false' | null;
+  isOriginal: 'true' | 'false' | null;
   secAnswer: string;
   submitterComments: string;
 }
@@ -48,8 +48,8 @@ const initialValues: FormValues = {
   signalArtUrl: '',
   source: '',
   tags: '',
-  isNsfw: false,
-  isOriginal: false,
+  isNsfw: null,
+  isOriginal: null,
   secAnswer: '',
   submitterComments: ''
 };
@@ -93,13 +93,13 @@ const validators: Record<string, FieldValidator> = {
       return 'Invalid value. Tags must be a list of comma-delimited strings.';
     }
   },
-  isNsfw: (isNsfw?: boolean) => {
-    if (isNsfw === undefined) {
+  isNsfw: (isNsfw: boolean) => {
+    if (isNsfw === null) {
       return 'This field is required.';
     }
   },
-  isOriginal: (isOriginal?: boolean) => {
-    if (isOriginal === undefined) {
+  isOriginal: (isOriginal: boolean) => {
+    if (isOriginal === null) {
       return 'This field is required.';
     }
   },
@@ -198,8 +198,8 @@ export default function ContributePack() {
         pack_key: packKey,
         source: values.source,
         tags: tags,
-        nsfw: values.isNsfw,
-        original: values.isOriginal
+        nsfw: values.isNsfw === 'true' ? true : false,
+        original: values.isOriginal === 'true' ? true : false
       },
       contribution_id: contributionRequestToken,
       contribution_answer: values.secAnswer,
@@ -298,7 +298,7 @@ export default function ContributePack() {
             validateOnChange={hasBeenSubmitted}
             validateOnBlur={hasBeenSubmitted}
           >
-            {({ values, errors, isValidating, isSubmitting, resetForm }) => (
+            {({ errors, isValidating, isSubmitting, resetForm }) => (
               <Form noValidate>
                 {/* [Field] Signal.art Url */}
                 <div className="form-group">
@@ -380,7 +380,6 @@ export default function ContributePack() {
                           validate={validators.isNsfw}
                           className={cx('custom-control-input', errors.isNsfw && 'is-invalid')}
                           value="true"
-                          checked={values.isNsfw}
                           disabled={requestSent}
                         />
                         <label className="custom-control-label" htmlFor="is-nsfw-true">
@@ -397,7 +396,6 @@ export default function ContributePack() {
                           validate={validators.isNsfw}
                           className={cx('custom-control-input', errors.isNsfw && 'is-invalid')}
                           value="false"
-                          checked={values.isNsfw}
                           disabled={requestSent}
                         />
                         <label className="custom-control-label" htmlFor="is-nsfw-false">No</label>
@@ -426,7 +424,6 @@ export default function ContributePack() {
                           validate={validators.isOriginal}
                           className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
                           value="true"
-                          checked={values.isOriginal}
                           disabled={requestSent}
                         />
                         <label className="custom-control-label" htmlFor="is-original-true">
@@ -443,7 +440,6 @@ export default function ContributePack() {
                           validate={validators.isOriginal}
                           className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
                           value="false"
-                          checked={values.isOriginal}
                           disabled={requestSent}
                         />
                         <label className="custom-control-label" htmlFor="is-original-false">No</label>
