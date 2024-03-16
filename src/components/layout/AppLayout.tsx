@@ -1,181 +1,28 @@
-import { css } from 'linaria';
-import { styled } from 'linaria/react';
 import pThrottle from 'p-throttle';
-import { rgba } from 'polished';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+// @ts-expect-error
 import { useScrollPercentage } from 'react-scroll-percentage';
 import useAsyncEffect from 'use-async-effect';
 
 import Navbar from 'components/layout/Navbar';
 import SuspenseFallback from 'components/layout/SuspenseFallback';
 import AppStateContext from 'contexts/AppStateContext';
-import {
-  GRAY_DARKER_2,
-  GRAY_LIGHTER,
-  GRAY_DARKER,
-  PRIMARY_DARKER,
-  PRIMARY_LIGHTER,
-  DARK_THEME_BACKGROUND
-} from 'etc/colors';
+import { PRIMARY_DARKER } from 'etc/colors';
+
+import classes from './AppLayout.css';
 
 
 // Note: Each top-level route should be imported az a lazy-loaded component.
-const Home = React.lazy(async () => import(
-  /* webpackChunkName: "home" */
-  'components/home/Home'
-));
-
-const Pack = React.lazy(async () => import(
-  /* webpackChunkName: "detail" */
-  'components/pack/StickerPackDetail'
-));
-
-const Contribute = React.lazy(async () => import(
-  /* webpackChunkName: "contribute" */
-  'components/contribute/Contribute'
-));
-
-const Report = React.lazy(async () => import(
-  /* webpackChunkName: "report" */
-  'components/report/Report'
-));
-
-const ContributionStatus = React.lazy(async () => import(
-  /* webpackChunkName: "contributionstatus" */
-  'components/contributionstatus/ContributionStatus'
-));
-
-const About = React.lazy(async () => import(
-  /* webpackChunkName: "about" */
-  'components/about/About'
-));
+const Home = React.lazy(async () => import('components/home/Home'));
+const Pack = React.lazy(async () => import('components/pack/StickerPackDetail'));
+const Contribute = React.lazy(async () => import('components/contribute/Contribute'));
+const ContributionStatus = React.lazy(async () => import('components/contributionstatus/ContributionStatus'));
+const About = React.lazy(async () => import('components/about/About'));
+const Report = React.lazy(async () => import('components/report/Report'));
 
 
-// ----- Styles ----------------------------------------------------------------
-
-/**
- * Global styles that we need to define using JavaScript. Exported to appease
- * the linter.
- */
-export const globals = css`
-  :global() {
-    & .theme-light {
-      & .form-control {
-        &:not(.is-invalid) {
-          border-color: rgba(0, 0, 0, 0.125);
-
-          &:focus {
-            box-shadow: 0 0 0 0.15rem ${rgba(GRAY_LIGHTER, 0.25)};
-          }
-        }
-      }
-    }
-
-    & .theme-dark {
-      & .btn-light {
-        background-color: var(--gray-dark);
-        border-color: ${GRAY_DARKER};
-        color: var(--light);
-
-        &:hover {
-          background-color: ${GRAY_DARKER_2};
-          color: var(--light);
-        }
-
-        &:active:focus {
-          background-color: ${GRAY_DARKER_2};
-          color: var(--light);
-        }
-      }
-
-      & .btn-primary,
-      & .btn-success {
-        color: var(--light);
-
-        &:hover {
-          color: var(--light);
-        }
-      }
-
-      & .btn-secondary {
-        background-color: var(--secondary);
-      }
-
-      & .card {
-        background-color: ${GRAY_DARKER_2};
-        border-color: ${GRAY_DARKER};
-        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
-      }
-
-      & .form-control {
-        background-color: ${GRAY_DARKER_2};
-        color: inherit;
-
-        &:not(.is-invalid) {
-          border-color: ${GRAY_DARKER};
-
-          &:focus {
-            border-color: ${GRAY_LIGHTER};
-            box-shadow: 0 0 0 0.15rem ${rgba(GRAY_LIGHTER, 0.25)};
-          }
-        }
-      }
-
-      & .modal-header,
-      & .modal-footer {
-        border-color: ${GRAY_DARKER};
-      }
-
-      /* !important is needed here because Bootstrap uses it as well. */
-      & .text-dark {
-        color: var(--light) !important;
-      }
-
-      & .text-muted {
-        color: ${GRAY_LIGHTER} !important;
-      }
-
-      & a,
-      & .btn.btn-link {
-        color: var(--primary);
-
-        &:hover {
-          color: ${PRIMARY_LIGHTER};
-        }
-      }
-
-      & hr {
-        border-color: ${GRAY_DARKER};
-      }
-
-      & pre {
-        color: var(--light);
-      }
-    }
-  }
-`;
-
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-grow: 1;
-
-  .theme-light & {
-    background-color: var(--white);
-    color: var(--dark);
-  }
-
-  .theme-dark & {
-    background-color: ${DARK_THEME_BACKGROUND};
-    color: var(--light);
-  }
-`;
-
-
-// ----- Component -------------------------------------------------------------
-
-const AppLayout: React.FunctionComponent = () => {
+export default function AppLayout() {
   const useAppState = React.useContext(AppStateContext);
   const [darkMode] = useAppState<boolean>('darkMode');
   const [ref, percentage] = useScrollPercentage();
@@ -231,9 +78,9 @@ const AppLayout: React.FunctionComponent = () => {
 
   return (<>
     <Navbar />
-    <StyledContainer ref={ref}>
+    <div className={classes.container} ref={ref}>
       <div className="container d-flex flex-column flex-grow-1">
-        <Suspense fallback={<SuspenseFallback />}>
+        <React.Suspense fallback={<SuspenseFallback />}>
           <Switch>
             <Route exact path="/">
               <Home />
@@ -254,11 +101,8 @@ const AppLayout: React.FunctionComponent = () => {
               <About />
             </Route>
           </Switch>
-        </Suspense>
+        </React.Suspense>
       </div>
-    </StyledContainer>
+    </div>
   </>);
-};
-
-
-export default AppLayout;
+}

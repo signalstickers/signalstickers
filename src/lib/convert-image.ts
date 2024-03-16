@@ -10,6 +10,7 @@ import imageType from 'image-type';
 import pQueue from 'p-queue';
 import pWaitFor from 'p-wait-for';
 import {detectWebpSupport} from 'webp-hero/dist/detect-webp-support';
+
 import type { WebpMachine } from 'webp-hero/dist/webp-machine';
 
 
@@ -81,6 +82,7 @@ const imageConversionQueue = new pQueue({concurrency: 1});
  * Provided a UInt8Array or Buffer containing image data, returns the image's
  * MIME type.
  */
+// eslint-disable-next-line no-undef
 function getImageMimeType(rawImageData: Uint8Array | Buffer): string {
   const typeInfo = imageType(rawImageData);
 
@@ -99,6 +101,7 @@ function uInt8ToBase64(data: Uint8Array): string {
   let strData = '';
 
   for (const byte of data) {
+    // eslint-disable-next-line unicorn/prefer-code-point
     strData += String.fromCharCode(byte);
   }
 
@@ -127,7 +130,7 @@ export async function convertImage(rawImageData: Uint8Array) {
         // @ts-expect-error (`busy` is not an exposed member of WebpMachine.)
         await pWaitFor(() => converter.busy === false);
         return await converter.decode(rawImageData);
-      } catch (err) {
+      } catch (err: any) {
         console.error(`[convertImage] Image conversion failed: ${err.message}`);
         throw err;
       }

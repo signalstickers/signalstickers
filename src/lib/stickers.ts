@@ -11,14 +11,14 @@
  */
 import {
   getStickerPackManifest,
-  getStickerInPack,
-  getEmojiForSticker
+  getStickerInPack
+
 } from '@signalstickers/stickers-client';
 import axios from 'axios';
 import LocalForage from 'localforage';
 import * as R from 'ramda';
-import { API_URL_PACKS } from 'etc/constants';
 
+import { API_URL_PACKS } from 'etc/constants';
 import {
   StickerPack,
   StickerPackPartial,
@@ -89,7 +89,7 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
       // Build the metadata object using information from a StickerPackPartial
       // in the directory or, if the requested sticker pack is unlisted, just
       // the id and key.
-      const partial = R.find<StickerPackPartial>(R.pathEq(['meta', 'id'], id), directory);
+      const partial = R.find<StickerPackPartial>(R.pathEq(id, ['meta', 'id']), directory);
 
       // Use the key from the directory if possible. Otherwise, use the key
       // provided by the caller.
@@ -119,7 +119,7 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
     }
 
     return stickerPackCache.get(cacheKey) as StickerPack;
-  } catch (err) {
+  } catch (err: any) {
     if (err.isAxiosError && err.response.status === 403) {
       throw new ErrorWithCode('MANIFEST_DECRYPT', `[getStickerPack] ${err.stack}`);
     }
@@ -153,7 +153,7 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
     }
 
     return await stickerImageCache.getItem(cacheKey) as string;
-  } catch (err) {
+  } catch (err: any) {
     if (!isStorageUnavailableError(err)) {
       throw new Error(`[getConvertedStickerInPack] Error getting sticker: ${err.message}`);
     }
@@ -165,6 +165,4 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
 }
 
 
-export {
-  getEmojiForSticker
-};
+export {getEmojiForSticker} from '@signalstickers/stickers-client';

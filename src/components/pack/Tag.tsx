@@ -1,6 +1,6 @@
-import {cx} from 'linaria';
-import React, {useContext} from 'react';
-import {useHistory} from 'react-router-dom';
+import cx from 'classnames';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import StickersContext from 'contexts/StickersContext';
 
@@ -11,9 +11,9 @@ export interface TagProps {
 }
 
 
-const TagComponent: React.FunctionComponent<TagProps> = ({className, label}) => {
+export default function Tag({className, label}: TagProps) {
   // Current search query, will be used if the users clicks on tags
-  const {searcher, setSearchQuery} = useContext(StickersContext);
+  const {searcher, setSearchQuery} = React.useContext(StickersContext);
   const history = useHistory();
 
   /**
@@ -47,7 +47,4 @@ const TagComponent: React.FunctionComponent<TagProps> = ({className, label}) => 
       {label}
     </button>
   );
-};
-
-
-export default TagComponent;
+}

@@ -1,5 +1,5 @@
-import React from 'react';
 import * as R from 'ramda';
+import React from 'react';
 
 
 export type ExternalLinkProps = Omit<React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, 'target' | 'rel'>;

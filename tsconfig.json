@@ -1,12 +1,14 @@
 {
-  "extends": "./node_modules/@darkobits/ts-unified/dist/config/tsconfig.json",
+  "extends": "@darkobits/tsx/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "jsx": "react",
-    "lib": ["DOM", "es2020"],
-    "paths": {"*": ["*", "src/*"]},
-    "plugins": [
-      {"name": "typescript-styled-plugin"}
+    "baseUrl": "src",
+    "outDir": "dist",
+    "types": [
+      "jquery",
+      "node",
+      "vite/client",
+      // "unplugin-icons/types/react",
+      "vite-plugin-svgr/client"
     ]
   }
 }

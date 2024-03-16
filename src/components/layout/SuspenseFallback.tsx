@@ -1,15 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {styled} from 'linaria/react';
+import React from 'react';
 
 
-const Spinner = styled.div`
-  border-width: 2px;
-  color: rgba(0, 0, 0, 0.5);
-`;
-
-
-const SuspenseFallbackComponent: React.FunctionComponent = () => {
-  const [showSpinner, setShowSpinner] = useState(false);
+export default function SuspenseFallback() {
+  const [showSpinner, setShowSpinner] = React.useState(false);
 
   /**
    * Time in milliseconds to wait after the component mounts before showing the
@@ -18,7 +11,7 @@ const SuspenseFallbackComponent: React.FunctionComponent = () => {
    */
   const SPINNER_DELAY = 2000;
 
-  useEffect(() => {
+  React.useEffect(() => {
     const timeoutHandle = setTimeout(() => {
       setShowSpinner(true);
     }, SPINNER_DELAY);
@@ -30,12 +23,18 @@ const SuspenseFallbackComponent: React.FunctionComponent = () => {
 
   return (
     <div className="d-flex align-items-center justify-content-center flex-grow-1">
-      {showSpinner && <Spinner className="spinner-border" role="status">
-        <span className="sr-only">Loading...</span>
-      </Spinner>}
+      {showSpinner && (
+        <div
+          className="spinner-border"
+          role="status"
+          style={{
+            borderWidth: '2px',
+            color: 'rgba(0, 0, 0, 0.5)'
+          }}
+        >
+          <span className="sr-only">Loading...</span>
+        </div>
+      )}
     </div>
   );
-};
-
-
-export default SuspenseFallbackComponent;
+}

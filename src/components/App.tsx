@@ -1,15 +1,16 @@
-import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import { IconContext } from 'react-icons';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { sendHomeBeacon } from 'lib/utils';
+
 import AppLayout from 'components/layout/AppLayout';
-import { Provider as StickersContextProvider } from 'contexts/StickersContext';
 import { Provider as AppStateContextProvider } from 'contexts/AppStateContext';
+import { Provider as StickersContextProvider } from 'contexts/StickersContext';
+import { sendHomeBeacon } from 'lib/utils';
 
 
-const App: React.FunctionComponent = () => {
+export default function App() {
   sendHomeBeacon();
+
   return (
     <React.StrictMode>
       <IconContext.Provider
@@ -33,7 +34,4 @@ const App: React.FunctionComponent = () => {
       </IconContext.Provider>
     </React.StrictMode>
   );
-};
-
-
-export default hot(App);
+}

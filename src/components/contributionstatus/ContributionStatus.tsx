@@ -1,16 +1,16 @@
+import cx from 'classnames';
 import {
   Formik,
   Form,
   Field,
   ErrorMessage,
-  FieldValidator
+  FieldValidator,
+  type FormikHelpers
 } from 'formik';
-import { cx } from 'linaria';
-import { styled } from 'linaria/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SIGNAL_ART_URL_PATTERN, API_URL_STATUS } from 'etc/constants';
 
+import { SIGNAL_ART_URL_PATTERN, API_URL_STATUS } from 'etc/constants';
 
 /**
  * Test pack:
@@ -18,27 +18,10 @@ import { SIGNAL_ART_URL_PATTERN, API_URL_STATUS } from 'etc/constants';
  */
 
 
-// ----- Styles ----------------------------------------------------------------
-
-const ContributionStatus = styled.div`
-  /**
-   * Ensures error feedback containers are always visible (even if empty) so
-   * that controls do not jump around as they move between valid and invalid
-   * states.
-   */
-  & .invalid-feedback {
-    display: block;
-  }
-`;
-
-// ----- Types -----------------------------------------------------------------
-
 export interface FormValues {
   signalArtUrl: string;
 }
 
-
-// ----- Locals ----------------------------------------------------------------
 
 /**
  * Initial values for the form.
@@ -46,6 +29,7 @@ export interface FormValues {
 const initialValues: FormValues = {
   signalArtUrl: ''
 };
+
 
 /**
  * Validators for each field in our form.
@@ -64,23 +48,20 @@ const validators: Record<string, FieldValidator> = {
 };
 
 
-// ----- Component -------------------------------------------------------------
-
-const ContributionStatusComponent: React.FunctionComponent = () => {
+export default function ContributionStatus() {
   const [packInfo, setPackInfo] = React.useState({
     error: '',
     pack_id: '',
     pack_title: '',
     status: '',
     status_comments: ''
-  }
-  );
+  });
 
 
   /**
    * Called when the form is submitted and has passed validation.
    */
-  const onSubmit = React.useCallback((values: FormValues, { setSubmitting }) => {
+  const onSubmit = React.useCallback((values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
     const matches = new RegExp(SIGNAL_ART_URL_PATTERN).exec(values.signalArtUrl);
     if (!matches) {
       throw new Error('Unable to extract pack ID and pack key from signal.art URL.');
@@ -114,10 +95,8 @@ const ContributionStatusComponent: React.FunctionComponent = () => {
   }, [packInfo]);
 
 
-  // ----- Render --------------------------------------------------------------
-
   return (
-    <ContributionStatus className="my-4 p-lg-3 px-lg-4">
+    <div className="my-4 p-lg-3 px-lg-4">
       <div className="row">
         <div className="col-12">
           <h1 className="mb-4">Contribution status</h1>
@@ -168,57 +147,55 @@ const ContributionStatusComponent: React.FunctionComponent = () => {
         <div className="col-12 col-md-10 offset-md-1">
           <Formik
             initialValues={initialValues}
-            onSubmit={(values, { setErrors, setSubmitting }) => onSubmit(values, { setErrors, setSubmitting })}
-          >{({ errors, isValidating, isSubmitting }) => (
-            <Form noValidate>
+            onSubmit={(values, helpers) => onSubmit(values, helpers)}
+          >
+            {({ errors, isValidating, isSubmitting }) => (
+              <Form noValidate>
 
-              {/* [Field] Signal.art Url */}
-              <div className="form-group">
-                <div className="form-row">
-                  <label className={cx('col-12', errors.signalArtUrl && 'text-danger')} htmlFor="signal-art-url">
-                    Signal.art URL:
-                    <Field
-                      type="text"
-                      id="signal-art-url"
-                      name="signalArtUrl"
-                      validate={validators.signalArtUrl}
-                      className={cx('form-control', 'mt-2', errors.signalArtUrl && 'is-invalid')}
-                      placeholder="https://signal.art/addstickers/#pack_id=<your pack id>&pack_key=<your pack key>"
-                    />
-                    <div className="invalid-feedback">
-                      <ErrorMessage name="signalArtUrl" />&nbsp;
-                    </div>
-                  </label>
-                </div>
-              </div>
-
-              {/* [Control] Submit*/}
-              <div className="form-group">
-                <div className="form-row">
-                  <div className="col-12">
-                    <button
-                      type="submit"
-                      className="btn btn-block btn-lg btn-primary"
-                      disabled={isSubmitting || isValidating}
-                    >
-                      {isSubmitting ?
-                        <span>Checking...</span>
-                        : <span>Check status</span>
-                      }
-                      {isSubmitting}
-                    </button>
+                {/* [Field] Signal.art Url */}
+                <div className="form-group">
+                  <div className="form-row">
+                    <label className={cx('col-12', errors.signalArtUrl && 'text-danger')} htmlFor="signal-art-url">
+                      Signal.art URL:
+                      <Field
+                        type="text"
+                        id="signal-art-url"
+                        name="signalArtUrl"
+                        validate={validators.signalArtUrl}
+                        className={cx('form-control', 'mt-2', errors.signalArtUrl && 'is-invalid')}
+                        placeholder="https://signal.art/addstickers/#pack_id=<your pack id>&pack_key=<your pack key>"
+                      />
+                      <div>
+                        <ErrorMessage name="signalArtUrl" />&nbsp;
+                      </div>
+                    </label>
                   </div>
                 </div>
-              </div>
 
-            </Form>
-          )}
+                {/* [Control] Submit*/}
+                <div className="form-group">
+                  <div className="form-row">
+                    <div className="col-12">
+                      <button
+                        type="submit"
+                        className="btn btn-block btn-lg btn-primary"
+                        disabled={isSubmitting || isValidating}
+                      >
+                        {isSubmitting ?
+                          <span>Checking...</span>
+                        : <span>Check status</span>
+                        }
+                        {isSubmitting}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </Form>
+            )}
           </Formik>
         </div>
       </div>
-    </ContributionStatus>
+    </div>
   );
-};
-
-
-export default ContributionStatusComponent;
+}

@@ -10,6 +10,7 @@ export default class ErrorWithCode extends Error {
 
   static from = (code: string, err: Error) => {
     const errWithCode = new ErrorWithCode(code, err.message);
+    // @ts-expect-error
     errWithCode.stack = err.stack;
     return errWithCode;
   };

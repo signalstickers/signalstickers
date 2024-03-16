@@ -1,5 +1,6 @@
 import bytes from 'bytes';
 import * as R from 'ramda';
+
 import { BOOTSTRAP_BREAKPOINTS, API_URL_PACKS_PING } from 'etc/constants';
 
 
@@ -7,7 +8,7 @@ import { BOOTSTRAP_BREAKPOINTS, API_URL_PACKS_PING } from 'etc/constants';
  * Prints current storage usage and quotas to the console.
  */
 export async function printStorageUsage() {
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.NODE_ENV === 'development') {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     const storageEstimate = navigator.storage && await navigator.storage.estimate();
 
@@ -56,11 +57,11 @@ export function bp(bpName: keyof typeof BOOTSTRAP_BREAKPOINTS, minMax: 'min' | '
  * Used for analytics.
  */
 export function sendPackBeacon(packId: string) {
-  if (process.env.NODE_ENV === 'production') {
+  if (import.meta.env.NODE_ENV === 'production') {
     try {
       const beaconData = new Blob([`target=${packId}`], { type: 'application/x-www-form-urlencoded' });
       navigator.sendBeacon(API_URL_PACKS_PING, beaconData);
-    } catch (err) {
+    } catch (err: any) {
       console.log(`${err}. No worries, it's okay!`);
     }
   }

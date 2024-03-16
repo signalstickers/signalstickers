@@ -1,17 +1,21 @@
 import React from 'react';
 import Switch from 'react-switch';
+
 import { PRIMARY_DARKER, PRIMARY_LIGHTER } from 'etc/colors';
 
-const ToggleSwitch: React.FunctionComponent<{ id: string; onToggle: CallableFunction}> = ({id, onToggle}) => {
 
+export interface ToggleSwitchProps {
+  id: string;
+  onToggle: CallableFunction;
+}
+
+
+export default function ToggleSwitch({ id, onToggle }: ToggleSwitchProps) {
   const [checked, setChecked] = React.useState(false);
-
 
   const handleChange = React.useCallback(() => {
     setChecked(state => !state);
-  }, [
-    setChecked
-  ]);
+  }, [setChecked]);
 
   React.useEffect(() => {
     onToggle(checked);
@@ -34,6 +38,4 @@ const ToggleSwitch: React.FunctionComponent<{ id: string; onToggle: CallableFunc
       id={id}
     />
   );
-};
-
-export default ToggleSwitch;
+}

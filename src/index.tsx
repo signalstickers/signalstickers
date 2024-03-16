@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '@darkobits/tsx/lib/runtime';
 
 import App from 'components/App';
 import { printStorageUsage } from 'lib/utils';
-import './index.css';
+// import './index.css';
+import 'etc/global-styles.css';
 
 void printStorageUsage();
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+render('#root', <App />);

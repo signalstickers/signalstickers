@@ -1,32 +1,16 @@
-import {styled} from 'linaria/react';
 import React from 'react';
 
+import ExternalLink from 'components/general/ExternalLink';
 import Context from 'contexts/StickersContext';
+import { SEARCH_QUERY_PARAM } from 'etc/constants';
 import useQuery from 'hooks/use-query';
 import useUpdateUrl from 'hooks/use-update-url';
-
-import ExternalLink from 'components/general/ExternalLink';
-import {SEARCH_QUERY_PARAM} from 'etc/constants';
-import {bp} from 'lib/utils';
 
 import SearchInput from './SearchInput';
 import StickerPackList from './SearchResults';
 
 
-// ----- Styles ----------------------------------------------------------------
-
-const StyledHome = styled.div`
-  @media ${bp('sm', 'max')} {
-    & .intro {
-      font-size: 14px;
-    }
-  }
-`;
-
-
-// ----- Home ------------------------------------------------------------------
-
-const HomeComponent: React.FunctionComponent = () => {
+export default function Home() {
   const {searchQuery, setSearchQuery} = React.useContext(Context);
   const query = useQuery();
   const updateUrl = useUpdateUrl();
@@ -36,7 +20,7 @@ const HomeComponent: React.FunctionComponent = () => {
    * Perform a one-time URL-to-state sync when the component mounts.
    */
   React.useEffect(() => {
-    const searchQueryFromUrl = query[SEARCH_QUERY_PARAM] ? query[SEARCH_QUERY_PARAM] : null;
+    const searchQueryFromUrl = query[SEARCH_QUERY_PARAM] ?? null;
 
     if (typeof searchQueryFromUrl === 'string') {
       setSearchQuery(searchQueryFromUrl);
@@ -79,7 +63,7 @@ const HomeComponent: React.FunctionComponent = () => {
 
 
   return (
-    <StyledHome>
+    <>
       <div className="row">
         <div className="col-12 mt-4 mb-1 mb-md-3 pt-lg-2">
           <p className="intro">
@@ -95,9 +79,6 @@ const HomeComponent: React.FunctionComponent = () => {
         </div>
       </div>
       <StickerPackList />
-    </StyledHome>
+    </>
   );
-};
-
-
-export default HomeComponent;
+}

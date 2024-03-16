@@ -145,7 +145,7 @@ const Links = () => {
 
 // ----- Component -------------------------------------------------------------
 
-const AboutComponent: React.FunctionComponent = () => {
+export default function AboutComponent() {
   return (
     <div className="my-4 p-lg-3">
       <div className="row">
@@ -156,9 +156,12 @@ const AboutComponent: React.FunctionComponent = () => {
             the secure messenger. All content on this website is copyrighted by their respective owners.
             This website is <b>not affiliated with Signal</b> or Open Whisper Systems.
           </p>
-          <p>Signal Stickers is free and open-source. You can support us and help pay hosting fees by  <ExternalLink href="https://ko-fi.com/signalstickers" title="Donate on Ko-Fi!">
-          <SiKofi className="d-none d-md-inline" /> donating on Ko-Fi.
-          </ExternalLink></p>
+          <p>
+            Signal Stickers is free and open-source. You can support us and help pay hosting fees by
+            {' '}
+            <ExternalLink href="https://ko-fi.com/signalstickers" title="Donate on Ko-Fi!">
+              <SiKofi className="d-none d-md-inline" /> donating on Ko-Fi.
+            </ExternalLink></p>
           <p>
             <ExternalLink href="https://twitter.com/search?q=%23makeprivacystick&src=typed_query">
               <strong>#makeprivacystick</strong>
@@ -176,7 +179,4 @@ const AboutComponent: React.FunctionComponent = () => {
       <PrivacyPolicy />
     </div>
   );
-};
-
-
-export default AboutComponent;
+}

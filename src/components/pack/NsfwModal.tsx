@@ -1,64 +1,19 @@
-import {styled} from 'linaria/react';
-import Modernizr from 'modernizr';
+import cx from 'classnames';
+import React from 'react';
 import {BsExclamationTriangle} from 'react-icons/bs';
 import {Link} from 'react-router-dom';
-import React, {useEffect} from 'react';
 
 import ExternalLink from 'components/general/ExternalLink';
-import {DARK_THEME_BACKGROUND} from 'etc/colors';
-import {NAVBAR_HEIGHT} from 'etc/constants';
+
+import classes from './NsfwModal.css';
 
 
-// ----- Styles ----------------------------------------------------------------
-
-/**
- * These styles turn Bootstrap's .modal class into a custom backdrop that does
- * not cover the navbar. We then hide Bootstrap's .modal-backdrop element when
- * the component is mounted.
- */
-const NsfwModal = styled.div`
-  background: rgba(255, 255, 255, ${() => (Modernizr.backdropfilter ? 0.75 : 1)});
-  backdrop-filter: blur(20px);
-  margin-top: ${NAVBAR_HEIGHT}px;
-  margin-bottom: ${NAVBAR_HEIGHT}px;
-
-  & .modal-dialog {
-    min-height: calc(100% - ${Number(NAVBAR_HEIGHT)}px);
-    margin: 0 auto ${NAVBAR_HEIGHT}px auto;
-
-    &:before {
-      height: 0;
-    }
-  }
-
-  & .modal-content {
-    border-color: rgba(0, 0, 0, 0.12);
-    box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.12);
-  }
-
-  & svg {
-    transform: translateY(-2px);
-  }
-
-  .theme-dark & {
-    background: rgba(42, 42, 42, ${() => (Modernizr.backdropfilter ? 0.75 : 1)});
-
-    & .modal-content {
-      /* background-color: blue !important; */
-      background-color: ${DARK_THEME_BACKGROUND};
-      color: var(--white);
-    }
-  }
-`;
-
-
-// ----- Component -------------------------------------------------------------
-
-const NsfwModalComponent: React.FunctionComponent = () => {
+export default function NsfwModal() {
   /**
    * Show the modal when the component is rendered for the first time.
    */
-  useEffect(() => {
+  React.useEffect(() => {
+    // @ts-expect-error
     $('#nsfw-modal').modal({
       show: true,
       // These two settings ensure the modal cannot be dismissed by clicking the
@@ -81,14 +36,18 @@ const NsfwModalComponent: React.FunctionComponent = () => {
   /**
    * Hides the modal when the 'Show pack' button is clicked.
    */
-  const onHideNsfwModalClick = () => {
+  const onHideNsfwModalClick = React.useCallback(() => {
+    // @ts-expect-error
     $('#nsfw-modal').modal('hide');
-  };
+  }, []);
 
-  // ----- Render --------------------------------------------------------------
 
   return (
-    <NsfwModal id="nsfw-modal" className="modal" role="dialog">
+    <div
+      id="nsfw-modal"
+      className={cx(classes.nsfwModal, 'modal')}
+      role="dialog"
+    >
       <div className="modal-dialog modal-dialog-centered" role="document">
         <div className="modal-content">
           <div className="modal-header">
@@ -122,9 +81,6 @@ const NsfwModalComponent: React.FunctionComponent = () => {
           </div>
         </div>
       </div>
-    </NsfwModal>
+    </div>
   );
-};
-
-
-export default NsfwModalComponent;
+}

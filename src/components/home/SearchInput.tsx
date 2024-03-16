@@ -1,162 +1,17 @@
+import cx from 'classnames';
 import debounceFn from 'debounce-fn';
-import { styled } from 'linaria/react';
 import React from 'react';
-import ToggleSwitch from './ToggleSwitch';
-import { HashLink } from 'react-router-hash-link';
 import { BsSearch, BsX } from 'react-icons/bs';
 import { FaInfoCircle } from 'react-icons/fa';
+import { HashLink } from 'react-router-hash-link';
 
 import StickersContext from 'contexts/StickersContext';
-import { DANGER_SATURATED, GRAY_DARKER_2 } from 'etc/colors';
+
+import classes from './SearchInput.css';
+import ToggleSwitch from './ToggleSwitch';
 
 
-// ----- Styles ----------------------------------------------------------------
-
-const SearchInput = styled.div`
-  position: relative;
-
-  & input {
-    padding-left: 42px;
-    padding-right: 72px;
-  }
-
-  & input:focus,
-  & button:active:focus {
-    box-shadow: none;
-    outline: none;
-  }
-
-  & label {
-    cursor: pointer;
-  }
-`;
-
-const SearchPrepend = styled.div`
-  align-items: center;
-  display: flex;
-  font-size: 18px;
-  height: 100%;
-  left: 0;
-  padding-left: 14px;
-  position:absolute;
-  top: 0;
-  transition: color 0.2s ease-in-out;
-  z-index: 3;
-`;
-
-const SearchHelp = styled.div`
-  align-items: center;
-  display: flex;
-  height: 100%;
-  opacity: 0;
-  padding: 3px 4px 0px 4px;
-  pointer-events: none;
-  position: absolute;
-  right: 50px;
-  top: -2px;
-  transition: opacity 0.2s ease-in-out;
-  transform: translateY(2px);
-  z-index: 3;
-
-  & a {
-    opacity: 0.3;
-    transition: opacity 0.15s ease-in-out;
-
-    &:hover {
-      opacity: 0.5;
-    }
-  }
-
-  & .icon {
-    font-size: 18px;
-  }
-`;
-
-const SearchClear = styled.div`
-  position:absolute;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  right: 0;
-  top: 0;
-  padding-right: 4px;
-  z-index: 3;
-
-  & button {
-    font-size: 20px;
-
-    & .icon {
-      opacity: 0.8;
-      color: ${DANGER_SATURATED};
-      transition: opacity 0.2s ease-in-out, transform 0.1s ease;
-      transform: scale(1.5);
-    }
-
-    &:hover .icon {
-      opacity: 1;
-      transform: scale(1.6);
-    }
-
-    &:active {
-      box-shadow: none;
-      outline: none;
-
-      & .icon {
-        transform: scale(1.5);
-      }
-    }
-
-    &:focus {
-      box-shadow: none;
-      outline: none;
-    }
-  }
-
-  .theme-dark & {
-    & .icon {
-      opacity: 0.6;
-    }
-  }
-`;
-
-const MiniTag = styled.button`
-  background-color: transparent;
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  font-size: 12px;
-  font-weight: 700;
-  padding: 0 5px;
-
-  &:hover {
-    color: var(--primary);
-
-    &:active {
-      border-color: var(--primary) !important;
-    }
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 0.12rem rgba(var(--primary), 0.25);
-  }
-
-  .theme-dark & {
-    background-color: ${GRAY_DARKER_2};
-  }
-`;
-
-const MiniAnimated = styled(MiniTag)`
-  border: 1px solid var(--orange);
-  color: var(--orange);
-`;
-
-const MiniEditorschoice = styled(MiniTag)`
-  border: 1px solid #9400d3;
-  color: #9400d3;
-`;
-
-// ----- Component -------------------------------------------------------------
-
-const SearchInputComponent: React.FunctionComponent = () => {
+export default function SearchInputComponent() {
   const { searcher, searchQuery, searchResults, setSearchQuery, sortOrder, setSortOrder, setShowNsfw} = React.useContext(StickersContext);
   const [searchQueryInputValue, setSearchQueryInputValue] = React.useState('');
   const searchHelpRef = React.useRef<HTMLDivElement>(null);
@@ -221,33 +76,32 @@ const SearchInputComponent: React.FunctionComponent = () => {
    * [Event Handler] Sets the search query when a tag or the 'animated'
    * suggestion is clicked.
    */
-  const onSuggestionClick = React.useCallback((event: React.SyntheticEvent) => {
+  const onSuggestionClick = React.useCallback((event: React.SyntheticEvent<HTMLButtonElement>) => {
     if (searcher && event.currentTarget.textContent) {
-      switch (event.currentTarget.getAttribute('data-suggestion-type')) {
-        case 'tag': {
+      switch (event.currentTarget.dataset.suggestionType) {
+        case 'tag':
           setSearchQuery(searcher.buildQueryString({
             attributeQueries: [{
               tag: event.currentTarget.textContent
             }]
           }));
           break;
-        }
-        case 'animated': {
+
+        case 'animated':
           setSearchQuery(searcher.buildQueryString({
             attributeQueries: [{
               animated: 'true'
             }]
           }));
           break;
-        }
-        case 'editorschoice': {
+
+        case 'editorschoice':
           setSearchQuery(searcher.buildQueryString({
             attributeQueries: [{
               editorschoice: 'true'
             }]
           }));
           break;
-        }
       }
     }
   }, [
@@ -350,30 +204,30 @@ const SearchInputComponent: React.FunctionComponent = () => {
    * [Memo] JSX fragment containing the set of suggested tags.
    */
   const tagsFragment = React.useMemo(() => suggestedTags.map(tag => (
-    <MiniTag
+    <button
       type="button"
       key={tag}
-      className="btn mr-1"
+      className={cx(classes.miniTag, 'btn', 'mr-1')}
       onClick={onSuggestionClick}
       data-suggestion-type="tag"
     >
       {tag}
-    </MiniTag>
+    </button>
   )), [suggestedTags]);
 
 
   // ----- Render --------------------------------------------------------------
 
   return (
-    <SearchInput className="form-group mb-4">
+    <div className={cx(classes.searchInputWrapper, 'form-group', 'mb-4')}>
       <div className="mb-1 position-relative">
-        <SearchPrepend>
+        <div className={classes.searchPrepend}>
           <BsSearch />
-        </SearchPrepend>
+        </div>
         <input
           type="text"
           key="search"
-          className="form-control form-control-lg"
+          className={cx(classes.searchInput, 'form-control', 'form-control-lg')}
           onBlur={handleInputBlur}
           onChange={onSearchQueryInputChange}
           onFocus={handleInputFocus}
@@ -385,21 +239,21 @@ const SearchInputComponent: React.FunctionComponent = () => {
           autoCorrect="off"
           spellCheck="false"
         />
-        <SearchHelp ref={searchHelpRef}>
-          <HashLink to="/about#searching" title="Search Help">
-            <FaInfoCircle className="text-muted" />
+        <div className={classes.searchHelp} ref={searchHelpRef}>
+          <HashLink to="/about#searching" title="Search Help" className={classes.searchHelpLink}>
+            <FaInfoCircle className={cx(classes.searchHelpIcon, 'text-muted')} />
           </HashLink>
-        </SearchHelp>
-        <SearchClear>
+        </div>
+        <div className={classes.searchClear}>
           <button
             type="button"
-            className="btn btn-link border-0"
+            className={cx(classes.searchClearButton, 'btn', 'btn-link', 'border-0')}
             title="Clear Search Results"
             onClick={clearSearchResults}
           >
-            <BsX />
+            <BsX className={classes.searchClearIcon} />
           </button>
-        </SearchClear>
+        </div>
       </div>
       <div className="d-flex justify-content-between">
         <div>
@@ -407,22 +261,26 @@ const SearchInputComponent: React.FunctionComponent = () => {
             Suggested: {' '}
           </small>
           <br className="d-inline d-md-none" />
-          <MiniAnimated
+          <button
             type="button"
-            className="btn mr-1"
+            className={cx(
+              classes.miniTagAnimated,
+              'btn',
+              'mr-1'
+            )}
             onClick={onSuggestionClick}
             data-suggestion-type="animated"
           >
             Animated
-          </MiniAnimated>
-          <MiniEditorschoice
+          </button>
+          <button
             type="button"
-            className="btn mr-1"
+            className={cx(classes.miniTagEditorsChoice, 'btn', 'mr-1')}
             onClick={onSuggestionClick}
             data-suggestion-type="editorschoice"
           >
             Editor's choice
-          </MiniEditorschoice>
+          </button>
           {tagsFragment}
         </div>
         <div className="text-muted">
@@ -446,14 +304,11 @@ const SearchInputComponent: React.FunctionComponent = () => {
           </select>
         </div>
         <div>
-          <label htmlFor="nsfwToggle">
+          <label className={classes.searchInputLabel} htmlFor="nsfwToggle">
             Show NSFW <ToggleSwitch id="nsfwToggle" onToggle={onNsfwToggle} />
           </label>
         </div>
       </div>
-    </SearchInput>
+    </div>
   );
-};
-
-
-export default SearchInputComponent;
+}
