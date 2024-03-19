@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <title>Signal Stickers</title>
-    <meta charset="utf-8" />
-    <base href="/" />
+    <meta charset="utf-8">
+    <base href="/">
     <meta
       http-equiv="Content-Security-Policy"
       content="
@@ -11,52 +11,60 @@
         script-src 'self' 'unsafe-eval';
         connect-src 'self' api.signalstickers.org cdn-ca.signal.org;
         img-src 'self' data:;
-        style-src 'self' 'unsafe-inline' fonts.googleapis.com;
-        font-src fonts.gstatic.com;
+        style-src 'self' 'unsafe-inline';
+        font-src 'self';
         object-src 'none';
         base-uri 'none';
         form-action 'none';
         manifest-src 'self'
       "
-    />
+    >
+    <meta
+      name="theme-color"
+      content="%THEME_COLOR%"
+    >
+    <meta
+      name="apple-mobile-web-app-capable"
+      content="yes"
+    >
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    >
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
+      content="width=device-width, initial-scale=0.9, viewport-fit=cover"
+    >
     <meta
       name="description"
       content="Community-organized gallery of sticker packs for the Signal messenger app. Browse more than 6500 stickers, and propose your own!"
-    />
+    >
     <meta
       name="keywords"
       content="Signal, stickers, signal stickers, #makeprivacystick"
-    />
+    >
     <meta
       name="twitter:card"
       content="summary"
-    />
+    >
     <meta
       name="twitter:site"
       content="@signalstickers"
-    />
+    >
     <meta
       property="og:description"
       content="Community-organized gallery of sticker packs for Signal. Browse more than 6500 stickers, and propose your own!"
-    />
+    >
     <meta
       property="og:image"
       content="https://raw.githubusercontent.com/signalstickers/signalstickers/master/src/assets/favicon.png"
-    />
+    >
     <link
       rel="alternate"
       type="application/rss+xml"
       title="RSS feed for signalstickers.org"
       href="https://api.signalstickers.org/feed/rss/"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+    >
     <!-- Start Single Page Apps for GitHub Pages -->
     <script
       src="/spa-redirect.js"
@@ -65,12 +73,10 @@
     </script>
     <!-- End Single Page Apps for GitHub Pages -->
     <!-- Resource Hints -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn-ca.signal.org" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://api.signalstickers.org" />
+    <link rel="preconnect" href="https://cdn-ca.signal.org" crossorigin="anonymous">
+    <link rel="preconnect" href="https://api.signalstickers.org">
   </head>
-  <body>
+  <body class="safe-area-padding">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script src="./index.tsx" type="module"></script>

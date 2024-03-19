@@ -12,13 +12,12 @@
 import {
   getStickerPackManifest,
   getStickerInPack
-
 } from '@signalstickers/stickers-client';
 import axios from 'axios';
 import LocalForage from 'localforage';
 import * as R from 'ramda';
 
-import { API_URL_PACKS } from 'etc/constants';
+import { API_URL_PACKS, PACK_ID_PATTERN } from 'etc/constants';
 import {
   StickerPack,
   StickerPackPartial,
@@ -32,13 +31,13 @@ import { isStorageUnavailableError } from 'lib/utils';
 // ----- Locals ----------------------------------------------------------------
 
 /**
- * Promise that will resolve with the list of sticker packs enumerated in
- * stickers.yaml. This collection will contain only those data from a
- * StickerPack that we want to search on or that we need to display a sticker
- * pack preview card. We use a promise here rather than the array itself to
- * ensure that if multiple calls to getStickerPackDirectory are made before the
- * initial request for partials.json resolves, we only make a single request
- * and only populate the directory once.
+ * Promise that will resolve with the list of sticker packs enumerated in our
+ * directory. This collection will contain only those data from a StickerPack
+ * that we want to search on or that we need in order to display a sticker pack
+ * preview card. We use a promise here rather than the array itself to ensure
+ * that if multiple calls to `getStickerPackDirectory` are made before the
+ * initial request resolves, we only make a single request and only populate
+ * the directory once.
  */
 let stickerPackDirectoryPromise: Promise<Array<StickerPackPartial>> | undefined;
 
@@ -77,9 +76,14 @@ export async function getStickerPackDirectory(): Promise<Array<StickerPackPartia
 
 /**
  * Provided a sticker pack ID and optional key, queries the Signal API and
- * resolves with 'full' StickerPack object.
+ * resolves with a 'full' StickerPack object containing data from Signal merged
+ * with data from our backend.
  */
 export async function getStickerPack(id: string, key?: string): Promise<StickerPack> {
+  if (!new RegExp(PACK_ID_PATTERN).test(id)) {
+    throw new ErrorWithCode('INVALID_PACK_ID', `Invalid pack ID: ${id}`);
+  }
+
   const cacheKey = key ? `${id}-${key}` : id;
 
   try {
@@ -146,7 +150,10 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
       const rawImageData = await getStickerInPack(id, key, stickerId);
       convertedImage = await convertImage(rawImageData);
 
-      // This line may throw when in private mode in certain browsers.
+      // This line may throw when in private mode in certain browsers, or when
+      // not using an HTTPS connection, in which case access to the SubtleCrypto
+      // API is disallowed. This should only ever occur on mobile devices in
+      // development.
       await stickerImageCache.setItem(cacheKey, convertedImage);
 
       return convertedImage;
@@ -165,4 +172,4 @@ export async function getConvertedStickerInPack(id: string, key: string, sticker
 }
 
 
-export {getEmojiForSticker} from '@signalstickers/stickers-client';
+export { getEmojiForSticker } from '@signalstickers/stickers-client';

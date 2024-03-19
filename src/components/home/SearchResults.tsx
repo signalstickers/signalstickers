@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Waypoint} from 'react-waypoint';
+import { Link } from 'react-router-dom';
+import { Waypoint } from 'react-waypoint';
 
 import StickersContext from 'contexts/StickersContext';
 
@@ -29,9 +29,7 @@ export default function StickerPackListComponent() {
    */
   const loadMore = React.useCallback(() => {
     // If we have rendered all search results, bail.
-    if (renderedSearchResults.length >= searchResults.length) {
-      return;
-    }
+    if (renderedSearchResults.length >= searchResults.length) return;
 
     const newCursor = cursor + PAGE_SIZE;
     setCursor(newCursor);
@@ -54,33 +52,29 @@ export default function StickerPackListComponent() {
   }, [searchResults]);
 
 
-  // ----- Render --------------------------------------------------------------
-
   return (
-    <div className="row">
-      {renderedSearchResults.map(result => {
-        if (!result.item.meta.nsfw || result.item.meta.nsfw && showNsfw){
-          return (
-            <div
-              key={result.item.meta.id}
-              className="col-6 col-md-4 col-lg-3 mb-4"
-            >
-              <Link
-                to={`/pack/${result.item.meta.id}`}
-                className={classes.stickerPackLink}
-              >
-                <StickerPackPreviewCard stickerPack={result.item} />
-              </Link>
-            </div>
-          );
-        }
-        return null;
-      })}
-      <Waypoint
-        key={cursor}
-        onEnter={loadMore}
-        bottomOffset="-500px"
-      />
+    <div className="d-flex flex-column flex-grow-1 mb-4">
+      <div className="row flex-grow-1">
+        <div className="col-12">
+          <div className={classes.stickerGridView}>
+            {renderedSearchResults.map(stickerPackPartial => {
+              return (
+                <Link
+                  key={stickerPackPartial.meta.id}
+                  to={`/pack/${stickerPackPartial.meta.id}`}
+                >
+                  <StickerPackPreviewCard stickerPack={stickerPackPartial} />
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+        <Waypoint
+          key={cursor}
+          onEnter={loadMore}
+          bottomOffset="-500px"
+        />
+      </div>
     </div>
   );
 }

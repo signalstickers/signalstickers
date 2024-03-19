@@ -3,21 +3,19 @@ import * as R from 'ramda';
 
 import { BOOTSTRAP_BREAKPOINTS, API_URL_PACKS_PING } from 'etc/constants';
 
+import type { BootstrapBreakpoint } from 'etc/types';
+
 
 /**
  * Prints current storage usage and quotas to the console.
  */
 export async function printStorageUsage() {
   if (import.meta.env.NODE_ENV === 'development') {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     const storageEstimate = navigator.storage && await navigator.storage.estimate();
 
     // The navigator.storage object is undefined when using private mode in
     // Safari.
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (!storageEstimate) {
-      return;
-    }
+    if (!storageEstimate) return;
 
     // @ts-ignore (usageDetails is not typed correctly).
     const idbUsage = storageEstimate?.usageDetails?.indexedDB;
@@ -32,15 +30,23 @@ export async function printStorageUsage() {
 
 
 /**
- * Bootstrap media query helper for CSS-in-JS.
+ * Bootstrap media query helper for CSS-in-JS. By default, the resulting media
+ * query will target the indicated breakpoint and all breakpoints above it,
+ * which is in accordance with how Bootstrap utility classes work. It is also
+ * possible to target a breakpoint and all breakpoints below it by providing
+ * `'max'` as a second parameter.
  *
  * @example
  *
- * @media ${bp('sm')} {
- *   // ...
- * }
+ * style({
+ *   '@media': {
+ *     [bp('sm')]: {
+ *       color: 'var(--bs-primary)'
+ *     }
+ *   }
+ * });
  */
-export function bp(bpName: keyof typeof BOOTSTRAP_BREAKPOINTS, minMax: 'min' | 'max' = 'min') {
+export function bp(bpName: BootstrapBreakpoint, minMax: 'min' | 'max' = 'min') {
   const bpValue = BOOTSTRAP_BREAKPOINTS[bpName];
 
   if (bpValue === undefined) {

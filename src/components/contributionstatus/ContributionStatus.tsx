@@ -4,7 +4,7 @@ import {
   Form,
   Field,
   ErrorMessage,
-  FieldValidator,
+  type FieldValidator,
   type FormikHelpers
 } from 'formik';
 import React from 'react';
@@ -18,8 +18,17 @@ import { SIGNAL_ART_URL_PATTERN, API_URL_STATUS } from 'etc/constants';
  */
 
 
-export interface FormValues {
+interface FormValues {
   signalArtUrl: string;
+}
+
+
+interface PackStatusResponse {
+  pack_id: string;
+  pack_title: string;
+  status: 'ONLINE' | 'IN_REVIEW' | 'REFUSED';
+  status_comments: string;
+  error?: string;
 }
 
 
@@ -49,27 +58,19 @@ const validators: Record<string, FieldValidator> = {
 
 
 export default function ContributionStatus() {
-  const [packInfo, setPackInfo] = React.useState({
-    error: '',
-    pack_id: '',
-    pack_title: '',
-    status: '',
-    status_comments: ''
-  });
+  const [packStatus, setPackStatus] = React.useState<PackStatusResponse>();
 
 
   /**
-   * Called when the form is submitted and has passed validation.
+   * Called when the form is submitted _after_ it has passed validation.
    */
-  const onSubmit = React.useCallback((values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
+  const onSubmit = React.useCallback(async (values: FormValues, { setStatus }: FormikHelpers<FormValues>) => {
+    // Extract pack ID and key from provided signal.art URL.
     const matches = new RegExp(SIGNAL_ART_URL_PATTERN).exec(values.signalArtUrl);
-    if (!matches) {
-      throw new Error('Unable to extract pack ID and pack key from signal.art URL.');
-    }
-
+    if (!matches) throw new Error('Unable to extract pack ID and pack key from signal.art URL.');
     const [, packId, packKey] = matches;
 
-    void fetch(API_URL_STATUS, {
+    const response = await fetch(API_URL_STATUS, {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -79,118 +80,130 @@ export default function ContributionStatus() {
         pack_id: packId,
         pack_key: packKey
       })
-    }).then(async response =>
-      response.json().then(data => ({
-        data: data,
-        status: response.status
-      })
-      ).then(res => {
-        setPackInfo(res.data);
-        setSubmitting(false);
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: 'smooth'
-        });
-      }));
-  }, [packInfo]);
+    });
+
+    const packStatus: PackStatusResponse = await response.json();
+
+    if (response.status !== 200) {
+      setStatus({
+        state: 'error',
+        error: packStatus.error ?? 'An unknown error occurred.'
+      });
+
+      return;
+    }
+
+    setStatus({ state: 'success' });
+    setPackStatus(packStatus);
+  }, [packStatus]);
+
+
+  const packStatusDescription = React.useMemo(() => {
+    if (!packStatus) return;
+
+    if (packStatus.status === 'ONLINE') return (
+      <>
+        <p>
+          Your pack <strong>{packStatus?.pack_title}</strong> is <strong>published</strong>!
+        </p>
+        <p>
+          You can view it <Link to={`/pack/${packStatus.pack_id}`}>here</Link>.
+        </p>
+      </>
+    );
+
+    if (packStatus.status === 'IN_REVIEW') return (
+      <p>
+        Your pack <strong>{packStatus?.pack_title}</strong> is <strong>still in review</strong>.
+      </p>
+    );
+
+    if (packStatus.status === 'REFUSED') return (
+      <>
+        <p>
+          Your pack <strong>{packStatus?.pack_title}</strong> has <strong>not been published</strong>.
+        </p>
+        {packStatus.status_comments && (
+          <p>
+            Moderator comments: <em>{packStatus.status_comments}</em>
+          </p>
+        )}
+      </>
+    );
+  }, [packStatus]);
 
 
   return (
     <div className="my-4 p-lg-3 px-lg-4">
       <div className="row">
         <div className="col-12">
-          <h1 className="mb-4">Contribution status</h1>
+          <h1 className="mb-4">Contribution Status</h1>
           <p className="mt-lg-3 mb-4">
             If you proposed a pack via the Contribute page, you can use this form to check the status of your contribution!
           </p>
         </div>
       </div>
+
       <hr className="pt-3 pb-2" />
-
-      { packInfo.error &&
-        <div className="row">
-          <div className="col-12">
-            <p className="mt-lg-3 mb-4">
-              <b>Oops!</b> {packInfo.error}
-            </p>
-          </div>
-        </div>
-      }
-
-      { packInfo.status &&
-        <div className="row">
-          <div className="col-12">
-            <p className="mt-lg-3 mb-4">
-
-              Your pack <b>{packInfo.pack_title}</b>
-              {packInfo.status === 'ONLINE' &&
-                <> is <b>published</b>! <Link to={`/pack/${packInfo.pack_id}`}>Check it here.</Link></>
-              }
-
-              {packInfo.status === 'IN_REVIEW' &&
-                <> is <b>still in review</b>! Real humans will soon check it.</>
-              }
-
-              {packInfo.status === 'REFUSED' &&
-                <> has <b>not been published</b>.</>
-              }
-              {packInfo.status_comments &&
-                <> Moderators left a comment: <em>{packInfo.status_comments}</em></>
-              }
-
-            </p>
-          </div>
-        </div>
-      }
 
       <div className="row">
         <div className="col-12 col-md-10 offset-md-1">
           <Formik
+            initialStatus={{ state: 'pristine' }}
             initialValues={initialValues}
-            onSubmit={(values, helpers) => onSubmit(values, helpers)}
+            onSubmit={onSubmit}
           >
-            {({ errors, isValidating, isSubmitting }) => (
+            {({ status, errors, isValidating, isSubmitting }) => (
               <Form noValidate>
 
-                {/* [Field] Signal.art Url */}
-                <div className="form-group">
-                  <div className="form-row">
-                    <label className={cx('col-12', errors.signalArtUrl && 'text-danger')} htmlFor="signal-art-url">
-                      Signal.art URL:
-                      <Field
-                        type="text"
-                        id="signal-art-url"
-                        name="signalArtUrl"
-                        validate={validators.signalArtUrl}
-                        className={cx('form-control', 'mt-2', errors.signalArtUrl && 'is-invalid')}
-                        placeholder="https://signal.art/addstickers/#pack_id=<your pack id>&pack_key=<your pack key>"
-                      />
-                      <div>
-                        <ErrorMessage name="signalArtUrl" />&nbsp;
-                      </div>
-                    </label>
+                {/* [Field] Signal.art URL */}
+                <div className="mb-3">
+                  <label
+                    className="fs-5 mb-1"
+                    htmlFor="signal-art-url"
+                  >
+                    Signal.art URL:
+                  </label>
+                  <div className="input-group">
+                    <Field
+                      type="text"
+                      id="signal-art-url"
+                      name="signalArtUrl"
+                      validate={validators.signalArtUrl}
+                      className={cx(
+                        'form-control form-control-lg bg-transparent',
+                        errors.signalArtUrl && 'is-invalid'
+                      )}
+                      placeholder="https://signal.art/addstickers/#pack_id=<packId>&pack_key=<packKey>"
+                      aria-describedby="signal-art-url-error"
+                    />
+                    <button
+                      type="submit"
+                      className="btn btn-lg btn-primary"
+                      disabled={isSubmitting || isValidating}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                  <div
+                    id="signal-art-url-error"
+                    className={cx('d-block', errors.signalArtUrl && 'invalid-feedback')}
+                  >
+                    <ErrorMessage name="signalArtUrl" />&nbsp;
                   </div>
                 </div>
 
-                {/* [Control] Submit*/}
-                <div className="form-group">
-                  <div className="form-row">
-                    <div className="col-12">
-                      <button
-                        type="submit"
-                        className="btn btn-block btn-lg btn-primary"
-                        disabled={isSubmitting || isValidating}
-                      >
-                        {isSubmitting ?
-                          <span>Checking...</span>
-                        : <span>Check status</span>
-                        }
-                        {isSubmitting}
-                      </button>
-                    </div>
-                  </div>
+                {/* Global Form Status / Errors */}
+                <div className="fs-5 mb-3">
+                  {status.state === 'success'
+                    ? packStatusDescription
+                    : status.state === 'error' ? (
+                      <span><b>Oops!</b> {status.error}</span>
+                    ) : (
+                      <span>&nbsp;</span>
+                    )
+                  }
                 </div>
-
               </Form>
             )}
           </Formik>

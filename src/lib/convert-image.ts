@@ -9,7 +9,7 @@
 import imageType from 'image-type';
 import pQueue from 'p-queue';
 import pWaitFor from 'p-wait-for';
-import {detectWebpSupport} from 'webp-hero/dist/detect-webp-support';
+import { detectWebpSupport } from 'webp-hero/dist/detect-webp-support';
 
 import type { WebpMachine } from 'webp-hero/dist/webp-machine';
 

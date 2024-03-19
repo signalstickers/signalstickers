@@ -145,43 +145,6 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
   /**
    * @private
    *
-   * Custom Fuse.js "getter" function that will be invoked when traversing paths
-   * in collection members. The function is responsible for returning the value
-   * at the indicated path which, per Fuse requirements, must be a string or an
-   * array of strings. By using a custom function, we can type-cast non-string
-   * values to strings for the purposes of matching search results. This will
-   * allow the user to use attribute queries such as 'original:true' or
-   * 'nsfw:false'.
-   */
-  const customGetFn = (item: T, path: string | Array<string>) => {
-    const value = R.path(Array.isArray(path) ? path : R.split('.', path), item);
-    const valueType = R.type(value);
-
-    switch (valueType) {
-      case 'String':
-        return String(value);
-      case 'Array':
-        return value as Array<string>;
-      // Cast booleans and numbers using the String constructor, yielding
-      // results like 'true', 'false'.
-      case 'Boolean':
-      case 'Number':
-        return String(value);
-      // For bottom values, return 'false'. This allows queries on attributes
-      // where the absence of that attribute implies `false`, such as 'nsfw' and
-      // 'original'.
-      case 'Null':
-      case 'Undefined':
-        return 'false';
-      default:
-        throw new Error(`[Search::getFn] Unable to parse value of type "${valueType}" at path "${String(path)}".`);
-    }
-  };
-
-
-  /**
-   * @private
-   *
    * Provided a string, returns the number of words therein.
    */
   const wordCount = (input: string): number => input.split(/\s+/g).length;
@@ -213,14 +176,15 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
     R.forEach(([attribute, path]) => {
       searchers.set(attribute, new Fuse(collection, {
         ...BASE_CONFIG,
-        getFn: customGetFn,
+        // For attribute searches, require an exact match.
+        threshold: 0,
         keys: [path]
       }));
     }, R.toPairs(options.keys ?? []));
 
     searchers.set(GENERAL_SEARCHER, new Fuse(collection, {
       ...BASE_CONFIG,
-      getFn: customGetFn,
+      threshold: 0.4,
       keys: R.values(options.keys)
     }));
   };
@@ -331,7 +295,6 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
 
       if (querySearcher) {
         const queryResults = querySearcher.search(query);
-
         results = results.length === 0 ? queryResults : R.innerJoin((a, b) => {
           return options.identity(a.item) === options.identity(b.item);
         }, results, queryResults);

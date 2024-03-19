@@ -24,16 +24,13 @@ export default function SuspenseFallback() {
   return (
     <div className="d-flex align-items-center justify-content-center flex-grow-1">
       {showSpinner && (
-        <div
-          className="spinner-border"
+        <aside
+          className="spinner-border text-secondary border-2"
           role="status"
-          style={{
-            borderWidth: '2px',
-            color: 'rgba(0, 0, 0, 0.5)'
-          }}
+          style={{ minWidth: '72px', minHeight: '72px' }}
         >
-          <span className="sr-only">Loading...</span>
-        </div>
+          <span className="visually-hidden">Loading...</span>
+        </aside>
       )}
     </div>
   );

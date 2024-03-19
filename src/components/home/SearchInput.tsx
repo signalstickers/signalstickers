@@ -1,20 +1,26 @@
 import cx from 'classnames';
 import debounceFn from 'debounce-fn';
+import pluralize from 'pluralize';
 import React from 'react';
 import { BsSearch, BsX } from 'react-icons/bs';
-import { FaInfoCircle } from 'react-icons/fa';
-import { HashLink } from 'react-router-hash-link';
 
 import StickersContext from 'contexts/StickersContext';
 
 import classes from './SearchInput.css';
-import ToggleSwitch from './ToggleSwitch';
 
 
 export default function SearchInputComponent() {
-  const { searcher, searchQuery, searchResults, setSearchQuery, sortOrder, setSortOrder, setShowNsfw} = React.useContext(StickersContext);
+  const {
+    searcher,
+    searchQuery,
+    searchResults,
+    setSearchQuery,
+    sortOrder,
+    setSortOrder,
+    setShowNsfw,
+    showNsfw
+  } = React.useContext(StickersContext);
   const [searchQueryInputValue, setSearchQueryInputValue] = React.useState('');
-  const searchHelpRef = React.useRef<HTMLDivElement>(null);
   const suggestedTags = ['cute', 'privacy', 'meme', 'for children'];
 
 
@@ -29,31 +35,8 @@ export default function SearchInputComponent() {
    * [Effect] Context state -> local/input state.
    */
   React.useEffect(() => {
-    if (searchQuery) {
-      setSearchQueryInputValue(searchQuery);
-    }
+    if (searchQuery) setSearchQueryInputValue(searchQuery);
   }, [searchQuery]);
-
-
-  /**
-   * [Event Handler] Input state -> local state.
-   */
-  const onSearchQueryInputChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setSearchQueryInputValue(value);
-  }, [
-    setSearchQueryInputValue
-  ]);
-
-  /**
-   * [Event Handler] Input order state -> local state.
-   */
-  const onSortOrderChange = React.useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
-    const { value } = event.target;
-    setSortOrder(value);
-  }, [
-    setSortOrder
-  ]);
 
 
   /**
@@ -62,10 +45,7 @@ export default function SearchInputComponent() {
   React.useEffect(() => {
     debouncedSetSearchQuery.cancel();
     debouncedSetSearchQuery(searchQueryInputValue);
-
-    return () => {
-      debouncedSetSearchQuery.cancel();
-    };
+    return () => debouncedSetSearchQuery.cancel();
   }, [
     debouncedSetSearchQuery,
     searchQueryInputValue
@@ -76,79 +56,35 @@ export default function SearchInputComponent() {
    * [Event Handler] Sets the search query when a tag or the 'animated'
    * suggestion is clicked.
    */
-  const onSuggestionClick = React.useCallback((event: React.SyntheticEvent<HTMLButtonElement>) => {
-    if (searcher && event.currentTarget.textContent) {
-      switch (event.currentTarget.dataset.suggestionType) {
-        case 'tag':
-          setSearchQuery(searcher.buildQueryString({
-            attributeQueries: [{
-              tag: event.currentTarget.textContent
-            }]
-          }));
-          break;
+  const onSuggestionClick = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    if (!searcher || !event.currentTarget.textContent) return;
 
-        case 'animated':
-          setSearchQuery(searcher.buildQueryString({
-            attributeQueries: [{
-              animated: 'true'
-            }]
-          }));
-          break;
-
-        case 'editorschoice':
-          setSearchQuery(searcher.buildQueryString({
-            attributeQueries: [{
-              editorschoice: 'true'
-            }]
-          }));
-          break;
-      }
+    switch (event.currentTarget.dataset.suggestionType) {
+      case 'tag':
+        setSearchQuery(searcher.buildQueryString({
+          attributeQueries: [{
+            tag: event.currentTarget.textContent
+          }]
+        }));
+        break;
+      case 'animated':
+        setSearchQuery(searcher.buildQueryString({
+          attributeQueries: [{
+            animated: 'true'
+          }]
+        }));
+        break;
+      case 'editorschoice':
+        setSearchQuery(searcher.buildQueryString({
+          attributeQueries: [{
+            editorschoice: 'true'
+          }]
+        }));
+        break;
     }
   }, [
     searcher,
     setSearchQuery
-  ]);
-
-
-  /**
-   * [Event Handler] Show the search help icon when the input element is
-   * focused.
-   */
-  const handleInputFocus = React.useCallback(() => {
-    if (!searchHelpRef.current) {
-      return;
-    }
-
-    searchHelpRef.current.style.opacity = '1';
-    searchHelpRef.current.style.pointerEvents = 'initial';
-  }, [
-    searchHelpRef
-  ]);
-
-
-  /**
-   * [Event Handler] Hide the search help icon when the input element is
-   * blurred. We also disable pointer events to prevent clicking on the element
-   * when it is not visible.
-   */
-  const handleInputBlur = React.useCallback(() => {
-    if (!searchHelpRef.current) {
-      return;
-    }
-
-    searchHelpRef.current.style.opacity = '0';
-
-    // Allows a click on the search help icon to proceed before disabling
-    // pointer events.
-    setTimeout(() => {
-      if (!searchHelpRef.current) {
-        return;
-      }
-
-      searchHelpRef.current.style.pointerEvents = 'none';
-    }, 250);
-  }, [
-    searchHelpRef
   ]);
 
 
@@ -164,13 +100,6 @@ export default function SearchInputComponent() {
     setSearchQuery
   ]);
 
-  /**
-   * [Event Handler] Change either to show NSFW
-   */
-  const onNsfwToggle = (state: boolean) => {
-    setShowNsfw(state);
-  };
-
 
   /**
    * [Effect] When the component mounts, set the search input's value to the
@@ -184,16 +113,13 @@ export default function SearchInputComponent() {
 
 
   /**
-   * [Effect] When the search query is updated, call our de-bounced update
+   * [Effect] When the search query is updated, call our debounced update
    * function.
    */
   React.useEffect(() => {
     debouncedSetSearchQuery.cancel();
     debouncedSetSearchQuery(searchQueryInputValue);
-
-    return () => {
-      debouncedSetSearchQuery.cancel();
-    };
+    return () => debouncedSetSearchQuery.cancel();
   }, [
     debouncedSetSearchQuery,
     searchQueryInputValue
@@ -207,7 +133,10 @@ export default function SearchInputComponent() {
     <button
       type="button"
       key={tag}
-      className={cx(classes.miniTag, 'btn', 'mr-1')}
+      className={cx(
+        classes.miniTag,
+        'btn btn-outline-primary bg-transparent fs-7 fw-medium me-1'
+      )}
       onClick={onSuggestionClick}
       data-suggestion-type="tag"
     >
@@ -216,21 +145,17 @@ export default function SearchInputComponent() {
   )), [suggestedTags]);
 
 
-  // ----- Render --------------------------------------------------------------
-
   return (
-    <div className={cx(classes.searchInputWrapper, 'form-group', 'mb-4')}>
+    <div className="position-relative mb-4">
       <div className="mb-1 position-relative">
-        <div className={classes.searchPrepend}>
-          <BsSearch />
+        <div className="position-absolute inset-0 d-flex align-items-center ps-3 h-100 pe-none">
+          <BsSearch className="text-secondary" />
         </div>
         <input
           type="text"
           key="search"
-          className={cx(classes.searchInput, 'form-control', 'form-control-lg')}
-          onBlur={handleInputBlur}
-          onChange={onSearchQueryInputChange}
-          onFocus={handleInputFocus}
+          className="form-control form-control-lg fs-4 pe-5 bg-transparent"
+          style={{ paddingLeft: '40px' }}
           value={searchQueryInputValue}
           title="Search"
           aria-label="search"
@@ -238,35 +163,42 @@ export default function SearchInputComponent() {
           autoCapitalize="off"
           autoCorrect="off"
           spellCheck="false"
+          enterKeyHint="search"
+          onChange={e => setSearchQueryInputValue(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && e.currentTarget.blur()}
         />
-        <div className={classes.searchHelp} ref={searchHelpRef}>
-          <HashLink to="/about#searching" title="Search Help" className={classes.searchHelpLink}>
-            <FaInfoCircle className={cx(classes.searchHelpIcon, 'text-muted')} />
-          </HashLink>
-        </div>
-        <div className={classes.searchClear}>
-          <button
-            type="button"
-            className={cx(classes.searchClearButton, 'btn', 'btn-link', 'border-0')}
-            title="Clear Search Results"
-            onClick={clearSearchResults}
-          >
-            <BsX className={classes.searchClearIcon} />
-          </button>
-        </div>
+
+        {/* Search Clear Button */}
+        <button
+          type="button"
+          className={cx(
+            'btn btn-link position-absolute top-0 end-0 text-light',
+            'd-flex align-items-center h-100 px-2'
+          )}
+          title="Clear Search Results"
+          onClick={clearSearchResults}
+          style={{ opacity: searchQueryInputValue ? 1 : 0 }}
+        >
+          <BsX className={cx(classes.searchClearIcon, 'fs-1')} />
+        </button>
       </div>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex flex-column flex-md-row-reverse justify-content-between">
+        {/* Search Result Count */}
+        <div className="text-muted text-end fs-6 me-1">
+          {(searchResults?.length || 0).toLocaleString()} {pluralize('result', searchResults.length ?? 0)}
+        </div>
+
+        {/* Suggested Tags */}
         <div>
-          <small>
+          <span className="fs-6">
             Suggested: {' '}
-          </small>
+          </span>
           <br className="d-inline d-md-none" />
           <button
             type="button"
             className={cx(
               classes.miniTagAnimated,
-              'btn',
-              'mr-1'
+              'btn fs-7 fw-medium bg-transparent me-1'
             )}
             onClick={onSuggestionClick}
             data-suggestion-type="animated"
@@ -275,7 +207,10 @@ export default function SearchInputComponent() {
           </button>
           <button
             type="button"
-            className={cx(classes.miniTagEditorsChoice, 'btn', 'mr-1')}
+            className={cx(
+              classes.miniTagEditorsChoice,
+              'btn fs-7 fw-medium me-1'
+            )}
             onClick={onSuggestionClick}
             data-suggestion-type="editorschoice"
           >
@@ -283,30 +218,44 @@ export default function SearchInputComponent() {
           </button>
           {tagsFragment}
         </div>
-        <div className="text-muted">
-          <small>
-            {searchResults?.length || 0} {searchResults.length === 1 ? 'result' : 'results'}
-          </small>
-        </div>
       </div>
-      <div className="mt-5 d-flex flex-wrap">
-        <div className="mr-3">
-          Sort by
-          <select className="d-inline-block form-control form-control-sm w-auto ml-2" value={searchQuery ? 'relevance' : sortOrder} onChange={onSortOrderChange} disabled={searchQuery !== ''}>
+      <div className="mt-4 mt-md-5 d-flex">
+
+        {/* Sort Dropdown */}
+        <div className="me-4">
+          <span className="fs-6">
+            Sort by
+          </span>
+          <select
+            className="d-inline-block form-control form-select w-auto ps-2 py-1 ms-2"
+            value={searchQuery ? 'relevance' : sortOrder}
+            onChange={e => setSortOrder(e.target.value)}
+            disabled={searchQuery !== ''}
+          >
             <option value="">Latest</option>
             <option value="trending">Trending</option>
-            <option value="mostViewed">Most viewed (all times)</option>
+            <option value="mostViewed">Most Viewed</option>
             {searchQuery &&
               /* Only used as a placeholder when a searchQuery is set */
               <option value="relevance">Relevance</option>
             }
-
           </select>
         </div>
-        <div>
-          <label className={classes.searchInputLabel} htmlFor="nsfwToggle">
-            Show NSFW <ToggleSwitch id="nsfwToggle" onToggle={onNsfwToggle} />
-          </label>
+
+        {/* Show NSFW Switch */}
+        <div className="form-check form-switch d-flex align-items-center my-0 px-0">
+          <label
+            className="form-check-label fs-6 me-2"
+            htmlFor="toggleNsfw"
+          >Show NSFW</label>
+          <input
+            className="form-check-input fs-2 my-0 mx-0"
+            type="checkbox"
+            role="switch"
+            id="toggleNsfw"
+            onChange={e => setShowNsfw(e.target.checked)}
+            checked={showNsfw}
+          />
         </div>
       </div>
     </div>

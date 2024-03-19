@@ -1,19 +1,20 @@
-/* eslint-disable react/jsx-no-bind */
 import * as R from 'ramda';
 import React from 'react';
 
 
-// ----- Types -----------------------------------------------------------------
+export interface AppStateContext {
+  /**
+   * Provided a key, returns a tuple containing the value for that key and a
+   * setter function to update it. Values will be persisted to LocalStorage.
+   */
+  useAppState: <T = any>(key: string) => [T | undefined, React.Dispatch<React.SetStateAction<T>>];
 
-/**
- * Type of the value provided by this Context: a custom hook function that
- * accepts a key and returns tuple with a value of type T and a setValue
- * function that accepts a value of type T.
- */
-export type AppStateContext = <T = any>(key: string) => [
-  T | undefined,
-  React.Dispatch<React.SetStateAction<T>>
-];
+  /**
+   * Provided a key, returns a tuple containing the value for that key and a
+   * function that, when invoked, sets the value to its inverse.
+   */
+  toggleAppState: (key: string) => [boolean, () => void];
+}
 
 
 /**
@@ -35,62 +36,80 @@ interface SetStateAction {
 }
 
 
-// ----- Initial State ---------------------------------------------------------
-
+/**
+ * Initial state for this context.
+ */
 const initialState: State = {
-  darkMode: false
+  // Set initial dark mode according to the user's preferences.
+  darkMode: window.matchMedia('(prefers-color-scheme: dark)').matches
 };
 
 
-// ----- Context ---------------------------------------------------------------
+/**
+ * Initializes app state by iterating over each key in our initial state
+ * object and fetching the corresponding value from Local Storage.
+ */
+function initializer(initialState: State): State {
+  return R.mapObjIndexed((initialValue, key) => {
+    try {
+      return JSON.parse(localStorage.getItem(key) ?? initialValue);
+    } catch {
+      // Local storage may be unavailable. Return the initial value.
+      return initialValue;
+    }
+  }, initialState);
+}
+
+
+/**
+ * Handles state updates by setting values in Local Storage.
+ */
+function reducer(state: State, action: SetStateAction): State {
+  try {
+    localStorage.setItem(String(action.key), JSON.stringify(action.value));
+  } catch {
+    // Local storage may not be available due to private mode, etc.
+  }
+
+  return {
+    ...state,
+    [action.key]: action.value
+  };
+}
+
 
 const Context = React.createContext<AppStateContext>({} as any);
 
 
 export function Provider(props: React.PropsWithChildren<Record<string, unknown>>) {
-  /**
-   * Initializes app state by iterating over each key in our initial state
-   * object and fetching the corresponding value from Local Storage.
-   */
-  const initializer = (initialState: State): State => {
-    return R.mapObjIndexed((initialValue, key) => {
-      try {
-        return JSON.parse(localStorage.getItem(key) ?? initialValue);
-      } catch {
-        // Local storage may be unavailable. Return the initial value.
-        return initialValue;
-      }
-    }, initialState);
-  };
-
-  /**
-   * Handles state updates by setting values in Local Storage.
-   */
-  const reducer = (state: State, action: SetStateAction): State => {
-    try {
-      localStorage.setItem(String(action.key), JSON.stringify(action.value));
-    } catch {
-      // Local storage may not be available due to private mode, etc.
-    }
-
-    return {...state, [action.key]: action.value};
-  };
-
   const [state, dispatch] = React.useReducer(reducer, initialState, initializer);
 
-  // N.B. There seems to be a parsing error with TSX + arrow functions that use
-  // generic type parameters. Re-visit in the future.
-  // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-  function useAppState<T = any>(key: string) {
-    const setState: React.Dispatch<React.SetStateAction<T>> = (value: React.SetStateAction<T>) => {
-      dispatch({key, value});
+
+  const useAppState = React.useCallback<AppStateContext['useAppState']>((key: string) => {
+    const setState = (value: any) => {
+      dispatch({ key, value });
     };
 
-    return [state[key], setState] as any;
-  }
+    return [state[key], setState];
+  }, [state, dispatch]);
+
+
+  const toggleAppState = React.useCallback<AppStateContext['toggleAppState']>((key: string) => {
+    const setState = () => {
+      dispatch({ key, value: !state[key] });
+    };
+
+    return [state[key], setState];
+  }, [state, dispatch]);
+
 
   return (
-    <Context.Provider value={useAppState}>
+    <Context.Provider
+      value={{
+        useAppState,
+        toggleAppState
+      }}
+    >
       {props.children}
     </Context.Provider>
   );
