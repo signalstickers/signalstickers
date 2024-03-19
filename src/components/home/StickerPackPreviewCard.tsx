@@ -8,7 +8,6 @@ import { getConvertedStickerInPack } from 'lib/stickers';
 
 import classes from './StickerPackPreviewCard.css';
 
-// ----- Props -----------------------------------------------------------------
 
 export interface Props {
   stickerPack: StickerPackPartial;
@@ -43,49 +42,61 @@ export default function StickerPackPreviewCard(props: Props) {
 
 
   const originalAnnotation = React.useMemo(() => (
-    <aside className={cx(classes.originalAnnotation, 'shadow-sm')}>
+    <aside
+      className={cx(
+        classes.originalAnnotation,
+        'position-absolute py-1 px-2 fs-7 top-0 start-0 bg-primary text-light shadow-sm z-1'
+      )}
+    >
       Original
     </aside>
   ), []);
 
 
   const animatedAnnotation = React.useMemo(() => (
-    <aside className={cx(classes.animatedAnnotation, 'shadow-sm')}>
+    <aside
+      className={cx(
+        classes.animatedAnnotation,
+        'position-absolute py-1 px-2 fs-7 top-0 end-0 text-light shadow-sm z-1'
+      )}
+    >
       Animated
     </aside>
   ), []);
 
 
-  const title = `${manifest.title}${meta.nsfw ? ' (NSFW)' : ''}`;
-
-
   return (
     <div
-      className={cx(classes.stickerPackPreviewCard, 'card')}
-      aria-label={title}
+      className={cx(
+        classes.stickerPackPreviewCard,
+        'card position-relative text-center overflow-hidden bg-transparent shadow-sm'
+      )}
+      aria-label={manifest.title}
     >
       {meta.original && originalAnnotation}
       {meta.animated && animatedAnnotation}
       {cover ?
         <img
-          className={classes.cardImageTop}
-          style={{
-            filter: meta.nsfw ? 'blur(4px)' : 'none'
-          }}
+          className="card-img-top mx-auto my-4 object-fit-contain"
+          style={{ filter: meta.nsfw ? 'blur(4px)' : 'none' }}
           src={cover}
           alt="Cover"
         /> :
         <div
-          className={classes.cardImageTop}
-          style={{
-            filter: meta.nsfw ? 'blur(4px)' : 'none'
-          }}
+          className="card-img-top mx-auto my-4 object-fit-contain"
+          style={{ filter: meta.nsfw ? 'blur(4px)' : 'none' }}
         >
           {' '}
         </div>
       }
-      <div className={cx(classes.cardHeader, 'card-header')}>
-        {title}
+      <div
+        className={cx(
+          classes.cardHeader,
+          'card-header border border-top-1 border-start-0 border-end-0 border-bottom-0',
+          'position-relative fs-6 text-nowrap overflow-hidden border-tertiary'
+        )}
+      >
+        {manifest.title}
       </div>
     </div>
   );

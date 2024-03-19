@@ -1,16 +1,9 @@
-import pThrottle from 'p-throttle';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-// @ts-expect-error
-import { useScrollPercentage } from 'react-scroll-percentage';
-import useAsyncEffect from 'use-async-effect';
 
 import Navbar from 'components/layout/Navbar';
 import SuspenseFallback from 'components/layout/SuspenseFallback';
 import AppStateContext from 'contexts/AppStateContext';
-import { PRIMARY_DARKER } from 'etc/colors';
-
-import classes from './AppLayout.css';
 
 
 // Note: Each top-level route should be imported az a lazy-loaded component.
@@ -23,63 +16,31 @@ const Report = React.lazy(async () => import('components/report/Report'));
 
 
 export default function AppLayout() {
-  const useAppState = React.useContext(AppStateContext);
+  const { useAppState } = React.useContext(AppStateContext);
   const [darkMode] = useAppState<boolean>('darkMode');
-  const [ref, percentage] = useScrollPercentage();
+  const contentRef = React.createRef<HTMLDivElement>();
 
 
   /**
-   * [Effect]
-   *
-   * Apply classes to <body> to indicate the current theme. We do this here
-   * (even though we are a child of <body>) because this is the highest level
-   * React component in our tree that renders actual HTML.
+   * Adds or removes a data attribute to the <html> element to enable or disable
+   * dark mode.
    */
   React.useEffect(() => {
-    const bodyEl = document.querySelector('body');
-
-    if (!bodyEl) {
-      return;
-    }
-
-    if (darkMode) {
-      bodyEl.classList.add('theme-dark');
-      bodyEl.classList.remove('theme-light');
-    } else {
-      bodyEl.classList.add('theme-light');
-      bodyEl.classList.remove('theme-dark');
-    }
+    const htmlEl = document.querySelector('html');
+    if (!htmlEl) return;
+    htmlEl.dataset.bsTheme = darkMode ? 'dark' : 'light';
   }, [darkMode]);
-
-
-  /**
-   * [Effect]
-   *
-   * Ensures that the background color shown during over-scroll matches adjacent
-   * content. Unfortunately the only way this can be reliably done at the moment
-   * is by changing the body's background color. To minimize performance impact,
-   * we run this function asynchronously and throttle calls to a maximum of 10
-   * times per second.
-   */
-  useAsyncEffect(pThrottle(() => {
-    const bodyEl = document.querySelector('body');
-
-    if (!bodyEl) {
-      return;
-    }
-
-    if (darkMode) {
-      bodyEl.style.backgroundColor = percentage < 0.5 ? PRIMARY_DARKER : 'var(--dark)';
-    } else {
-      bodyEl.style.backgroundColor = percentage < 0.5 ? 'var(--primary)' : 'var(--white)';
-    }
-  }, 10, 1000), [percentage, darkMode]);
 
 
   return (<>
     <Navbar />
-    <div className={classes.container} ref={ref}>
-      <div className="container d-flex flex-column flex-grow-1">
+    <div
+      className="d-flex flex-grow-1"
+      // Padding to account for the fixed navbar.
+      style={{ paddingTop: '60px' }}
+      ref={contentRef}
+    >
+      <div className="container d-flex flex-column flex-grow-1 px-3">
         <React.Suspense fallback={<SuspenseFallback />}>
           <Switch>
             <Route exact path="/">

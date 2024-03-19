@@ -1,5 +1,13 @@
 import { StickerPackManifest } from '@signalstickers/stickers-client';
 
+import type { BOOTSTRAP_BREAKPOINTS } from 'etc/constants';
+
+
+/**
+ * Union of allowed breakpoint names.
+ */
+export type BootstrapBreakpoint = keyof typeof BOOTSTRAP_BREAKPOINTS;
+
 
 /**
  * Additional data about a sticker pack tracked by Signal Stickers.
@@ -25,12 +33,11 @@ export interface StickerPackMetadata {
 
 
 /**
- * A sticker pack contains all information about a sticker pack from
- * stickers.yml (StickerPackMetadata) plus its manifest as fetched from the
- * Signal API (StickerPackManifest).
- *
- * If the pack is "unlisted", its metadata
- * will only contain the pack's id and key.
+ * A sticker pack contains all information about a sticker pack from the Signal
+ * API as fetched from `stickers-client` plus metadata about the pack from our
+ * database. If the pack is "unlisted" (it has not been submitted to our
+ * directory) its metadata will only contain the pack's `id` and `key`, which
+ * will have been provided explicitly in the URL by the user.
  */
 export interface StickerPack {
   /**
@@ -39,7 +46,7 @@ export interface StickerPack {
   manifest: StickerPackManifest;
 
   /**
-   * Additional information about the sticker pack from Signal Stickers.
+   * Additional information about the sticker pack from our database.
    */
   meta: StickerPackMetadata;
 }

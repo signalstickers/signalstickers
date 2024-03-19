@@ -1,12 +1,15 @@
+import type Fuse from 'fuse.js';
+
 /**
  * Base configuration object for Fuse.
  */
-export const BASE_CONFIG = {
+export const BASE_CONFIG: Fuse.IFuseOptions<any> = {
+  isCaseSensitive: false,
   includeScore: true,
   ignoreLocation: true,
+  findAllMatches: false,
   minMatchCharLength: 2,
-  shouldSort: true,
-  threshold: 0
+  shouldSort: true
 };
 
 
@@ -17,7 +20,7 @@ export const BASE_CONFIG = {
  * N.B. With Fuse.js, a score of 0 represents a perfect match, and a score of 1
  * represents a result that did not match anything in the query.
  */
-export const MAX_SCORE = 0.05;
+export const MAX_SCORE = 0.6;
 
 
 /**

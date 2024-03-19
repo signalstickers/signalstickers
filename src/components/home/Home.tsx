@@ -65,7 +65,7 @@ export default function Home() {
   return (
     <>
       <div className="row">
-        <div className="col-12 mt-4 mb-1 mb-md-3 pt-lg-2">
+        <div className="col-12 mt-3 mb-1 mb-md-3 pt-lg-2">
           <p className="intro">
             Welcome to Signal Stickers, the unofficial directory for Signal {stickerPackLink}.
             You can filter packs by title, author, or tags. Follow {twitterLink} on Twitter to stay

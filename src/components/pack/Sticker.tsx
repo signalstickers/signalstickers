@@ -1,9 +1,8 @@
+import cx from 'classnames';
 import React from 'react';
 import useAsyncEffect from 'use-async-effect';
 
 import { getConvertedStickerInPack, getEmojiForSticker } from 'lib/stickers';
-
-import classes from './Sticker.css';
 
 
 export interface StickerProps {
@@ -31,17 +30,10 @@ export default function Sticker({ packId, packKey, stickerId }: StickerProps) {
       getConvertedStickerInPack(packId, packKey, stickerId)
     ]);
 
-    // The user may have navigated away from this page before all stickers have
-    // loaded, causing the component to un-mount before the above Promises
-    // resolve. Calling setState on an un-mounted component is a no-op, but
-    // triggers a warning in development mode. Fortunately, use-async-effect
-    // provides an isMounted predicate we can call to determine if we should
-    // proceed with updating a component's state after potentially lengthy async
-    // operations.
-    if (isMounted()) {
-      setEmoji(emojiResult);
-      setStickerSrc(stickerResult);
-    }
+    if (!isMounted()) return;
+
+    setEmoji(emojiResult);
+    setStickerSrc(stickerResult);
   }, [
     packId,
     packKey,
@@ -50,22 +42,36 @@ export default function Sticker({ packId, packKey, stickerId }: StickerProps) {
 
 
   return (
-    <div className={classes.sticker}>
-      {emoji && stickerSrc ?
-        <>
-          <div className={classes.stickerEmoji}>
-            {emoji}
-          </div>
+    <div
+      className={cx(
+        'position-relative d-flex align-items-center justify-content-center',
+        'ratio ratio-1x1 border rounded shadow-sm'
+      )}
+      style={{ backgroundColor: 'rgba(var(--bs-body-color-rgb), 0.03)' }}
+    >
+      {emoji && stickerSrc ? (
+        <div>
+          <aside
+            className="position-absolute"
+            aria-label="Sticker Emoji"
+            style={{ top: 3, left: 6, opacity: 1, zIndex: 1 }}
+          >{emoji}</aside>
           <img
             src={stickerSrc}
             alt="Sticker"
-            className="w-100 h-100"
+            className="w-100 h-100 p-4"
           />
-        </> :
-        <div className="spinner-border text-light" role="status">
-          <span className="sr-only">Loading...</span>
         </div>
-      }
+      ) : (
+        <div className="p-5">
+          <aside
+            className="spinner-border text-secondary border-2 w-100 h-100"
+            role="status"
+          >
+            <span className="visually-hidden">Loading...</span>
+          </aside>
+        </div>
+      )}
     </div>
   );
 }
