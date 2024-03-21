@@ -61,3 +61,9 @@ export interface StickerPackPartial {
   manifest: Omit<StickerPackManifest, 'stickers'>;
   meta: StickerPack['meta'];
 }
+
+
+/**
+ * Valid sort-by values, persisted in Local Storage.
+ */
+export type SortOrder = 'trending' | 'mostViewed' | undefined;

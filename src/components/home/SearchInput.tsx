@@ -4,9 +4,12 @@ import pluralize from 'pluralize';
 import React from 'react';
 import { BsSearch, BsX } from 'react-icons/bs';
 
+import AppStateContext from 'contexts/AppStateContext';
 import StickersContext from 'contexts/StickersContext';
 
 import classes from './SearchInput.css';
+
+import type { SortOrder } from 'etc/types';
 
 
 export default function SearchInputComponent() {
@@ -14,14 +17,13 @@ export default function SearchInputComponent() {
     searcher,
     searchQuery,
     searchResults,
-    setSearchQuery,
-    sortOrder,
-    setSortOrder,
-    setShowNsfw,
-    showNsfw
+    setSearchQuery
   } = React.useContext(StickersContext);
+  const { useAppState } = React.useContext(AppStateContext);
   const [searchQueryInputValue, setSearchQueryInputValue] = React.useState('');
   const suggestedTags = ['cute', 'privacy', 'meme', 'for children'];
+  const [showNsfw, setShowNsfw] = useAppState<boolean>('showNsfw');
+  const [sortOrder, setSortOrder] = useAppState<SortOrder>('sortOrder');
 
 
   /**
@@ -228,17 +230,12 @@ export default function SearchInputComponent() {
           </span>
           <select
             className="d-inline-block form-control form-select w-auto ps-2 py-1 ms-2"
-            value={searchQuery ? 'relevance' : sortOrder}
-            onChange={e => setSortOrder(e.target.value)}
-            disabled={searchQuery !== ''}
+            value={sortOrder}
+            onChange={e => setSortOrder(e.target.value as SortOrder)}
           >
             <option value="">Latest</option>
             <option value="trending">Trending</option>
             <option value="mostViewed">Most Viewed</option>
-            {searchQuery &&
-              /* Only used as a placeholder when a searchQuery is set */
-              <option value="relevance">Relevance</option>
-            }
           </select>
         </div>
 

@@ -16,7 +16,7 @@ const PAGE_SIZE = 64;
 
 
 export default function StickerPackListComponent() {
-  const {searchResults, showNsfw} = React.useContext(StickersContext);
+  const { searchResults } = React.useContext(StickersContext);
   // Used by Waypoint to persist the component across re-renders.
   const [cursor, setCursor] = React.useState(0);
   // Subset of total search results that have been rendered.
