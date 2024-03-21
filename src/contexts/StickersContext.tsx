@@ -2,9 +2,12 @@ import * as R from 'ramda';
 import React from 'react';
 import useAsyncEffect from 'use-async-effect';
 
-import { StickerPackPartial, StickerPackMetadata } from 'etc/types';
-import SearchFactory, { SearchResults, Search } from 'lib/search';
+import AppStateContext from 'contexts/AppStateContext';
+import SearchFactory, { Search } from 'lib/search';
 import { getStickerPackDirectory } from 'lib/stickers';
+
+import type { StickerPackPartial, SortOrder } from 'etc/types';
+
 
 /**
  * Shape of the object provided by this Context.
@@ -18,7 +21,7 @@ export interface StickersContext {
   /**
    * Searcher instance.
    */
-  searcher?: Search<StickerPackPartial>;
+  searcher: Search<StickerPackPartial> | undefined;
 
   /**
    * Current search query. This is persisted here so that should the user return
@@ -29,55 +32,38 @@ export interface StickersContext {
   /**
    * Current result set based on the current value of search Query.
    */
-  searchResults: SearchResults<StickerPackPartial>;
+  searchResults: Array<StickerPackPartial>;
 
   /**
    * Allows a consumer to set the current search query, which will in turn
    * update the current search results.
    */
   setSearchQuery: (needle: string) => void;
-
-  /**
-   * Current sort order
-   */
-  sortOrder: string;
-
-  /**
-   * Allows a consumer to set the sort order
-   */
-  setSortOrder: (sortOrder: string) => void;
-
-  /**
-   * Either show or hide NSFW content
-   */
-  showNsfw: boolean;
-
-  /**
-   * Allow a consumer to show or hide NSFW content
-   */
-  setShowNsfw: (show: boolean) => void;
 }
 
 
 const Context = React.createContext<StickersContext>({} as any);
 
 
-export const Provider = (props: React.PropsWithChildren<Record<string, unknown>>) => {
+export function Provider(props: React.PropsWithChildren<Record<string, unknown>>) {
+  const { useAppState } = React.useContext(AppStateContext);
   const [allStickerPacks, setAllStickerPacks] = React.useState<StickersContext['allStickerPacks']>();
   const [searcher, setSearcher] = React.useState<Search<StickerPackPartial>>();
   const [searchQuery, setSearchQuery] = React.useState<StickersContext['searchQuery']>('');
-  const [sortOrder, setSortOrder] = React.useState<StickersContext['sortOrder']>('');
   const [searchResults, setSearchResults] = React.useState<StickersContext['searchResults']>([]);
-  const [showNsfw, setShowNsfw] = React.useState(false);
+  const [sortOrder] = useAppState<SortOrder>('sortOrder');
+  const [showNsfw] = useAppState<boolean>('showNsfw');
 
 
   /**
    * [Effect] When the context mounts, set the list of sticker packs from
    * partials.json and set-up the initial search results.
    */
-  useAsyncEffect(async () => {
+  useAsyncEffect(async isMounted => {
     // Load the set of sticker packs we need from partials.json.
     const stickerPacks = await getStickerPackDirectory();
+
+    if (!isMounted()) return;
 
     // Set the canonical list of all sticker packs.
     setAllStickerPacks(stickerPacks);
@@ -100,46 +86,38 @@ export const Provider = (props: React.PropsWithChildren<Record<string, unknown>>
 
 
   /**
-   * [Effect] Update `searchResults` when `searchQuery` changes. This effect
-   * will also set the default set of search results to `allStickerPacks` if
-   * there is no query.
+   * [Effect] Update `searchResults` when `searchQuery`, `sortOrder`, or
+   * `showNsfw` changes.
    */
   React.useEffect(() => {
-    if (!allStickerPacks || !searcher) {
+    if (!allStickerPacks || !searcher) return;
+
+    // Start with all packs if there is no query. Otherwise, start with search
+    // results.
+    let searchResults = searchQuery
+      ? R.map(R.prop('item'), searcher.search(searchQuery))
+      : allStickerPacks;
+
+    // Remove NSFW packs if the user has opted to hide them.
+    if (!showNsfw) searchResults = R.reject(R.pathEq(true, ['meta', 'nsfw']), searchResults);
+
+    // Use the "Latest"/default sort order.
+    if (!sortOrder) {
+      setSearchResults(searchResults);
       return;
     }
 
-
-    // If there is currently no query, set the search results to the result of
-    // mapping the full list of sticker packs into a list with the same shape
-    // returned by the search function.
-    if (searchQuery.length === 0) {
-      // Default ordering
-      let orderedSearchResults = R.map(stickerPack => ({
-        item: stickerPack
-      }), allStickerPacks);
-
-      let sortKey = ''; // Key to sort by in StickerPackMetadata
-      switch (sortOrder) {
-        case 'trending':
-          sortKey = 'hotviews';
-          break;
-        case 'mostViewed':
-          sortKey = 'totalviews';
-          break;
-      }
-
-      if (sortKey) {
-        orderedSearchResults = orderedSearchResults.sort((a, b) => (
-          (a.item.meta[sortKey as keyof StickerPackMetadata] ?? 0) > (b.item.meta[sortKey as keyof StickerPackMetadata] ?? 0) ? -1 : 1
-        ));
-      }
-
-      setSearchResults(orderedSearchResults as SearchResults<StickerPackPartial>);
+    // Sort in descending order by hotviews.
+    if (sortOrder === 'trending') {
+      setSearchResults(R.sort(R.descend(R.pathOr(0, ['meta', 'hotviews'])), searchResults));
       return;
     }
 
-    setSearchResults(searcher.search(searchQuery));
+    // Sort in descending order by totalviews.
+    if (sortOrder === 'mostViewed') {
+      setSearchResults(R.sort(R.descend(R.pathOr(0, ['meta', 'totalviews'])), searchResults));
+      return;
+    }
   }, [
     allStickerPacks,
     searcher,
@@ -149,27 +127,20 @@ export const Provider = (props: React.PropsWithChildren<Record<string, unknown>>
   ]);
 
 
-  // ----- Render --------------------------------------------------------------
-
   return (
     <Context.Provider
-      // @ts-expect-error
       value={{
         allStickerPacks,
         searcher,
         searchQuery,
         searchResults,
-        setSearchQuery,
-        sortOrder,
-        setSortOrder,
-        showNsfw,
-        setShowNsfw
+        setSearchQuery
       }}
     >
       {props.children}
     </Context.Provider>
   );
-};
+}
 
 
 export default Context;
