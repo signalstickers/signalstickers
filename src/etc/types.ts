@@ -66,4 +66,4 @@ export interface StickerPackPartial {
 /**
  * Valid sort-by values, persisted in Local Storage.
  */
-export type SortOrder = 'trending' | 'mostViewed' | undefined;
+export type SortOrder = 'latest' | 'trending' | 'mostViewed' | 'relevance';

@@ -1,18 +1,3 @@
-import type Fuse from 'fuse.js';
-
-/**
- * Base configuration object for Fuse.
- */
-export const BASE_CONFIG: Fuse.IFuseOptions<any> = {
-  isCaseSensitive: false,
-  includeScore: true,
-  ignoreLocation: true,
-  findAllMatches: false,
-  minMatchCharLength: 2,
-  shouldSort: true
-};
-
-
 /**
  * Maximum 'score' a search result can have. Results with a higher score will
  * be filtered-out.
@@ -21,13 +6,6 @@ export const BASE_CONFIG: Fuse.IFuseOptions<any> = {
  * represents a result that did not match anything in the query.
  */
 export const MAX_SCORE = 0.6;
-
-
-/**
- * Key used in our Map of searchers to reference the general-purpose Fuse
- * instance.
- */
-export const GENERAL_SEARCHER = Symbol('GENERAL');
 
 
 /**

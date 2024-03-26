@@ -64,23 +64,17 @@ export default function SearchInputComponent() {
     switch (event.currentTarget.dataset.suggestionType) {
       case 'tag':
         setSearchQuery(searcher.buildQueryString({
-          attributeQueries: [{
-            tag: event.currentTarget.textContent
-          }]
+          expression: { $and: [{ tag: event.currentTarget.textContent }] }
         }));
         break;
       case 'animated':
         setSearchQuery(searcher.buildQueryString({
-          attributeQueries: [{
-            animated: 'true'
-          }]
+          expression: { $and: [{ animated: 'true' }] }
         }));
         break;
       case 'editorschoice':
         setSearchQuery(searcher.buildQueryString({
-          attributeQueries: [{
-            editorschoice: 'true'
-          }]
+          expression: { $and: [{ editorschoice: 'true' }] }
         }));
         break;
     }
@@ -233,9 +227,10 @@ export default function SearchInputComponent() {
             value={sortOrder}
             onChange={e => setSortOrder(e.target.value as SortOrder)}
           >
-            <option value="">Latest</option>
+            <option value="latest">Latest</option>
             <option value="trending">Trending</option>
             <option value="mostViewed">Most Viewed</option>
+            <option value="relevance" disabled={!searchQuery}>Relevance</option>
           </select>
         </div>
 

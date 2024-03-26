@@ -43,7 +43,7 @@ const initialState: State = {
   // Set initial dark mode according to the user's preferences.
   darkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
   showNsfw: false,
-  sortOrder: undefined
+  sortOrder: 'latest'
 };
 
 

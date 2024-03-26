@@ -10,13 +10,13 @@
  * -------------
  *
  * A simple query will perform a fuzzy search on all configured attributes in a
- * collection. Users may also perform a query on a specific attribute using the
- * following grammar:
+ * collection. Users may also perform a fuzzy search on a specific attribute
+ * using the following grammar:
  *
  * '<attribute>:<query>'
  *
- * If `query` contains whitespace, the <query> portion may be wrapped in double
- * quotation marks:
+ * If `query` contains whitespace, the <query> portion must be wrapped in double
+ * quotes:
  *
  * '<attribute>:"<query>"'
  *
@@ -25,6 +25,9 @@
  *
  * '<term> <term> <attribute>:<query> <attribute>:"<query>" <term>'
  *
+ * Our implementation will combine each term with an AND operator, meaning a
+ * result must match ALL terms.
+ *
  * -----------------------------------------------------------------------------
  *
  * See: https://fusejs.io/
@@ -32,17 +35,26 @@
 import Fuse from 'fuse.js';
 import * as R from 'ramda';
 
-import {
-  BASE_CONFIG,
-  GENERAL_SEARCHER,
-  MAX_SCORE,
-  QUOTED_EXPRESSION_PATTERN,
-  UNQUOTED_EXPRESSION_PATTERN
-} from './constants';
-import {
-  AttributeQuery,
-  ParsedQuery
-} from './types';
+
+/**
+ * A Fuse.js "and" expression object.
+ *
+ * See: https://www.fusejs.io/api/query.html#and
+ */
+interface AndExpression {
+  $and: Array<Fuse.Expression>;
+}
+
+
+/**
+ * Object containing an optional fuzzy query that will be used to search across
+ * all attributes and an optional `AndExpression`.
+ * query.
+ */
+export interface QueryObject {
+  query?: string;
+  expression?: AndExpression;
+}
 
 
 /**
@@ -77,16 +89,16 @@ export interface SearchFactoryOptions<T> {
    *
    * See: https://fusejs.io/examples.html#nested-search
    */
-  keys: {
-    [key: string]: Fuse.FuseOptionKey<T>;
-  };
+  keys: Array<Fuse.FuseOptionKeyObject<T>>;
 }
 
 
 /**
  * Object returned by SearchFactory.
+ *
+ * See: https://www.fusejs.io/api/query.html#logical-query-operators
  */
-export interface Search<T> {
+export interface Searcher<T> {
   /**
    * Provided a query string, performs a search on `collection` and returns a
    * result set.
@@ -94,50 +106,97 @@ export interface Search<T> {
   search: (queryString: string) => SearchResults<T>;
 
   /**
-   * Provided a query string, returns a query object.
+   * Provided a query string, returns a `QueryObject` object.
    *
    * @example
    *
-   * searcher.parseQueryString(`tag:cute doge amaze`) //=> {
+   * searcher.parseQueryString(`tag:cute doge amaze`) // =>
+   * {
    *   query: 'doge amaze',
-   *   attributeQueries: [
-   *     {tag: 'cute'}
-   *   ]
+   *   expression: {
+   *     $and: [{ tag: 'cute' }]
+   *   }
    * }
    */
-  parseQueryString: (query: string) => ParsedQuery;
+  parseQueryString: (query: string) => QueryObject;
 
   /**
-   * Provided a query object, returns a query string.
+   * Provided a `QueryObject`, returns a query string.
    *
    * @example
    *
    * searcher.buildQueryString({
    *   query: 'elephant',
-   *   attributeQueries: [
-   *     {tag: 'animal'},
-   *     {tag: 'for children'}
-   *   ]
-   * }) //=> 'elephant tag:animal tag:"for children"'
+   *   expression: {
+   *     $and: [{ tag: 'animal', tag: 'for children' }]
+   *   }
+   * }) //=>
+   * 'elephant tag:animal tag:"for children"'
    */
-  buildQueryString: (queryObject: ParsedQuery) => string;
+  buildQueryString: (queryObject: QueryObject) => string;
 }
+
+
+/**
+ * Maximum 'score' a search result can have. Results with a higher score will
+ * be filtered-out.
+ *
+ * N.B. With Fuse.js, a score of 0 represents a perfect match, and a score of 1
+ * represents a result that did not match anything in the query.
+ */
+const MAX_SCORE = 0.01;
+
+
+/**
+ * Maximum score search results can have when using a our "tokenized OR" query.
+ * This score is lower than the general maximum score to reduce noisy results
+ * that can come from this query, which is very permissive.
+ *
+ * See usage below for more context.
+ */
+// const MAX_SCORE_GENERAL_OR = 0.000_000_000_001;
+const MAX_SCORE_GENERAL_OR = 0.000_000_01;
+
+
+/**
+ * Matches a quoted attribute search expression. This format is used when the
+ * query contains whitespace.
+ *
+ * Ex: `author:"Frodo Baggins"`
+ */
+const QUOTED_EXPRESSION_PATTERN = /(?<attribute>[^\s":]+):"(?<query>[^":]+)"/g;
+
+
+/**
+ * Matches an unquoted attribute search expression.
+ *
+ * Ex: `tag:cute`
+ */
+const UNQUOTED_EXPRESSION_PATTERN = /(?<attribute>[^\s":]+):(?<query>[^\s":]+)/g;
 
 
 /**
  * Provided a SearchFactoryOptions object, returns a Search object.
  */
-export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Search<T> {
-
-  // ----- Private Members -----------------------------------------------------
+export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Searcher<T> {
 
   /**
    * @private
    *
-   * Keep a cache of Fuse instances for each attribute that we search on. This
-   * prevents unnecessary re-indexing.
+   * Fuse instance.
+   *
+   * See: https://www.fusejs.io/api/options.html
    */
-  const searchers = new Map<string | number | symbol, Fuse<T>>();
+  const fuse = new Fuse(options.collection, {
+    isCaseSensitive: false,
+    includeScore: true,
+    ignoreLocation: true,
+    findAllMatches: true,
+    minMatchCharLength: 2,
+    shouldSort: false,
+    threshold: 0.4,
+    keys: options.keys
+  });
 
 
   // ----- Private Methods -----------------------------------------------------
@@ -148,6 +207,24 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
    * Provided a string, returns the number of words therein.
    */
   const wordCount = (input: string): number => input.split(/\s+/g).length;
+
+
+  /**
+   * @private
+   *
+   * Type predicate used to determine if a given `FuseExpression` is an "and"
+   * expression.
+   */
+  const isAndExpression = (value: any): value is AndExpression => R.has('$and', value);
+
+
+  /**
+   * Returns true if the provided attribute was enumerated in the searcher's
+   * `keys` configuration.
+   */
+  const isValidAttribute = (attribute: string | Array<string>) => {
+    return R.any(R.propEq(attribute, 'name'), options.keys);
+  };
 
 
   /**
@@ -166,64 +243,33 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
   };
 
 
-  /**
-   * @private
-   *
-   * Create Fuse instances for each configured attribute as well as a general
-   * instance that searches across all configured attributes.
-   */
-  const createFuseInstances = (collection: Array<T>) => {
-    R.forEach(([attribute, path]) => {
-      searchers.set(attribute, new Fuse(collection, {
-        ...BASE_CONFIG,
-        // For attribute searches, require an exact match.
-        threshold: 0,
-        keys: [path]
-      }));
-    }, R.toPairs(options.keys ?? []));
-
-    searchers.set(GENERAL_SEARCHER, new Fuse(collection, {
-      ...BASE_CONFIG,
-      threshold: 0.4,
-      keys: R.values(options.keys)
-    }));
-  };
-
-
   // ----- Public Methods ------------------------------------------------------
 
-  const parseQueryString = (query: string): ParsedQuery => {
-    let remainingQuery = query;
-    const attributeQueries: Array<AttributeQuery> = [];
+  const parseQueryString = (queryString: string): QueryObject => {
+    const expression: AndExpression = { $and: [] };
+
+    let remainingQuery = queryString;
 
     R.forEach((curPattern: RegExp) => {
-      if (remainingQuery.length === 0) {
-        return;
-      }
+      if (remainingQuery.length === 0) return;
 
       R.forEach((match: RegExpMatchArray) => {
-        if (!match.groups) {
-          return;
-        }
+        if (!match.groups) return;
 
         const attribute = match.groups.attribute.trim();
         const query = match.groups.query.trim();
 
-        // Determine if the provided attribute is valid by checking if we have
-        // a dedicated searcher for it.
-        const isValidAttribute = searchers.has(attribute);
-
-        // If 'attribute' matched from the query string does not match a
-        // configured attribute, leave the entire term in the query string,
-        // allowing it to be used as a general search term.
-        if (!isValidAttribute) {
-          return;
-        }
-
         // Remove the matched term from the query string.
         remainingQuery = remainingQuery.replace(match[0], '').trim();
 
-        attributeQueries.push({ [attribute]: query });
+        // If the attribute matched from the query string does not match a
+        // configured attribute, do not add it to our expression.
+        if (!isValidAttribute(attribute)) {
+          console.warn('[parseQueryString] Invalid attribute:', attribute);
+          return;
+        }
+
+        expression.$and.push({ [attribute]: query });
       }, [...remainingQuery.matchAll(curPattern)]);
     }, [
       UNQUOTED_EXPRESSION_PATTERN,
@@ -231,85 +277,64 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
     ]);
 
     return {
-      query: remainingQuery.trim(),
-      attributeQueries
+      query: remainingQuery,
+      expression
     };
   };
 
 
-  const buildQueryString = (queryObject: ParsedQuery): string => {
+  const buildQueryString = (queryObject: QueryObject): string => {
     const queryTerms: Array<string> = [];
 
-    R.forEach(R.forEachObjIndexed((query, attribute) => {
-      const isValidAttribute = searchers.has(attribute);
+    if (queryObject.query) queryTerms.push(queryObject.query);
 
-      if (!isValidAttribute) {
-        throw new Error(`[Search::buildQueryString] Unknown attribute: "${attribute}".`);
-      }
+    if (isAndExpression(queryObject.expression)) {
+      R.forEachObjIndexed(expressionTerms => {
+        R.forEach(([attribute, query]) => {
+          if (!isValidAttribute(attribute)) return;
+          const formattedQuery = wordCount(query) > 1 ? `"${query}"` : query;
+          queryTerms.push(`${attribute}:${formattedQuery}`);
+        }, R.toPairs(expressionTerms as Record<string, string>));
+      }, queryObject.expression.$and);
+    }
 
-      const formattedQuery = wordCount(query) > 1 ? `"${query}"` : query;
-      queryTerms.push(`${attribute}:${formattedQuery}`);
-    }), queryObject.attributeQueries ?? []);
-
-    return R.join(' ', R.prepend(queryObject.query, queryTerms)).trim();
+    return R.join(' ', queryTerms);
   };
 
 
   const search = R.memoizeWith(R.identity, (queryString: string) => {
-    let results: SearchResults<T> = [];
-    const { query, attributeQueries } = parseQueryString(queryString);
+    const results = [];
+    const { expression, query } = parseQueryString(queryString);
 
-    // Perform an attribute search for each attribute query.
-    R.forEach(R.forEachObjIndexed((attributeQuery, attribute) => {
-      if (!attributeQuery) {
-        return;
-      }
-
-      const searcherForAttribute = searchers.get(attribute);
-
-      if (!searcherForAttribute) {
-        return;
-      }
-
-      const resultsForAttribute = searcherForAttribute.search(attributeQuery);
-
-      // eslint-disable-next-line unicorn/prefer-ternary
-      if (results.length === 0) {
-        // If this is the first query that produced results, set results array
-        // directly.
-        results = resultsForAttribute;
-      } else {
-        // Otherwise, only add those results from this attribute search that are
-        // _also_ in the existing result set. This effectively gives us a
-        // logical "and" when handling multiple attribute queries.
-        results = R.innerJoin((a, b) => {
-          return options.identity(a.item) === options.identity(b.item);
-        }, results, resultsForAttribute);
-      }
-    }), attributeQueries ?? []);
-
-    // Then, perform a search with the remaining portion of the query using the
-    // general purpose Fuse instance.
     if (query) {
-      const querySearcher = searchers.get(GENERAL_SEARCHER);
+      // Build an expression that takes our search query, splits it into tokens
+      // (by space), then creates a list of key/token pairs joined into an OR
+      // expression. For more information on why we have to do this, see:
+      // https://github.com/krisk/Fuse/issues/302
+      // https://github.com/krisk/Fuse/issues/235
+      const orExpression = R.chain(keyDescriptor => {
+        const keyName = Array.isArray(keyDescriptor.name)
+          ? keyDescriptor.name.join('.')
+          : keyDescriptor.name;
 
-      if (querySearcher) {
-        const queryResults = querySearcher.search(query);
-        results = results.length === 0 ? queryResults : R.innerJoin((a, b) => {
-          return options.identity(a.item) === options.identity(b.item);
-        }, results, queryResults);
-      } else {
-        throw new Error('[Search] Unable to find the generic searcher.');
-      }
+        return R.map(token => ({ [keyName]: token }), R.split(' ', queryString));
+      }, options.keys);
+
+      results.push(...fuse.search({ $or: orExpression })
+        .filter(result => result.score && result.score <= MAX_SCORE_GENERAL_OR));
+
+      // Then, perform a "regular" search.
+      results.push(...fuse.search(query));
     }
 
-    return processResults(results);
+    if (expression) results.push(...fuse.search(expression));
+
+    const finalResults = processResults(results);
+
+    console.log('RESULTS', finalResults);
+
+    return finalResults;
   });
-
-
-  // ----- Initialization ------------------------------------------------------
-
-  createFuseInstances(options.collection);
 
 
   return {
