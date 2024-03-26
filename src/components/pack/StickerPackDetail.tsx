@@ -91,12 +91,11 @@ export default function StickerPackDetail() {
    */
   const onAuthorClick = React.useCallback((event: React.SyntheticEvent) => {
     event.preventDefault();
+    const author = event.currentTarget.textContent;
 
-    if (searcher && event.currentTarget.textContent) {
+    if (searcher && author) {
       setSearchQuery(searcher.buildQueryString({
-        attributeQueries: [{
-          author: event.currentTarget.textContent
-        }]
+        expression: { $and: [{ author }] }
       }));
 
       history.push('/');
@@ -341,14 +340,16 @@ export default function StickerPackDetail() {
         </div>
       </div>
       <div className="row">
-        <div className="col-12 d-flex justify-content-center align-items-center mt-4 gap-4">
-          <span className="text-muted">
+        <div className="col-12 d-flex mt-4 gap-4">
+          <div className="text-end text-muted w-50">
             {stickerPack.manifest.stickers.length}
             {' '}
             {pluralize('sticker', stickerPack.manifest.stickers.length)}
-          </span>
+          </div>
           <div className="vr" />
-          <Link to={`/pack/${packId}/report`}>Report Pack</Link>
+          <div className="w-50">
+            <Link to={`/pack/${packId}/report`}>Report Pack</Link>
+          </div>
         </div>
       </div>
     </div>

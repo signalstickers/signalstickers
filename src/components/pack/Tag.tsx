@@ -24,9 +24,7 @@ export default function Tag({className, label}: TagProps) {
 
     if (searcher) {
       setSearchQuery(searcher.buildQueryString({
-        attributeQueries: [{
-          tag: label
-        }]
+        expression: { $and: [{ tag: label }] }
       }));
 
       history.push('/');
