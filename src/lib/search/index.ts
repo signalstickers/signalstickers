@@ -32,7 +32,11 @@
  *
  * See: https://fusejs.io/
  */
-import Fuse from 'fuse.js';
+import Fuse, {
+  type Expression,
+  type FuseResult,
+  type FuseOptionKeyObject
+} from 'fuse.js';
 import * as R from 'ramda';
 
 
@@ -42,7 +46,7 @@ import * as R from 'ramda';
  * See: https://www.fusejs.io/api/query.html#and
  */
 interface AndExpression {
-  $and: Array<Fuse.Expression>;
+  $and: Array<Expression>;
 }
 
 
@@ -61,7 +65,7 @@ export interface QueryObject {
  * Utility type that, provided the member type of a collection, represents a
  * collection of search results.
  */
-export type SearchResults<T> = Array<Fuse.FuseResult<T>>;
+export type SearchResults<T> = Array<FuseResult<T>>;
 
 
 /**
@@ -89,7 +93,7 @@ export interface SearchFactoryOptions<T> {
    *
    * See: https://fusejs.io/examples.html#nested-search
    */
-  keys: Array<Fuse.FuseOptionKeyObject<T>>;
+  keys: Array<FuseOptionKeyObject<T>>;
 }
 
 
@@ -238,7 +242,7 @@ export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Sear
       // Filter-out results with a score above MAX_SCORE.
       R.filter(R.compose(R.gte(MAX_SCORE), R.propOr(undefined, 'score'))),
       // De-dupe results by calling the configured identity callback.
-      R.uniqBy<Fuse.FuseResult<T>, any>(result => options.identity(result.item))
+      R.uniqBy<FuseResult<T>, any>(result => options.identity(result.item))
     )(results);
   };
 

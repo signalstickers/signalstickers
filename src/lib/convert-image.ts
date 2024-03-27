@@ -27,37 +27,28 @@ let converter: Promise<WebpMachine> | undefined;
  * import/instantiate it once.
  */
 async function importWebpHero() {
-  if (!converter) {
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    converter = new Promise(async resolve => {
-      const modules = await Promise.all([
-        import(
-          /* webpackChunkName: "webp-hero" */
-          'webp-hero/libwebp/dist/webp.js'
-        ),
-        import(
-          /* webpackChunkName: "webp-hero-machine" */
-          'webp-hero/dist/webp-machine'
-        )
-      ]);
+  const initWebPMachine = async () => {
+    const modules = await Promise.all([
+      import('webp-hero/libwebp/dist/webp.js'),
+      import('webp-hero/dist/webp-machine')
+    ]);
 
-      const {Webp} = modules[0];
-      const {WebpMachine, defaultDetectWebpImage} = modules[1];
+    const { Webp } = modules[0];
+    const { WebpMachine } = modules[1];
 
-      // One of Webp Hero's dependencies seems to block user input when a
-      // conversion is run. This fix can be found here:
-      // See: https://github.com/chase-moskal/webp-hero/issues/18#issuecomment-560188272
-      const webp = new Webp();
-      webp.Module.doNotCaptureKeyboard = true;
+    // One of Webp Hero's dependencies seems to block user input when a
+    // conversion is run. This fix can be found here:
+    // See: https://github.com/chase-moskal/webp-hero/issues/18#issuecomment-560188272
+    const webp = new Webp();
+    webp.Module.doNotCaptureKeyboard = true;
 
-      resolve(new WebpMachine({
-        webp,
-        webpSupport: detectWebpSupport(),
-        detectWebpImage: defaultDetectWebpImage
-      }));
+    return new WebpMachine({
+      webp,
+      webpSupport: detectWebpSupport()
     });
-  }
+  };
 
+  if (!converter) converter = initWebPMachine();
   return converter;
 }
 
@@ -73,7 +64,7 @@ const hasWebpSupportPromise = detectWebpSupport();
  * Module-local asynchronous queue facility that will allow us to limit the
  * number of concurrent image conversion operations.
  */
-const imageConversionQueue = new pQueue({concurrency: 1});
+const imageConversionQueue = new pQueue({ concurrency: 1 });
 
 
 // ----- Functions -------------------------------------------------------------
@@ -82,8 +73,7 @@ const imageConversionQueue = new pQueue({concurrency: 1});
  * Provided a UInt8Array or Buffer containing image data, returns the image's
  * MIME type.
  */
-// eslint-disable-next-line no-undef
-function getImageMimeType(rawImageData: Uint8Array | Buffer): string {
+function getImageMimeType(rawImageData: Uint8Array) {
   const typeInfo = imageType(rawImageData);
 
   if (!typeInfo) {
@@ -124,7 +114,7 @@ export async function convertImage(rawImageData: Uint8Array) {
   // user's machine, but is the only way we can display these images at this
   // time.
   if (mimeType === 'image/webp' && !hasWebpSupport) {
-    return imageConversionQueue.add(async () => {
+    return imageConversionQueue.add<string>(async () => {
       try {
         const converter = await importWebpHero();
         // @ts-expect-error (`busy` is not an exposed member of WebpMachine.)
@@ -134,6 +124,8 @@ export async function convertImage(rawImageData: Uint8Array) {
         console.error(`[convertImage] Image conversion failed: ${err.message}`);
         throw err;
       }
+    }, {
+      throwOnTimeout: true
     });
   }
 

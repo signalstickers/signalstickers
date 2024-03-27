@@ -377,7 +377,12 @@ export default function Nav() {
       // unsafe area with the navbar's background color.
       style={{ paddingTop: 'calc(env(safe-area-inset-top, 0px) + var(--bs-navbar-padding-y))' }}
     >
-      <div className="container ps-3">
+      <div
+        className={cx(
+          'ps-3',
+          IS_STANDALONE ? 'container-fluid' : 'container'
+        )}
+      >
         {/* Brand / Home Link */}
         <Link
           // This will preserve any query params in the URL.
