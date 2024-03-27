@@ -88,21 +88,29 @@ export function Provider(props: React.PropsWithChildren<Record<string, unknown>>
 
 
   const useAppState = React.useCallback<AppStateContext['useAppState']>((key: string) => {
-    const setState = (value: any) => {
-      dispatch({ key, value });
-    };
-
+    const setState = (value: any) => void dispatch({ key, value });
     return [state[key], setState];
   }, [state, dispatch]);
 
 
   const toggleAppState = React.useCallback<AppStateContext['toggleAppState']>((key: string) => {
-    const setState = () => {
-      dispatch({ key, value: !state[key] });
-    };
-
-    return [state[key], setState];
+    const toggleState = () => void dispatch({ key, value: !state[key] });
+    return [state[key], toggleState];
   }, [state, dispatch]);
+
+
+  const [darkMode] = useAppState<boolean>('darkMode');
+
+
+  /**
+   * Adds or removes a data attribute to the <html> element to enable or disable
+   * dark mode.
+   */
+  React.useEffect(() => {
+    const htmlEl = document.querySelector('html');
+    if (!htmlEl) return;
+    htmlEl.dataset.bsTheme = darkMode ? 'dark' : 'light';
+  }, [darkMode]);
 
 
   return (
