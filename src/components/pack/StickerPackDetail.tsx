@@ -141,10 +141,11 @@ export default function StickerPackDetail() {
       <button
         type="button"
         title="Share"
-        className="btn btn-primary h-100 d-flex align-items-center"
+        className="btn btn-primary d-flex fs-5 align-items-center"
         onClick={() => void navigator.share(shareData)}
       >
-        <BsShare className="fs-4" />
+        {/* We need a hair-space here to ensure proper button height. */}
+        <BsShare className="fs-4" />&#8202;
       </button>
     );
   }, [stickerPack]);

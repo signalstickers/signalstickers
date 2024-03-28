@@ -2,12 +2,12 @@
 
 /**
  * This module contains several functions for loading, fetching, decrypting, and
- * caching stickers. Most notably, we fall back to a WebP-toPNG conversion when
+ * caching stickers. Most notably, we fall back to a WebP-to-PNG conversion when
  * on browsers that do not natively support WebP. It should be noted that this
- * process is time/CPU intensive and can cause have a significant performance
- * impact on the user's experience. Through queueing and max concurrency
- * settings, Safari seems to be able to handle this load without issue (albeit
- * far more slowly than Chrome).
+ * process is time/CPU intensive and can have a significant performance impact
+ * on the user's experience. Through queueing and max concurrency settings,
+ * Safari seems to be able to handle this load without issue (albeit far more
+ * slowly than Chrome).
  */
 import {
   getStickerPackManifest,

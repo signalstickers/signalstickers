@@ -380,6 +380,9 @@ export default function Nav() {
       <div
         className={cx(
           'ps-3',
+          // In standalone mode, always use a fluid container for the navbar,
+          // ensuring the menu toggle is always at the rightmost edge of the
+          // screen.
           IS_STANDALONE ? 'container-fluid' : 'container'
         )}
       >
@@ -393,7 +396,7 @@ export default function Nav() {
             src={signalStickersLogoUrl}
             alt="Signal Stickers Logo"
             className="me-3"
-            style={{ height: '36px' }}
+            style={{ height: 36, width: 36 }}
           />
           Signal Stickers
         </Link>
