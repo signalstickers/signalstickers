@@ -24,9 +24,7 @@ export default function Tag({className, label}: TagProps) {
 
     if (searcher) {
       setSearchQuery(searcher.buildQueryString({
-        attributeQueries: [{
-          tag: label
-        }]
+        expression: { $and: [{ tag: label }] }
       }));
 
       history.push('/');
@@ -38,7 +36,7 @@ export default function Tag({className, label}: TagProps) {
       type="button"
       title={`View more packs with tag "${label}"`}
       className={cx(
-        'btn btn-primary btn-sm px-2 py-1 rounded-lg text-capitalize text-nowrap',
+        'btn btn-outline-primary btn-sm px-2 py-0 my-0 rounded-lg text-nowrap',
         className
       )}
       role="link"
