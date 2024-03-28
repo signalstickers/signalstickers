@@ -205,7 +205,7 @@ export default function ContributePack() {
 
 
   return (
-    <div className="my-4 p-lg-3 px-lg-4">
+    <div className="my-3 my-sm-4">
       <div className="row">
         <div className="col-12">
           <h1 className="mb-4">Contribute</h1>

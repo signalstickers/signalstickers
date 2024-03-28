@@ -35,18 +35,18 @@ export interface StickerPackMetadata {
 /**
  * A sticker pack contains all information about a sticker pack from the Signal
  * API as fetched from `stickers-client` plus metadata about the pack from our
- * database. If the pack is "unlisted" (it has not been submitted to our
+ * directory. If the pack is "unlisted" (it has not been submitted to our
  * directory) its metadata will only contain the pack's `id` and `key`, which
  * will have been provided explicitly in the URL by the user.
  */
 export interface StickerPack {
   /**
-   * All information about the sticker pack loaded from the Signal API.
+   * All information about the sticker pack from the Signal API.
    */
   manifest: StickerPackManifest;
 
   /**
-   * Additional information about the sticker pack from our database.
+   * Additional information about the sticker pack from our directory.
    */
   meta: StickerPackMetadata;
 }

@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 import { Waypoint } from 'react-waypoint';
 
 import StickersContext from 'contexts/StickersContext';
+import globalClasses from 'etc/global-styles.css';
 
-import classes from './SearchResults.css';
 import StickerPackPreviewCard from './StickerPackPreviewCard';
-
 
 /**
  * How many items we will load each time loadMore() is called.
@@ -56,12 +55,13 @@ export default function StickerPackListComponent() {
     <div className="d-flex flex-column flex-grow-1 mb-4">
       <div className="row flex-grow-1">
         <div className="col-12">
-          <div className={classes.stickerGridView}>
+          <div className={globalClasses.gridView}>
             {renderedSearchResults.map(stickerPackPartial => {
               return (
                 <Link
                   key={stickerPackPartial.meta.id}
                   to={`/pack/${stickerPackPartial.meta.id}`}
+                  style={{ aspectRatio: 1 }}
                 >
                   <StickerPackPreviewCard stickerPack={stickerPackPartial} />
                 </Link>
@@ -72,7 +72,7 @@ export default function StickerPackListComponent() {
         <Waypoint
           key={cursor}
           onEnter={loadMore}
-          bottomOffset="-500px"
+          bottomOffset="-640px"
         />
       </div>
     </div>

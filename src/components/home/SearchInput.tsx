@@ -2,8 +2,9 @@ import cx from 'classnames';
 import debounceFn from 'debounce-fn';
 import pluralize from 'pluralize';
 import React from 'react';
-import { BsSearch, BsX } from 'react-icons/bs';
+import { BsSearch, BsXLg } from 'react-icons/bs';
 
+import Tag from 'components/general/Tag';
 import AppStateContext from 'contexts/AppStateContext';
 import StickersContext from 'contexts/StickersContext';
 
@@ -55,18 +56,13 @@ export default function SearchInputComponent() {
 
 
   /**
-   * [Event Handler] Sets the search query when a tag or the 'animated'
-   * suggestion is clicked.
+   * [Event Handler] Sets an appropriate search query when non-tag suggestion
+   * types are selected.
    */
   const onSuggestionClick = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     if (!searcher || !event.currentTarget.textContent) return;
 
     switch (event.currentTarget.dataset.suggestionType) {
-      case 'tag':
-        setSearchQuery(searcher.buildQueryString({
-          expression: { $and: [{ tag: event.currentTarget.textContent }] }
-        }));
-        break;
       case 'animated':
         setSearchQuery(searcher.buildQueryString({
           expression: { $and: [{ animated: 'true' }] }
@@ -123,29 +119,38 @@ export default function SearchInputComponent() {
 
 
   /**
-   * [Memo] JSX fragment containing the set of suggested tags.
+   * [Memo] Suggested categories and tags.
    */
-  const tagsFragment = React.useMemo(() => suggestedTags.map(tag => (
-    <button
-      type="button"
-      key={tag}
-      className={cx(
-        classes.miniTag,
-        'btn btn-outline-primary bg-transparent fs-7 fw-medium me-1'
-      )}
-      onClick={onSuggestionClick}
-      data-suggestion-type="tag"
-    >
-      {tag}
-    </button>
-  )), [suggestedTags]);
+  const tagsFragment = React.useMemo(() => {
+    return (
+      <>
+        <button
+          type="button"
+          className="btn btn-outline-secondary px-2 py-0 text-nowrap shadow-sm fs-7"
+          onClick={onSuggestionClick}
+          data-suggestion-type="editorschoice"
+        >
+          Editor's Choice
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-secondary px-2 text-nowrap shadow-sm py-0 fs-7"
+          onClick={onSuggestionClick}
+          data-suggestion-type="animated"
+        >
+          Animated
+        </button>
+        {suggestedTags.map(tag => <Tag key={tag} label={tag} className="shadow-sm" />)}
+      </>
+    );
+  }, [suggestedTags]);
 
 
   return (
     <div className="position-relative mb-4">
-      <div className="mb-1 position-relative">
-        <div className="position-absolute inset-0 d-flex align-items-center ps-3 h-100 pe-none">
-          <BsSearch className="text-secondary" />
+      <div className="mb-2 position-relative rounded-3 shadow-sm">
+        <div className="position-absolute top-0 start-0 d-flex align-items-center ps-3 h-100 pe-none">
+          <BsSearch className="text-body-secondary" />
         </div>
         <input
           type="text"
@@ -167,56 +172,29 @@ export default function SearchInputComponent() {
         {/* Search Clear Button */}
         <button
           type="button"
-          className={cx(
-            'btn btn-link position-absolute top-0 end-0 text-light',
-            'd-flex align-items-center h-100 px-2'
-          )}
           title="Clear Search Results"
+          className={cx(
+            'btn btn-link position-absolute top-0 end-0 text-reset',
+            'd-flex align-items-center h-100 px-3 fs-4'
+          )}
           onClick={clearSearchResults}
           style={{ opacity: searchQueryInputValue ? 1 : 0 }}
         >
-          <BsX className={cx(classes.searchClearIcon, 'fs-1')} />
+          <BsXLg className={classes.searchClearIcon} />
         </button>
       </div>
-      <div className="d-flex flex-column flex-md-row-reverse justify-content-between">
-        {/* Search Result Count */}
-        <div className="text-muted text-end fs-6 me-1">
-          {(searchResults?.length || 0).toLocaleString()} {pluralize('result', searchResults.length ?? 0)}
-        </div>
-
+      <div className="d-flex align-items-start justify-content-between gap-2 mb-4 mb-md-5">
         {/* Suggested Tags */}
-        <div>
-          <span className="fs-6">
-            Suggested: {' '}
-          </span>
-          <br className="d-inline d-md-none" />
-          <button
-            type="button"
-            className={cx(
-              classes.miniTagAnimated,
-              'btn fs-7 fw-medium bg-transparent me-1'
-            )}
-            onClick={onSuggestionClick}
-            data-suggestion-type="animated"
-          >
-            Animated
-          </button>
-          <button
-            type="button"
-            className={cx(
-              classes.miniTagEditorsChoice,
-              'btn fs-7 fw-medium me-1'
-            )}
-            onClick={onSuggestionClick}
-            data-suggestion-type="editorschoice"
-          >
-            Editor's choice
-          </button>
+        <div className="d-flex align-items-center align-self-start flex-wrap gap-2">
           {tagsFragment}
         </div>
-      </div>
-      <div className="mt-4 mt-md-5 d-flex">
 
+        {/* Search Result Count */}
+        <div className="text-muted text-nowrap fs-6 align-self-start">
+          {(searchResults?.length || 0).toLocaleString()} {pluralize('result', searchResults.length ?? 0)}
+        </div>
+      </div>
+      <div className="d-flex">
         {/* Sort Dropdown */}
         <div className="me-4">
           <span className="fs-6">

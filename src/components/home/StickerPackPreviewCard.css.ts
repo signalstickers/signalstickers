@@ -4,8 +4,12 @@ import { style, globalStyle } from '@vanilla-extract/css';
 const classes = {
   stickerPackPreviewCard: style({
     transition: 'border 0.15s ease-in-out',
-    ':hover': {
-      borderColor: 'rgba(var(--bs-secondary-rgb), 0.7)'
+    '@media': {
+      '(pointer: fine)': {
+        ':hover': {
+          borderColor: 'rgba(var(--bs-secondary-rgb), 0.7)'
+        }
+      }
     }
   }),
   cardHeader: style({
@@ -21,19 +25,10 @@ const classes = {
       width: '10%'
     }
   }),
-  originalAnnotation: style({
-    borderBottomRightRadius: '4px'
-  }),
-  animatedAnnotation: style({
-    borderBottomLeftRadius: '4px',
-    backgroundColor: 'var(--bs-orange)'
+  annotation: style({
+    filter: 'drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.15))'
   })
 };
-
-globalStyle(`${classes.stickerPackPreviewCard} .card-img-top`, {
-  width: '72px',
-  height: '72px'
-});
 
 // Pack title overflow fade for light mode.
 globalStyle(`[data-bs-theme="light"] ${classes.cardHeader}:after`, {

@@ -1,4 +1,6 @@
-import { globalStyle } from '@vanilla-extract/css';
+import { style, globalStyle } from '@vanilla-extract/css';
+
+import { bp } from 'lib/utils';
 
 
 globalStyle('*, *:before, *:after', {
@@ -97,3 +99,36 @@ globalStyle('.safe-area-padding-right', {
 // Hide the error overlay (only shown in development). Disable this temporarily
 // if you wish to use it.
 globalStyle('vite-plugin-checker-error-overlay', { display: 'none' });
+
+
+export default {
+  /**
+  * N.B. We use CSS Grid here rather than the Bootstrap grid because it allows
+  * us to specify odd numbers of identically-sized columns, which we cannot do
+  * in Bootstrap's 12-column grid.
+  */
+  gridView: style({
+    display: 'grid',
+    gridGap: '1rem',
+    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    justifyContent: 'space-between',
+    '@media': {
+      [bp('sm')]: {
+        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))'
+      },
+      [bp('md')]: {
+        gridGap: '1.5rem',
+        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))'
+      },
+      [bp('lg')]: {
+        gridTemplateColumns: 'repeat(4, minmax(0, 1fr))'
+      },
+      [bp('xl')]: {
+        gridTemplateColumns: 'repeat(5, minmax(0, 1fr))'
+      },
+      [bp('xxl')]: {
+        gridTemplateColumns: 'repeat(6, minmax(0, 1fr))'
+      }
+    }
+  })
+};

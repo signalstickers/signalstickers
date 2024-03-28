@@ -16,7 +16,7 @@ const links = {
       <SiKofi
         className="d-none d-md-inline"
         style={{ transform: 'translateY(1px)' }}
-      /> donating on Ko-Fi
+      />&nbsp;donating on Ko-Fi
     </ExternalLink>
   ),
   makePrivacyStick: (
@@ -101,7 +101,7 @@ const Links = () => {
 
 // ----- Search Help -----------------------------------------------------------
 
-const Example = ({ children }: { children: React.ReactNode }) => (
+const Example = ({ children }: React.PropsWithChildren) => (
   <div className="card mb-4">
     <div className="card-body px-3 py-2">
       <pre className="mb-0 fs-5"><code>{children}</code></pre>
@@ -190,7 +190,7 @@ const PrivacyPolicy = () => (
       <ul>
         <li>
           To provide statistics, we count the number of visitors on <InlineCode>signalstickers.org</InlineCode>
-          in a way that does not track your IP address ({links.noTrack}), so our statistics are anonymous.
+          {' '}in a way that does not track your IP address, so our statistics are anonymous. ({links.noTrack})
         </li>
         <li>
           The <InlineCode>signalstickers.org</InlineCode> website is hosted on {links.githubPages}. We
@@ -224,7 +224,7 @@ const PrivacyPolicy = () => (
 
 export default function AboutPage() {
   return (
-    <div className="my-4 p-lg-3">
+    <div className="my-3 my-sm-4">
       <AboutSection />
       <hr className="my-4 pb-2" />
       <Links />

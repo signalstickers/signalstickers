@@ -249,7 +249,7 @@ export default function Nav() {
         )}
         tabIndex={-1}
         aria-label="Off-Canvas Navigation"
-        style={{ width: 'max-content' }}
+        style={{ minWidth: 'max-content', width: '16rem' }}
       >
         <div className="offcanvas-header px-0 py-2 bg-transparent">
           {/* Close Button */}
@@ -368,9 +368,11 @@ export default function Nav() {
   return (
     <nav
       className={cx(
-        'navbar fixed-top bg-primary shadow',
-        !IS_STANDALONE && `navbar-expand-${NAV_EXPAND_BREAKPOINT}`
+        'navbar fixed-top bg-primary shadow-sm',
+        !IS_STANDALONE && `navbar-expand-${NAV_EXPAND_BREAKPOINT}`,
+        IS_STANDALONE && 'safe-area-padding-left safe-area-padding-right'
       )}
+      data-bs-theme="dark"
       // In PWA/standalone mode, the viewport is always the size of the entire
       // screen, including unsafe areas. So, we need to apply some top padding
       // to our fixed navbar to push its content downwards and fill-in the
@@ -380,7 +382,10 @@ export default function Nav() {
       <div
         className={cx(
           'ps-3',
-          IS_STANDALONE ? 'container-fluid' : 'container'
+          // In standalone mode, always use a fluid container for the navbar,
+          // ensuring the menu toggle is always at the rightmost edge of the
+          // screen.
+          IS_STANDALONE ? 'container-fluid' : 'container-md'
         )}
       >
         {/* Brand / Home Link */}
@@ -393,7 +398,7 @@ export default function Nav() {
             src={signalStickersLogoUrl}
             alt="Signal Stickers Logo"
             className="me-3"
-            style={{ height: '36px' }}
+            style={{ height: 36, width: 36 }}
           />
           Signal Stickers
         </Link>

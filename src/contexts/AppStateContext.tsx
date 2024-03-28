@@ -87,6 +87,8 @@ export function Provider(props: React.PropsWithChildren<Record<string, unknown>>
   const [state, dispatch] = React.useReducer(reducer, initialState, initializer);
 
 
+  // ----- Context Methods -----------------------------------------------------
+
   const useAppState = React.useCallback<AppStateContext['useAppState']>((key: string) => {
     const setState = (value: any) => void dispatch({ key, value });
     return [state[key], setState];
@@ -99,8 +101,9 @@ export function Provider(props: React.PropsWithChildren<Record<string, unknown>>
   }, [state, dispatch]);
 
 
-  const [darkMode] = useAppState<boolean>('darkMode');
+  // ----- Dark Mode -----------------------------------------------------------
 
+  const [darkMode] = useAppState<boolean>('darkMode');
 
   /**
    * Adds or removes a data attribute to the <html> element to enable or disable

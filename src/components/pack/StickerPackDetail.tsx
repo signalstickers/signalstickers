@@ -1,23 +1,26 @@
 import cx from 'classnames';
 import pluralize from 'pluralize';
 import React from 'react';
+import { AiOutlineVideoCamera } from 'react-icons/ai';
 import {
   BsAt,
-  BsCameraVideo,
   BsEye,
-  BsHeart,
   BsPlus,
   BsShare,
   BsStar,
   BsTag
 } from 'react-icons/bs';
+import { IoMdHeartEmpty } from 'react-icons/io';
 import Linkify from 'react-linkify';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import useAsyncEffect from 'use-async-effect';
 
 import ExternalLink from 'components/general/ExternalLink';
+import Tag from 'components/general/Tag';
 import StickersContext from 'contexts/StickersContext';
+import globalClasses from 'etc/global-styles.css';
 import { StickerPack } from 'etc/types';
+import useDocumentTitle from 'hooks/use-document-title';
 import useQuery from 'hooks/use-query';
 import { getStickerPack } from 'lib/stickers';
 import { sendPackBeacon } from 'lib/utils';
@@ -26,7 +29,6 @@ import ContentWarningModal from './ContentWarningModal';
 import Sticker from './Sticker';
 import classes from './StickerPackDetail.css';
 import StickerPackError from './StickerPackError';
-import Tag from './Tag';
 
 
 /**
@@ -65,6 +67,10 @@ export default function StickerPackDetail() {
   // decrypt a sticker pack. This will be used to determine what error message
   // to show the user.
   const [stickerPackError, setStickerPackError] = React.useState('');
+
+  // When the sticker pack has loaded, update the document title. It will revert
+  // to its previous value when the component un-mounts.
+  useDocumentTitle(stickerPack?.manifest.title && `Signal Stickers - ${stickerPack?.manifest.title}`);
 
 
   /**
@@ -131,7 +137,7 @@ export default function StickerPackDetail() {
    */
   const shareFragment = React.useMemo(() => {
     const shareData: ShareData = {
-      title: `Signal Stickers - ${stickerPack?.manifest.title}`,
+      title: document.title,
       url: document.location.href
     };
 
@@ -141,10 +147,11 @@ export default function StickerPackDetail() {
       <button
         type="button"
         title="Share"
-        className="btn btn-primary h-100 d-flex align-items-center"
+        className="btn btn-primary d-flex fs-5 align-items-center"
         onClick={() => void navigator.share(shareData)}
       >
-        <BsShare className="fs-4" />
+        {/* We need a hair-space here to ensure proper button height. */}
+        <BsShare className="fs-4" />&#8202;
       </button>
     );
   }, [stickerPack]);
@@ -203,7 +210,7 @@ export default function StickerPackDetail() {
       <div className="row mb-4 flex-column-reverse flex-md-row">
         <div className="col-12 col-md-8">
           {/* Title */}
-          <h2>{stickerPack.manifest.title}</h2>
+          <h1>{stickerPack.manifest.title}</h1>
 
           {/* Author */}
           <button
@@ -232,11 +239,11 @@ export default function StickerPackDetail() {
 
       {/* Metadata Table */}
       {!stickerPack.meta.unlisted &&
-        <div className="row mb-3 mb-sm-4">
+        <div className="row mb-3 mb-md-4">
           <div className="col-12">
             <ul className="list-group shadow-sm">
 
-              {/* Editor's choice */}
+              {/* Editor's Choice */}
               {stickerPack.meta.editorschoice &&
                 <li
                   className={cx(
@@ -244,8 +251,14 @@ export default function StickerPackDetail() {
                     'list-group-item d-flex align-items-center text-wrap text-break'
                   )}
                 >
-                  <BsHeart title="Editor's Choice" className="text-danger fs-5 me-3" />
-                  Editor's Choice: We love this pack!
+                  <IoMdHeartEmpty
+                    title="Editor's Choice"
+                    className="text-danger fs-5 me-2"
+                    style={{ transform: 'scale(1.1)' }}
+                  />
+                  <span className="text-body-secondary ps-1">
+                    Editor's Choice: We love this pack!
+                  </span>
                 </li>
               }
 
@@ -257,8 +270,13 @@ export default function StickerPackDetail() {
                     'list-group-item d-flex align-items-center text-wrap text-break'
                   )}
                 >
-                  <BsStar title="Original" className="text-warning fs-5 me-3" />
-                  This pack has been created exclusively for Signal by the artist, from original artworks.
+                  <BsStar
+                    title="Original"
+                    className="text-warning fs-5 me-2"
+                  />
+                  <span className="text-body-secondary ps-1">
+                    This pack has been created exclusively for Signal by the artist, from original artworks.
+                  </span>
                 </li>
               }
 
@@ -270,8 +288,13 @@ export default function StickerPackDetail() {
                     'list-group-item d-flex align-items-center text-wrap text-break'
                   )}
                 >
-                  <BsCameraVideo title="Animated" className="text-primary fs-5 me-3" />
-                  This pack contains animated stickers!
+                  <AiOutlineVideoCamera
+                    title="Animated"
+                    className="text-secondary fs-5 me-2"
+                  />
+                  <span className="text-body-secondary ps-1">
+                    This pack contains animated stickers!
+                  </span>
                 </li>
               }
 
@@ -283,27 +306,17 @@ export default function StickerPackDetail() {
                     'list-group-item d-flex align-items-center text-wrap text-break'
                   )}
                 >
-                  <BsAt title="Source" className="text-primary fs-3 me-2" />
-                  <div>
+                  <BsAt
+                    title="Source"
+                    className="text-secondary fs-4 me-2"
+                  />
+                  <span className="text-body-secondary">
                     <Linkify componentDecorator={linkifyHrefDecorator}>
                       {stickerPack.meta.source}
                     </Linkify>
-                  </div>
+                  </span>
                 </li>
               }
-
-              {/* Pack views */}
-              <li
-                className={cx(
-                  classes.stickerPackMetadataItem,
-                  'list-group-item d-flex align-items-center text-wrap text-break'
-                )}
-              >
-                <BsEye className="text-primary fs-4 me-3" />
-                {(stickerPack.meta.hotviews ?? 0).toLocaleString()} {pluralize('view', stickerPack.meta.hotviews)} last month,
-                {' '}
-                {(stickerPack.meta.totalviews ?? 0).toLocaleString()} total
-              </li>
 
               {/* Tags */}
               {stickerPack.meta.tags && stickerPack.meta.tags.length > 0 &&
@@ -313,12 +326,34 @@ export default function StickerPackDetail() {
                     'list-group-item d-flex align-items-center text-wrap text-break'
                   )}
                 >
-                  <BsTag title="Tags" className="text-primary fs-3 me-2" />
-                  <div className="d-flex flex-wrap gap-1">
+                  <BsTag
+                    title="Tags"
+                    className="text-secondary fs-4 me-1"
+                    style={{ transform: 'scale(0.9)' }}
+                  />
+                  <span className="d-flex flex-wrap gap-1 ms-1">
                     {stickerPack.meta.tags.map(tag => <Tag key={tag} label={tag} />)}
-                  </div>
+                  </span>
                 </li>
               }
+
+              {/* Pack Views */}
+              <li
+                className={cx(
+                  classes.stickerPackMetadataItem,
+                  'list-group-item d-flex align-items-center text-wrap text-break'
+                )}
+              >
+                <BsEye
+                  title="Views"
+                  className="text-secondary fs-5 me-3"
+                />
+                <span className="text-body-secondary">
+                  {(stickerPack.meta.hotviews ?? 0).toLocaleString()} {pluralize('view', stickerPack.meta.hotviews)} last month,
+                  {' '}
+                  {(stickerPack.meta.totalviews ?? 0).toLocaleString()} total
+                </span>
+              </li>
             </ul>
           </div>
         </div>
@@ -327,7 +362,7 @@ export default function StickerPackDetail() {
       {/* Stickers */}
       <div className="row flex-grow-1">
         <div className="col-12">
-          <div className={classes.stickerGridView}>
+          <div className={globalClasses.gridView}>
             {stickerPack.manifest.stickers.map(sticker => (
               <Sticker
                 packId={packId}

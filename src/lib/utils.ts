@@ -73,6 +73,7 @@ export function sendPackBeacon(packId: string) {
   }
 }
 
+
 /**
  * Used for analytics.
  */

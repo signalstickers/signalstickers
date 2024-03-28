@@ -183,7 +183,6 @@ const UNQUOTED_EXPRESSION_PATTERN = /(?<attribute>[^\s":]+):(?<query>[^\s":]+)/g
  * Provided a SearchFactoryOptions object, returns a Search object.
  */
 export default function SearchFactory<T>(options: SearchFactoryOptions<T>): Searcher<T> {
-
   /**
    * @private
    *
