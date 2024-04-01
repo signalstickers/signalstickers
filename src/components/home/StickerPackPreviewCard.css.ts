@@ -82,7 +82,7 @@ globalStyle([
 });
 
 globalStyle(`.theme-light ${classes.stickerPackPreviewCard} .card-header`, {
-  color: 'var(--white)'
+  color: 'var(--dark)'
 });
 
 globalStyle(`.theme-light ${classes.stickerPackPreviewCard} .card-header::after`, {
