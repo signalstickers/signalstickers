@@ -170,10 +170,10 @@ export default function ReportPack() {
       <div className="row">
         <div className="col-12">
           <h1 className="mb-4">Report a pack</h1>
-          <p className="mt-lg-3 mb-4">
+          <div className="mt-lg-3 mb-4">
             <p>Use this form to report a pack to Signalstickers' admins.</p>
             <p>Please add context and explain why you are reporting this pack.</p>
-          </p>
+          </div>
         </div>
       </div>
       <hr className="pt-3 pb-2" />
@@ -208,14 +208,20 @@ export default function ReportPack() {
                 {/* [Field] Submitter comments */}
                 <div className="form-group">
                   <div className="form-row">
-                    <label className="col-12" htmlFor="submitterComments">
+                    <label
+                      className={cx(
+                        'col-12',
+                        errors.submitterComments && 'text-danger'
+                      )}
+                      htmlFor="submitterComments"
+                    >
                       Why are you reporting this pack?
                       <Field
                         as="textarea"
                         type="textarea"
                         id="submitterComments"
                         name="submitterComments"
-                        className="form-control mt-2"
+                        className={cx('form-control mt-2', errors.submitterComments && 'is-invalid')}
                         disabled={requestSent}
                         validate={validators.submitterComments}
                         maxLength="1999"
