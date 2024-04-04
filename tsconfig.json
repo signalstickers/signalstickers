@@ -7,7 +7,6 @@
       "jquery",
       "node",
       "vite/client",
-      // "unplugin-icons/types/react",
       "vite-plugin-svgr/client"
     ]
   }

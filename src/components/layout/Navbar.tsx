@@ -1,6 +1,7 @@
+import { Offcanvas } from 'bootstrap';
 import cx from 'classnames';
 import React from 'react';
-import { BsBoxArrowUpRight, BsList } from 'react-icons/bs';
+import { BsBoxArrowUpRight, BsXLg, BsThreeDotsVertical } from 'react-icons/bs';
 import { FaGithub, FaRss, FaTwitter } from 'react-icons/fa';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { SiKofi } from 'react-icons/si';
@@ -13,158 +14,407 @@ import AppStateContext from 'contexts/AppStateContext';
 import classes from './Navbar.css';
 
 
-interface NavLinkDescriptor {
-  title: string;
-  href: string;
-  external?: boolean;
-  children?: JSX.Element;
-}
+/**
+ * Whether we are in standalone/PWA mode. This only needs to be checked once
+ * because it will never change at runtime.
+ */
+const IS_STANDALONE = window.matchMedia('(display-mode: standalone)').matches;
 
 
-const navLinks: Array<NavLinkDescriptor> = [{
-  title: 'Contribute',
-  href: '/contribute'
-}, {
-  title: 'About',
-  href: '/about'
-}, {
-  title: 'Help Signalstickers to stay alive!',
-  href: 'https://ko-fi.com/signalstickers',
-  external: true,
-  children: <>
-    <SiKofi className="d-none d-md-inline" /> Donate
-    <span className="d-md-none">
-      &nbsp;on Ko-Fi <BsBoxArrowUpRight />
-    </span>
-  </>
-}, {
-  title: 'Twitter',
-  href: 'https://twitter.com/signalstickers',
-  external: true,
-  children: <>
-    <span className="d-md-none">
-      Twitter <BsBoxArrowUpRight />
-    </span>
-    <FaTwitter className="d-none d-md-inline" />
-  </>
-}, {
-  title: 'RSS',
-  href: 'https://api.signalstickers.org/feed/rss/',
-  external: true,
-  children: <>
-    <span className="d-md-none">
-      RSS <BsBoxArrowUpRight />
-    </span>
-    <FaRss className="d-none d-md-inline" />
-  </>
-}, {
-  title: 'GitHub Repository',
-  href: 'https://github.com/signalstickers/signalstickers',
-  external: true,
-  children: <>
-    <span className="d-md-none">
-      GitHub <BsBoxArrowUpRight />
-    </span>
-    <FaGithub className="d-none d-md-inline" />
-  </>
-}];
+/**
+ * Element ID used to wire-up the off-canvas menu with its toggler and ARIA
+ * attributes.
+ */
+const OFFCANVAS_NAV_ID = 'offcanvas-nav';
 
 
-const NAVBAR_TOGGLE_ID = 'navbar-toggle';
+/**
+ * Breakpoint above which we show the standard navbar rather than the off-canvas
+ * nav menu. We use a variable for this because it is used in several places
+ * which _must_ be kept in sync.
+ *
+ * N.B. In standalone mode, we always use the off-canvas nav menu.
+ */
+const NAV_EXPAND_BREAKPOINT = 'md';
 
 
-export default function NavbarComponent() {
-  const useAppState = React.useContext(AppStateContext);
-  const [darkMode, setDarkMode] = useAppState<boolean>('darkMode');
+/**
+ * Attributes for internal nav links.
+ */
+const links = {
+  contribute: {
+    title: 'Contribute',
+    href: '/contribute'
+  },
+  about: {
+    title: 'About',
+    href: '/about'
+  }
+};
+
+
+/**
+ * Attributes for external nav links.
+ */
+const externalLinks = {
+  donate: {
+    title: 'Donate',
+    href: 'https://ko-fi.com/signalstickers',
+    icon: <SiKofi />
+  },
+  twitter: {
+    title: 'Twitter',
+    href: 'https://twitter.com/signalstickers',
+    icon: <FaTwitter />
+  },
+  rss: {
+    title: 'RSS',
+    href: 'https://api.signalstickers.org/feed/rss/',
+    icon: <FaRss />
+  },
+  gitHub: {
+    title: 'GitHub',
+    href: 'https://github.com/signalstickers/signalstickers',
+    icon: <FaGithub />
+  }
+};
+
+
+/**
+ * Icon used for external nav links in the off-canvas nav menu.
+ */
+const externalLinkIcon = <BsBoxArrowUpRight className="me-3 fs-5 overflow-visible" />;
+
+
+/**
+ * This component is responsible for the top navbar as well as the off-canvas
+ * nav menu used on smaller breakpoints.
+ *
+ * It is worth noting that we do not use the idiomatic Bootstrap pattern of
+ * re-using the same markup for both, which relies on Bootstrap's classes to
+ * show/hide/relocate nav links from the navbar to the off-canvas nav menu when
+ * appropriate. This is because our styling needs are too divergent between the
+ * two, and it is far easier to duplicate the markup and make changes to one nav
+ * component without having to worry about how it may affect the other.
+ *
+ * In short, we are trading verbosity for maintainability and sanity.
+ *
+ * See: https://getbootstrap.com/docs/5.3/components/navbar/#offcanvas
+ */
+export default function Nav() {
+  const { toggleAppState } = React.useContext(AppStateContext);
+  const [darkMode, toggleDarkMode] = toggleAppState('darkMode');
+  const offCanvasRef = React.createRef<HTMLDivElement>();
+  const offCanvasInstance = React.useRef<Offcanvas>();
 
 
   /**
-   * Toggles dark mode.
+   * Creates an Offcanvas instance linked to our target element, allowing us to
+   * use Bootstrap's JavaScript API to control the nav.
    */
-  const toggleDarkMode = React.useCallback(() => {
-    setDarkMode(!darkMode);
-  }, [darkMode]);
-
-
-  /**
-   * Closes the navigation menu (on small devices) upon navigation.
-   */
-  const collapseNavigation = React.useCallback(() => {
-    // @ts-expect-error
-    $(`#${NAVBAR_TOGGLE_ID}`).collapse('hide');
+  React.useEffect(() => {
+    if (!offCanvasRef.current) return;
+    offCanvasInstance.current = Offcanvas.getOrCreateInstance(offCanvasRef.current);
+    return () => offCanvasInstance.current?.hide();
   }, []);
 
 
-  return (
-    <nav className={cx(classes.navbar, 'navbar navbar-expand-md navbar-dark')}>
-      <div className="container">
-        <Link
-          to="/"
-          className="navbar-brand"
-          onClick={collapseNavigation}
-        >
-          <img src={signalStickersLogoUrl} alt="Signal Stickers Logo" /> Signal Stickers
-        </Link>
-        <button
-          type="button"
-          className="navbar-toggler"
-          data-toggle="collapse"
-          data-target={`#${NAVBAR_TOGGLE_ID}`}
-          aria-controls={NAVBAR_TOGGLE_ID}
-          aria-expanded="false"
-          aria-label="Toggle Navigation"
-        >
-          <BsList className="menu-icon" />
-        </button>
-        <div id={NAVBAR_TOGGLE_ID} className="collapse navbar-collapse">
-          <ul className="navbar-nav ml-auto mt-2 mt-md-0 pb-xs-0">
-            {navLinks.map(navLink => (
-              <li className="nav-item" key={navLink.href}>
-                {navLink.external ?
-                  <ExternalLink
-                    href={navLink.href}
-                    title={navLink.title}
-                    className="nav-link py-3 py-md-2"
-                  >
-                    {navLink.children ?? navLink.title}
-                  </ExternalLink> :
-                  <NavLink
-                    to={navLink.href}
-                    title={navLink.title}
-                    className="nav-link py-3 py-md-2"
-                    activeClassName="active"
-                    onClick={collapseNavigation}
-                  >
-                    {navLink.children ?? navLink.title}
-                  </NavLink>
-                }
-              </li>
-            ))}
+  /**
+   * Toggles the off-canvas nav menu.
+   */
+  const toggleNavigation = React.useCallback(() => {
+    if (!offCanvasInstance.current) {
+      console.warn('NO INSTANCE');
+      return;
+    }
+    offCanvasInstance.current.toggle();
+  }, [offCanvasInstance.current]);
+
+
+  /**
+   * Renders links for the top navbar for applicable breakpoints / environments.
+   */
+  const topNavFragment = React.useMemo(() => {
+    // These links are never rendered in standalone mode.
+    if (IS_STANDALONE) return;
+
+    return (
+      <ul
+        className={cx(
+          classes.navbarNav,
+          `navbar-nav ms-auto d-none d-${NAV_EXPAND_BREAKPOINT}-flex`
+        )}
+      >
+        {/* Contribute */}
+        <li className="nav-item">
+          <NavLink
+            to={links.contribute.href}
+            title={links.contribute.title}
+            className="nav-link py-2"
+            activeClassName="active"
+          >{links.contribute.title}</NavLink>
+        </li>
+
+        {/* About */}
+        <li className="nav-item">
+          <NavLink
+            to={links.about.href}
+            title={links.about.title}
+            className="nav-link py-2"
+            activeClassName="active"
+          >{links.about.title}</NavLink>
+        </li>
+
+        {/* Donate */}
+        <li className="nav-item">
+          <ExternalLink
+            href={externalLinks.donate.href}
+            title={externalLinks.donate.title}
+            className="nav-link py-2"
+          >
+            {externalLinks.donate.icon} {externalLinks.donate.title}
+          </ExternalLink>
+        </li>
+
+        {/* Twitter */}
+        <li className="nav-item">
+          <ExternalLink
+            href={externalLinks.twitter.href}
+            title={externalLinks.twitter.title}
+            className="nav-link py-2"
+          >
+            {externalLinks.twitter.icon}
+          </ExternalLink>
+        </li>
+
+        {/* RSS */}
+        <li className="nav-item">
+          <ExternalLink
+            href={externalLinks.rss.href}
+            title={externalLinks.rss.title}
+            className="nav-link py-2"
+          >
+            {externalLinks.rss.icon}
+          </ExternalLink>
+        </li>
+
+        {/* GitHub */}
+        <li className="nav-item">
+          <ExternalLink
+            href={externalLinks.gitHub.href}
+            title={externalLinks.gitHub.title}
+            className="nav-link py-2"
+          >
+            {externalLinks.gitHub.icon}
+          </ExternalLink>
+        </li>
+
+        {/* Dark Mode Toggle */}
+        <li className="nav-item">
+          <button
+            type="button"
+            className="btn nav-link py-2"
+            title="Toggle Dark Mode"
+            onClick={toggleDarkMode}
+          >
+            {darkMode
+            ? <FiSun className="me-2" />
+            : <FiMoon className="me-2" />
+            }
+          </button>
+        </li>
+      </ul>
+    );
+  }, [
+    darkMode,
+    toggleDarkMode
+  ]);
+
+
+  /**
+   * Renders links for the off-canvas navbar.
+   */
+  const offCanvasNavFragment = React.useMemo(() => {
+    // In standalone mode this element is always rendered and does not require a
+    // display class.
+    const displayClassName = !IS_STANDALONE && `d-${NAV_EXPAND_BREAKPOINT}-none`;
+
+    return (
+      <div
+        id={OFFCANVAS_NAV_ID}
+        ref={offCanvasRef}
+        className={cx(
+          'offcanvas offcanvas-end safe-area-padding-top safe-area-padding-right',
+          displayClassName
+        )}
+        tabIndex={-1}
+        aria-label="Off-Canvas Navigation"
+        style={{ minWidth: 'max-content', width: '16rem' }}
+      >
+        <div className="offcanvas-header px-0 py-2 bg-transparent">
+          {/* Close Button */}
+          <button
+            type="button"
+            className="btn btn-link text-light-emphasis ms-auto mt-1 me-2"
+            onClick={toggleNavigation}
+            aria-label="Close Navigation"
+          >
+            <BsXLg className="fs-1" />
+          </button>
+        </div>
+
+        <div className="offcanvas-body ps-4 pe-5 pt-1">
+          <ul className="navbar-nav ms-auto gap-2">
+
+            {/* Contribute */}
+            <li className="nav-item">
+              <NavLink
+                to={links.contribute.href}
+                title={links.contribute.title}
+                className="nav-link py-2 fs-4 text-light-emphasis"
+                activeClassName="active"
+                onClick={toggleNavigation}
+              >{links.contribute.title}</NavLink>
+            </li>
+
+            {/* About */}
+            <li className="nav-item">
+              <NavLink
+                to={links.about.href}
+                title={links.about.title}
+                className="nav-link py-2 fs-4 text-light-emphasis"
+                activeClassName="active"
+                onClick={toggleNavigation}
+              >{links.about.title}</NavLink>
+            </li>
+
+            {/* Donate */}
+            <li className="nav-item">
+              <ExternalLink
+                href={externalLinks.donate.href}
+                title={externalLinks.donate.title}
+                className="nav-link d-flex align-items-center fs-4 text-light-emphasis"
+                onClick={toggleNavigation}
+              >
+                {externalLinkIcon}
+                {externalLinks.donate.title}
+              </ExternalLink>
+            </li>
+
+            {/* Twitter */}
+            <li className="nav-item">
+              <ExternalLink
+                href={externalLinks.twitter.href}
+                title={externalLinks.twitter.title}
+                className="nav-link d-flex align-items-center fs-4 text-light-emphasis"
+                onClick={toggleNavigation}
+              >
+                {externalLinkIcon}
+                {externalLinks.twitter.title}
+              </ExternalLink>
+            </li>
+
+            {/* RSS */}
+            <li className="nav-item">
+              <ExternalLink
+                href={externalLinks.rss.href}
+                title={externalLinks.rss.title}
+                className="nav-link d-flex align-items-center fs-4 text-light-emphasis"
+                onClick={toggleNavigation}
+              >
+                {externalLinkIcon}
+                {externalLinks.rss.title}
+              </ExternalLink>
+            </li>
+
+            {/* GitHub */}
+            <li className="nav-item">
+              <ExternalLink
+                href={externalLinks.gitHub.href}
+                title={externalLinks.gitHub.title}
+                className="nav-link d-flex align-items-center fs-4 text-light-emphasis"
+                onClick={toggleNavigation}
+              >
+                {externalLinkIcon}
+                {externalLinks.gitHub.title}
+              </ExternalLink>
+            </li>
+
+            {/* Dark Mode Toggle */}
             <li className="nav-item">
               <button
                 type="button"
-                className="btn btn-link nav-link py-3 py-md-2"
-                title="Dark Mode"
+                className="btn btn-link nav-link py-2 fs-4 text-light-emphasis"
+                title="Toggle Dark Mode"
                 onClick={toggleDarkMode}
               >
-                {darkMode ?
-                  <>
-                    <span className="d-inline-block d-md-none mr-1">
-                      Light mode
-                    </span>
-                    <FiSun />
-                  </>
-                  :
-                  <>
-                    <span className="d-inline-block d-md-none mr-1">
-                      Dark mode
-                    </span>
-                    <FiMoon />
-                  </>}
+                {darkMode
+                  ? <span><FiSun className="me-2" /> Light Mode</span>
+                  : <span><FiMoon className="me-2" /> Dark Mode</span>
+                }
               </button>
             </li>
           </ul>
         </div>
+      </div>
+    );
+  }, [
+    darkMode,
+    toggleDarkMode,
+    toggleNavigation
+  ]);
+
+
+  return (
+    <nav
+      className={cx(
+        'navbar fixed-top bg-primary shadow-sm',
+        !IS_STANDALONE && `navbar-expand-${NAV_EXPAND_BREAKPOINT}`,
+        IS_STANDALONE && 'safe-area-padding-left safe-area-padding-right'
+      )}
+      data-bs-theme="dark"
+      // In PWA/standalone mode, the viewport is always the size of the entire
+      // screen, including unsafe areas. So, we need to apply some top padding
+      // to our fixed navbar to push its content downwards and fill-in the
+      // unsafe area with the navbar's background color.
+      style={{ paddingTop: 'calc(env(safe-area-inset-top, 0px) + var(--bs-navbar-padding-y))' }}
+    >
+      <div
+        className={cx(
+          'ps-3',
+          // In standalone mode, always use a fluid container for the navbar,
+          // ensuring the menu toggle is always at the rightmost edge of the
+          // screen.
+          IS_STANDALONE ? 'container-fluid' : 'container-md'
+        )}
+      >
+        {/* Brand / Home Link */}
+        <Link
+          // This will preserve any query params in the URL.
+          to={({ search }) => ({ pathname: '/', search })}
+          className="navbar-brand d-flex align-items-center fs-4"
+        >
+          <img
+            src={signalStickersLogoUrl}
+            alt="Signal Stickers Logo"
+            className="me-3"
+            style={{ height: 36, width: 36 }}
+          />
+          Signal Stickers
+        </Link>
+
+        {/* Toggler */}
+        <button
+          type="button"
+          className="navbar-toggler border-0 shadow-none"
+          onClick={toggleNavigation}
+          aria-controls={OFFCANVAS_NAV_ID}
+          aria-label="Toggle Navigation"
+        >
+          <BsThreeDotsVertical className="fs-2 text-light" />
+        </button>
+        {topNavFragment}
+        {offCanvasNavFragment}
       </div>
     </nav>
   );

@@ -1,32 +1,34 @@
 import cx from 'classnames';
 import pluralize from 'pluralize';
 import React from 'react';
+import { AiOutlineVideoCamera } from 'react-icons/ai';
 import {
-  BsArrowLeftShort,
   BsAt,
-  BsFillHeartFill,
-  BsFillCameraVideoFill,
+  BsEye,
   BsPlus,
-  BsStarFill,
+  BsShare,
+  BsStar,
   BsTag
 } from 'react-icons/bs';
-import { ImEye } from 'react-icons/im';
+import { IoMdHeartEmpty } from 'react-icons/io';
 import Linkify from 'react-linkify';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import useAsyncEffect from 'use-async-effect';
 
 import ExternalLink from 'components/general/ExternalLink';
+import Tag from 'components/general/Tag';
 import StickersContext from 'contexts/StickersContext';
+import globalClasses from 'etc/global-styles.css';
 import { StickerPack } from 'etc/types';
+import useDocumentTitle from 'hooks/use-document-title';
 import useQuery from 'hooks/use-query';
 import { getStickerPack } from 'lib/stickers';
 import { sendPackBeacon } from 'lib/utils';
 
-import NsfwModal from './NsfwModal';
+import ContentWarningModal from './ContentWarningModal';
 import Sticker from './Sticker';
 import classes from './StickerPackDetail.css';
 import StickerPackError from './StickerPackError';
-import Tag from './Tag';
 
 
 /**
@@ -66,22 +68,23 @@ export default function StickerPackDetail() {
   // to show the user.
   const [stickerPackError, setStickerPackError] = React.useState('');
 
+  // When the sticker pack has loaded, update the document title. It will revert
+  // to its previous value when the component un-mounts.
+  useDocumentTitle(stickerPack?.manifest.title && `Signal Stickers - ${stickerPack?.manifest.title}`);
+
 
   /**
    * [Effect] Set `stickerPack` when the component mounts.
    */
-  useAsyncEffect(async () => {
+  useAsyncEffect(async isMounted => {
     try {
-      if (!packId) {
-        return;
-      }
-
-      setStickerPack(await getStickerPack(packId, key));
+      if (!packId) return;
+      const pack = await getStickerPack(packId, key);
+      if (!isMounted()) return;
+      setStickerPack(pack);
       sendPackBeacon(packId);
     } catch (err: any) {
-      if (err.code) {
-        setStickerPackError(err.code);
-      }
+      if (err.code) setStickerPackError(err.code);
     }
   }, [
     key,
@@ -94,12 +97,11 @@ export default function StickerPackDetail() {
    */
   const onAuthorClick = React.useCallback((event: React.SyntheticEvent) => {
     event.preventDefault();
+    const author = event.currentTarget.textContent;
 
-    if (searcher && event.currentTarget.textContent) {
+    if (searcher && author) {
       setSearchQuery(searcher.buildQueryString({
-        attributeQueries: [{
-          author: event.currentTarget.textContent
-        }]
+        expression: { $and: [{ author }] }
       }));
 
       history.push('/');
@@ -111,17 +113,67 @@ export default function StickerPackDetail() {
   ]);
 
 
+  /**
+   * [Memo] Signal allows strings containing only whitespace as authors. Many
+   * contributors also use one or more periods in this field, which is visually
+   * janky and confusing to users. In these cases, use 'Anonymous' instead.
+   */
+  const authorFragment = React.useMemo(() => {
+    if (!stickerPack) return;
+    const { author } = stickerPack.manifest;
+    if (author.trim() === '') return 'Anonymous';
+    if (/^\.+$/g.test(author)) return 'Anonymous';
+    return author;
+  }, [stickerPack?.manifest.author]);
+
+
+  /**
+   * [Memo] Renders a share button that uses the Web Share API, if available.
+   * Typically, this will only appear on devices where it may be difficult or
+   * impossible (re: standalone mode) for the user to quickly and easily copy
+   * the current URL.
+   *
+   * See: https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API
+   */
+  const shareFragment = React.useMemo(() => {
+    const shareData: ShareData = {
+      title: document.title,
+      url: document.location.href
+    };
+
+    if (!navigator.canShare || !navigator.canShare(shareData)) return;
+
+    return (
+      <button
+        type="button"
+        title="Share"
+        className="btn btn-primary d-flex fs-5 align-items-center"
+        onClick={() => void navigator.share(shareData)}
+      >
+        {/* We need a hair-space here to ensure proper button height. */}
+        <BsShare className="fs-4" />&#8202;
+      </button>
+    );
+  }, [stickerPack]);
+
+
   if (!packId || !stickerPack) {
     // If an error code has been set, display an error alert to the user.
     if (stickerPackError) {
       switch (stickerPackError) {
+        case 'INVALID_PACK_ID':
+          return (
+            <StickerPackError>
+              <p>Invalid pack ID: <code>{packId}</code></p>
+            </StickerPackError>
+          );
         case 'NO_KEY_PROVIDED':
           return (
             <StickerPackError>
               <p>
                 This sticker pack is not listed in the Signal Stickers directory.
                 However, if you have the pack's <strong>key</strong>, you can
-                still preview the sticker pack by supplying a <code>key</code>
+                still preview the sticker pack by supplying a <code>key</code>{' '}
                 parameter in the URL.
               </p>
               <p>
@@ -149,114 +201,168 @@ export default function StickerPackDetail() {
     return null;
   }
 
-  // N.B. Signal allows strings containing only whitespace as authors. In these
-  // cases, use 'Anonymous' instead.
-  const author = stickerPack.manifest.author.trim() ? stickerPack.manifest.author : 'Anonymous';
 
   return (
-    <div
-      className={cx(classes.stickerPackDetail, 'px-1 px-sm-4 py-4 mt-0 my-sm-4')}
-    >
-      {stickerPack.meta.nsfw && <NsfwModal />}
+    <div className="my-3 my-sm-4 d-flex flex-column flex-grow-1">
+      {stickerPack.meta.nsfw && <ContentWarningModal />}
 
       {/* Header */}
-      <div className="row mb-4 flex-column-reverse flex-lg-row">
-        <div className="col-12 col-lg-8 mt-2 mt-lg-0">
+      <div className="row mb-4 flex-column-reverse flex-md-row">
+        <div className="col-12 col-md-8">
+          {/* Title */}
           <h1>{stickerPack.manifest.title}</h1>
+
+          {/* Author */}
           <button
             type="button"
             role="link"
-            title={`View more packs from ${author}`}
-            className="btn btn-link p-0 border-0 text-left"
+            title={`View more packs from ${authorFragment}`}
+            className="btn btn-link text-primary text-decoration-none p-0 border-0 text-left fs-5"
             onClick={onAuthorClick}
           >
-            {author}
+            {authorFragment}
           </button>
         </div>
-        <div className="col-12 col-lg-4 d-flex d-lg-block justify-content-between text-md-right mb-3 mb-lg-0">
-          {stickerPack.meta.unlisted ?
-            null :
-            <Link to="/" className="btn btn-light mr-2">
-              <BsArrowLeftShort className="arrow-left-icon" /> Back
-            </Link>
-          }
+
+        {/* Add to Signal / Share */}
+        <div className="col-12 col-md-4 mb-3 mb-lg-0 d-flex align-items-start justify-content-end gap-3">
           <ExternalLink
             href={`https://signal.art/addstickers/#pack_id=${packId}&pack_key=${stickerPack.meta.key}`}
-            className="btn btn-primary"
+            className="btn btn-primary fs-5 d-flex align-items-center"
             title="Add to Signal"
           >
-            <BsPlus className="plus-icon" /> Add to Signal
+            <BsPlus className="fs-4" /> Add to Signal
           </ExternalLink>
+          {shareFragment}
         </div>
       </div>
 
       {/* Metadata Table */}
       {!stickerPack.meta.unlisted &&
-        <div className="row mb-4">
-          <div className="col-12 col-lg-9">
-            <ul className="list-group">
+        <div className="row mb-3 mb-md-4">
+          <div className="col-12">
+            <ul className="list-group shadow-sm">
+
+              {/* Editor's Choice */}
+              {stickerPack.meta.editorschoice &&
+                <li
+                  className={cx(
+                    classes.stickerPackMetadataItem,
+                    'list-group-item d-flex align-items-center text-wrap text-break'
+                  )}
+                >
+                  <IoMdHeartEmpty
+                    title="Editor's Choice"
+                    className="text-danger fs-5 me-2"
+                    style={{ transform: 'scale(1.1)' }}
+                  />
+                  <span className="text-body-secondary ps-1">
+                    Editor's Choice: We love this pack!
+                  </span>
+                </li>
+              }
 
               {/* Original */}
               {stickerPack.meta.original &&
-                <li className="list-group-item text-wrap text-break">
-                  <BsStarFill title="Original" className="star-icon mr-4" />
-                  This pack has been created exclusively for Signal by the artist, from original artworks.
+                <li
+                  className={cx(
+                    classes.stickerPackMetadataItem,
+                    'list-group-item d-flex align-items-center text-wrap text-break'
+                  )}
+                >
+                  <BsStar
+                    title="Original"
+                    className="text-warning fs-5 me-2"
+                  />
+                  <span className="text-body-secondary ps-1">
+                    This pack has been created exclusively for Signal by the artist, from original artworks.
+                  </span>
                 </li>
               }
 
               {/* Animated */}
               {stickerPack.meta.animated &&
-                <li className="list-group-item text-wrap text-break">
-                  <BsFillCameraVideoFill title="Animated" className="text-primary mr-4" />
-                  This pack contains animated stickers!
-                </li>
-              }
-
-              {/* Editor's choice */}
-              {stickerPack.meta.editorschoice &&
-                <li className="list-group-item text-wrap text-break">
-                  <BsFillHeartFill title="Editor's choice" className="text-primary mr-4" />
-                  Editor's choice: we love this pack!
+                <li
+                  className={cx(
+                    classes.stickerPackMetadataItem,
+                    'list-group-item d-flex align-items-center text-wrap text-break'
+                  )}
+                >
+                  <AiOutlineVideoCamera
+                    title="Animated"
+                    className="text-secondary fs-5 me-2"
+                  />
+                  <span className="text-body-secondary ps-1">
+                    This pack contains animated stickers!
+                  </span>
                 </li>
               }
 
               {/* Source */}
               {stickerPack.meta.source &&
-                <li className="list-group-item text-wrap text-break">
-                  <BsAt title="Source" className="mr-4 text-primary mention-icon" />
-                  <div>
+                <li
+                  className={cx(
+                    classes.stickerPackMetadataItem,
+                    'list-group-item d-flex align-items-center text-wrap text-break'
+                  )}
+                >
+                  <BsAt
+                    title="Source"
+                    className="text-secondary fs-4 me-2"
+                  />
+                  <span className="text-body-secondary">
                     <Linkify componentDecorator={linkifyHrefDecorator}>
                       {stickerPack.meta.source}
                     </Linkify>
-                  </div>
+                  </span>
                 </li>
               }
-
-              {/* Pack views */}
-              <li className="list-group-item text-wrap text-break">
-                <ImEye className="mr-4 text-primary" />  {stickerPack.meta.hotviews ?? 0} {pluralize('view', stickerPack.meta.hotviews)} last month, {stickerPack.meta.totalviews ?? 0} total
-              </li>
 
               {/* Tags */}
               {stickerPack.meta.tags && stickerPack.meta.tags.length > 0 &&
-                <li className="list-group-item">
-                  <BsTag title="Tags" className="mr-4 text-primary" />
-                  <div className="text-wrap text-break mb-n1">
-                    { stickerPack.meta.tags.map(tag => (
-                      <Tag key={tag} className="mb-1 mr-1" label={tag} />
-                    ))}
-                  </div>
+                <li
+                  className={cx(
+                    classes.stickerPackMetadataItem,
+                    'list-group-item d-flex align-items-center text-wrap text-break'
+                  )}
+                >
+                  <BsTag
+                    title="Tags"
+                    className="text-secondary fs-4 me-1"
+                    style={{ transform: 'scale(0.9)' }}
+                  />
+                  <span className="d-flex flex-wrap gap-1 ms-1">
+                    {stickerPack.meta.tags.map(tag => <Tag key={tag} label={tag} />)}
+                  </span>
                 </li>
               }
+
+              {/* Pack Views */}
+              <li
+                className={cx(
+                  classes.stickerPackMetadataItem,
+                  'list-group-item d-flex align-items-center text-wrap text-break'
+                )}
+              >
+                <BsEye
+                  title="Views"
+                  className="text-secondary fs-5 me-3"
+                />
+                <span className="text-body-secondary">
+                  {(stickerPack.meta.hotviews ?? 0).toLocaleString()} {pluralize('view', stickerPack.meta.hotviews)} last month,
+                  {' '}
+                  {(stickerPack.meta.totalviews ?? 0).toLocaleString()} total
+                </span>
+              </li>
             </ul>
           </div>
         </div>
       }
 
       {/* Stickers */}
-      <div className="row">
+      <div className="row flex-grow-1">
         <div className="col-12">
-          <div className={classes.stickerGridView}>
+          <div className={globalClasses.gridView}>
             {stickerPack.manifest.stickers.map(sticker => (
               <Sticker
                 packId={packId}
@@ -268,15 +374,18 @@ export default function StickerPackDetail() {
           </div>
         </div>
       </div>
-      <div className="nbStickers row justify-content-center align-items-center mt-4">
-        <small className="mr-3">
-          {stickerPack.manifest.stickers.length}
-          {' '}
-          {pluralize('sticker', stickerPack.manifest.stickers.length)}
-        </small>
-        <Link to={`/pack/${packId}/report`}>
-          <small>🚨 Report this pack</small>
-        </Link>
+      <div className="row">
+        <div className="col-12 d-flex mt-4 gap-4">
+          <div className="text-end text-muted w-50">
+            {stickerPack.manifest.stickers.length}
+            {' '}
+            {pluralize('sticker', stickerPack.manifest.stickers.length)}
+          </div>
+          <div className="vr" />
+          <div className="w-50">
+            <Link to={`/pack/${packId}/report`}>Report Pack</Link>
+          </div>
+        </div>
       </div>
     </div>
   );

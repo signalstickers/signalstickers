@@ -4,16 +4,18 @@ import {
   Form,
   Field,
   ErrorMessage,
-  FieldValidator
+  type FieldValidator,
+  type FormikHelpers
 } from 'formik';
 import * as R from 'ramda';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAsyncEffect } from 'use-async-effect';
 
 import ExternalLink from 'components/general/ExternalLink';
 import {
   SIGNAL_ART_URL_PATTERN,
-  API_URL_CONTRIBUTIONREQUEST,
+  API_URL_CONTRIBUTION_REQUEST,
   API_URL_CONTRIBUTE
 } from 'etc/constants';
 import { getStickerPackDirectory, getStickerPack } from 'lib/stickers';
@@ -24,7 +26,7 @@ import { getStickerPackDirectory, getStickerPack } from 'lib/stickers';
  */
 
 
-export interface FormValues {
+interface FormValues {
   signalArtUrl: string;
   source: string;
   tags: string;
@@ -60,20 +62,14 @@ const initialValues: FormValues = {
  */
 const validators: Record<string, FieldValidator> = {
   signalArtUrl: async (signalArtUrl: string) => {
-    if (!signalArtUrl) {
-      return 'This field is required.';
-    }
+    if (!signalArtUrl) return 'This field is required.';
 
     const matches = new RegExp(SIGNAL_ART_URL_PATTERN).exec(signalArtUrl);
-
-    if (!matches) {
-      return 'Invalid signal.art URL.';
-    }
+    if (!matches) return 'Invalid signal.art URL.';
 
     const [, packId, packKey] = matches;
 
-    // @ts-expect-error
-    if (R.find(R.pathEq(['meta', 'id'], packId), await getStickerPackDirectory())) {
+    if (R.find(R.pathEq(packId, ['meta', 'id']), await getStickerPackDirectory())) {
       return 'A sticker pack with that ID already exists in the directory.';
     }
 
@@ -93,151 +89,99 @@ const validators: Record<string, FieldValidator> = {
       return 'Invalid value. Tags must be a list of comma-delimited strings.';
     }
   },
-  isNsfw: (isNsfw: boolean) => {
-    if (isNsfw === null) {
-      return 'This field is required.';
-    }
+  isNsfw: (isNsfw?: boolean) => {
+    if (isNsfw === null) return 'This field is required.';
   },
-  isOriginal: (isOriginal: boolean) => {
-    if (isOriginal === null) {
-      return 'This field is required.';
-    }
+  isOriginal: (isOriginal?: boolean) => {
+    if (isOriginal === null) return 'This field is required.';
   },
   secAnswer: (secAnswer: string) => {
-    if (secAnswer === '') {
-      return 'This field is required.';
-    }
+    if (secAnswer === '') return 'This field is required.';
   }
 };
 
 
 export default function ContributePack() {
-  const [hasBeenSubmitted, setHasBeenSubmitted] = React.useState(false);
-  const [requestSent, setRequestSent] = React.useState(false);
-  const [contributionRequestToken, setContributionRequestToken] = React.useState('');
+  const [submitAttempted, setSubmitAttempted] = React.useState(false);
+  const [contributionRequestId, setContributionRequestId] = React.useState('');
   const [contributionRequestQuestion, setContributionRequestQuestion] = React.useState('');
+  const [isInitialized, setIsInitialized] = React.useState(false);
 
 
   /**
-   * Get a ContributionRequest token and question
+   * [Effect] Fetches a contribution request challenge question.
    */
-  const fetchContributionRequest = () => {
-    void fetch(API_URL_CONTRIBUTIONREQUEST, {
+  useAsyncEffect(async isMounted => {
+    if (isInitialized) return;
+
+    const response = await fetch(API_URL_CONTRIBUTION_REQUEST, {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       }
-    }).then(async x => x.json()).then(x => {
-      setContributionRequestQuestion(x.contribution_question);
-      setContributionRequestToken(x.contribution_id);
     });
-  };
+
+    const json = await response.json();
+
+    if (!isMounted()) return;
+
+    setContributionRequestId(json.contribution_id);
+    setContributionRequestQuestion(json.contribution_question);
+    setIsInitialized(true);
+  }, [isInitialized]);
 
 
   /**
-   * Get a ContributionRequest at loading
+   * Called when the form is submitted _after_ it has passed validation.
    */
-  React.useEffect(() => {
-    setTimeout(() => {
-      fetchContributionRequest();
-    }, 3000); // Delaying the query helps reducing the load
-  }, []);
-
-
-  /**
-   * Sets 'hasBeenSubmitted' when the Submit button is clicked. We need this
-   * because Formik will not call our onSubmit function when the submit button
-   * is clicked _but_ validation fails. This makes sense, but because we want to
-   * change the way validation errors are presented to the user after the first
-   * submit attempt, we need to track "attempts" separately.
-   */
-  const onSubmitClick = React.useCallback(() => {
-    setHasBeenSubmitted(true);
-  }, [
-    setHasBeenSubmitted
-  ]);
-
-  /**
-   * Reset the form to its original state
-   */
-  // @ts-expect-error
-  const handleReset = React.useCallback(({ resetForm }) => {
-    fetchContributionRequest();
-    resetForm();
-    setRequestSent(false);
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }, [
-    requestSent
-  ]);
-
-
-  /**
-   * Called when the form is submitted and has passed validation.
-   */
-  // @ts-expect-error
-  const onSubmit = React.useCallback((values: FormValues, { setErrors, setSubmitting }) => {
+  const onSubmit = React.useCallback(async (values: FormValues, { setStatus }: FormikHelpers<FormValues>) => {
+    // Extract pack ID and key from provided signal.art URL.
     const matches = new RegExp(SIGNAL_ART_URL_PATTERN).exec(values.signalArtUrl);
-    if (!matches) {
-      throw new Error('Unable to extract pack ID and pack key from signal.art URL.');
-    }
-
+    if (!matches) throw new Error('Unable to extract pack ID and pack key from signal.art URL.');
     const [, packId, packKey] = matches;
+    const { source, isNsfw, isOriginal, secAnswer, submitterComments } = values;
 
-    const tags = R.uniq(values.tags
-      .split(',')
-      .map(tag => tag.trim())
-      .filter(tag => tag.length));
+    // Split tags into an array, trim whitespace, and remove empty tags.
+    const tags = R.reject(R.isEmpty, R.map(R.trim, R.split(',', values.tags)));
 
     const propositionData = {
+      contribution_id: contributionRequestId,
       pack: {
         pack_id: packId,
         pack_key: packKey,
-        source: values.source,
+        source: source,
         tags: tags,
-        nsfw: values.isNsfw === 'true' ? true : false,
-        original: values.isOriginal === 'true' ? true : false
+        nsfw: isNsfw === 'true' ? true : false,
+        original: isOriginal === 'true' ? true : false
       },
-      contribution_id: contributionRequestToken,
-      contribution_answer: values.secAnswer,
-      submitter_comments: values.submitterComments
+      contribution_answer: secAnswer,
+      submitter_comments: submitterComments
     };
 
-    void fetch(API_URL_CONTRIBUTE, {
+    const response = await fetch(API_URL_CONTRIBUTE, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(propositionData)
-    }).then(async response =>
-      response.json().then(data => ({
-        data: data,
-        status: response.status
-      })
-      ).then(res => {
-        if (res.status === 400) {
-          setErrors({
-            secAnswer: res.data.error
-          });
-          setRequestSent(false);
-          setSubmitting(false);
-          return;
-        }
-        setRequestSent(true);
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: 'smooth'
-        });
-      }));
+    });
 
-  }, [contributionRequestQuestion, contributionRequestToken]);
+    const data = await response.json();
 
+    if (response.status !== 200) {
+      // Set any errors from the API on the form's status.
+      setStatus({
+        state: 'error',
+        error: data.error ?? 'An unknown error occurred.'
+      });
 
-  // ----- Render --------------------------------------------------------------
+      return;
+    }
+
+    setStatus({ state: 'success' });
+  }, [contributionRequestId]);
 
 
   const stickerPackGuideLink = React.useMemo(() => (
@@ -249,17 +193,19 @@ export default function ContributePack() {
     </ExternalLink>
   ), []);
 
+
   const contributionGuidelines = React.useMemo(() => (
     <ExternalLink
       href="https://github.com/signalstickers/signalstickers#contribution-guidelines"
       title="Signalstickers' Contribution Guidelines"
     >
-      Signalstickers' Contribution Guidelines
+      Signal Stickers' Contribution Guidelines
     </ExternalLink>
   ), []);
 
+
   return (
-    <div className="my-4 p-lg-3 px-lg-4">
+    <div className="my-3 my-sm-4">
       <div className="row">
         <div className="col-12">
           <h1 className="mb-4">Contribute</h1>
@@ -276,7 +222,7 @@ export default function ContributePack() {
               other online presence to the <strong>Source</strong> field below.
             </li>
             <li className="mb-2">
-              Fill this form. Please check that your pack is not already listed on the website.
+              Fill-out this form. Please check that your pack is not already listed on the website.
               Take the time to add tags, to help other users find your pack!
             </li>
             <li className="mb-2">
@@ -289,240 +235,316 @@ export default function ContributePack() {
           </p>
         </div>
       </div>
+
       <hr className="pt-3 pb-2" />
+
       <div className="row">
         <div className="col-12 col-md-10 offset-md-1">
           <Formik
+            initialStatus={{ state: 'pristine' }}
             initialValues={initialValues}
-            onSubmit={(values, { setErrors, setSubmitting }) => onSubmit(values, { setErrors, setSubmitting })}
-            validateOnChange={hasBeenSubmitted}
-            validateOnBlur={hasBeenSubmitted}
+            onSubmit={onSubmit}
+            validateOnChange={submitAttempted}
+            validateOnBlur={submitAttempted}
           >
-            {({ errors, isValidating, isSubmitting, resetForm }) => (
-              <Form noValidate>
-                {/* [Field] Signal.art Url */}
-                <div className="form-group">
-                  <div className="form-row">
-                    <label className={cx('col-12', errors.signalArtUrl && 'text-danger')} htmlFor="signal-art-url">
-                      Signal.art URL:
-                      <Field
-                        type="text"
-                        id="signal-art-url"
-                        name="signalArtUrl"
-                        validate={validators.signalArtUrl}
-                        className={cx('form-control', 'mt-2', errors.signalArtUrl && 'is-invalid')}
-                        disabled={requestSent}
-                        placeholder="https://signal.art/addstickers/#pack_id=<your pack id>&pack_key=<your pack key>"
-                      />
-                      <div>
-                        <ErrorMessage name="signalArtUrl" />&nbsp;
-                      </div>
-                    </label>
-                  </div>
-                </div>
+            {({ errors, isSubmitting, status, dirty, setStatus }) => {
+              if (status.state === 'pristine' && dirty) setStatus({ state: 'dirty' });
+              const disabled = isSubmitting || status.state === 'success';
 
-                {/* [Field] Source */}
-                <div className="form-group">
-                  <div className="form-row">
-                    <label className={cx('col-12', errors.source && 'text-danger')} htmlFor="source">
-                      (Optional) Source:
-                      <Field
-                        type="text"
-                        id="source"
-                        name="source"
-                        validate={validators.source}
-                        className={cx('form-control', 'mt-2', errors.source && 'is-invalid')}
-                        disabled={requestSent}
-                      />
-                      <small className="form-text text-muted">Original author, website, company, etc.</small>
-                      <div>
-                        <ErrorMessage name="source" />&nbsp;
-                      </div>
-                    </label>
-                  </div>
-                </div>
+              return (
+                <Form noValidate>
 
-                {/* [Field] Tags */}
-                <div className="form-group mb-4">
-                  <div className="form-row">
-                    <label className={cx('col-12', errors.tags && 'text-danger')} htmlFor="tags">
-                      (Optional) Tags:
-                      <Field
-                        type="text"
-                        id="tags"
-                        name="tags"
-                        validate={validators.tags}
-                        className={cx('form-control', 'mt-2', errors.tags && 'is-invalid')}
-                        disabled={requestSent}
-                      />
-                      <small className="form-text text-muted">Comma-separated list of words.</small>
-                      <div>
-                        <ErrorMessage name="tags" />&nbsp;
-                      </div>
+                  {/* [Field] Signal.art URL */}
+                  <div className="mb-4">
+                    <label
+                      className="form-label"
+                      htmlFor="signal-art-url"
+                    >
+                      Signal.art URL
                     </label>
+                    <Field
+                      id="signal-art-url"
+                      type="text"
+                      name="signalArtUrl"
+                      className={cx(
+                        'form-control form-control-lg bg-transparent',
+                        errors.signalArtUrl && 'is-invalid'
+                      )}
+                      disabled={disabled}
+                      validate={validators.signalArtUrl}
+                      placeholder="https://signal.art/addstickers/#pack_id=<packId>&pack_key=<packKey>"
+                      aria-describedby="signal-art-url-error"
+                    />
+                    <div
+                      id="signal-art-url-error"
+                      className={cx(errors.signalArtUrl && 'invalid-feedback')}
+                    >
+                      <ErrorMessage name="signalArtUrl" />&nbsp;
+                    </div>
                   </div>
-                </div>
 
-                {/* [Field] NSFW */}
-                <div className="form-group">
-                  <div className="form-row">
-                    <legend className={cx('col-12', 'mb-2', 'fs-1', errors.isNsfw && 'text-danger')}>
+                  {/* [Field] Source */}
+                  <div className="mb-4">
+                    <label
+                      className="form-label"
+                      htmlFor="source"
+                    >
+                      Source <span className="text-muted">(optional)</span>
+                    </label>
+                    <Field
+                      type="text"
+                      id="source"
+                      name="source"
+                      validate={validators.source}
+                      className={cx(
+                        'form-control form-control-lg bg-transparent',
+                        errors.source && 'is-invalid'
+                      )}
+                      disabled={disabled}
+                      aria-describedby="source-description source-error"
+                    />
+                    <div
+                      id="source-description"
+                      className="form-text"
+                    >
+                      Original author, website, company, etc.
+                    </div>
+                    <div
+                      id="source-error"
+                      className={cx(errors.source && 'invalid-feedback')}
+                    >
+                      <ErrorMessage name="source" />&nbsp;
+                    </div>
+                  </div>
+
+                  {/* [Field] Tags */}
+                  <div className="mb-4">
+                    <label
+                      className="form-label"
+                      htmlFor="tags"
+                    >
+                      Tags <span className="text-muted">(optional)</span>
+                    </label>
+                    <Field
+                      type="text"
+                      id="tags"
+                      name="tags"
+                      validate={validators.tags}
+                      className={cx(
+                        'form-control form-control-lg bg-transparent',
+                        errors.tags && 'is-invalid'
+                      )}
+                      disabled={disabled}
+                      aria-describedby="tags-description tags-error"
+                    />
+                    <div
+                      id="tags-description"
+                      className="form-text"
+                    >
+                      Comma-separated list of words.
+                    </div>
+                    <div
+                      id="tags-error"
+                      className={cx(errors.tags && 'invalid-feedback')}
+                    >
+                      <ErrorMessage name="tags" />&nbsp;
+                    </div>
+                  </div>
+
+                  {/* [Field] NSFW */}
+                  <div className="mb-4">
+                    <legend
+                      id="is-nsfw-description"
+                      className="form-label fs-5"
+                    >
                       Is your sticker pack <ExternalLink href="https://www.urbandictionary.com/define.php?term=NSFW" title="NSFW">NSFW</ExternalLink>?
                     </legend>
-                  </div>
-                  <div className="form-row">
-                    <div className="col-12 mb-1">
-                      <div className="custom-control custom-radio">
-                        <Field
-                          type="radio"
-                          id="is-nsfw-true"
-                          name="isNsfw"
-                          validate={validators.isNsfw}
-                          className={cx('custom-control-input', errors.isNsfw && 'is-invalid')}
-                          value="true"
-                          disabled={requestSent}
-                        />
-                        <label className="custom-control-label" htmlFor="is-nsfw-true">
-                          Yes
-                        </label>
-                      </div>
+                    <div className="form-check fs-5">
+                      <Field
+                        type="radio"
+                        id="is-nsfw-true"
+                        name="isNsfw"
+                        validate={validators.isNsfw}
+                        className={cx('form-check-input', errors.isNsfw && 'is-invalid')}
+                        disabled={disabled}
+                        required
+                        aria-describedby="is-nsfw-description is-nsfw-error"
+                        value="true"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="is-nsfw-true"
+                      >
+                        Yes
+                      </label>
                     </div>
-                    <div className="col-12 mb-1">
-                      <div className="custom-control custom-radio">
-                        <Field
-                          type="radio"
-                          id="is-nsfw-false"
-                          name="isNsfw"
-                          validate={validators.isNsfw}
-                          className={cx('custom-control-input', errors.isNsfw && 'is-invalid')}
-                          value="false"
-                          disabled={requestSent}
-                        />
-                        <label className="custom-control-label" htmlFor="is-nsfw-false">No</label>
-                      </div>
-                      <div>
+                    <div className="form-check fs-5">
+                      <Field
+                        type="radio"
+                        id="is-nsfw-false"
+                        name="isNsfw"
+                        validate={validators.isNsfw}
+                        className={cx('form-check-input', errors.isNsfw && 'is-invalid')}
+                        disabled={disabled}
+                        required
+                        aria-describedby="is-nsfw-description is-nsfw-error"
+                        value="false"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="is-nsfw-false"
+                      >
+                        No
+                      </label>
+                      <div
+                        id="is-nsfw-error"
+                        className={cx(errors.isNsfw && 'invalid-feedback')}
+                      >
                         <ErrorMessage name="isNsfw" />&nbsp;
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* [Field] Original */}
-                <div className="form-group">
-                  <div className="form-row">
-                    <legend className={cx('col-12', 'mb-2', 'fs-6', errors.isOriginal && 'text-danger')}>
+                  {/* [Field] Original */}
+                  <div className="mb-4">
+                    <legend
+                      id="is-original-description"
+                      className="form-label fs-5"
+                    >
                       Is your pack original? Did the author of the pack draw it exclusively for Signal, from original artworks?
                     </legend>
-                  </div>
-                  <div className="form-row">
-                    <div className="col-12 mb-1">
-                      <div className="custom-control custom-radio">
-                        <Field
-                          type="radio"
-                          id="is-original-true"
-                          name="isOriginal"
-                          validate={validators.isOriginal}
-                          className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
-                          value="true"
-                          disabled={requestSent}
-                        />
-                        <label className="custom-control-label" htmlFor="is-original-true">
-                          Yes
-                        </label>
-                      </div>
+                    <div className="form-check fs-5">
+                      <Field
+                        type="radio"
+                        id="is-original"
+                        name="isOriginal"
+                        validate={validators.isOriginal}
+                        className={cx('form-check-input', errors.isOriginal && 'is-invalid')}
+                        disabled={disabled}
+                        required
+                        aria-describedby="is-original-description is-original-error"
+                        value="true"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="is-original-true"
+                      >
+                        Yes
+                      </label>
                     </div>
-                    <div className="col-12 mb-1">
-                      <div className="custom-control custom-radio">
-                        <Field
-                          type="radio"
-                          id="is-original-false"
-                          name="isOriginal"
-                          validate={validators.isOriginal}
-                          className={cx('custom-control-input', errors.isOriginal && 'is-invalid')}
-                          value="false"
-                          disabled={requestSent}
-                        />
-                        <label className="custom-control-label" htmlFor="is-original-false">No</label>
-                      </div>
-                      <div>
+                    <div className="form-check fs-5">
+                      <Field
+                        type="radio"
+                        id="is-original-false"
+                        name="isOriginal"
+                        validate={validators.isOriginal}
+                        className={cx('form-check-input', errors.isOriginal && 'is-invalid')}
+                        disabled={disabled}
+                        required
+                        aria-describedby="is-original-description is-original-error"
+                        value="false"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="is-original-false"
+                      >
+                        No
+                      </label>
+                      <div
+                        id="is-original-error"
+                        className={cx(errors.isOriginal && 'invalid-feedback')}
+                      >
                         <ErrorMessage name="isOriginal" />&nbsp;
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* [Field] Security Answer */}
-                <div className="form-group">
-                  <div className="form-row">
-                    <label className={cx('col-12', errors.secAnswer && 'text-danger')} htmlFor="secAnswer">
-                      {contributionRequestQuestion}
-                      <Field
-                        type="text"
-                        id="secAnswer"
-                        name="secAnswer"
-                        validate={validators.secAnswer}
-                        className={cx('form-control', 'mt-2', errors.secAnswer && 'is-invalid')}
-                        disabled={requestSent}
-                      />
-                      <small className="form-text text-muted">This question helps us to make sure that you are not a robot. The answer is a single word or number, without quotes.</small>
-                      <div>
-                        <ErrorMessage name="secAnswer" />&nbsp;
-                      </div>
+                  {/* [Field] Security Answer */}
+                  <div className="mb-4">
+                    <label
+                      className="fs-5 mb-1"
+                      htmlFor="sec-answer"
+                    >
+                      {contributionRequestQuestion || <span className="text-muted">Loading...</span>}
                     </label>
-                  </div>
-                </div>
-
-                {/* [Field] Submitter comments */}
-                <div className="form-group">
-                  <div className="form-row">
-                    <label className="col-12" htmlFor="submitterComments">
-                      (Optional) Any comments?
-                      <Field
-                        as="textarea"
-                        type="textarea"
-                        id="submitterComments"
-                        name="submitterComments"
-                        className="form-control mt-2"
-                        disabled={requestSent}
-                        maxLength="400"
-                      />
-                      <small className="form-text text-muted">This will only be visible to moderators. Do not enter personnal information. Or just say hello, we love it :-)</small>
-                    </label>
-                  </div>
-                </div>
-
-                {/* [Control] Submit and Reset */}
-                <div className="form-group">
-                  <div className="form-row">
-                    <div className="col-12">
-                      <button
-                        type="submit"
-                        className={`btn btn-block btn-lg ${requestSent ? 'btn-success' : 'btn-primary '}`}
-                        disabled={isSubmitting || isValidating || requestSent}
-                        onClick={onSubmitClick}
-                      >
-                        {requestSent
-                          ? <span>Request sent, thanks!</span>
-                          : <span>Propose to signalstickers.org</span>
-                        }
-                        {isSubmitting}
-                      </button>
-                      {requestSent ?
-                        <button
-                          type="reset"
-                          className="btn btn-block btn-lg btn-primary"
-                          onClick={() => handleReset({ resetForm })}
-                        >
-                          Propose another pack
-                        </button>
-                      : ''
-                      }
-
+                    <Field
+                      type="text"
+                      id="sec-answer"
+                      name="secAnswer"
+                      validate={validators.secAnswer}
+                      className={cx(
+                        'form-control form-control-lg bg-transparent',
+                        errors.secAnswer && 'is-invalid'
+                      )}
+                      disabled={disabled}
+                      aria-labelledby="sec-answer-description sec-answer-error"
+                    />
+                    <div
+                      id="sec-answer-description"
+                      className="form-text"
+                    >
+                      This question helps us to make sure that you are not a robot. The answer is a single word or number, without quotes.
+                    </div>
+                    <div
+                      id="sec-answer-error"
+                      className={cx(errors.secAnswer && 'invalid-feedback')}
+                    >
+                      <ErrorMessage name="secAnswer" />&nbsp;
                     </div>
                   </div>
-                </div>
-              </Form>
-            )}
+
+                  {/* [Field] Submitter Comments */}
+                  <div className="mb-4">
+                    <label
+                      className="fs-5 mb-1"
+                      htmlFor="submitter-comments"
+                    >
+                      Any comments? <span className="text-muted">(optional)</span>
+                    </label>
+                    <Field
+                      as="textarea"
+                      type="textarea"
+                      id="submitter-comments"
+                      name="submitterComments"
+                      className="form-control form-control-lg bg-transparent"
+                      disabled={isSubmitting || status.state === 'success'}
+                      maxLength="400"
+                      aria-describedby="submitter-comments-description"
+                    />
+                    <div
+                      id="submitter-comments-description"
+                      className="form-text"
+                    >
+                      This will only be visible to moderators. Do not enter personal information. Or just say hello, we love it :-)
+                    </div>
+                  </div>
+
+                  {/* Global Form Status */}
+                  <div className="mb-4">
+                    {status.state === 'success' ? (
+                      <span className="text-success">Proposal submitted, thanks!</span>
+                    ) : status.state === 'error' ? (
+                      <span className="text-danger">{status.error}</span>
+                    ) : <span>&nbsp;</span>}
+                  </div>
+
+                  {/* [Control] Submit and Reset */}
+                  <div className="text-center">
+                    <button
+                      type="submit"
+                      className={cx(
+                        'btn btn-lg',
+                        status.state === 'success' ? 'btn-success' : 'btn-primary'
+                      )}
+                      disabled={disabled || status.state === 'success'}
+                      onClick={() => setSubmitAttempted(true)}
+                    >
+                      {status.state === 'success' ? 'Success' : 'Submit Pack Proposal'}
+                    </button>
+                  </div>
+                </Form>
+              );
+            }}
           </Formik>
         </div>
       </div>

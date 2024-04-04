@@ -8,15 +8,16 @@ import {
   type FormikHelpers
 } from 'formik';
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useAsyncEffect from 'use-async-effect';
 
-import { API_URL_CONTRIBUTIONREQUEST, API_URL_REPORT } from 'etc/constants';
+import ExternalLink from 'components/general/ExternalLink';
+import { API_URL_CONTRIBUTION_REQUEST, API_URL_REPORT } from 'etc/constants';
 import { StickerPack } from 'etc/types';
 import { getStickerPack } from 'lib/stickers';
 
 
-export interface FormValues {
+interface FormValues {
   secAnswer: string;
   submitterComments: string;
 }
@@ -25,7 +26,7 @@ export interface FormValues {
 /**
  * URL parameters that we expect to have set when this component is rendered.
  */
-export interface UrlParams {
+interface UrlParams {
   packId: string;
 }
 
@@ -44,267 +45,255 @@ const initialValues: FormValues = {
  */
 const validators: Record<string, FieldValidator> = {
   secAnswer: (secAnswer: string) => {
-    if (secAnswer === '') {
-      return 'This field is required.';
-    }
+    if (secAnswer === '') return 'This field is required.';
   },
   submitterComments: (submitterComments: string) => {
-    if (submitterComments.length <= 30) {
-      return 'Please give more details (min 30 chars).';
-    }
+    if (submitterComments.length <= 30) return 'Please give more details (min 30 chars).';
   }
 };
 
 
 export default function ReportPack() {
-  const [hasBeenSubmitted, setHasBeenSubmitted] = React.useState(false);
-  const [requestSent, setRequestSent] = React.useState(false);
-  const [reportRequestToken, setReportRequestToken] = React.useState('');
-  const [reportRequestQuestion, setReportRequestQuestion] = React.useState('');
   const { packId } = useParams<UrlParams>();
-  // StickerPack object for the requested pack.
+  const [submitAttempted, setSubmitAttempted] = React.useState(false);
+  const [reportRequestId, setReportRequestId] = React.useState('');
+  const [reportRequestQuestion, setReportRequestQuestion] = React.useState('');
   const [stickerPack, setStickerPack] = React.useState<StickerPack>();
+  const [isInitialized, setIsInitialized] = React.useState(false);
+
 
   /**
    * [Effect] Set `stickerPack` when the component mounts.
    */
-  useAsyncEffect(async () => {
+  useAsyncEffect(async isMounted => {
     try {
-      if (!packId) {
-        return;
-      }
-
-      setStickerPack(await getStickerPack(packId));
-    } catch {
-      // TODO: Handle errors.
+      if (!packId) return;
+      const stickerPack = await getStickerPack(packId);
+      if (!isMounted()) return;
+      setStickerPack(stickerPack);
+    } catch (err: any) {
+      console.error('Error fetching sticker pack:', err.message);
     }
   }, [packId]);
 
+
   /**
-   * Get a ContributionRequest token and question
+   * [Effect] Fetches a contribution request challenge question.
    */
-  const fetchReportRequest = () => {
-    void fetch(API_URL_CONTRIBUTIONREQUEST, { // We use the same URL API than the contribution request
+  useAsyncEffect(async isMounted => {
+    if (isInitialized) return;
+
+    const response = await fetch(API_URL_CONTRIBUTION_REQUEST, {
       method: 'POST',
       headers: {
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       }
-    })
-      .then(async x => x.json())
-      .then(x => {
-        setReportRequestQuestion(x.contribution_question);
-        setReportRequestToken(x.contribution_id);
-      });
-  };
+    });
 
-  /**
-   * Get a ContributionRequest at loading
-   */
-  React.useEffect(() => {
-    setTimeout(() => {
-      fetchReportRequest();
-    }, 3000); // Delaying the query helps reducing the load
-  }, []);
+    const json = await response.json();
 
-  /**
-   * Sets 'hasBeenSubmitted' when the Submit button is clicked. We need this
-   * because Formik will not call our onSubmit function when the submit button
-   * is clicked _but_ validation fails. This makes sense, but because we want to
-   * change the way validation errors are presented to the user after the first
-   * submit attempt, we need to track "attempts" separately.
-   */
-  const onSubmitClick = React.useCallback(() => {
-    setHasBeenSubmitted(true);
-  }, [setHasBeenSubmitted]);
+    if (!isMounted()) return;
+
+    setReportRequestId(json.contribution_id);
+    setReportRequestQuestion(json.contribution_question);
+    setIsInitialized(true);
+  }, [isInitialized]);
+
 
   /**
    * Called when the form is submitted and has passed validation.
    */
-  const onSubmit = React.useCallback(
-    (values: FormValues, { setErrors, setSubmitting }: FormikHelpers<FormValues>) => {
-      const reportData = {
-        contribution_id: reportRequestToken,
-        contribution_answer: values.secAnswer,
-        pack_id: packId,
-        content: values.submitterComments
-      };
+  const onSubmit = React.useCallback(async (values: FormValues, { setStatus }: FormikHelpers<FormValues>) => {
+    const reportData = {
+      contribution_id: reportRequestId,
+      pack_id: packId,
+      content: values.submitterComments,
+      contribution_answer: values.secAnswer
+    };
 
-      void fetch(API_URL_REPORT, {
-        method: 'PUT',
-        headers: {
-          Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(reportData)
-      }).then(async response =>
-        response
-          .json()
-          .then(data => ({
-            data: data,
-            status: response.status
-          }))
-          .then(res => {
-            if (res.status === 400) {
-              setErrors({
-                secAnswer: res.data.error
-              });
-              setRequestSent(false);
-              setSubmitting(false);
-              return;
-            }
-            setRequestSent(true);
-            window.scrollTo({
-              top: document.body.scrollHeight,
-              behavior: 'smooth'
-            });
-          })
-      );
-    },
-    [reportRequestQuestion, reportRequestToken]
-  );
+    const response = await fetch(API_URL_REPORT, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(reportData)
+    });
+
+    const data = await response.json();
+
+    if (response.status !== 200) {
+      // Set any errors from the API on the form's status.
+      setStatus({
+        state: 'error',
+        error: data.error ?? 'An unknown error occurred.'
+      });
+
+      return;
+    }
+
+    setStatus({ state: 'success' });
+  }, [
+    reportRequestId,
+    reportRequestQuestion
+  ]);
+
+
+  const contributionGuidelines = React.useMemo(() => (
+    <ExternalLink
+      href="https://github.com/signalstickers/signalstickers#contribution-guidelines"
+      title="Signalstickers' Contribution Guidelines"
+    >
+      Signal Stickers' Contribution Guidelines
+    </ExternalLink>
+  ), []);
 
 
   return (
     <div className="my-4 p-lg-3 px-lg-4">
       <div className="row">
         <div className="col-12">
-          <h1 className="mb-4">Report a pack</h1>
-          <div className="mt-lg-3 mb-4">
-            <p>Use this form to report a pack to Signalstickers' admins.</p>
-            <p>Please add context and explain why you are reporting this pack.</p>
-          </div>
+          <h1 className="mb-4">Report Pack</h1>
+          <p className="mt-lg-3 mb-4">
+            If you believe a sticker pack is in violation of the {contributionGuidelines}, you
+            may use this form to report it to Signal Stickers.
+          </p>
+          <p>
+            Please add context and explain why you are reporting this pack.
+          </p>
         </div>
       </div>
+
       <hr className="pt-3 pb-2" />
+
       <div className="row">
         <div className="col-12 col-md-10 offset-md-1">
           <Formik
+            initialStatus={{ state: 'pristine' }}
             initialValues={initialValues}
             onSubmit={onSubmit}
-            validateOnChange={hasBeenSubmitted}
-            validateOnBlur={hasBeenSubmitted}
+            validateOnChange={submitAttempted}
+            validateOnBlur={submitAttempted}
           >
-            {({ errors, isValidating, isSubmitting }) => (
-              <Form noValidate>
+            {({ errors, isSubmitting, status, dirty, setStatus }) => {
+              if (status.state === 'pristine' && dirty) setStatus('dirty');
+              const disabled = isSubmitting || status.state === 'success';
 
-                {/* [Field] Pack title */}
-                <div className="form-group">
-                  <div className="form-row">
-                    <label className="col-12" htmlFor="pack-title">
-                      Pack to report
-                      <Field
-                        type="text"
-                        id="pack-title"
-                        name="pack-title"
-                        className="form-control mt-2"
-                        disabled
-                        value={stickerPack?.manifest.title}
-                      />
-                    </label>
-                  </div>
-                </div>
+              return (
+                <Form noValidate>
 
-                {/* [Field] Submitter comments */}
-                <div className="form-group">
-                  <div className="form-row">
+                  {/* [Field] Pack Title */}
+                  <div className="mb-4">
                     <label
-                      className={cx(
-                        'col-12',
-                        errors.submitterComments && 'text-danger'
-                      )}
-                      htmlFor="submitterComments"
+                      className="form-label"
+                      htmlFor="pack-title"
+                    >
+                      Pack to report
+                    </label>
+                    <Field
+                      id="pack-title"
+                      type="text"
+                      name="packTitle"
+                      className="form-control form-control-lg bg-transparent"
+                      disabled
+                      value={stickerPack?.manifest.title ?? ''}
+                    />
+                  </div>
+
+                  {/* [Field] Submitter Comments */}
+                  <div className="mb-4 debug<">
+                    <label
+                      className="form-label"
+                      htmlFor="submitter-comments"
                     >
                       Why are you reporting this pack?
-                      <Field
-                        as="textarea"
-                        type="textarea"
-                        id="submitterComments"
-                        name="submitterComments"
-                        className={cx('form-control mt-2', errors.submitterComments && 'is-invalid')}
-                        disabled={requestSent}
-                        validate={validators.submitterComments}
-                        maxLength="1999"
-                      />
-                      <small className="form-text text-muted">
-                        Please add details about your report. Do not enter
-                        personal information.
-                      </small>
-                      <div className="invalid-feedback">
-                        <ErrorMessage name="submitterComments" />
-                        &nbsp;
-                      </div>
                     </label>
-                  </div>
-                </div>
-
-                {/* [Field] Security answer */}
-                <div className="form-group">
-                  <div className="form-row">
-                    <label
+                    <Field
+                      id="submitter-comments"
+                      type="textarea"
+                      as="textarea"
+                      name="submitterComments"
                       className={cx(
-                        'col-12',
-                        errors.secAnswer && 'text-danger'
+                        'form-control form-control-lg bg-transparent',
+                        errors.submitterComments && 'is-invalid'
                       )}
-                      htmlFor="secAnswer"
+                      disabled={disabled}
+                      validate={validators.submitterComments}
+                      maxLength="1999"
+                      aria-describedby="submitter-comments-description submitter-comments-error"
+                    />
+                    <div
+                      id="submitter-comments-description"
+                      className="form-text"
                     >
-                      {reportRequestQuestion}
-                      <Field
-                        type="text"
-                        id="secAnswer"
-                        name="secAnswer"
-                        validate={validators.secAnswer}
-                        className={cx('form-control', 'mt-2', errors.secAnswer && 'is-invalid')}
-                        disabled={requestSent}
-                      />
-                      <small className="form-text text-muted">
-                        This question helps us to make sure that you are not a
-                        robot. The answer is a single word or number, without
-                        quotes.
-                      </small>
-                      <div className="invalid-feedback">
-                        <ErrorMessage name="secAnswer" />
-                        &nbsp;
-                      </div>
-                    </label>
-                  </div>
-                </div>
-
-                {/* [Control] Submit */}
-                <div className="form-group">
-                  <div className="form-row">
-                    <div className="col-12">
-                      <button
-                        type="submit"
-                        className={`btn btn-block btn-lg ${
-                          requestSent ? 'btn-success' : 'btn-primary '
-                        }`}
-                        disabled={isSubmitting || isValidating || requestSent}
-                        onClick={onSubmitClick}
-                      >
-                        {requestSent ? (
-                          <span>Report sent, thanks!</span>
-                        ) : (
-                          <span>Report</span>
-                        )}
-                        {isSubmitting}
-                      </button>
-                      {requestSent ? (
-                        <Link
-                          type="reset"
-                          className="btn btn-block btn-lg btn-primary"
-                          to="/"
-                        >
-                          Return to homepage
-                        </Link>
-                      ) :
-                        ''
-                      }
+                      Please add details about your report. Do not provide any personal information.
+                    </div>
+                    <div
+                      id="submitter-comments-error"
+                      className={cx(errors.submitterComments && 'invalid-feedback')}
+                    >
+                      <ErrorMessage name="submitterComments" />&nbsp;
                     </div>
                   </div>
-                </div>
-              </Form>
-            )}
+
+                  {/* [Field] Security Answer */}
+                  <div className="mb-4">
+                    <label
+                      className="fs-5 mb-1"
+                      htmlFor="sec-answer"
+                    >
+                      {reportRequestQuestion || <span className="text-muted">Loading...</span>}
+                    </label>
+                    <Field
+                      type="text"
+                      id="sec-answer"
+                      name="secAnswer"
+                      validate={validators.secAnswer}
+                      className={cx(
+                        'form-control form-control-lg bg-transparent',
+                        errors.secAnswer && 'is-invalid'
+                      )}
+                      disabled={disabled}
+                      aria-labelledby="sec-answer-description sec-answer-error"
+                    />
+                    <div
+                      id="sec-answer-description"
+                      className="form-text"
+                    >
+                      This question helps us to make sure that you are not a robot. The answer is a single word or number, without quotes.
+                    </div>
+                    <div
+                      id="sec-answer-error"
+                      className={cx(errors.secAnswer && 'invalid-feedback')}
+                    >
+                      <ErrorMessage name="secAnswer" />&nbsp;
+                    </div>
+                  </div>
+
+                  {/* Global Form Status */}
+                  <div className="mb-4">
+                    {status.state === 'success' ? (
+                      <span className="text-success">Report submitted, thanks!</span>
+                    ) : status.state === 'error' ? (
+                      <span className="text-danger">{status.error}</span>
+                    ) : <span>&nbsp;</span>}
+                  </div>
+
+                  {/* [Control] Submit */}
+                  <div className="text-center">
+                    <button
+                      type="submit"
+                      className="btn btn-lg btn-primary"
+                      disabled={disabled || status.state === 'success'}
+                      onClick={() => setSubmitAttempted(true)}
+                    >
+                      {status.state === 'success' ? 'Success' : 'Submit Report'}
+                    </button>
+                  </div>
+                </Form>
+              );
+            }}
           </Formik>
         </div>
       </div>

@@ -1,19 +1,15 @@
 /**
- * Mapping of Bootstrap 4 breakpoint names to their minWidths.
+ * Mapping of Bootstrap 5 breakpoint names to their minWidths.
+ * See: https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints
  */
 export const BOOTSTRAP_BREAKPOINTS = {
   xs: 0,
   sm: 576,
   md: 768,
   lg: 992,
-  xl: 1200
+  xl: 1200,
+  xxl: 1400
 };
-
-
-/**
- * Height of the navbar (px).
- */
-export const NAVBAR_HEIGHT = 64;
 
 
 /**
@@ -28,12 +24,18 @@ export const SEARCH_QUERY_PARAM = 's';
  */
 export const SIGNAL_ART_URL_PATTERN = /^https:\/\/signal.art\/addstickers\/#pack_id=([\dA-Za-z]{32})&pack_key=([\dA-Za-z]{64})$/g;
 
+
 /**
- * API urls
+ * Regular expression used to validate pack IDs from URL parameters.
+ */
+export const PACK_ID_PATTERN = /^[\dA-Za-z]{32}$/g;
+
+
+/**
+ * API URLs.
  */
 export const API_BASE_URL = import.meta.env.SIGNALSTICKERS_API_URL;
-
-export const API_URL_CONTRIBUTIONREQUEST = `${API_BASE_URL}/contributionrequest/`;
+export const API_URL_CONTRIBUTION_REQUEST = `${API_BASE_URL}/contributionrequest/`;
 export const API_URL_CONTRIBUTE = `${API_BASE_URL}/contribute/`;
 export const API_URL_PACKS = `${API_BASE_URL}/packs/`;
 export const API_URL_PACKS_PING = `${API_BASE_URL}/ping/`;

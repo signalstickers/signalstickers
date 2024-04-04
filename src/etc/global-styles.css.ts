@@ -1,12 +1,6 @@
-import { globalStyle } from '@vanilla-extract/css';
-import { rgba } from 'polished';
+import { style, globalStyle } from '@vanilla-extract/css';
 
-import {
-  GRAY_LIGHTER,
-  GRAY_DARKER,
-  GRAY_DARKER_2,
-  PRIMARY_LIGHTER
-} from 'etc/colors';
+import { bp } from 'lib/utils';
 
 
 globalStyle('*, *:before, *:after', {
@@ -20,141 +14,121 @@ globalStyle('*, *:before, *:after', {
 });
 
 globalStyle('html', {
-  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  // This must be "lvh" in order for the element to cover the entire screen in
+  // PWA/standalone mode.
+  minHeight: '100lvh',
   margin: 0,
   padding: 0,
-  paddingTop: 'env(safe-area-inset-top, 0px)'
+  overscrollBehaviorY: 'none',
+  // Sets the default font size (1rem) used by Bootstrap.
+  fontSize: '14px'
 });
 
 globalStyle('body', {
-  fontFamily: 'Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-  fontSize: '16px',
-  fontWeight: 400,
-  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow: 1,
   margin: 0,
-  padding: 0
+  fontWeight: 400,
+  overscrollBehaviorY: 'none',
+  // This sets the minimum size for _most_ text in the app to about 16px, but
+  // the above setting still lets us use .fs-6 to set a font size of 14px/1rem.
+  fontSize: '1.2rem',
+  fontFamily: 'Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif'
 });
 
 globalStyle('a', {
-  color: 'var(--primary)',
+  color: 'var(--bs-primary)',
   textDecoration: 'none'
 });
 
 globalStyle('#root', {
   display: 'flex',
   flexDirection: 'column',
-  minHeight: 'calc(100vh - env(safe-area-inset-top, 0px))'
+  flexGrow: 1
 });
 
-globalStyle('.theme-light .form-control:not(.is-invalid)', {
-  borderColor: ' rgba(0, 0, 0, 0.125)'
+// Use a slightly darker-than-white background color for the document in light
+// mode. This affords us the option to use true white for emphasis when
+// necessary.
+globalStyle('[data-bs-theme="light"] body', {
+  backgroundColor: 'var(--bs-gray-100)'
 });
 
-globalStyle('.theme-light .form-control:not(.is-invalid):focus', {
-  boxShadow: `0 0 0 0.15rem ${rgba(GRAY_LIGHTER, 0.25)}`
+// Adds an additional font size class to Bootstrap's .fs-N utilities to achieve
+// a font size of ~12px. This should be used very sparingly.
+// See: https://getbootstrap.com/docs/5.3/utilities/text/#font-size
+globalStyle('.fs-7', {
+  fontSize: '0.86rem !important'
 });
 
-globalStyle('.theme-dark .btn-light', {
-  backgroundColor: 'var(--gray-dark)',
-  borderColor: GRAY_DARKER,
-  color: 'var(--light)'
+// Add to elements to easily debug sizing / positioning issues without affecting
+// the element's size, position, or existing border.
+globalStyle('.debug', {
+  boxShadow: '0px 0px 0px 2px rgba(255, 0, 0, 0.72) inset'
 });
 
-globalStyle('.theme-dark .btn-light:hover', {
-  backgroundColor: GRAY_DARKER_2,
-  color: 'var(--light)'
+// Allows us to easily apply padding that will ensure content is rendered in
+// the safe area of the viewport.
+// See: https://developer.mozilla.org/en-US/docs/Web/CSS/env#safe-area-inset-top
+globalStyle('.safe-area-padding', {
+  paddingTop: 'env(safe-area-inset-top, 0px)',
+  paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+  paddingLeft: 'env(safe-area-inset-left, 0px)',
+  paddingRight: 'env(safe-area-inset-right, 0px)'
 });
 
-globalStyle('.theme-dark .btn-light:active:focus', {
-  backgroundColor: GRAY_DARKER_2,
-  color: 'var(--light)'
+globalStyle('.safe-area-padding-top', {
+  paddingTop: 'env(safe-area-inset-top, 0px)'
 });
 
-globalStyle('.theme-dark .btn-light', {
-  backgroundColor: 'var(--gray-dark)',
-  borderColor: GRAY_DARKER,
-  color: 'var(--light)'
+globalStyle('.safe-area-padding-left', {
+  paddingLeft: 'env(safe-area-inset-left, 0px)'
 });
 
-globalStyle('.theme-dark .btn-light:hover', {
-  backgroundColor: GRAY_DARKER_2,
-  color: 'var(--light)'
+globalStyle('.safe-area-padding-bottom', {
+  paddingBottom: 'env(safe-area-inset-bottom, 0px)'
 });
 
-globalStyle('.theme-dark .btn-light:active:focus', {
-  backgroundColor: GRAY_DARKER_2,
-  color: 'var(--light)'
+globalStyle('.safe-area-padding-right', {
+  paddingRight: 'env(safe-area-inset-right, 0px)'
 });
 
-globalStyle('.theme-dark .btn-primary', {
-  color: 'var(--light)'
-});
+// Hide the error overlay (only shown in development). Disable this temporarily
+// if you wish to use it.
+globalStyle('vite-plugin-checker-error-overlay', { display: 'none' });
 
-globalStyle('.theme-dark .btn-primary:hover', {
-  color: 'var(--light)'
-});
 
-globalStyle('.theme-dark .btn-success:hover', {
-  color: 'var(--light)'
-});
-
-globalStyle('.theme-dark .btn-secondary', {
-  backgroundColor: 'var(--secondary)'
-});
-
-globalStyle('.theme-dark .card', {
-  backgroundColor: GRAY_DARKER_2,
-  borderColor: GRAY_DARKER,
-  boxShadow: '1px 1px 4px rgba(0, 0, 0, 0.15)'
-});
-
-globalStyle('.theme-dark .form-control', {
-  backgroundColor: GRAY_DARKER_2,
-  color: 'inherit'
-});
-
-globalStyle('.theme-dark .form-control:not(.is-valid)', {
-  borderColor: GRAY_DARKER
-});
-
-globalStyle('.theme-dark .form-control:not(.is-valid):focus', {
-  borderColor: GRAY_LIGHTER,
-  boxShadow: `0 0 0 0.15rem ${rgba(GRAY_LIGHTER, 0.25)}`
-});
-
-globalStyle('.theme-dark .modal-header', {
-  borderColor: GRAY_DARKER
-});
-
-globalStyle('.theme-dark .modal-footer', {
-  borderColor: GRAY_DARKER
-});
-
-/* !important is needed here because Bootstrap uses it as well. */
-globalStyle('.theme-dark .text-dark', {
-  color: 'var(--light) !important'
-});
-
-globalStyle('.theme-dark .text-muted', {
-  color: `${GRAY_LIGHTER} !important`
-});
-
-globalStyle('.theme-dark a, .theme-dark .btn.btn-link', {
-  color: 'var(--primary)'
-});
-
-globalStyle('.theme-dark a:hover, .theme-dark .btn.btn-link:hover', {
-  color: PRIMARY_LIGHTER
-});
-
-globalStyle('.theme-dark hr', {
-  borderColor: GRAY_DARKER
-});
-
-globalStyle('.theme-dark pre', {
-  color: 'var(--light)'
-});
-
-globalStyle('legend', {
-  fontSize: '1em'
-});
+export default {
+  /**
+  * N.B. We use CSS Grid here rather than the Bootstrap grid because it allows
+  * us to specify odd numbers of identically-sized columns, which we cannot do
+  * in Bootstrap's 12-column grid.
+  */
+  gridView: style({
+    display: 'grid',
+    gridGap: '1rem',
+    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    justifyContent: 'space-between',
+    '@media': {
+      [bp('sm')]: {
+        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))'
+      },
+      [bp('md')]: {
+        gridGap: '1.5rem',
+        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))'
+      },
+      [bp('lg')]: {
+        gridTemplateColumns: 'repeat(4, minmax(0, 1fr))'
+      },
+      [bp('xl')]: {
+        gridTemplateColumns: 'repeat(5, minmax(0, 1fr))'
+      },
+      [bp('xxl')]: {
+        gridTemplateColumns: 'repeat(6, minmax(0, 1fr))'
+      }
+    }
+  })
+};
