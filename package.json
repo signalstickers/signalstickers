@@ -29,8 +29,8 @@
     "help": "nr --scripts"
   },
   "dependencies": {
-    "@signalstickers/stickers-client": "^1.0.2",
-    "axios": "^1.6.7",
+    "@signalstickers/stickers-client": "^2.0.0",
+    "axios": "^1.7.7",
     "bytes": "^3.1.2",
     "classnames": "^2.5.1",
     "debounce-fn": "^4.0.0",
@@ -47,7 +47,7 @@
     "ramda": "^0.29.1",
     "react-icons": "^5.0.1",
     "react-linkify": "^1.0.0-alpha",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.26.2",
     "react-router-hash-link": "^2.4.3",
     "react-scroll-percentage": "^4.3.2",
     "react-switch": "^7.0.0",
