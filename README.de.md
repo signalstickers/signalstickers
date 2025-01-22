@@ -7,7 +7,6 @@
   <a href="https://github.com/signalstickers/signalstickers/graphs/contributors"><img src="https://img.shields.io/github/contributors/signalstickers/signalstickers"></a>
   <a href="README.md"><img src="https://bit.ly/31ysLJA" alt="English"></a>
   <a href="README.fr.md"><img src="https://bit.ly/31xkO7h" alt="Français"></a>
-  <a href="https://twitter.com/signalstickers"><img src="https://img.shields.io/twitter/follow/signalstickers?label=Feed&style=social"></a>
 </p>
 
 ## Über dieses Projekt
@@ -54,11 +53,6 @@ Zögere auch nicht, dein Paket mit dem Hashtag `#makeprivacystick` in sozialen N
 ### Könnt ihr Sticker für mich erstellen?
 
 Das ist nicht das Ziel dieses Projekts :-)
-
-### Wo finde ich weitere Sticker?
-
-- Besuch den [Sticker-Pack collection thread](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650) im [Signal Community-Forum](https://community.signalusers.org);
-- Such auf Twitter nach dem Hashtag [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick).
 
 ### Ist das ein kommerzielles Projekt?
 

@@ -162,11 +162,6 @@ export default function AboutComponent() {
             <ExternalLink href="https://ko-fi.com/signalstickers" title="Donate on Ko-Fi!">
               <SiKofi className="d-none d-md-inline" /> donating on Ko-Fi.
             </ExternalLink></p>
-          <p>
-            <ExternalLink href="https://twitter.com/search?q=%23makeprivacystick&src=typed_query">
-              <strong>#makeprivacystick</strong>
-            </ExternalLink>
-          </p>
         </div>
       </div>
       <hr className="my-5" />

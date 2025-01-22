@@ -52,24 +52,13 @@ export default function Home() {
   ), []);
 
 
-  const twitterLink = React.useMemo(() => (
-    <ExternalLink
-      href="https://twitter.com/signalstickers"
-      title="Twitter"
-    >
-      @signalstickers
-    </ExternalLink>
-  ), []);
-
-
   return (
     <>
       <div className="row">
         <div className="col-12 mt-4 mb-1 mb-md-3 pt-lg-2">
           <p className="intro">
             Welcome to Signal Stickers, the unofficial directory for Signal {stickerPackLink}.
-            You can filter packs by title, author, or tags. Follow {twitterLink} on Twitter to stay
-            tuned for new packs!
+            You can filter packs by title, author, or tags.
           </p>
         </div>
       </div>

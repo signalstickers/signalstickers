@@ -7,7 +7,6 @@
   <a href="https://github.com/signalstickers/signalstickers/graphs/contributors"><img src="https://img.shields.io/github/contributors/signalstickers/signalstickers"></a>
   <a href="README.de.md"><img src="http://bit.ly/3bljOI0" alt="Deutsch"></a>
   <a href="README.fr.md"><img src="https://bit.ly/31xkO7h" alt="Français"></a>
-  <a href="https://twitter.com/signalstickers"><img src="https://img.shields.io/twitter/follow/signalstickers?label=Feed&style=social"></a>
 </p>
 
 ## About
@@ -72,14 +71,6 @@ Do not hesitate to post your pack on social networks using the hashtag
 ### Can you create a sticker pack for me?
 
 Ask on [Discussions](https://github.com/signalstickers/signalstickers/discussions), and a fellow user might help you!
-
-### Where can I find more stickers?
-
-- Head to the [Sticker pack collection
-  thread](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650)
-  on the [Signal Community forum](https://community.signalusers.org);
-- Search Twitter for the
-  [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick) hashtag.
 
 ### Is this a commercial project?
 

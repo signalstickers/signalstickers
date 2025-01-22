@@ -7,7 +7,6 @@
   <a href="https://github.com/signalstickers/signalstickers/graphs/contributors"><img src="https://img.shields.io/github/contributors/signalstickers/signalstickers"></a>
   <a href="README.md"><img src="https://bit.ly/31ysLJA" alt="English"></a>
   <a href="README.de.md"><img src="http://bit.ly/3bljOI0" alt="Deutsch"></a>
-  <a href="https://twitter.com/signalstickers"><img src="https://img.shields.io/twitter/follow/signalstickers?label=Feed&style=social"></a>
 </p>
 
 ## À propos
@@ -69,12 +68,6 @@ le hashtag `#makeprivacystick` !
 ### Pouvez-vous créer un pack d'autocollants pour moi ?
 
 Ce n'est pas le but de ce projet :-)
-
-### Où puis-je trouver d'autres autocollants ?
-
-- Rendez-vous sur le [fil de la collection de packs d'autocollants](https://community.signalusers.org/t/sticker-pack-collection-thread-makeprivacystick/10650)
-  sur le [forum de la communauté Signal](https://community.signalusers.org/) ;
-- Cherchez sur Twitter le hashtag [`#makeprivacystick`](https://twitter.com/hashtag/makeprivacystick).
 
 ### Est-ce un projet commercial ?
 

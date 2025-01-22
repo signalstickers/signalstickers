@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import React from 'react';
 import { BsBoxArrowUpRight, BsList } from 'react-icons/bs';
-import { FaGithub, FaRss, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaRss } from 'react-icons/fa';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { SiKofi } from 'react-icons/si';
 import { Link, NavLink } from 'react-router-dom';
@@ -36,16 +36,6 @@ const navLinks: Array<NavLinkDescriptor> = [{
     <span className="d-md-none">
       &nbsp;on Ko-Fi <BsBoxArrowUpRight />
     </span>
-  </>
-}, {
-  title: 'Twitter',
-  href: 'https://twitter.com/signalstickers',
-  external: true,
-  children: <>
-    <span className="d-md-none">
-      Twitter <BsBoxArrowUpRight />
-    </span>
-    <FaTwitter className="d-none d-md-inline" />
   </>
 }, {
   title: 'RSS',
