@@ -34,7 +34,7 @@ jobs:
       - name: Set Up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       # Try to load a cached version of our node_modules folder based on the
       # hash of our lockfile.
@@ -48,7 +48,7 @@ jobs:
       # If no cache was found, install dependencies manually.
       - name: Install Dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm clean-install
+        run: npm clean-install --legacy-peer-deps
 
       # Setup action to cache build artifacts at end of job.
       - name: Cache Build Artifacts
@@ -77,7 +77,7 @@ jobs:
       - name: Set Up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Configure SSH
         uses: webfactory/ssh-agent@v0.4.1

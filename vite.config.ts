@@ -1,4 +1,4 @@
-import path from 'node:path';
+import path from 'path';
 
 import { vite } from '@darkobits/tsx';
 import { faviconsPlugin } from '@darkobits/vite-plugin-favicons';
@@ -28,7 +28,7 @@ export default vite.react(({ config, srcDir, packageJson, mode }) => {
   config.plugins.push(faviconsPlugin({
     appName: 'Signal Stickers',
     version: packageJson.version,
-    appDescription: packageJson.description,
+    appDescription: packageJson.description ?? '',
     developerURL: packageJson.homepage ?? '',
     theme_color: BASE_COLOR,
     icons: {

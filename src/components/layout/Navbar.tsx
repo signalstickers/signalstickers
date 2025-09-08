@@ -17,7 +17,7 @@ interface NavLinkDescriptor {
   title: string;
   href: string;
   external?: boolean;
-  children?: JSX.Element;
+  children?: React.ReactElement;
 }
 
 

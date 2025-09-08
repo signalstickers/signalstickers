@@ -42,9 +42,12 @@
     "p-queue": "^6.6.2",
     "p-throttle": "^3.1.0",
     "p-wait-for": "^3.2.0",
+    "pluralize": "^8.0.0",
     "polished": "^4.3.1",
     "query-string": "^6.13.8",
     "ramda": "^0.29.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "react-icons": "^5.0.1",
     "react-linkify": "^1.0.0-alpha",
     "react-router-dom": "^5.2.0",
@@ -58,7 +61,8 @@
     "webp-hero": "0.0.2"
   },
   "devDependencies": {
-    "@darkobits/tsx": "^0.12.12",
+    "@darkobits/ts": "^0.24.3",
+    "@darkobits/tsx": "^0.14.0",
     "@darkobits/vite-plugin-favicons": "^0.3.2",
     "@types/bootstrap": "^4.5.1",
     "@types/bytes": "^3.1.4",
@@ -69,6 +73,7 @@
     "@types/react-linkify": "^1.0.4",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-router-hash-link": "^2.4.9",
-    "@types/react-syntax-highlighter": "^13.5.0"
+    "@types/react-syntax-highlighter": "^13.5.0",
+    "typescript": "~5.7.3"
   }
 }
