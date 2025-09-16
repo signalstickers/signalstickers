@@ -1,0 +1,116 @@
+._1btvtsr0 {
+  margin-top: 64px;
+  margin-bottom: 64px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+}
+._1btvtsr0 .modal-dialog {
+  min-height: calc(100% - 64px);
+  margin: 0 auto 64px auto;
+}
+._1btvtsr0 .modal-dialog:before {
+  height: 0;
+}
+._1btvtsr0 .modal-content {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.12);
+}
+._1btvtsr0 svg {
+  transform: translateY(-2px);
+}
+.theme-dark ._1btvtsr0 {
+  transform: translateY(-2px);
+}
+.theme-dark ._1btvtsr0 {
+  background: rgba(42, 42, 42, 0.75);
+}
+.theme-dark ._1btvtsr0 .modal-content {
+  background-color: #32373d;
+  color: var(--white);
+}.qhla2s0 {
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, .125);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  padding: 16px;
+  position: relative;
+  width: 100%;
+}
+.qhla2s0::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 0px;
+  padding-bottom: calc(100%);
+}
+.qhla2s1 {
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  opacity: 0.75;
+}
+.theme-light .qhla2s0 {
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+}
+.theme-dark .qhla2s0 {
+  border-color: #545b62;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+}.q87qka1 {
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-between;
+}
+.q87qka0 h1 {
+  font-size: 2rem;
+}
+.q87qka0 strong {
+  font-weight: 600;
+}
+.q87qka0 svg {
+  font-size: 20px;
+}
+.q87qka0 svg.arrow-left-icon, .q87qka0 svg.plus-icon {
+  transform: transform: scale(1.2) translateY(2px);
+}
+.q87qka0 svg.star-icon {
+  color: gold;
+}
+.q87qka0 .list-group-item {
+  align-items: center;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+.q87qka0 .nbStickers {
+  color: #545b62;
+}
+.theme-dark .q87qka0 {
+  border-color: #545b62;
+}
+.theme-dark .q87qka0 .list-group-item {
+  border-color: #545b62;
+}
+@media (min-width: 576px) {
+  .q87qka1 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 768px) {
+  .q87qka1 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 992px) {
+  .q87qka1 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media (min-width: 1200px) {
+  .q87qka1 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

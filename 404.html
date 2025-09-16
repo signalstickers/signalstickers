@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Loading Signal Stickers...</title>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'none'; script-src 'sha256-GwO2bxXt7GxYt5iPK2wi0KMWzIq0sXrBiPANL0FKA0s='; img-src 'self'" />
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // https://github.com/rafrex/spa-github-pages
+    // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+    // ----------------------------------------------------------------------
+    // This script takes the current url and converts the path and query
+    // string into just a query string, and then redirects the browser
+    // to the new url with only a query string and hash fragment,
+    // e.g. http://www.foo.tld/one/two?a=b&c=d#qwe, becomes
+    // http://www.foo.tld/?p=/one/two&q=a=b~and~c=d#qwe
+    // Note: this 404.html file must be at least 512 bytes for it to work
+    // with Internet Explorer (it is currently > 512 bytes)
+
+    // If you're creating a Project Pages site and NOT using a custom domain,
+    // then set segmentCount to 1 (enterprise users may need to set it to > 1).
+    // This way the code will only replace the route part of the path, and not
+    // the real directory in which the app resides, for example:
+    // https://username.github.io/repo-name/one/two?a=b&c=d#qwe becomes
+    // https://username.github.io/repo-name/?p=/one/two&q=a=b~and~c=d#qwe
+    // Otherwise, leave segmentCount as 0.
+    var segmentCount = 0;
+
+
+    /**
+     * Modified version of David Walsh's query string parser.
+     *
+     * See: https://davidwalsh.name/query-string-javascript
+     */
+    function getUrlParameter(input, name) {
+      if (!input) {
+        return '';
+      }
+
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp(name + '=([^&#]*)');
+      var results = regex.exec(input.replace(/^[#?]/g, ''));
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+
+    function replaceAmpersands(str) {
+      return str ? str.replace(/&/g, '~and~') : '';
+    }
+
+
+    function rewriteUrl() {
+      var l = window.location;
+
+      // Compose new URL segments that are not dependent on routing rules.
+      var pre = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/';
+
+      // Extract default path, query, and hash components.
+      var path = l.pathname.slice(1).split('/').slice(segmentCount).join('/');
+      var query = l.search ? l.search.slice(1) : '';
+      var hash = l.hash;
+
+      if (/^pack.htm/g.test(path)) {
+        // Parse the hash segment of the URL to get our pack ID and (optional)
+        // pack key, then reset hash to an empty string.
+        var packId = getUrlParameter(hash, 'pack_id');
+        var packKey = getUrlParameter(hash, 'pack_key');
+        hash = '';
+
+        // Re-write the default path to route to the '/pack/:packId' route.
+        path = 'pack/' + packId;
+
+        // If a pack key was provided, add it to the default query.
+        if (packKey) {
+          query = (query ? query + '&key=' : 'key=') + packKey;
+        }
+      }
+
+      return pre + replaceAmpersands(path) + (query ? '&q=' + replaceAmpersands(query) : '') + hash;
+    }
+
+
+    window.location.replace(rewriteUrl());
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
