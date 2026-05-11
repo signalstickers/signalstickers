@@ -11,6 +11,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import ExternalLink from 'components/general/ExternalLink';
+import TagInput from 'components/contribute/TagInput';
 import {
   SIGNAL_ART_URL_PATTERN,
   API_URL_CONTRIBUTIONREQUEST,
@@ -116,6 +117,7 @@ export default function ContributePack() {
   const [requestSent, setRequestSent] = React.useState(false);
   const [contributionRequestToken, setContributionRequestToken] = React.useState('');
   const [contributionRequestQuestion, setContributionRequestQuestion] = React.useState('');
+  const [tagArray, setTagArray] = React.useState<string[]>([]);
 
 
   /**
@@ -166,6 +168,7 @@ export default function ContributePack() {
     fetchContributionRequest();
     resetForm();
     setRequestSent(false);
+    setTagArray([]);
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
@@ -187,8 +190,7 @@ export default function ContributePack() {
 
     const [, packId, packKey] = matches;
 
-    const tags = R.uniq(values.tags
-      .split(',')
+    const tags = R.uniq(tagArray
       .map(tag => tag.trim())
       .filter(tag => tag.length));
 
@@ -234,7 +236,7 @@ export default function ContributePack() {
         });
       }));
 
-  }, [contributionRequestQuestion, contributionRequestToken]);
+  }, [contributionRequestQuestion, contributionRequestToken, tagArray]);
 
 
   // ----- Render --------------------------------------------------------------
@@ -347,15 +349,14 @@ export default function ContributePack() {
                   <div className="form-row">
                     <label className={cx('col-12', errors.tags && 'text-danger')} htmlFor="tags">
                       (Optional) Tags:
-                      <Field
-                        type="text"
-                        id="tags"
+                      <TagInput
                         name="tags"
-                        validate={validators.tags}
-                        className={cx('form-control', 'mt-2', errors.tags && 'is-invalid')}
+                        tags={tagArray}
+                        onTagsChange={setTagArray}
                         disabled={requestSent}
+                        error={!!errors.tags}
                       />
-                      <small className="form-text text-muted">Comma-separated list of words.</small>
+                      <small className="form-text text-muted">Type and press Enter to add a tag. Backspace to edit last tag. Click a tag to remove it.</small>
                       <div>
                         <ErrorMessage name="tags" />&nbsp;
                       </div>
