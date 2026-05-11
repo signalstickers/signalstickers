@@ -357,6 +357,13 @@ export default function ContributePack() {
                         error={!!errors.tags}
                       />
                       <small className="form-text text-muted">Type and press Enter to add a tag. Backspace to edit last tag. Click a tag to remove it.</small>
+                      {tagArray.some(tag => tag.toLowerCase() === 'furry') && (
+                        <p className="form-text text-danger"><span className="font-weight-bold"><u>IMPORTANT</u></span>: our furry review guidelines have changed. Furry packs that contain <span className="font-weight-bold">graphic/sexual content will now be rejected.</span><br/><br/>
+                        Moreover, <span className="font-weight-bold">we will remove the already submitted packs that contain graphic/sexual content in a few weeks/months.</span><br/><br/>
+                        If you are the person who contributes to a lot of these packs, please include a way to contact you (<code>signal.me</code> link, email address, Telegram, ...) in the Comments field, so we can discuss how you can archive the content before we remove it.
+                        </p>
+
+                      )}
                       <div>
                         <ErrorMessage name="tags" />&nbsp;
                       </div>
