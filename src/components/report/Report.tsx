@@ -227,8 +227,7 @@ export default function ReportPack() {
                         maxLength="1999"
                       />
                       <small className="form-text text-muted">
-                        Please add details about your report. Do not enter
-                        personal information.
+                        Describe the problem here. Do not enter personal information.
                       </small>
                       <div className="invalid-feedback">
                         <ErrorMessage name="submitterComments" />
@@ -274,6 +273,10 @@ export default function ReportPack() {
                 <div className="form-group">
                   <div className="form-row">
                     <div className="col-12">
+                      <div className="alert alert-warning" role="alert">
+                        <p><strong>N.B. This is <u>not</u> a communication tool for general feedback.</strong></p>
+                        <p>Use this form only to report content issues to the moderators. Reports are private and seen only by moderators.</p>
+                      </div>
                       <button
                         type="submit"
                         className={`btn btn-block btn-lg ${
