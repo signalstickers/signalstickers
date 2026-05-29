@@ -149,8 +149,12 @@ globalStyle(`.theme-dark ${classes.stickerPackPreviewCard} .card-header::after`,
 
 // ----- Sparkle (Editor's choice) ------------------------------------------------
 
-globalStyle(`@media (prefers-reduced-motion: reduce) ${classes.sparkle}`, {
-  animation: 'none'
+globalStyle(classes.sparkle, {
+  '@media': {
+    '(prefers-reduced-motion: reduce)': {
+      animation: 'none'
+    }
+  }
 });
 
 

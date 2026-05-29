@@ -1,4 +1,4 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import { globalStyle, keyframes, style } from '@vanilla-extract/css';
 
 import { DANGER_SATURATED, SPARKLE_GOLD } from 'etc/colors';
 
@@ -154,6 +154,14 @@ classes.sparkle = style({
   animationName: sparkleFlash,
   animationTimingFunction: 'ease-in-out',
   animationIterationCount: 'infinite'
+});
+
+globalStyle(classes.sparkle, {
+  '@media': {
+    '(prefers-reduced-motion: reduce)': {
+      animation: 'none'
+    }
+  }
 });
 
 export default classes;
