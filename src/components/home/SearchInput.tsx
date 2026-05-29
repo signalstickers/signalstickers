@@ -11,6 +11,7 @@ import { generateSparkles } from 'lib/sparkles';
 
 import classes from './SearchInput.css';
 import ToggleSwitch from './ToggleSwitch';
+import { IoSparklesSharp } from 'react-icons/io5';
 
 
 export default function SearchInputComponent() {
@@ -273,7 +274,7 @@ export default function SearchInputComponent() {
             onClick={onSuggestionClick}
             data-suggestion-type="editorschoice"
           >
-            Editor's choice
+           Editor's Choice <IoSparklesSharp/>
           </button>
           {tagsFragment}
         </div>

@@ -3,6 +3,7 @@ import { BsBoxArrowUpRight } from 'react-icons/bs';
 import { SiKofi } from 'react-icons/si';
 
 import ExternalLink from 'components/general/ExternalLink';
+import { IoSparklesSharp } from 'react-icons/io5';
 
 
 // ----- Search Help -----------------------------------------------------------
@@ -112,6 +113,52 @@ const PrivacyPolicy = () => (
   </div>
 );
 
+// ----- Editor's choices  --------------------------------------------------------
+
+const EditorsChoices = () => (
+  <div className="row">
+    <div className="col-12">
+      <h1 id="privacy-policy" className="mb-4">Editor's Choice <IoSparklesSharp/> </h1>
+      <p>
+        The Editor's choice label highlights the packs we love, hand-picked by our moderation team.
+        These are chosen at our discretion to help you discover cool packs without having to scroll through everything.
+      </p>
+    </div>
+  </div>
+);
+
+// ----- AI policy  --------------------------------------------------------
+
+const AIPolicy = () => (
+  <div className="row">
+    <div className="col-12">
+      <h1 id="privacy-policy" className="mb-4">AI policy</h1>
+      <p>
+       We use AI to help us with the following tasks:
+       <ul>
+        <li>
+          <strong>Moderation:</strong> we use AI to help us review submitted packs. <strong>Moderation is still done manually by humans</strong>;
+          we only use AI to <strong>help us understand context </strong>we might not be aware of (e.g. cultural references from a
+          country we don't live in), and to ensure we don't miss sensitive content. <i>Model currently used: Gemma 4</i>
+        </li>
+        <li>
+          <strong>Tags improvement:</strong> we use AI to add tags to packs that are missing them (or have too few), so you can find them easily.
+          This process is supervised by a moderator, so inadequate tags are removed. Do not hesitate to report a pack if you find that
+          tags do not match the content. <i>Model currently used: Gemma 4</i>
+        </li>
+        <li>
+          <strong>Development:</strong> we use AI to help us develop signalstickers.org. <i>Multiple models used.</i>
+        </li>
+       </ul>
+      </p>
+      <p>
+       <u>All</u> the models we use are self-hosted, on infrastructure we have <u>full control over</u>, using free software.
+       No data is being sent to AI giants (because we don't use them).
+      </p>
+    </div>
+  </div>
+);
+
 
 // ----- Links -----------------------------------------------------------------
 
@@ -167,11 +214,15 @@ export default function AboutComponent() {
       <hr className="my-5" />
       <Links />
       <hr className="my-5" />
+      <EditorsChoices/>
+      <hr className="my-5" />
       <SearchHelp />
       <hr className="my-5" />
       <TermsOfService />
       <hr className="my-5" />
       <PrivacyPolicy />
+      <hr className="my-5" />
+      <AIPolicy />
     </div>
   );
 }
