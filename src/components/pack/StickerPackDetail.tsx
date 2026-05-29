@@ -4,12 +4,12 @@ import React from 'react';
 import {
   BsArrowLeftShort,
   BsAt,
-  BsFillHeartFill,
   BsFillCameraVideoFill,
+  BsPaletteFill,
   BsPlus,
-  BsStarFill,
   BsTag
 } from 'react-icons/bs';
+import { IoSparklesSharp } from "react-icons/io5";
 import { ImEye } from 'react-icons/im';
 import Linkify from 'react-linkify';
 import { Link, useParams, useHistory } from 'react-router-dom';
@@ -199,7 +199,7 @@ export default function StickerPackDetail() {
               {/* Original */}
               {stickerPack.meta.original &&
                 <li className="list-group-item text-wrap text-break">
-                  <BsStarFill title="Original" className="star-icon mr-4" />
+                  <BsPaletteFill title="Original" className="text-primary mr-4" />
                   This pack has been created exclusively for Signal by the artist, from original artworks.
                 </li>
               }
@@ -215,7 +215,7 @@ export default function StickerPackDetail() {
               {/* Editor's choice */}
               {stickerPack.meta.editorschoice &&
                 <li className="list-group-item text-wrap text-break">
-                  <BsFillHeartFill title="Editor's choice" className="text-primary mr-4" />
+                  <IoSparklesSharp title="Editor's choice" className="star-icon mr-4" />
                   Editor's choice: we love this pack!
                 </li>
               }

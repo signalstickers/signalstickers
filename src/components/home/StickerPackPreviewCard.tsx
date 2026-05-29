@@ -3,68 +3,22 @@ import cx from 'classnames';
 import React from 'react';
 import useAsyncEffect from 'use-async-effect';
 
+import StickersContext from 'contexts/StickersContext';
+import { SPARKLE_GOLD } from 'etc/colors';
 import { StickerPackPartial } from 'etc/types';
+import { generateSparkles } from 'lib/sparkles';
 import { getConvertedStickerInPack } from 'lib/stickers';
 
 import classes from './StickerPackPreviewCard.css';
 
-// ----- Props -----------------------------------------------------------------
 
 export interface Props {
   stickerPack: StickerPackPartial;
 }
 
 
-/**
- * Deterministic hash from string to number in [0, 1).
- * Seeded with packId so each card gets a unique, stable sparkle layout.
- */
-function hash(str: string, seed: number): number {
-  let h = seed;
-  for (let i = 0; i < str.length; i++) {
-    h = Math.imul(31, h) + str.charCodeAt(i) | 0;
-  }
-  return ((h % 10000) / 10000 + 10000) % 1;
-}
-
-
-/**
- * Generate a set of sparkle configs, unique per pack ID.
- *
- * Each sparkle gets a negative delay that is evenly distributed across its
- * cycle duration so they fire one at a time rather than in groups.
- *
- * @param count  number of sparkles (density)
- */
-function generateSparkles(packId: string, count: number = 16) {
-  /** Spread delays evenly: sparkle i fires at phase i/count of the cycle. */
-  const phase = (i: number) => i / count;
-
-  return Array.from({ length: count }, (_, i) => {
-    const h1 = hash(packId, i * 7919);
-    const h2 = hash(packId, i * 10472 + 1);
-    const h3 = hash(packId, i * 13003 + 2);
-    const h4 = hash(packId, i * 16007 + 3);
-
-    const duration = 3 + hash(packId, i * 19531 + 4) * 2; // 3–5s
-
-    return {
-      top: `${h1 * 100}%`,
-      left: `${h2 * 100}%`,
-      fontSize: `${8 + h3 * 12}px`,
-      opacity: 0.5 + h4 * 0.45,
-      duration: `${duration}s`,
-      /**
-       * Negative delay offset by a regular phase so sparkles are evenly
-       * staggered. A small jitter (±10% of one slot) keeps it organic.
-       */
-      delay: `-${(phase(i) + hash(packId, i * 23003 + 5) * 0.2) * duration}s`
-    };
-  });
-}
-
-
 export default function StickerPackPreviewCard(props: Props) {
+  const { hasEditorsChoiceFilter } = React.useContext(StickersContext);
   const [cover, setCover] = React.useState<string | undefined>();
   const { meta, manifest } = props.stickerPack;
 
@@ -109,11 +63,11 @@ export default function StickerPackPreviewCard(props: Props) {
 
 
   const sparkles = React.useMemo(() => {
-    if (!meta.editorschoice) {
+    if (!meta.editorschoice || hasEditorsChoiceFilter) {
       return [];
     }
     return generateSparkles(meta.id, 11);
-  }, [meta.editorschoice, meta.id]);
+  }, [meta.editorschoice, meta.id, hasEditorsChoiceFilter]);
 
 
   return (
@@ -153,7 +107,7 @@ export default function StickerPackPreviewCard(props: Props) {
               top: s.top,
               left: s.left,
               fontSize: s.fontSize,
-              color: `rgba(218, 165, 32, ${s.opacity})`,
+              color: `rgba(${SPARKLE_GOLD}, ${s.opacity})`,
               animationDuration: s.duration,
               animationDelay: s.delay
             }}

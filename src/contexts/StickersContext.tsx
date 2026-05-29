@@ -5,6 +5,7 @@ import useAsyncEffect from 'use-async-effect';
 import { StickerPackPartial, StickerPackMetadata } from 'etc/types';
 import SearchFactory, { SearchResults, Search } from 'lib/search';
 import { getStickerPackDirectory } from 'lib/stickers';
+import { AttributeQuery } from 'lib/search/types';
 
 /**
  * Shape of the object provided by this Context.
@@ -56,6 +57,11 @@ export interface StickersContext {
    * Allow a consumer to show or hide NSFW content
    */
   setShowNsfw: (show: boolean) => void;
+
+  /**
+   * True when the current search query includes an editorschoice:true filter.
+   */
+  hasEditorsChoiceFilter: boolean;
 }
 
 
@@ -69,6 +75,20 @@ export const Provider = (props: React.PropsWithChildren<Record<string, unknown>>
   const [sortOrder, setSortOrder] = React.useState<StickersContext['sortOrder']>('');
   const [searchResults, setSearchResults] = React.useState<StickersContext['searchResults']>([]);
   const [showNsfw, setShowNsfw] = React.useState(false);
+
+  /**
+   * [Memo] True when the current search query includes an editorschoice:true
+   * filter, regardless of other filters or text terms.
+   */
+  const hasEditorsChoiceFilter = React.useMemo(() => {
+    if (!searcher || searchQuery.length === 0) {
+      return false;
+    }
+    const parsed = searcher.parseQueryString(searchQuery);
+    return parsed.attributeQueries?.some(
+      (aq: AttributeQuery) => aq.editorschoice === 'true'
+    ) ?? false;
+  }, [searcher, searchQuery]);
 
 
   /**
@@ -163,7 +183,8 @@ export const Provider = (props: React.PropsWithChildren<Record<string, unknown>>
         sortOrder,
         setSortOrder,
         showNsfw,
-        setShowNsfw
+        setShowNsfw,
+        hasEditorsChoiceFilter
       }}
     >
       {props.children}

@@ -6,13 +6,15 @@ import { FaInfoCircle } from 'react-icons/fa';
 import { HashLink } from 'react-router-hash-link';
 
 import StickersContext from 'contexts/StickersContext';
+import { SPARKLE_GOLD } from 'etc/colors';
+import { generateSparkles } from 'lib/sparkles';
 
 import classes from './SearchInput.css';
 import ToggleSwitch from './ToggleSwitch';
 
 
 export default function SearchInputComponent() {
-  const { searcher, searchQuery, searchResults, setSearchQuery, sortOrder, setSortOrder, setShowNsfw} = React.useContext(StickersContext);
+  const { searcher, searchQuery, searchResults, setSearchQuery, sortOrder, setSortOrder, setShowNsfw, hasEditorsChoiceFilter } = React.useContext(StickersContext);
   const [searchQueryInputValue, setSearchQueryInputValue] = React.useState('');
   const searchHelpRef = React.useRef<HTMLDivElement>(null);
   const suggestedTags = ['cute', 'privacy', 'meme', 'for children'];
@@ -168,6 +170,13 @@ export default function SearchInputComponent() {
   };
 
 
+  const searchSparkles = React.useMemo(() => {
+    if (!hasEditorsChoiceFilter) {
+      return [];
+    }
+    return generateSparkles('searchbar-editorschoice-sparkles-6e7a24f542', 15);
+  }, [hasEditorsChoiceFilter]);
+
   /**
    * [Memo] JSX fragment containing the set of suggested tags.
    */
@@ -188,7 +197,24 @@ export default function SearchInputComponent() {
 
   return (
     <div className={cx(classes.searchInputWrapper, 'form-group', 'mb-4')}>
-      <div className="mb-1 position-relative">
+      <div className={cx('mb-1', 'position-relative', classes.searchInputField)}>
+        {searchSparkles.map((s, i) => (
+          <span
+            key={i}
+            className={classes.sparkle}
+            aria-hidden="true"
+            style={{
+              top: s.top,
+              left: s.left,
+              fontSize: s.fontSize,
+              color: `rgba(${SPARKLE_GOLD}, ${s.opacity})`,
+              animationDuration: s.duration,
+              animationDelay: s.delay
+            }}
+          >
+            ✦
+          </span>
+        ))}
         <div className={classes.searchPrepend}>
           <BsSearch />
         </div>

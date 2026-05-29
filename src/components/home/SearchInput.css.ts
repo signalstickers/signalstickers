@@ -1,6 +1,29 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 
-import { DANGER_SATURATED } from 'etc/colors';
+import { DANGER_SATURATED, SPARKLE_GOLD } from 'etc/colors';
+
+
+const sparkleFlash = keyframes({
+  '0%, 100%': {
+    opacity: 0,
+    transform: 'scale(0) rotate(0deg)'
+  },
+  '5%': {
+    transform: 'scale(1) rotate(45deg)'
+  },
+  '15%': {
+    opacity: 1,
+    transform: 'scale(1.1) rotate(90deg)'
+  },
+  '25%': {
+    opacity: 0.7,
+    transform: 'scale(0.9) rotate(135deg)'
+  },
+  '40%': {
+    opacity: 0,
+    transform: 'scale(0) rotate(180deg)'
+  }
+});
 
 
 const classes: Record<string, string> = {
@@ -17,6 +40,9 @@ const classes: Record<string, string> = {
       boxShadow: 'none',
       outline: 'none'
     }
+  }),
+  searchInputField: style({
+    overflow: 'hidden'
   }),
   searchInputLabel: style({
     cursor: 'pointer'
@@ -112,11 +138,22 @@ classes.miniTagAnimated = style([classes.miniTag, {
 }]);
 
 classes.miniTagEditorsChoice = style([classes.miniTag, {
-  border: '1px solid #9400d3',
-  color: '#9400d3',
+  border: `1px solid rgb(${SPARKLE_GOLD})`,
+  color: `rgb(${SPARKLE_GOLD})`,
   ':hover': {
-    color: '#9400d3'
+    color: `rgb(${SPARKLE_GOLD})`
   }
 }]);
+
+classes.sparkle = style({
+  position: 'absolute',
+  pointerEvents: 'none',
+  zIndex: 4,
+  userSelect: 'none',
+  lineHeight: 1,
+  animationName: sparkleFlash,
+  animationTimingFunction: 'ease-in-out',
+  animationIterationCount: 'infinite'
+});
 
 export default classes;

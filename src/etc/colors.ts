@@ -8,6 +8,12 @@ export const DANGER_SATURATED = saturate(0.2, '#DC3545');
 
 
 /**
+ * Gold color used for Editor's Choice sparkles (RGB components for rgba() usage).
+ */
+export const SPARKLE_GOLD = '218, 165, 32';
+
+
+/**
  * Darker version of Bootstrap's --gray color.
  */
 export const GRAY_DARKER = darken(0.1, '#6C757D');
