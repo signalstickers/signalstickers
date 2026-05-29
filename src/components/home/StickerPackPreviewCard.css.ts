@@ -1,8 +1,31 @@
-import { style, globalStyle } from '@vanilla-extract/css';
+import { keyframes, style, globalStyle } from '@vanilla-extract/css';
 import { rgba } from 'polished';
 
 import { GRAY_DARKER, GRAY_DARKER_2 } from 'etc/colors';
 
+
+/** A single sparkle: fades in, flashes bright, then fades out — visible ~40% of the cycle. */
+const sparkleFlash = keyframes({
+  '0%, 100%': {
+    opacity: 0,
+    transform: 'scale(0) rotate(0deg)'
+  },
+  '5%': {
+    transform: 'scale(1) rotate(45deg)'
+  },
+  '15%': {
+    opacity: 1,
+    transform: 'scale(1.1) rotate(90deg)'
+  },
+  '25%': {
+    opacity: 0.7,
+    transform: 'scale(0.9) rotate(135deg)'
+  },
+  '40%': {
+    opacity: 0,
+    transform: 'scale(0) rotate(180deg)'
+  }
+});
 
 const classes = {
   stickerPackPreviewCard: style({
@@ -63,6 +86,19 @@ const classes = {
     right: 0,
     backgroundColor: 'var(--orange)',
     color: 'var(--white) !important'
+  }),
+  sparkleCardHeader: style({
+    overflow: 'hidden'
+  }),
+  sparkle: style({
+    position: 'absolute',
+    pointerEvents: 'none',
+    zIndex: 1,
+    userSelect: 'none',
+    lineHeight: 1,
+    animationName: sparkleFlash,
+    animationTimingFunction: 'ease-in-out',
+    animationIterationCount: 'infinite'
   })
 };
 
@@ -109,6 +145,12 @@ globalStyle(`.theme-dark ${classes.stickerPackPreviewCard} .card-header`, {
 
 globalStyle(`.theme-dark ${classes.stickerPackPreviewCard} .card-header::after`, {
   background: `linear-gradient(90deg, ${rgba(GRAY_DARKER_2, 0)} 0%, ${rgba(GRAY_DARKER_2, 1)} 50%)`
+});
+
+// ----- Sparkle (Editor's choice) ------------------------------------------------
+
+globalStyle(`@media (prefers-reduced-motion: reduce) ${classes.sparkle}`, {
+  animation: 'none'
 });
 
 
