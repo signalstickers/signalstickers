@@ -29,9 +29,7 @@ export default function SearchInputComponent() {
    * [Effect] Context state -> local/input state.
    */
   React.useEffect(() => {
-    if (searchQuery) {
-      setSearchQueryInputValue(searchQuery);
-    }
+    setSearchQueryInputValue(searchQuery);
   }, [searchQuery]);
 
 
@@ -157,10 +155,8 @@ export default function SearchInputComponent() {
    */
   const clearSearchResults = React.useCallback((event: React.SyntheticEvent) => {
     event.preventDefault();
-    setSearchQueryInputValue('');
     setSearchQuery('');
   }, [
-    setSearchQueryInputValue,
     setSearchQuery
   ]);
 
@@ -170,34 +166,6 @@ export default function SearchInputComponent() {
   const onNsfwToggle = (state: boolean) => {
     setShowNsfw(state);
   };
-
-
-  /**
-   * [Effect] When the component mounts, set the search input's value to the
-   * current search query from our context.
-   */
-  React.useEffect(() => {
-    if (searchQuery) {
-      setSearchQueryInputValue(searchQuery);
-    }
-  }, [searchQuery]);
-
-
-  /**
-   * [Effect] When the search query is updated, call our de-bounced update
-   * function.
-   */
-  React.useEffect(() => {
-    debouncedSetSearchQuery.cancel();
-    debouncedSetSearchQuery(searchQueryInputValue);
-
-    return () => {
-      debouncedSetSearchQuery.cancel();
-    };
-  }, [
-    debouncedSetSearchQuery,
-    searchQueryInputValue
-  ]);
 
 
   /**

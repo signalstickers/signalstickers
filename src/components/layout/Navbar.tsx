@@ -9,6 +9,7 @@ import { Link, NavLink } from 'react-router-dom';
 import signalStickersLogoUrl from 'assets/favicon.png';
 import ExternalLink from 'components/general/ExternalLink';
 import AppStateContext from 'contexts/AppStateContext';
+import StickersContext from 'contexts/StickersContext';
 
 import classes from './Navbar.css';
 
@@ -66,6 +67,7 @@ const NAVBAR_TOGGLE_ID = 'navbar-toggle';
 export default function NavbarComponent() {
   const useAppState = React.useContext(AppStateContext);
   const [darkMode, setDarkMode] = useAppState<boolean>('darkMode');
+  const { setSearchQuery } = React.useContext(StickersContext);
 
 
   /**
@@ -91,7 +93,10 @@ export default function NavbarComponent() {
         <Link
           to="/"
           className="navbar-brand"
-          onClick={collapseNavigation}
+          onClick={() => {
+            collapseNavigation();
+            setSearchQuery('');
+          }}
         >
           <img src={signalStickersLogoUrl} alt="Signal Stickers Logo" /> Signal Stickers
         </Link>
