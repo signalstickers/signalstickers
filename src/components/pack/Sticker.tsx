@@ -61,7 +61,7 @@ export default function Sticker({ packId, packKey, stickerId }: StickerProps) {
           <img
             src={stickerSrc}
             alt="Sticker"
-            className="w-100 h-100"
+            className={classes.stickerImage}
           />
         </> :
         <div className="spinner-border text-light" role="status">

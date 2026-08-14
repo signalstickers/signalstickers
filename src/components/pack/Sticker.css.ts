@@ -6,26 +6,19 @@ import { GRAY_DARKER } from 'etc/colors';
 const classes = {
   sticker: style({
     alignItems: 'center',
+    aspectRatio: '1 / 1',
     borderRadius: '4px',
     border: '1px solid rgba(0, 0, 0, .125)',
     display: 'flex',
-    height: '100%',
     justifyContent: 'center',
     padding: '16px',
     position: 'relative',
-    width: '100%',
-    /**
-     * This ensures that the component has a 1:1 aspect ratio, even if there is
-     * no content or the content's aspect ratio is not 1:1. This way, the page's
-     * structure can be laid-out while stickers are loaded.
-     */
-    '::before': {
-      content: '',
-      display: 'inline-block',
-      width: '1px',
-      height: '0px',
-      paddingBottom: 'calc(100%)'
-    }
+    width: '100%'
+  }),
+  stickerImage: style({
+    height: '100%',
+    objectFit: 'contain',
+    width: '100%'
   }),
   stickerEmoji: style({
     position: 'absolute',
