@@ -51,11 +51,13 @@ export default function Sticker({ packId, packKey, stickerId }: StickerProps) {
 
   return (
     <div className={classes.sticker}>
-      {emoji && stickerSrc ?
+      {stickerSrc ?
         <>
-          <div className={classes.stickerEmoji}>
-            {emoji}
-          </div>
+          {emoji && (
+            <div className={classes.stickerEmoji}>
+              {emoji}
+            </div>
+          )}
           <img
             src={stickerSrc}
             alt="Sticker"
