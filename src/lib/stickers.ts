@@ -120,7 +120,7 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
 
     return stickerPackCache.get(cacheKey) as StickerPack;
   } catch (err: any) {
-    if (err.isAxiosError && err.response.status === 403) {
+    if (err.isAxiosError && err.response?.status === 403) {
       throw new ErrorWithCode('MANIFEST_DECRYPT', `[getStickerPack] ${err.stack}`);
     }
 
