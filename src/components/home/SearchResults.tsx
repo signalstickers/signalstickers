@@ -1,12 +1,9 @@
 import * as R from 'ramda';
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {Waypoint} from 'react-waypoint';
 
+import PackCardLink from 'components/general/PackCardLink';
 import StickersContext from 'contexts/StickersContext';
-
-import classes from './SearchResults.css';
-import StickerPackPreviewCard from './StickerPackPreviewCard';
 
 
 /**
@@ -82,12 +79,7 @@ export default function StickerPackListComponent() {
               key={result.item.meta.id}
               className="col-6 col-md-4 col-lg-3 mb-4"
             >
-              <Link
-                to={`/pack/${result.item.meta.id}`}
-                className={classes.stickerPackLink}
-              >
-                <StickerPackPreviewCard stickerPack={result.item} />
-              </Link>
+              <PackCardLink stickerPack={result.item} />
             </div>
           );
         }

@@ -23,6 +23,7 @@ import { getStickerPack } from 'lib/stickers';
 import { sendPackBeacon } from 'lib/utils';
 
 import NsfwModal from './NsfwModal';
+import SeeAlso from './SeeAlso';
 import Sticker from './Sticker';
 import classes from './StickerPackDetail.css';
 import StickerPackError from './StickerPackError';
@@ -68,18 +69,36 @@ export default function StickerPackDetail() {
 
 
   /**
-   * [Effect] Set `stickerPack` when the component mounts.
+   * [Effect] Set `stickerPack` when the component mounts or when navigating
+   * from another pack's page (ex: via the "See also" section).
    */
-  useAsyncEffect(async () => {
+  useAsyncEffect(async (isMounted) => {
     try {
       if (!packId) {
         return;
       }
 
-      setStickerPack(await getStickerPack(packId, key));
+      // When navigating from another pack's page, this component is not
+      // remounted, so clear the previous pack's data (which would otherwise
+      // keep the page long and briefly visible) and scroll to the top,
+      // mirroring the behavior of a fresh mount.
+      setStickerPack(undefined);
+      setStickerPackError('');
+      window.scrollTo({ top: 0 });
+
+      const stickerPackToSet = await getStickerPack(packId, key);
+
+      // The user may have navigated to another pack (or back) while this
+      // fetch was in flight. In that case a newer effect run owns the state,
+      // so discard this stale result.
+      if (!isMounted()) {
+        return;
+      }
+
+      setStickerPack(stickerPackToSet);
       sendPackBeacon(packId);
     } catch (err: any) {
-      if (err.code) {
+      if (err.code && isMounted()) {
         setStickerPackError(err.code);
       }
     }
@@ -278,6 +297,9 @@ export default function StickerPackDetail() {
           <small>🚨 Report this pack</small>
         </Link>
       </div>
+
+      {/* See also */}
+      <SeeAlso stickerPack={stickerPack} />
     </div>
   );
 }
