@@ -11,6 +11,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import ExternalLink from 'components/general/ExternalLink';
+import PackPreviewCard from 'components/contribute/PackPreviewCard';
 import TagInput from 'components/contribute/TagInput';
 import { SIGNAL_ART_URL_PATTERN } from 'etc/constants';
 import { ContributePayload } from 'etc/types';
@@ -331,7 +332,7 @@ export default function ContributePack() {
             validateOnChange={hasBeenSubmitted}
             validateOnBlur={hasBeenSubmitted}
           >
-            {({ errors, isValidating, isSubmitting, resetForm }) => (
+            {({ errors, isValidating, isSubmitting, resetForm, values }) => (
               <Form noValidate>
                 {/* [Field] Signal.art Url */}
                 <div className="form-group">
@@ -350,6 +351,7 @@ export default function ContributePack() {
                       <div>
                         <ErrorMessage name="signalArtUrl" />&nbsp;
                       </div>
+                      <PackPreviewCard url={values.signalArtUrl} />
                     </label>
                   </div>
                 </div>
