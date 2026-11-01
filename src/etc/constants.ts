@@ -32,7 +32,7 @@ export const SIGNAL_ART_URL_PATTERN = /^https:\/\/signal.art\/addstickers\/#pack
  * Number of packs to fetch first for the fast initial render. Aligned with PAGE_SIZE in
  * SearchResults.tsx so the first fetch fills exactly one rendered page. Keep >= PAGE_SIZE.
  */
-export const INITIAL_PACKS_LIMIT = 64;
+export const INITIAL_PACKS_LIMIT = 128;
 
 /**
  * API urls

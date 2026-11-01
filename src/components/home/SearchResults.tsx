@@ -86,6 +86,16 @@ export default function StickerPackListComponent() {
         }
         return null;
       })}
+      {/* While the first page of packs is displayed but the full directory is
+          still loading, indicate that more packs are on the way. This only
+          renders in the grid branch below the full-page spinner's early
+          return, which already covers the non-default views, so the two
+          loaders never appear at the same time. */}
+      {!isDirectoryComplete && (
+        <div className="col-12 d-flex justify-content-center py-4">
+          <LoadingSpinner />
+        </div>
+      )}
       <Waypoint
         key={cursor}
         onEnter={loadMore}
