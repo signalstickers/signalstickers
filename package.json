@@ -59,6 +59,10 @@
     "use-breakpoint": "^1.1.5",
     "webp-hero": "0.0.2"
   },
+  "overrides": {
+    "vite": "^7.0.0",
+    "vite-node": "^3.2.4"
+  },
   "devDependencies": {
     "@darkobits/ts": "^0.24.3",
     "@darkobits/tsx": "^0.14.0",
