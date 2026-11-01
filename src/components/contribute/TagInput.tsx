@@ -6,23 +6,29 @@ export interface TagInputProps {
   name: string;
   tags: string[];
   onTagsChange: (tags: string[]) => void;
+  /**
+   * Maximum number of tags that can be added. When reached, new tags are
+   * ignored.
+   */
+  maxTags?: number;
   disabled?: boolean;
   error?: boolean;
 }
 
 
-export default function TagInput({name, tags, onTagsChange, disabled, error}: TagInputProps) {
+export default function TagInput({name, tags, onTagsChange, maxTags, disabled, error}: TagInputProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [currentText, setCurrentText] = React.useState('');
 
 
   const addTag = React.useCallback((text: string) => {
     const trimmed = text.trim();
-    if (trimmed && !tags.includes(trimmed)) {
+    const isBelowMaxTags = maxTags === undefined || tags.length < maxTags;
+    if (trimmed && !tags.includes(trimmed) && isBelowMaxTags) {
       onTagsChange([...tags, trimmed]);
     }
     setCurrentText('');
-  }, [tags, onTagsChange]);
+  }, [tags, onTagsChange, maxTags]);
 
 
   const handleKeyDown = React.useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {

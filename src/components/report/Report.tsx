@@ -11,8 +11,8 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useAsyncEffect from 'use-async-effect';
 
-import { API_URL_CONTRIBUTIONREQUEST, API_URL_REPORT } from 'etc/constants';
-import { StickerPack } from 'etc/types';
+import { StickerPack, ReportPayload } from 'etc/types';
+import { ApiError, errorFieldPath, getSecurityQuestion, reportPack } from 'lib/api';
 import { getStickerPack } from 'lib/stickers';
 
 
@@ -81,31 +81,26 @@ export default function ReportPack() {
   }, [packId]);
 
   /**
-   * Get a ContributionRequest token and question
+   * Get a security question
    */
-  const fetchReportRequest = () => {
-    void fetch(API_URL_CONTRIBUTIONREQUEST, { // We use the same URL API than the contribution request
-      method: 'POST',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(async x => x.json())
-      .then(x => {
-        setReportRequestQuestion(x.contribution_question);
-        setReportRequestToken(x.contribution_id);
-      });
-  };
+  const fetchReportRequest = React.useCallback(async () => {
+    try {
+      const q = await getSecurityQuestion();
+      setReportRequestQuestion(q.security_question);
+      setReportRequestToken(q.security_id);
+    } catch (err) {
+      console.error('[Report] Unable to fetch security question', err);
+    }
+  }, []);
 
   /**
-   * Get a ContributionRequest at loading
+   * Get a security question at loading
    */
   React.useEffect(() => {
     setTimeout(() => {
-      fetchReportRequest();
+      void fetchReportRequest();
     }, 3000); // Delaying the query helps reducing the load
-  }, []);
+  }, [fetchReportRequest]);
 
   /**
    * Sets 'hasBeenSubmitted' when the Submit button is clicked. We need this
@@ -122,46 +117,54 @@ export default function ReportPack() {
    * Called when the form is submitted and has passed validation.
    */
   const onSubmit = React.useCallback(
-    (values: FormValues, { setErrors, setSubmitting }: FormikHelpers<FormValues>) => {
-      const reportData = {
-        contribution_id: reportRequestToken,
-        contribution_answer: values.secAnswer,
+    async (values: FormValues, { setErrors }: FormikHelpers<FormValues>) => {
+      const payload: ReportPayload = {
         pack_id: packId,
-        content: values.submitterComments
+        content: values.submitterComments,
+        security_id: reportRequestToken,
+        security_answer: values.secAnswer
       };
 
-      void fetch(API_URL_REPORT, {
-        method: 'PUT',
-        headers: {
-          Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(reportData)
-      }).then(async response =>
-        response
-          .json()
-          .then(data => ({
-            data: data,
-            status: response.status
-          }))
-          .then(res => {
-            if (res.status === 400) {
-              setErrors({
-                secAnswer: res.data.error
-              });
-              setRequestSent(false);
-              setSubmitting(false);
-              return;
-            }
-            setRequestSent(true);
-            window.scrollTo({
-              top: document.body.scrollHeight,
-              behavior: 'smooth'
-            });
-          })
-      );
+      try {
+        await reportPack(payload);
+        setRequestSent(true);
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        });
+      } catch (err) {
+        if (err instanceof ApiError) {
+          switch (err.type) {
+            case 'wrong_answer':
+              setErrors({ secAnswer: err.msg });
+              break;
+            case 'security_verification_failed':
+              setErrors({ secAnswer: err.msg });
+              void fetchReportRequest(); // refetch a fresh question
+              break;
+            case 'unknown_pack':
+              setErrors({ submitterComments: err.msg });
+              break;
+            default:
+              // Field-level errors (e.g. 422 validation errors): display the
+              // message on the field the error refers to, when we know it.
+              switch (errorFieldPath(err)) {
+                case 'content':
+                  setErrors({ submitterComments: err.msg });
+                  break;
+                case 'security_answer':
+                  setErrors({ secAnswer: err.msg });
+                  break;
+                default:
+                  setErrors({ secAnswer: err.msg || 'Something went wrong. Please try again.' });
+              }
+          }
+        } else {
+          setErrors({ secAnswer: 'Something went wrong. Please try again.' });
+        }
+      }
     },
-    [reportRequestQuestion, reportRequestToken]
+    [fetchReportRequest, packId, reportRequestToken]
   );
 
 

@@ -28,11 +28,9 @@ export default function StickerPackPreviewCard(props: Props) {
    */
   useAsyncEffect(async () => {
     try {
-      if (manifest.cover === undefined) {
-        manifest.cover = { id: 0, emoji: '' };
-      }
+      const coverId = manifest.cover_id ?? 0;
       if (meta.id !== undefined) {
-        const coverImage = await getConvertedStickerInPack(meta.id, meta.key, manifest.cover.id);
+        const coverImage = await getConvertedStickerInPack(meta.id, meta.key, coverId);
         setCover(coverImage);
       }
     } catch (err: any) {

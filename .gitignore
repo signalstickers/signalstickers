@@ -90,4 +90,7 @@ typings/
 # Build artifacts.
 /dist
 
+# Local agent/tooling configuration.
+.claude/
+
 /NOTES.md

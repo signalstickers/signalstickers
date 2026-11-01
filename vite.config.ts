@@ -12,7 +12,7 @@ import type { Plugin } from 'vite';
 const BASE_COLOR = '#0B2857';
 
 
-const PROD_API_URL = 'https://api.signalstickers.org/v1';
+const PROD_API_URL = 'https://api.signalstickers.org/v2';
 
 /**
  * The local Django dev server. The Vite dev server proxies API requests to
@@ -20,7 +20,7 @@ const PROD_API_URL = 'https://api.signalstickers.org/v1';
  */
 // N.B. Use 127.0.0.1 (not localhost) so the proxy connects over IPv4; the
 // Django dev server listens on 127.0.0.1 and "localhost" may resolve to ::1.
-const LOCAL_API_URL = 'http://127.0.0.1:8000/v1';
+const LOCAL_API_URL = 'http://127.0.0.1:8000/v2';
 
 /**
  * The path under which the API is exposed to the browser in dev mode. The
@@ -114,7 +114,7 @@ export default vite.react(({ config, srcDir, packageJson, mode }) => {
     [DEV_API_PATH]: {
       target: new URL(devApiTarget).origin,
       // The path prefix used by the browser (/api) differs from the one used
-      // by the backends (/v1), so rewrite it.
+      // by the backends (/v2), so rewrite it.
       rewrite: path => path.replace(/^\/api/, new URL(devApiTarget).pathname),
       changeOrigin: false,
       headers: {

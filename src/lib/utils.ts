@@ -1,7 +1,7 @@
 import bytes from 'bytes';
 import * as R from 'ramda';
 
-import { BOOTSTRAP_BREAKPOINTS, API_URL_PACKS_PING } from 'etc/constants';
+import { BOOTSTRAP_BREAKPOINTS, API_URL_ANALYTICS } from 'etc/constants';
 
 
 /**
@@ -60,7 +60,7 @@ export function sendPackBeacon(packId: string) {
   if (import.meta.env.NODE_ENV === 'production') {
     try {
       const beaconData = new Blob([`target=${packId}`], { type: 'application/x-www-form-urlencoded' });
-      navigator.sendBeacon(API_URL_PACKS_PING, beaconData);
+      navigator.sendBeacon(API_URL_ANALYTICS, beaconData);
     } catch (err: any) {
       console.log(`${err}. No worries, it's okay!`);
     }

@@ -4,13 +4,13 @@ import {
   Form,
   Field,
   ErrorMessage,
-  FieldValidator,
-  type FormikHelpers
+  FieldValidator
 } from 'formik';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { SIGNAL_ART_URL_PATTERN, API_URL_STATUS } from 'etc/constants';
+import { SIGNAL_ART_URL_PATTERN } from 'etc/constants';
+import { ApiError, getPackStatus } from 'lib/api';
 
 /**
  * Test pack:
@@ -61,7 +61,7 @@ export default function ContributionStatus() {
   /**
    * Called when the form is submitted and has passed validation.
    */
-  const onSubmit = React.useCallback((values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
+  const onSubmit = React.useCallback(async (values: FormValues) => {
     const matches = new RegExp(SIGNAL_ART_URL_PATTERN).exec(values.signalArtUrl);
     if (!matches) {
       throw new Error('Unable to extract pack ID and pack key from signal.art URL.');
@@ -69,29 +69,27 @@ export default function ContributionStatus() {
 
     const [, packId, packKey] = matches;
 
-    void fetch(API_URL_STATUS, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        pack_id: packId,
-        pack_key: packKey
-      })
-    }).then(async response =>
-      response.json().then(data => ({
-        data: data,
-        status: response.status
-      })
-      ).then(res => {
-        setPackInfo(res.data);
-        setSubmitting(false);
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: 'smooth'
-        });
-      }));
+    try {
+      const status = await getPackStatus(packId, packKey);
+      setPackInfo({
+        error: '',
+        pack_id: status.pack_id,
+        pack_title: status.pack_title,
+        status: status.status,
+        status_comments: status.status_comments ?? ''
+      });
+    } catch (err) {
+      if (err instanceof ApiError && err.type === 'unknown_pack') {
+        setPackInfo({ error: err.msg, pack_id: '', pack_title: '', status: '', status_comments: '' });
+      } else {
+        setPackInfo({ error: 'Something went wrong. Please try again.', pack_id: '', pack_title: '', status: '', status_comments: '' });
+      }
+    } finally {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
   }, [packInfo]);
 
 
@@ -147,7 +145,7 @@ export default function ContributionStatus() {
         <div className="col-12 col-md-10 offset-md-1">
           <Formik
             initialValues={initialValues}
-            onSubmit={(values, helpers) => onSubmit(values, helpers)}
+            onSubmit={onSubmit}
           >
             {({ errors, isValidating, isSubmitting }) => (
               <Form noValidate>

@@ -46,11 +46,72 @@ export interface StickerPack {
 
 
 /**
- * A sticker pack partial is a `StickerPack` whose `manifest` (from Signal) with
- * its `stickers` omitted. This object is used for searching, filtering, and
- * displaying preview cards on the home page.
+ * Response of POST /v2/security-question/.
+ */
+export interface SecurityQuestion {
+  security_id: string;
+  security_question: string;
+}
+
+
+/**
+ * Response of GET /v2/packs/status.
+ */
+export interface PackStatus {
+  pack_title: string;
+  pack_id: string;
+  status: 'ONLINE' | 'IN_REVIEW' | 'REFUSED';
+  status_comments: string | null;
+}
+
+
+/**
+ * Body of POST /v2/packs/ (contribute).
+ */
+export interface ContributePayload {
+  pack: {
+    id: string;
+    key: string;
+    source?: string;
+    tags?: Array<string>;
+    nsfw?: boolean;
+    original?: boolean;
+  };
+  submitter_comments?: string;
+  security_id: string;
+  security_answer: string;
+}
+
+
+/**
+ * Body of POST /v2/packs/report.
+ */
+export interface ReportPayload {
+  pack_id: string;
+  content: string;
+  security_id: string;
+  security_answer: string;
+}
+
+
+/**
+ * Manifest as returned by the v2 pack list. Unlike the full StickerPackManifest
+ * (from the Signal CDN), the cover is a plain id and falsy values are omitted.
+ */
+export interface StickerPackManifestPartial {
+  title: string;
+  author?: string;
+  cover_id?: number;
+}
+
+
+/**
+ * A sticker pack partial is a `StickerPack` whose `manifest` is the reduced
+ * version returned by the v2 pack list (title, author and cover id) rather
+ * than the full manifest fetched from the Signal CDN. This object is used for
+ * searching, filtering, and displaying preview cards on the home page.
  */
 export interface StickerPackPartial {
-  manifest: Omit<StickerPackManifest, 'stickers'>;
+  manifest: StickerPackManifestPartial;
   meta: StickerPack['meta'];
 }

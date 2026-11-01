@@ -14,16 +14,15 @@ import {
   getStickerInPack
 
 } from '@signalstickers/stickers-client';
-import axios from 'axios';
 import LocalForage from 'localforage';
 import * as R from 'ramda';
 
-import { API_URL_PACKS } from 'etc/constants';
 import {
   StickerPack,
   StickerPackPartial,
   StickerPackMetadata
 } from 'etc/types';
+import { getPacks } from 'lib/api';
 import { convertImage } from 'lib/convert-image';
 import ErrorWithCode from 'lib/error';
 import { isStorageUnavailableError } from 'lib/utils';
@@ -65,10 +64,7 @@ const stickerImageCache = LocalForage.createInstance({
  */
 export async function getStickerPackDirectory(): Promise<Array<StickerPackPartial>> {
   if (!stickerPackDirectoryPromise) {
-    stickerPackDirectoryPromise = axios.request<Array<StickerPackPartial>>({
-      method: 'GET',
-      url: API_URL_PACKS
-    }).then(R.prop('data'));
+    stickerPackDirectoryPromise = getPacks();
   }
 
   return stickerPackDirectoryPromise;

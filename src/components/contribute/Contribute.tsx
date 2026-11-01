@@ -12,11 +12,9 @@ import { Link } from 'react-router-dom';
 
 import ExternalLink from 'components/general/ExternalLink';
 import TagInput from 'components/contribute/TagInput';
-import {
-  SIGNAL_ART_URL_PATTERN,
-  API_URL_CONTRIBUTIONREQUEST,
-  API_URL_CONTRIBUTE
-} from 'etc/constants';
+import { SIGNAL_ART_URL_PATTERN } from 'etc/constants';
+import { ContributePayload } from 'etc/types';
+import { ApiError, contributePack, errorFieldPath, getSecurityQuestion } from 'lib/api';
 import { getStickerPackDirectory, getStickerPack } from 'lib/stickers';
 
 /**
@@ -40,6 +38,12 @@ export interface FormValues {
  * Regular expression used to validate lists of tags.
  */
 const TAGS_PATTERN = /^(?:([\w ]+))+(?:, ?([\w ]+))*$/g;
+
+
+/**
+ * Maximum number of tags accepted by the API.
+ */
+const MAX_TAGS = 40;
 
 
 /**
@@ -85,8 +89,8 @@ const validators: Record<string, FieldValidator> = {
     }
   },
   source: (source: string) => {
-    if (source && source.length > 320) {
-      return 'This field must be no longer than 320 characters.';
+    if (source && source.length > 256) {
+      return 'This field must be no longer than 256 characters.';
     }
   },
   tags: (tags: string) => {
@@ -115,36 +119,33 @@ const validators: Record<string, FieldValidator> = {
 export default function ContributePack() {
   const [hasBeenSubmitted, setHasBeenSubmitted] = React.useState(false);
   const [requestSent, setRequestSent] = React.useState(false);
-  const [contributionRequestToken, setContributionRequestToken] = React.useState('');
-  const [contributionRequestQuestion, setContributionRequestQuestion] = React.useState('');
+  const [securityId, setSecurityId] = React.useState('');
+  const [securityQuestion, setSecurityQuestion] = React.useState('');
   const [tagArray, setTagArray] = React.useState<string[]>([]);
 
 
   /**
-   * Get a ContributionRequest token and question
+   * Get a security question
    */
-  const fetchContributionRequest = () => {
-    void fetch(API_URL_CONTRIBUTIONREQUEST, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      }
-    }).then(async x => x.json()).then(x => {
-      setContributionRequestQuestion(x.contribution_question);
-      setContributionRequestToken(x.contribution_id);
-    });
-  };
+  const fetchSecurityQuestion = React.useCallback(async () => {
+    try {
+      const q = await getSecurityQuestion();
+      setSecurityQuestion(q.security_question);
+      setSecurityId(q.security_id);
+    } catch (err) {
+      console.error('[Contribute] Unable to fetch security question', err);
+    }
+  }, []);
 
 
   /**
-   * Get a ContributionRequest at loading
+   * Get a security question at loading
    */
   React.useEffect(() => {
     setTimeout(() => {
-      fetchContributionRequest();
+      void fetchSecurityQuestion();
     }, 3000); // Delaying the query helps reducing the load
-  }, []);
+  }, [fetchSecurityQuestion]);
 
 
   /**
@@ -165,7 +166,7 @@ export default function ContributePack() {
    */
   // @ts-expect-error
   const handleReset = React.useCallback(({ resetForm }) => {
-    fetchContributionRequest();
+    void fetchSecurityQuestion();
     resetForm();
     setRequestSent(false);
     setTagArray([]);
@@ -174,6 +175,7 @@ export default function ContributePack() {
       behavior: 'smooth'
     });
   }, [
+    fetchSecurityQuestion,
     requestSent
   ]);
 
@@ -182,7 +184,7 @@ export default function ContributePack() {
    * Called when the form is submitted and has passed validation.
    */
   // @ts-expect-error
-  const onSubmit = React.useCallback((values: FormValues, { setErrors, setSubmitting }) => {
+  const onSubmit = React.useCallback(async (values: FormValues, { setErrors }) => {
     const matches = new RegExp(SIGNAL_ART_URL_PATTERN).exec(values.signalArtUrl);
     if (!matches) {
       throw new Error('Unable to extract pack ID and pack key from signal.art URL.');
@@ -194,49 +196,78 @@ export default function ContributePack() {
       .map(tag => tag.trim())
       .filter(tag => tag.length));
 
-    const propositionData = {
+    const payload: ContributePayload = {
       pack: {
-        pack_id: packId,
-        pack_key: packKey,
+        id: packId,
+        key: packKey,
         source: values.source,
-        tags: tags,
-        nsfw: values.isNsfw === 'true' ? true : false,
-        original: values.isOriginal === 'true' ? true : false
+        tags,
+        nsfw: values.isNsfw === 'true',
+        original: values.isOriginal === 'true'
       },
-      contribution_id: contributionRequestToken,
-      contribution_answer: values.secAnswer,
-      submitter_comments: values.submitterComments
+      submitter_comments: values.submitterComments,
+      security_id: securityId,
+      security_answer: values.secAnswer
     };
 
-    void fetch(API_URL_CONTRIBUTE, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(propositionData)
-    }).then(async response =>
-      response.json().then(data => ({
-        data: data,
-        status: response.status
-      })
-      ).then(res => {
-        if (res.status === 400) {
-          setErrors({
-            secAnswer: res.data.error
-          });
-          setRequestSent(false);
-          setSubmitting(false);
-          return;
+    try {
+      await contributePack(payload);
+      setRequestSent(true);
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    } catch (err) {
+      if (err instanceof ApiError) {
+        switch (err.type) {
+          case 'wrong_answer':
+            setErrors({ secAnswer: err.msg });
+            break;
+          case 'security_verification_failed':
+            setErrors({ secAnswer: err.msg });
+            void fetchSecurityQuestion(); // the old question is invalid/expired
+            break;
+          case 'duplicate_pack':
+            setErrors({ signalArtUrl: err.msg });
+            break;
+          case 'pack_invalid':
+            setErrors({ signalArtUrl: err.msg });
+            break;
+          default:
+            // Field-level errors (e.g. 422 validation errors): display the
+            // message on the field the error refers to, when we know it.
+            switch (errorFieldPath(err)) {
+              case 'pack.id':
+              case 'pack.key':
+                setErrors({ signalArtUrl: err.msg });
+                break;
+              case 'pack.source':
+                setErrors({ source: err.msg });
+                break;
+              case 'pack.tags':
+                setErrors({ tags: err.msg });
+                break;
+              case 'pack.nsfw':
+                setErrors({ isNsfw: err.msg });
+                break;
+              case 'pack.original':
+                setErrors({ isOriginal: err.msg });
+                break;
+              case 'security_answer':
+                setErrors({ secAnswer: err.msg });
+                break;
+              case 'submitter_comments':
+                setErrors({ submitterComments: err.msg });
+                break;
+              default:
+                setErrors({ secAnswer: err.msg || 'Something went wrong. Please try again.' });
+            }
         }
-        setRequestSent(true);
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: 'smooth'
-        });
-      }));
-
-  }, [contributionRequestQuestion, contributionRequestToken, tagArray]);
+      } else {
+        setErrors({ secAnswer: 'Something went wrong. Please try again.' });
+      }
+    }
+  }, [fetchSecurityQuestion, securityId, tagArray]);
 
 
   // ----- Render --------------------------------------------------------------
@@ -296,7 +327,7 @@ export default function ContributePack() {
         <div className="col-12 col-md-10 offset-md-1">
           <Formik
             initialValues={initialValues}
-            onSubmit={(values, { setErrors, setSubmitting }) => onSubmit(values, { setErrors, setSubmitting })}
+            onSubmit={(values, { setErrors }) => onSubmit(values, { setErrors })}
             validateOnChange={hasBeenSubmitted}
             validateOnBlur={hasBeenSubmitted}
           >
@@ -353,10 +384,14 @@ export default function ContributePack() {
                         name="tags"
                         tags={tagArray}
                         onTagsChange={setTagArray}
+                        maxTags={MAX_TAGS}
                         disabled={requestSent}
                         error={!!errors.tags}
                       />
                       <small className="form-text text-muted">Type and press Enter to add a tag. Backspace to edit last tag. Click a tag to remove it.</small>
+                      {tagArray.length >= MAX_TAGS &&
+                        <small className="form-text text-danger">Maximum of {MAX_TAGS} tags reached.</small>
+                      }
                       {tagArray.some(tag => tag.toLowerCase() === 'furry') && (
                         <p className="form-text text-danger"><span className="font-weight-bold"><u>IMPORTANT</u></span>: our furry review guidelines have changed. Furry packs that contain <span className="font-weight-bold">graphic/sexual content will now be rejected.</span><br/><br/>
                         Moreover, <span className="font-weight-bold">we will remove the already submitted packs that contain graphic/sexual content in a few weeks/months.</span><br/><br/>
@@ -463,7 +498,7 @@ export default function ContributePack() {
                 <div className="form-group">
                   <div className="form-row">
                     <label className={cx('col-12', errors.secAnswer && 'text-danger')} htmlFor="secAnswer">
-                      {contributionRequestQuestion}
+                      {securityQuestion}
                       <Field
                         type="text"
                         id="secAnswer"
