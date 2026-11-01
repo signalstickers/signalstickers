@@ -46,7 +46,7 @@ export interface StickerPack {
 
 
 /**
- * Response of POST /v2/security-question/.
+ * Response of POST /v2/security-question.
  */
 export interface SecurityQuestion {
   security_id: string;
@@ -66,7 +66,7 @@ export interface PackStatus {
 
 
 /**
- * Body of POST /v2/packs/ (contribute).
+ * Body of POST /v2/packs (contribute).
  */
 export interface ContributePayload {
   pack: {
