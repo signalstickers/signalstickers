@@ -124,10 +124,11 @@ export default function SeeAlso(props: Props) {
 
 
   /**
-   * [Memo] Index of all packs by tag. `allStickerPacks` is only set once, at
-   * startup, so this index is built once per app load and makes per-visit
-   * section building O(directory size) at most, instead of O(directory size)
-   * per tag of the current pack.
+   * [Memo] Index of all packs by tag. `allStickerPacks` is set twice at
+   * startup (first the limited set, then the full directory), so this index is
+   * built once per app load and rebuilt when the full directory lands, keeping
+   * per-visit section building O(directory size) at most, instead of
+   * O(directory size) per tag of the current pack.
    */
   const packsByTag = React.useMemo(() => {
     const index = new Map<string, Array<StickerPackPartial>>();

@@ -29,6 +29,12 @@ export const SEARCH_QUERY_PARAM = 's';
 export const SIGNAL_ART_URL_PATTERN = /^https:\/\/signal.art\/addstickers\/#pack_id=([\dA-Za-z]{32})&pack_key=([\dA-Za-z]{64})$/g;
 
 /**
+ * Number of packs to fetch first for the fast initial render. Aligned with PAGE_SIZE in
+ * SearchResults.tsx so the first fetch fills exactly one rendered page. Keep >= PAGE_SIZE.
+ */
+export const INITIAL_PACKS_LIMIT = 64;
+
+/**
  * API urls
  */
 export const API_BASE_URL = import.meta.env.SIGNALSTICKERS_API_URL;

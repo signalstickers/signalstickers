@@ -43,6 +43,22 @@ let stickerPackDirectoryPromise: Promise<Array<StickerPackPartial>> | undefined;
 
 
 /**
+ * Promise that will resolve with the first page of sticker packs (the fast
+ * initial render set). Cached like the full directory so that repeat callers
+ * share a single request.
+ */
+let stickerPackDirectoryLimitedPromise: Promise<Array<StickerPackPartial>> | undefined;
+
+
+/**
+ * The limited directory once it has resolved. Pack lookups (getStickerPack)
+ * use this to answer immediately for packs in the initial set, without
+ * waiting for the full directory to load.
+ */
+let stickerPackDirectoryLimited: Array<StickerPackPartial> | undefined;
+
+
+/**
  * In-memory cache of StickerPack objects.
  */
 const stickerPackCache = new Map<string, StickerPack>();
@@ -72,6 +88,37 @@ export async function getStickerPackDirectory(): Promise<Array<StickerPackPartia
 
 
 /**
+ * Resolves with the first `limit` packs. Used for the fast initial render; the full
+ * directory is fetched separately via getStickerPackDirectory().
+ */
+export function getStickerPackDirectoryLimited(limit: number): Promise<Array<StickerPackPartial>> {
+  if (!stickerPackDirectoryLimitedPromise) {
+    stickerPackDirectoryLimitedPromise = getPacks(limit).then(packs => {
+      stickerPackDirectoryLimited = packs;
+      return packs;
+    });
+  }
+
+  return stickerPackDirectoryLimitedPromise;
+}
+
+
+/**
+ * Resolves with the directory to use for a pack metadata lookup: the limited
+ * directory if it has already loaded and contains the pack (so opening one of
+ * the initial packs does not wait for the full directory), otherwise the full
+ * directory (which resolves immediately once it has loaded).
+ */
+async function getDirectoryForPack(id: string): Promise<Array<StickerPackPartial>> {
+  if (stickerPackDirectoryLimited && R.find(R.pathEq(id, ['meta', 'id']), stickerPackDirectoryLimited)) {
+    return stickerPackDirectoryLimited;
+  }
+
+  return getStickerPackDirectory();
+}
+
+
+/**
  * Provided a sticker pack ID and optional key, queries the Signal API and
  * resolves with 'full' StickerPack object.
  */
@@ -80,7 +127,7 @@ export async function getStickerPack(id: string, key?: string): Promise<StickerP
 
   try {
     if (!stickerPackCache.has(cacheKey)) {
-      const directory = await getStickerPackDirectory();
+      const directory = await getDirectoryForPack(id);
 
       // Build the metadata object using information from a StickerPackPartial
       // in the directory or, if the requested sticker pack is unlisted, just

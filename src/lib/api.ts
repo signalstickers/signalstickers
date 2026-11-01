@@ -100,8 +100,9 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
 
 // ----- Endpoints ---------------------------------------------------------------
 
-export function getPacks(): Promise<Array<StickerPackPartial>> {
-  return request<Array<StickerPackPartial>>(API_URL_PACKS);
+export function getPacks(limit?: number): Promise<Array<StickerPackPartial>> {
+  const query = limit != null ? `?limit=${limit}` : '';
+  return request<Array<StickerPackPartial>>(`${API_URL_PACKS}${query}`);
 }
 
 

@@ -2,6 +2,7 @@ import * as R from 'ramda';
 import React from 'react';
 import {Waypoint} from 'react-waypoint';
 
+import LoadingSpinner from 'components/general/LoadingSpinner';
 import PackCardLink from 'components/general/PackCardLink';
 import StickersContext from 'contexts/StickersContext';
 
@@ -13,7 +14,7 @@ const PAGE_SIZE = 64;
 
 
 export default function StickerPackListComponent() {
-  const {searchResults, showNsfw, allStickerPacks} = React.useContext(StickersContext);
+  const {searchResults, showNsfw, allStickerPacks, searchQuery, sortOrder, isDirectoryComplete} = React.useContext(StickersContext);
   // Used by Waypoint to persist the component across re-renders.
   const [cursor, setCursor] = React.useState(0);
   // Subset of total search results that have been rendered.
@@ -51,17 +52,17 @@ export default function StickerPackListComponent() {
   }, [searchResults]);
 
 
-  /**
-   * While the sticker pack directory is still loading, show a loading spinner
-   * so the page does not appear empty.
-   */
-  if (allStickerPacks === undefined) {
+  const isDefaultView = searchQuery.length === 0 && sortOrder === '';
+
+  // Spinner while: the packs haven't loaded yet, OR a query/sort is active but the full
+  // directory isn't loaded (searching/sorting the 64 isn't meaningful).
+  const showSpinner = allStickerPacks === undefined || (!isDefaultView && !isDirectoryComplete);
+
+  if (showSpinner) {
     return (
       <div className="row">
         <div className="col-12 d-flex align-items-center justify-content-center py-5">
-          <div className="spinner-border text-secondary" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>
+          <LoadingSpinner />
         </div>
       </div>
     );

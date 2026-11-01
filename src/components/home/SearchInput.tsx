@@ -15,7 +15,7 @@ import { IoSparklesSharp } from 'react-icons/io5';
 
 
 export default function SearchInputComponent() {
-  const { searcher, searchQuery, searchResults, setSearchQuery, sortOrder, setSortOrder, setShowNsfw, hasEditorsChoiceFilter } = React.useContext(StickersContext);
+  const { searcher, searchQuery, searchResults, setSearchQuery, sortOrder, setSortOrder, setShowNsfw, hasEditorsChoiceFilter, isDirectoryComplete } = React.useContext(StickersContext);
   const [searchQueryInputValue, setSearchQueryInputValue] = React.useState('');
   const searchHelpRef = React.useRef<HTMLDivElement>(null);
   const suggestedTags = ['cute', 'privacy', 'meme', 'for children'];
@@ -280,7 +280,9 @@ export default function SearchInputComponent() {
         </div>
         <div className="text-muted">
           <small>
-            {searchResults?.length || 0} {searchResults.length === 1 ? 'result' : 'results'}
+            {isDirectoryComplete
+              ? `${searchResults.length} ${searchResults.length === 1 ? 'result' : 'results'}`
+              : '…'}
           </small>
         </div>
       </div>
